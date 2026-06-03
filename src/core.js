@@ -1,0 +1,602 @@
+(function (root, factory) {
+  const api = factory();
+  root.WPH = Object.assign(root.WPH || {}, api);
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = api;
+  }
+}(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+
+  const SCHEMES = {
+    complementary: {
+      colors: [[0, 0, 0, "primary"], [180, 0, 8, "contrast"]]
+    },
+    split: {
+      colors: [[0, 0, 0, "primary"], [150, 0, 8, "leftAccent"], [210, 0, -8, "rightAccent"]]
+    },
+    triadic: {
+      colors: [[0, 0, 0, "primary"], [120, 0, 8, "secondary"], [240, 0, -8, "accent"]]
+    },
+    tetradic: {
+      colors: [[0, 0, 0, "primary"], [90, 0, 8, "secondary"], [180, 0, -8, "contrast"], [270, 8, 14, "accent"]]
+    },
+    analogous: {
+      colors: [[0, 0, 0, "primary"], [-35, -4, -10, "shadow"], [35, -4, 12, "highlight"]]
+    },
+    analogousWide: {
+      colors: [[0, 0, 0, "primary"], [-60, -10, -14, "darkNeighbor"], [-30, -4, -6, "shadow"], [30, -4, 10, "layer"], [60, -10, 18, "lightNeighbor"]]
+    },
+    monochrome: {
+      colors: [[0, 0, 0, "primary"], [0, 0, -28, "deepShadow"], [0, -4, 18, "layer"], [0, -12, 34, "edgeHighlight"]]
+    },
+    zenithal: {
+      colors: [[0, 0, 0, "basecoat"], [-12, -18, -28, "coolShadow"], [8, -6, 18, "warmLayer"], [15, -18, 34, "edgeHighlight"]]
+    },
+    accented: {
+      colors: [[0, 0, 0, "primary"], [-30, -4, -8, "darkNeighbor"], [30, -4, 10, "lightNeighbor"], [180, 8, 8, "strongAccent"]]
+    },
+    compound: {
+      colors: [[0, 0, 0, "primary"], [30, -5, 10, "neighbor"], [180, 0, -4, "contrast"], [210, -8, 8, "secondaryAccent"]]
+    },
+    warmCool: {
+      colors: [[0, 0, 0, "primary"], [22, -2, 12, "warmLayer"], [190, -5, -5, "coolCounter"], [215, -10, 10, "coolAccent"]]
+    },
+    grimdark: {
+      colors: [[0, 0, 0, "primary"], [0, -32, -22, "darkBase"], [35, -25, 10, "dustyLayer"], [180, -28, 0, "dirtyAccent"]]
+    },
+    realm: {
+      colors: [[0, 0, 0, "primary"], [42, -8, 16, "realmGlow"], [180, 12, 8, "realmAccent"], [-35, -14, -16, "realmShadow"]]
+    },
+    chapter: {
+      colors: [[0, 0, 0, "armor"], [0, -16, -24, "panelShade"], [38, -8, 16, "companyMarking"], [180, 10, 6, "lensAccent"]]
+    }
+  };
+
+  const MATERIAL_PRESETS = {
+    woods: [
+      { key: "darkWood", hex: "#4A2D19" },
+      { key: "warmWood", hex: "#8A5A2B" },
+      { key: "darkLeather", hex: "#3B2618" },
+      { key: "redLeather", hex: "#7A3F24" }
+    ],
+    neutrals: [
+      { key: "offWhite", hex: "#E8E0CF" },
+      { key: "bone", hex: "#CBB889" },
+      { key: "coldWhite", hex: "#EEF3F8" },
+      { key: "blackGrey", hex: "#20242A" }
+    ],
+    metals: [
+      { key: "iron", hex: "#6D7478" },
+      { key: "silver", hex: "#B9C0C5" },
+      { key: "bronze", hex: "#9B6332" },
+      { key: "gold", hex: "#D2A13D" }
+    ]
+  };
+
+  const MATERIAL_FALLBACKS = {
+    darkLeather: { key: "darkLeather", hex: "#4B2E1F" },
+    redLeather: { key: "redLeather", hex: "#7A3B25" },
+    darkWood: { key: "darkWood", hex: "#4A2F1B" },
+    bone: { key: "bone", hex: "#CBB889" },
+    offWhite: { key: "offWhite", hex: "#E8E0CF" },
+    iron: { key: "iron", hex: "#6D7478" },
+    silver: { key: "silver", hex: "#B9C0C5" },
+    bronze: { key: "bronze", hex: "#9B6332" },
+    gold: { key: "gold", hex: "#D2A13D" },
+    baseEarth: { key: "baseEarth", hex: "#66513C" }
+  };
+
+  const ROLE_PROFILES = {
+    aos: {
+      balanced: [
+        role("dominantSurface", palette(0), "dominant", "dominant"),
+        role("secondarySurface", palette(1), "secondary", "secondary"),
+        role("focusAccent", palette(2), "focus", "focus"),
+        role("leatherStraps", material("darkLeather"), "leather", "neutral"),
+        role("woodWeapons", material("darkWood"), "wood", "neutral"),
+        role("metalDetails", material("iron"), "metal", "metal"),
+        role("baseDetails", material("baseEarth"), "base", "base")
+      ],
+      stormcast: [
+        role("plateArmor", palette(0), "dominant", "heroic"),
+        role("clothAndShield", palette(1), "secondary", "secondary"),
+        role("insignia", material("gold"), "metal", "metal"),
+        role("weapon", material("iron"), "metal", "metal"),
+        role("magicEyes", palette(2), "focus", "focus"),
+        role("leatherStraps", material("darkLeather"), "leather", "neutral"),
+        role("baseDetails", material("baseEarth"), "base", "base")
+      ],
+      death: [
+        role("boneGhostRobe", palette(0), "dominant", "grim"),
+        role("tornCloth", palette(1), "secondary", "grim"),
+        role("etherealGlow", palette(2), "focus", "focus"),
+        role("bonesTrophies", material("bone"), "bone", "bone"),
+        role("agedMetal", material("bronze"), "metal", "weather"),
+        role("leatherScraps", material("darkLeather"), "leather", "neutral"),
+        role("graveBase", material("baseEarth"), "base", "base")
+      ],
+      destruction: [
+        role("skinScalesArmor", palette(0), "dominant", "organic"),
+        role("warPaintCloth", palette(1), "secondary", "secondary"),
+        role("glyphFocus", palette(2), "focus", "focus"),
+        role("hidesFurs", material("redLeather"), "leather", "weather"),
+        role("clubsShafts", material("darkWood"), "wood", "neutral"),
+        role("roughMetal", material("iron"), "metal", "weather"),
+        role("dustyBase", material("baseEarth"), "base", "base")
+      ],
+      chaos: [
+        role("darkArmorMutation", palette(0), "dominant", "grim"),
+        role("cloakShieldFur", palette(1), "secondary", "grim"),
+        role("daemonicFocus", palette(2), "focus", "focus"),
+        role("brassTrim", material("bronze"), "metal", "weather"),
+        role("leatherTrophies", material("darkLeather"), "leather", "weather"),
+        role("bonesTrophies", material("bone"), "bone", "bone"),
+        role("ashBase", material("baseEarth"), "base", "base")
+      ],
+      wizard: [
+        role("robeMantle", palette(0), "dominant", "cloth"),
+        role("innerRobe", palette(1), "secondary", "cloth"),
+        role("spellEffect", palette(2), "focus", "focus"),
+        role("parchmentTrim", material("offWhite"), "cloth", "bone"),
+        role("staffWood", material("darkWood"), "wood", "neutral"),
+        role("jewelry", material("gold"), "metal", "metal"),
+        role("mysticBase", material("baseEarth"), "base", "base")
+      ],
+      beast: [
+        role("skinFurScales", palette(0), "dominant", "organic"),
+        role("bellyWingsPlates", palette(1), "secondary", "organic"),
+        role("eyesMouthMagic", palette(2), "focus", "focus"),
+        role("clawsHornsTeeth", material("bone"), "bone", "bone"),
+        role("saddleStraps", material("redLeather"), "leather", "neutral"),
+        role("chainsArmor", material("iron"), "metal", "weather"),
+        role("naturalBase", material("baseEarth"), "base", "base")
+      ]
+    },
+    k40: {
+      balanced: [
+        role("powerArmorFatigues", palette(0), "dominant", "dominant"),
+        role("secondaryPanels", palette(1), "secondary", "secondary"),
+        role("lensesPlasma", palette(2), "focus", "focus"),
+        role("weaponCasing", material("blackGrey"), "weapon", "neutral"),
+        role("gunmetal", material("iron"), "metal", "metal"),
+        role("pouchesStraps", material("darkLeather"), "leather", "neutral"),
+        role("battlefieldBase", material("baseEarth"), "base", "base")
+      ],
+      spaceMarines: [
+        role("chapterArmor", palette(0), "dominant", "heroic"),
+        role("pauldronsKnees", palette(1), "secondary", "secondary"),
+        role("companyMarkings", palette(2), "focus", "focus"),
+        role("weaponCasing", material("blackGrey"), "weapon", "neutral"),
+        role("aquilaTrim", material("gold"), "metal", "metal"),
+        role("lensesPlasma", palette(3), "focus", "focus"),
+        role("battlefieldBase", material("baseEarth"), "base", "base")
+      ],
+      guard: [
+        role("fatiguesCoat", palette(0), "dominant", "cloth"),
+        role("armorPlates", palette(1), "secondary", "secondary"),
+        role("unitMarkings", palette(2), "focus", "focus"),
+        role("weaponCasing", material("blackGrey"), "weapon", "neutral"),
+        role("gunmetal", material("iron"), "metal", "metal"),
+        role("pouchesStraps", material("darkLeather"), "leather", "neutral"),
+        role("battlefieldBase", material("baseEarth"), "base", "base")
+      ],
+      chaosMarines: [
+        role("traitorArmor", palette(0), "dominant", "grim"),
+        role("trimMutations", palette(1), "secondary", "grim"),
+        role("warpGlow", palette(2), "focus", "focus"),
+        role("brassTrim", material("bronze"), "metal", "weather"),
+        role("boneTrophies", material("bone"), "bone", "bone"),
+        role("weaponCasing", material("blackGrey"), "weapon", "neutral"),
+        role("ashWasteBase", material("baseEarth"), "base", "base")
+      ],
+      xenos: [
+        role("carapaceArmor", palette(0), "dominant", "organic"),
+        role("clothPanels", palette(1), "secondary", "secondary"),
+        role("alienEnergy", palette(2), "focus", "focus"),
+        role("boneClaws", material("bone"), "bone", "bone"),
+        role("smoothMetal", material("silver"), "metal", "metal"),
+        role("pouchesStraps", material("darkLeather"), "leather", "neutral"),
+        role("alienBase", material("baseEarth"), "base", "base")
+      ],
+      tyranids: [
+        role("fleshSkin", palette(0), "dominant", "organic"),
+        role("carapaceArmor", palette(1), "secondary", "organic"),
+        role("bioWeapons", palette(2), "focus", "focus"),
+        role("clawsHornsTeeth", material("bone"), "bone", "bone"),
+        role("tongueSacs", palette(3), "focus", "focus"),
+        role("naturalBase", material("baseEarth"), "base", "base")
+      ],
+      vehicle: [
+        role("hullArmor", palette(0), "dominant", "dominant"),
+        role("panelsMarkings", palette(1), "secondary", "secondary"),
+        role("lensesPlasma", palette(2), "focus", "focus"),
+        role("gunmetal", material("iron"), "metal", "metal"),
+        role("exhaustDamage", material("blackGrey"), "weathering", "weather"),
+        role("battlefieldBase", material("baseEarth"), "base", "base")
+      ]
+    }
+  };
+
+  const SYSTEMS = {
+    aos: {
+      schemeKeys: ["complementary", "split", "triadic", "tetradic", "analogous", "analogousWide", "monochrome", "zenithal", "accented", "compound", "warmCool", "grimdark", "realm"],
+      roleProfileKeys: ["balanced", "stormcast", "death", "destruction", "chaos", "wizard", "beast"],
+      baseThemeKeys: ["auto", "city", "ruins", "graveyard", "forest", "swamp", "desert", "snow", "volcanic", "arcane", "ghur", "coastal"],
+      profileBaseKeys: {
+        balanced: ["neutral"],
+        stormcast: ["ruins"],
+        death: ["graveyard"],
+        destruction: ["ghur"],
+        chaos: ["volcanic"],
+        wizard: ["arcane"],
+        beast: ["ghur", "forest"]
+      }
+    },
+    k40: {
+      schemeKeys: ["chapter", "complementary", "split", "triadic", "tetradic", "analogous", "monochrome", "zenithal", "accented", "warmCool", "grimdark"],
+      roleProfileKeys: ["balanced", "spaceMarines", "guard", "chaosMarines", "xenos", "tyranids", "vehicle"],
+      baseThemeKeys: ["auto", "urban", "ashWaste", "hive", "jungle", "desert", "snow", "volcanic", "alien", "shipDeck"],
+      profileBaseKeys: {
+        balanced: ["urban"],
+        spaceMarines: ["urban", "ashWaste"],
+        guard: ["ashWaste", "hive"],
+        chaosMarines: ["volcanic", "ashWaste"],
+        xenos: ["alien", "jungle"],
+        tyranids: ["alien", "jungle"],
+        vehicle: ["urban", "ashWaste"]
+      }
+    }
+  };
+
+  const BASE_CATALOG = {
+    city: { hex: "#6C6B65" },
+    ruins: { hex: "#777A83" },
+    graveyard: { hex: "#3A332D" },
+    forest: { hex: "#4F5D3F" },
+    swamp: { hex: "#3F4A34" },
+    desert: { hex: "#A07845" },
+    snow: { hex: "#D8D9D2" },
+    volcanic: { hex: "#2E2B28" },
+    arcane: { hex: "#4B4658" },
+    ghur: { hex: "#80613B" },
+    coastal: { hex: "#4E6870" },
+    neutral: { hex: "#66513C" },
+    darkMud: { hex: "#2D251F" },
+    lightAsh: { hex: "#C9C2B2" },
+    darkRim: { hex: "#1E1B18" },
+    urban: { hex: "#555C63" },
+    ashWaste: { hex: "#6D665B" },
+    hive: { hex: "#343941" },
+    jungle: { hex: "#3E5533" },
+    alien: { hex: "#5A416B" },
+    shipDeck: { hex: "#40474D" }
+  };
+
+  function role(areaKey, colorRef, useKey, tipKey) {
+    return { areaKey, colorRef, useKey, tipKey };
+  }
+
+  function palette(index) {
+    return { type: "palette", index };
+  }
+
+  function material(key) {
+    return { type: "material", key };
+  }
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function normHue(value) {
+    return ((value % 360) + 360) % 360;
+  }
+
+  function hslToRgb(h, s, l) {
+    h = normHue(h);
+    s /= 100;
+    l /= 100;
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    const m = l - c / 2;
+    let r = 0;
+    let g = 0;
+    let b = 0;
+
+    if (h < 60) {
+      r = c;
+      g = x;
+    } else if (h < 120) {
+      r = x;
+      g = c;
+    } else if (h < 180) {
+      g = c;
+      b = x;
+    } else if (h < 240) {
+      g = x;
+      b = c;
+    } else if (h < 300) {
+      r = x;
+      b = c;
+    } else {
+      r = c;
+      b = x;
+    }
+
+    return {
+      r: Math.round((r + m) * 255),
+      g: Math.round((g + m) * 255),
+      b: Math.round((b + m) * 255)
+    };
+  }
+
+  function rgbToHex(r, g, b) {
+    const part = value => clamp(Math.round(value), 0, 255).toString(16).padStart(2, "0");
+    return ("#" + part(r) + part(g) + part(b)).toUpperCase();
+  }
+
+  function hslToHex(h, s, l) {
+    const rgb = hslToRgb(h, s, l);
+    return rgbToHex(rgb.r, rgb.g, rgb.b);
+  }
+
+  function hexToRgb(hex) {
+    const clean = String(hex).replace("#", "").trim();
+    if (!/^[0-9a-fA-F]{6}$/.test(clean)) {
+      return null;
+    }
+    return {
+      r: parseInt(clean.slice(0, 2), 16),
+      g: parseInt(clean.slice(2, 4), 16),
+      b: parseInt(clean.slice(4, 6), 16)
+    };
+  }
+
+  function rgbToHsl(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0;
+    let s = 0;
+    const l = (max + min) / 2;
+
+    if (max !== min) {
+      const d = max - min;
+      s = l > .5 ? d / (2 - max - min) : d / (max + min);
+      if (max === r) {
+        h = (g - b) / d + (g < b ? 6 : 0);
+      } else if (max === g) {
+        h = (b - r) / d + 2;
+      } else {
+        h = (r - g) / d + 4;
+      }
+      h *= 60;
+    }
+
+    return {
+      h: Math.round(h),
+      s: Math.round(s * 100),
+      l: Math.round(l * 100)
+    };
+  }
+
+  function styleLabelKey(style) {
+    if (style <= -65) return "grimdark";
+    if (style < -20) return "weathered";
+    if (style <= 20) return "balanced";
+    if (style < 65) return "clean";
+    return "vibrant";
+  }
+
+  function styleFactor(style) {
+    return clamp(Number(style) || 0, -100, 100) / 100;
+  }
+
+  function primaryHex(state) {
+    return hslToHex(state.h, state.s, state.l);
+  }
+
+  function applyFinishToColor(h, s, l, index, style) {
+    const f = styleFactor(style);
+    if (index === 0) {
+      return { h, s, l, hex: hslToHex(h, s, l) };
+    }
+
+    let ns = s;
+    let nl = l;
+    if (f < 0) {
+      const g = -f;
+      ns -= 18 * g;
+      nl -= 7 * g;
+      if (index >= 2) {
+        ns -= 8 * g;
+        nl -= 5 * g;
+      }
+    } else if (f > 0) {
+      ns += 14 * f;
+      nl += 5 * f;
+      if (index >= 2) {
+        ns += 8 * f;
+        nl += 3 * f;
+      }
+    }
+
+    ns = clamp(ns, 5, 100);
+    nl = clamp(nl, 6, 96);
+    return { h, s: ns, l: nl, hex: hslToHex(h, ns, nl) };
+  }
+
+  function buildPalette(state, schemeKey) {
+    const scheme = SCHEMES[schemeKey] || SCHEMES.complementary;
+    return scheme.colors.map((color, index) => {
+      if (index === 0) {
+        return {
+          h: state.h,
+          s: state.s,
+          l: state.l,
+          roleKey: color[3],
+          hex: primaryHex(state)
+        };
+      }
+
+      const h = normHue(state.h + color[0]);
+      const baseS = clamp(state.s + color[1], 5, 100);
+      const baseL = clamp(state.l + color[2], 8, 96);
+      const styled = applyFinishToColor(h, baseS, baseL, index, state.style);
+      return {
+        h: styled.h,
+        s: styled.s,
+        l: styled.l,
+        roleKey: color[3],
+        hex: styled.hex
+      };
+    });
+  }
+
+  function ladderForColor(color, style) {
+    const f = styleFactor(style);
+    const g = Math.max(0, -f);
+    const v = Math.max(0, f);
+    const shadeBoost = 8 * g;
+    const cleanBoost = 7 * v;
+    const satMute = 10 * g;
+    const h = color.h;
+    const s = color.s;
+    const l = color.l;
+
+    return [
+      { key: "deepShade", hex: hslToHex(h, clamp(s - 18 - satMute, 5, 100), clamp(l - 30 - shadeBoost, 4, 92)) },
+      { key: "shadeWash", hex: hslToHex(h, clamp(s - 10 - satMute * .6, 5, 100), clamp(l - 18 - shadeBoost * .6, 5, 94)) },
+      { key: "basecoat", hex: color.hex },
+      { key: "layer", hex: hslToHex(h, clamp(s - 4 + 6 * v - 5 * g, 5, 100), clamp(l + 14 + cleanBoost * .5 - 3 * g, 8, 96)) },
+      { key: "edgeHighlight", hex: hslToHex(h, clamp(s - 12 + 9 * v - 8 * g, 5, 100), clamp(l + 28 + cleanBoost - 6 * g, 10, 98)) },
+      { key: "focusLight", hex: hslToHex(h, clamp(s - 22 + 12 * v - 10 * g, 5, 100), clamp(l + 40 + cleanBoost - 8 * g, 12, 99)) }
+    ];
+  }
+
+  function isWarmHue(h) {
+    h = normHue(h);
+    return h <= 75 || h >= 300;
+  }
+
+  function contrastBaseKeys(palette, state, systemKey) {
+    const primary = palette[0] || { h: state.h, l: state.l };
+    const warm = isWarmHue(primary.h);
+    const dark = primary.l < 38;
+    const bright = primary.l > 62;
+    const keys = [];
+
+    if (systemKey === "k40") {
+      keys.push(warm ? "urban" : "ashWaste");
+    } else {
+      keys.push(warm ? "ruins" : "desert");
+    }
+
+    if (dark) {
+      keys.push("lightAsh");
+    } else if (bright) {
+      keys.push("darkMud");
+    } else {
+      keys.push(systemKey === "k40" ? "hive" : "neutral");
+    }
+    return keys;
+  }
+
+  function finishBaseKeys(systemKey, style) {
+    if (style < -55) {
+      return systemKey === "k40" ? ["darkRim", "ashWaste", "hive"] : ["darkRim", "swamp", "graveyard"];
+    }
+    if (style > 55) {
+      return systemKey === "k40" ? ["urban", "snow", "shipDeck"] : ["ruins", "snow", "city"];
+    }
+    return [systemKey === "k40" ? "urban" : "neutral"];
+  }
+
+  function baseSuggestions(options) {
+    const systemKey = SYSTEMS[options.systemKey] ? options.systemKey : "aos";
+    const system = SYSTEMS[systemKey];
+    const roleProfileKey = options.roleProfileKey || "balanced";
+    const baseThemeKey = options.baseThemeKey || "auto";
+    const palette = options.palette || [];
+    const state = options.state || { h: 220, l: 46, style: 0 };
+    const profileKeys = system.profileBaseKeys[roleProfileKey] || system.profileBaseKeys.balanced || [];
+    let keys;
+
+    if (baseThemeKey && baseThemeKey !== "auto") {
+      keys = [baseThemeKey, ...contrastBaseKeys(palette, state, systemKey), ...profileKeys];
+    } else {
+      keys = [...contrastBaseKeys(palette, state, systemKey), ...profileKeys, ...finishBaseKeys(systemKey, state.style)];
+    }
+
+    const seen = new Set();
+    const result = [];
+    keys.forEach(key => {
+      if (BASE_CATALOG[key] && !seen.has(key)) {
+        seen.add(key);
+        result.push({ key, hex: BASE_CATALOG[key].hex });
+      }
+    });
+
+    return result.slice(0, 5);
+  }
+
+  function selectedMaterials(selectedGroups) {
+    const groups = Array.isArray(selectedGroups) ? selectedGroups : [];
+    return groups.flatMap(group => MATERIAL_PRESETS[group] || []);
+  }
+
+  function getMaterialFallback(key) {
+    return MATERIAL_FALLBACKS[key] || MATERIAL_FALLBACKS.baseEarth;
+  }
+
+  function getSystem(systemKey) {
+    return SYSTEMS[systemKey] || SYSTEMS.aos;
+  }
+
+  function getSchemeKeysForSystem(systemKey) {
+    return getSystem(systemKey).schemeKeys.slice();
+  }
+
+  function getRoleProfileKeys(systemKey) {
+    return getSystem(systemKey).roleProfileKeys.slice();
+  }
+
+  function getBaseThemeKeys(systemKey) {
+    return getSystem(systemKey).baseThemeKeys.slice();
+  }
+
+  function getRoleProfile(systemKey, profileKey) {
+    const profiles = ROLE_PROFILES[systemKey] || ROLE_PROFILES.aos;
+    return profiles[profileKey] || profiles.balanced;
+  }
+
+  return {
+    SCHEMES,
+    SYSTEMS,
+    BASE_CATALOG,
+    MATERIAL_PRESETS,
+    MATERIAL_FALLBACKS,
+    clamp,
+    normHue,
+    hslToRgb,
+    rgbToHex,
+    hslToHex,
+    hexToRgb,
+    rgbToHsl,
+    styleLabelKey,
+    styleFactor,
+    primaryHex,
+    applyFinishToColor,
+    buildPalette,
+    ladderForColor,
+    baseSuggestions,
+    selectedMaterials,
+    getMaterialFallback,
+    getSchemeKeysForSystem,
+    getRoleProfileKeys,
+    getBaseThemeKeys,
+    getRoleProfile
+  };
+}));
