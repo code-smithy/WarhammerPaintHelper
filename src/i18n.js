@@ -7,7 +7,7 @@
 }(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  const LANGUAGE_KEYS = ["en", "de", "fr"];
+  const LANGUAGE_KEYS = ["en", "fr", "de", "es"];
 
   const TRANSLATIONS = {
     en: {
@@ -600,24 +600,691 @@
       schemeRoles: {
         primary: "Couleur principale", contrast: "Couleur de contraste", leftAccent: "Accent gauche", rightAccent: "Accent droit", secondary: "Couleur secondaire", accent: "Couleur d'accent", shadow: "Couleur d'ombre", highlight: "Couleur de highlight", darkNeighbor: "Voisine sombre", lightNeighbor: "Voisine claire", layer: "Couleur de layer", deepShadow: "Ombre profonde", edgeHighlight: "Edge highlight", basecoat: "Basecoat", coolShadow: "Ombre froide", warmLayer: "Layer chaud", strongAccent: "Accent fort", neighbor: "Couleur voisine", secondaryAccent: "Accent secondaire", coolCounter: "Contre-couleur froide", coolAccent: "Accent froid", darkBase: "Base sombre", dustyLayer: "Layer poussiéreux", dirtyAccent: "Accent sale", realmGlow: "Lueur de royaume", realmAccent: "Accent de royaume", realmShadow: "Ombre de royaume", armor: "Couleur d'armure", panelShade: "Ombre de panneau", companyMarking: "Marquage de compagnie", lensAccent: "Accent de lentille"
       }
+    },
+    es: {
+      appTitle: "Warhammer Paint Helper",
+      ui: {
+        language: "Idioma",
+        system: "Sistema de juego",
+        eyebrow: "Herramienta de paletas para miniaturas",
+        title: "Warhammer Paint Helper",
+        subtitle: "Elige un color principal y genera una paleta lista para miniaturas con roles del modelo, ideas de peana, pasos de pintura y equivalencias Citadel.",
+        mainColor: "Color principal",
+        hexInput: "Introducir color HEX directamente",
+        scheme: "Esquema de color",
+        rolePlanner: "Planificador de roles",
+        baseEnvironment: "Entorno de peana",
+        saturation: "Saturación",
+        lightness: "Luminosidad",
+        finishStyle: "Estilo de acabado",
+        grimdark: "Grimdark / envejecido",
+        clean: "Limpio / vibrante",
+        extraMaterials: "Materiales adicionales",
+        copyPalette: "Copiar paleta",
+        copied: "Copiado",
+        randomColor: "Color aleatorio",
+        miniPreview: "Vista previa de miniatura",
+        paintingNotes: "Notas de pintura",
+        rolePlannerDescription: "Asignaciones concretas para superficies, materiales, acentos focales y detalles de peana.",
+        baseAdviceDescription: "Conceptos de peana con lógica de contraste, ambiente, colores de materiales y una receta breve.",
+        modelRoles: "Roles del modelo",
+        modelRolesDescription: "Resumen breve de los colores principales generados.",
+        paintLadderDescription: "Pasos prácticos para sombras, capa base, capas, luces de borde y luz focal.",
+        citadelMatches: "Equivalencias Citadel",
+        accessoryMaterials: "Colores de accesorios y materiales",
+        accessoryMaterialsDescription: "Desactivado por defecto.",
+        noMaterials: "No se han seleccionado materiales adicionales.",
+        why: "Por qué",
+        build: "Construcción",
+        debug: "Depuración: color principal {hex} | primera tarjeta de paleta {firstHex} | HSL({h}, {s}%, {l}%) | acabado {finish}",
+        citadelJsonHint: "Coloca la lista completa de pinturas en data/citadel-colours.json cuando esté lista."
+      },
+      systems: {
+        aos: "Age of Sigmar",
+        k40: "Warhammer 40,000"
+      },
+      systemCopy: {
+        aos: { rolePlannerTitle: "Planificador de roles AoS", baseAdviceTitle: "Sugerencias de peanas AoS", paintLadderTitle: "AoS Sombra / Capa / Luz", finishPrefix: "Acabado AoS" },
+        k40: { rolePlannerTitle: "Planificador de roles 40K", baseAdviceTitle: "Sugerencias de peanas de batalla 40K", paintLadderTitle: "40K Sombra / Capa / Luz", finishPrefix: "Acabado 40K" }
+      },
+      finish: {
+        grimdark: "Grimdark",
+        weathered: "Envejecido",
+        balanced: "Equilibrado",
+        clean: "Limpio",
+        vibrant: "Vibrante",
+        summary: {
+          grimdark: "Desatura los colores de apoyo, profundiza las sombras y mantiene pequeños los puntos más brillantes.",
+          weathered: "Apaga ligeramente los colores de apoyo y favorece sombras más sucias con luces contenidas.",
+          balanced: "Mantiene exacto el tono elegido y deja equilibrados los colores derivados, recetas y sugerencias.",
+          clean: "Añade saturación y capas más claras para armaduras, telas y heráldica limpias.",
+          vibrant: "Empuja colores de apoyo y luces hacia una lectura de alto contraste en vitrina."
+        }
+      },
+      profiles: {
+        aos: {
+          balanced: "Modelo general de Age of Sigmar",
+          stormcast: "Stormcast Eternals",
+          death: "Muerte: Soulblight / Nighthaunt / Ossiarch",
+          destruction: "Destrucción: Orruks / Ogors / Gloomspite",
+          chaos: "Banda del Caos o demonio",
+          wizard: "Mago o héroe centrado en magia",
+          beast: "Monstruo, montura, Seraphon o bestia"
+        },
+        k40: {
+          balanced: "Modelo general de 40K",
+          spaceMarines: "Space Marines / servoarmadura",
+          guard: "Astra Militarum / infantería",
+          chaosMarines: "Chaos Space Marines",
+          xenos: "Infantería xenos o élite",
+          tyranids: "Tiránidos / enjambre orgánico",
+          vehicle: "Vehículo, andador o tanque"
+        }
+      },
+      baseOptions: { auto: "Auto: contraste + facción/perfil" },
+      schemes: {
+        complementary: { title: "Complementario", desc: "Contraste fuerte: el color principal más su opuesto para acentos, lentes, runas, plasma o energía de armas.", note: "Usa el color principal en la mayoría de superficies visibles. El complementario funciona mejor en puntos focales como ojos, armas, escudos, heráldica o efectos de energía." },
+        split: { title: "Complementario dividido", desc: "Rico en contraste, pero más fácil de controlar que una pareja complementaria pura.", note: "Mantén dominante el color principal. Los dos acentos divididos pueden separar telas, estandartes, marcas de escuadra o efectos mágicos." },
+        triadic: { title: "Triádico", desc: "Tres colores espaciados uniformemente para héroes, estandartes, escuadras e identidad de facción.", note: "Deja que un color lidere, usa el segundo para superficies secundarias más grandes y reserva el tercero para detalles." },
+        tetradic: { title: "Tetrádico", desc: "Cuatro colores en dos parejas complementarias. Potente, pero necesita una jerarquía clara.", note: "Usa los colores extra para acentos, detalles de peana, armas, escudos, estandartes o marcas de escuadra." },
+        analogous: { title: "Análogo", desc: "Colores vecinos para un esquema armonioso, orgánico y menos agresivo.", note: "Excelente para monstruos, túnicas, espíritus, temas forestales, piel, escamas y ejércitos naturalistas." },
+        analogousWide: { title: "Análogo amplio", desc: "Cinco tonos relacionados para transiciones suaves, piel de monstruo, capas de tela y superficies grandes.", note: "Los tonos exteriores funcionan bien como veladuras, sombras o variación sutil de bordes." },
+        monochrome: { title: "Monocromático", desc: "Un tono en varios valores para regimientos limpios, armaduras grimdark o escuadras disciplinadas.", note: "Usa la variante oscura como sombra, el color principal como capa base y las variantes claras como capas y luces de borde." },
+        zenithal: { title: "Cenital / sombra / luz", desc: "Una paleta práctica de trabajo: color principal más sombra, capa y luz de borde.", note: "Usa la sombra fría en recovecos, el color principal en superficies y la luz de borde solo en formas afiladas." },
+        accented: { title: "Análogo con acento", desc: "Una paleta base tranquila con un acento opuesto fuerte para lentes, runas, plasma o heráldica.", note: "Los colores análogos llevan el cuerpo. Mantén el acento opuesto pequeño y brillante." },
+        compound: { title: "Compuesto / doble dividido", desc: "Color principal, un vecino y dos acentos opuestos. Bueno para héroes complejos.", note: "Funciona en personajes con muchos materiales. Mantén dominante el color principal." },
+        warmCool: { title: "Contraste cálido-frío", desc: "Zonas cálidas y frías para alta legibilidad a distancia de mesa.", note: "Separa claramente las zonas cálidas y frías, por ejemplo una túnica cálida contra una armadura fría." },
+        grimdark: { title: "Apagado / grimdark", desc: "Variantes más oscuras y desaturadas con un acento controlado para modelos sucios o realistas.", note: "Los lavados, desconchones con esponja, pigmentos y bordes brillantes selectivos importan más que grandes áreas saturadas." },
+        realm: { title: "Contraste de reino AoS", desc: "Color principal más brillo de reino, acento sobrenatural y una sombra asentada.", note: "Creado para ejércitos de Age of Sigmar que necesitan ambiente de reino sin perder la lectura principal de la miniatura." },
+        chapter: { title: "Capítulo 40K / esquema de escuadra", desc: "Color de armadura, sombra de panel, marca de compañía y acento de lentes o plasma.", note: "Diseñado para paneles de armadura 40K, cascos, hombreras, carcasas de armas e identificadores de escuadra." }
+      },
+      schemeRoles: {
+        primary: "Color principal", contrast: "Color de contraste", leftAccent: "Acento izquierdo", rightAccent: "Acento derecho", secondary: "Color secundario", accent: "Color de acento", shadow: "Color de sombra", highlight: "Color de luz", darkNeighbor: "Vecino oscuro", lightNeighbor: "Vecino claro", layer: "Color de capa", deepShadow: "Sombra profunda", edgeHighlight: "Luz de borde", basecoat: "Capa base", coolShadow: "Sombra fría", warmLayer: "Capa cálida", strongAccent: "Acento fuerte", neighbor: "Color vecino", secondaryAccent: "Acento secundario", coolCounter: "Contracolor frío", coolAccent: "Acento frío", darkBase: "Tono base oscuro", dustyLayer: "Capa polvorienta", dirtyAccent: "Acento sucio", realmGlow: "Brillo de reino", realmAccent: "Acento de reino", realmShadow: "Sombra de reino", armor: "Color de armadura", panelShade: "Sombra de panel", companyMarking: "Marca de compañía", lensAccent: "Acento de lente"
+      }
     }
   };
 
-  inherit("de", [
-    "placements", "roleAreas", "roleUses", "roleTips", "ladder", "materials", "bases", "citadel", "copy"
-  ]);
-  inherit("fr", [
-    "placements", "roleAreas", "roleUses", "roleTips", "ladder", "materials", "bases", "citadel", "copy"
-  ]);
+  Object.assign(TRANSLATIONS.de, {
+    placements: {
+      dominant: "Dominante Fläche: Rüstung, Robe, Haut, Rumpf, Uniform oder Hauptstoff.",
+      secondary: "Sekundäre Fläche: Schild, Umhang, Panel, Schulterpanzer, Stoff oder zweite Rüstung.",
+      contrast: "Kontrastbereich: Heraldik, Edelsteine, Waffenglühen, Runen, Linsen, Plasma oder Championdetails.",
+      small: "Kleiner Akzent: Besatz, Truppmarkierungen, Zaubereffekte, Reinheitssiegel oder Base-Details."
+    },
+    roleAreas: {
+      dominantSurface: "Rüstung, Haut, Robe oder Hauptstoff",
+      secondarySurface: "Stoff, Schild, Panel oder sekundäre Rüstung",
+      focusAccent: "Fokusakzent",
+      leatherStraps: "Leder, Riemen und Taschen",
+      woodWeapons: "Holz, Speere, Bögen und Schäfte",
+      metalDetails: "Metalldetails",
+      baseDetails: "Base und Rand",
+      plateArmor: "Plattenrüstung",
+      clothAndShield: "Stoff, Schild oder Heraldik",
+      insignia: "Insignien und Besatz",
+      weapon: "Waffe",
+      magicEyes: "Magie, Augen oder Edelsteine",
+      boneGhostRobe: "Knochen, Geisterhaut oder Robe",
+      tornCloth: "Zerrissener Stoff oder alte Rüstung",
+      etherealGlow: "Ätherisches Leuchten",
+      bonesTrophies: "Knochen und Trophäen",
+      agedMetal: "Gealtertes Metall",
+      leatherScraps: "Lederreste",
+      graveBase: "Grab- oder Fluchbase",
+      skinScalesArmor: "Haut, Schuppen oder grobe Rüstung",
+      warPaintCloth: "Kriegsbemalung, Stoff oder Schild",
+      glyphFocus: "Glyphen- oder Kriegsbemalungsfokus",
+      hidesFurs: "Häute und Felle",
+      clubsShafts: "Keulen und Schäfte",
+      roughMetal: "Raues Metall",
+      dustyBase: "Staubige Base",
+      darkArmorMutation: "Dunkle Rüstung oder Mutation",
+      cloakShieldFur: "Umhang, Schild, Fell oder Haut",
+      daemonicFocus: "Dämonischer Fokus",
+      brassTrim: "Messingbesatz",
+      leatherTrophies: "Leder und Trophäen",
+      robeMantle: "Robe oder Mantel",
+      innerRobe: "Innere Robe oder Schärpe",
+      spellEffect: "Zaubereffekt",
+      parchmentTrim: "Pergament oder heller Besatz",
+      staffWood: "Stabholz",
+      jewelry: "Schmuck",
+      mysticBase: "Mystische Base",
+      skinFurScales: "Haut, Fell oder Schuppen",
+      bellyWingsPlates: "Bauch, Flügelmembran oder Platten",
+      eyesMouthMagic: "Augen, Maul, Gift oder Magie",
+      clawsHornsTeeth: "Klauen, Hörner und Zähne",
+      saddleStraps: "Sattel und Riemen",
+      chainsArmor: "Ketten und Rüstungsreste",
+      naturalBase: "Natürliche Base",
+      powerArmorFatigues: "Servorüstung, Uniform oder Hauptanzug",
+      secondaryPanels: "Sekundäre Panels",
+      lensesPlasma: "Linsen, Plasma und Sensoren",
+      weaponCasing: "Waffengehäuse",
+      gunmetal: "Gunmetal",
+      pouchesStraps: "Taschen und Riemen",
+      battlefieldBase: "Schlachtfeldbase",
+      chapterArmor: "Ordensrüstung",
+      pauldronsKnees: "Schulterpanzer, Helme und Knie",
+      companyMarkings: "Kompaniemarkierungen",
+      aquilaTrim: "Aquila, Besatz und Ehrenzeichen",
+      fatiguesCoat: "Uniform oder Mantel",
+      armorPlates: "Rüstungsplatten",
+      unitMarkings: "Einheitenmarkierungen",
+      traitorArmor: "Verräterrüstung",
+      trimMutations: "Besatz oder Mutationen",
+      warpGlow: "Warp-Leuchten",
+      boneTrophies: "Knochentrophäen",
+      carapaceArmor: "Carapax oder Rüstung",
+      clothPanels: "Stoffbahnen",
+      alienEnergy: "Alien-Energie",
+      boneClaws: "Knochenklauen",
+      smoothMetal: "Glattes Metall",
+      alienBase: "Alien-Base",
+      fleshSkin: "Fleisch oder Haut",
+      bioWeapons: "Biowaffen",
+      tongueSacs: "Zunge oder Säcke",
+      hullArmor: "Rumpfpanzerung",
+      panelsMarkings: "Panels und Markierungen",
+      exhaustDamage: "Abgasschäden und Ruß",
+      ashWasteBase: "Aschewüstenbase"
+    },
+    roleUses: {
+      dominant: "Für die größte lesbare Fläche nutzen, damit das Schema eine klare Identität hat.",
+      secondary: "Auf mittleren Flächen einsetzen, um Formen zu trennen, ohne den Fokus zu stehlen.",
+      focus: "Sparsam nahe Gesichtern, Waffen, Linsen, Edelsteinen, Magie oder Plasma verwenden.",
+      leather: "Für praktische Ausrüstung wie Gürtel, Holster, Riemen, Stiefel und Sättel nutzen.",
+      wood: "Für Schäfte, Bögen, Schilde, Kisten, Ruinen und Schlachtfeldstruktur verwenden.",
+      metal: "Für Klingen, Besatz, Ketten, Waffen, Lüftungen, Schnallen und mechanische Details nutzen.",
+      base: "Die Base unterstützend halten, damit das Modell das lauteste Objekt bleibt.",
+      bone: "Für Zähne, Schädel, Hörner, Klauen, Pergament und Trophäen nutzen.",
+      cloth: "Auf Falten, Roben, Mänteln, Bannern, Wickeln, Wappenröcken und weicher Ausrüstung verwenden.",
+      weapon: "Auf Boltern, Lasguns, Gehäusen, Griffen, Kabeln und harten Abdeckungen nutzen.",
+      weathering: "Für Auspuffspuren, Kratzer, Ölmarken, Hitzefärbung und Schmutzaufbau verwenden."
+    },
+    roleTips: {
+      dominant: "Ziele auf ungefähr zwei Drittel der sichtbaren Miniatur.",
+      secondary: "Unter der Hauptfarbe in der Flächenwirkung halten.",
+      focus: "Klein und hell liest sich besser als überall und laut.",
+      neutral: "Neutrale Töne lassen die Palette atmen.",
+      metal: "Dunkel schattieren und mit einem winzigen hellen Punkt abschließen.",
+      base: "Eine Modellfarbe sehr subtil auf der Base wiederholen, wenn Einheit fehlt.",
+      heroic: "Scharfe Kantenhighlights lassen Eliterüstung aus Entfernung lesen.",
+      grim: "Niedrigere Sättigung und stärkere Schatten verkaufen die Stimmung.",
+      organic: "Weichere Übergänge auf Haut, Fell, Schuppen und Membranen nutzen.",
+      weather: "Kratzer, Schmutz, Pigmente oder Flecken nach den Grundfarben ergänzen.",
+      bone: "An der Wurzel wärmer beginnen und zur Spitze hin aufhellen.",
+      cloth: "Falten breiter highlighten als harte Rüstungskanten."
+    },
+    ladder: {
+      steps: {
+        deepShade: "Tiefe Schatten",
+        shadeWash: "Shade / Wash",
+        basecoat: "Grundschicht",
+        layer: "Layer",
+        edgeHighlight: "Kantenhighlight",
+        focusLight: "Fokuslicht"
+      },
+      hints: {
+        deepShade: "Tiefe Vertiefungen und Unterseiten",
+        shadeWash: "Kontrollierter Wash, keine Flutung",
+        basecoat: "Deckende Hauptschicht",
+        layer: "Erhöhte Volumen und breites Licht",
+        edgeHighlight: "Kanten, Ecken und harte Konturen",
+        focusLight: "Nur Gesicht, Linsen, Runen, Edelsteine, Plasma oder Schlüsselwaffen"
+      },
+      note: "{system}-Einsatz: Rüstung, Stoff, Haut, Schuppen, Fahrzeuge, Umhänge oder Energieeffekte. {finish}-Finish: Fokuslicht selektiv halten."
+    },
+    materials: {
+      groups: {
+        woods: { label: "Holz und Leder", description: "Für Griffe, Bögen, Taschen, Riemen, Schilde und Bases." },
+        neutrals: { label: "Weiß, Knochen und Stoff", description: "Für Pergament, Schädel, Zähne, Umhänge, Seile und hellen Kontrast." },
+        metals: { label: "Metalle", description: "Silber, Eisen, Bronze und Gold für Waffen, Schmuck und Beschläge." }
+      },
+      items: {
+        darkWood: { name: "Dunkles Holz", use: "Schäfte, Bögen, Kisten, Schildrücken und Baseränder" },
+        warmWood: { name: "Warmes Holz", use: "Holzmaserung, Schilde, Boxen und Geländeteile" },
+        darkLeather: { name: "Dunkles Leder", use: "Gürtel, Holster, Stiefel, Taschen und Riemen" },
+        redLeather: { name: "Rötliches Leder", use: "Lederrüstung, Griffe, Sättel und Beutel" },
+        offWhite: { name: "Gebrochenes Weiß", use: "Stoff, Roben, Pergament, Seile und Heraldik" },
+        bone: { name: "Knochen", use: "Schädel, Zähne, Hörner, Klauen, Pergament und Trophäen" },
+        coldWhite: { name: "Kaltes Weiß", use: "Lichtpunkte, Edelsteine, Schnee und Glanzlichter" },
+        blackGrey: { name: "Schwarzgrau", use: "Unteranzüge, Waffengehäuse, Schatten und Lüftungen" },
+        iron: { name: "Eisen", use: "Klingen, Ketten, Bolzen, Gunmetal und harte Beschläge" },
+        silver: { name: "Silber", use: "Helle Metallkanten, Schmuck und saubere Maschinen" },
+        bronze: { name: "Bronze", use: "Alte Rüstung, Besatz, Idole, Maschinen und Beschläge" },
+        gold: { name: "Gold", use: "Insignien, Ehrenzeichen, Schmuck, Besatz und Heldendetails" },
+        baseEarth: { name: "Erde / Geröll", use: "Baseboden, Staub, Ruinen und Schlachtfeldstruktur" }
+      }
+    },
+    bases: {
+      city: base("Pflaster der Freien Stadt", "Gepflasterte Straßen, Grenzwege, Steinplatten, Holztrümmer und pulverbeschmutztes Mauerwerk.", "Am besten für disziplinierte Infanterie, Artillerie, Kavallerie und urbane Kampagnen.", ["Basis: dunkles Graubraun", "Textur: Steine, Sand, gebrochenes Holz", "Trockenbürsten: helles Grau", "Akzent: Staub, Plakate, Grasbüschel"]),
+      ruins: base("Realmgate-Tempelruinen", "Alte Stufen, zerbrochene Statuen, Tempelplatten, Marmorsplitter und rissiger Reichstein.", "Funktioniert für Helden, Eliteeinheiten und Modelle, die einen sauberen heroischen Sockel brauchen.", ["Basis: kühler grauer Stein", "Textur: Schiefer, Kork, rissige Platten", "Trockenbürsten: helles Grau", "Akzent: etwas Moos oder leuchtende Risse"]),
+      graveyard: base("Friedhof / verfluchte Erde", "Kalte Erde, Grabsteine, totes Gras, Knochen, Nebel und dunkles Ruinenmauerwerk.", "Starke Wahl für Untote, verfluchte Armeen und kalte Grimdark-Paletten.", ["Basis: dunkle Erde", "Textur: Grit, Schädel, gebrochener Stein", "Trockenbürsten: kaltes Graubraun", "Akzent: totes Gras oder Knochen"]),
+      forest: base("Waldboden, Wurzeln und Moos", "Wurzeln, Moos, Blätter, feuchte Erde, gefallene Äste und Vegetation des Lebensreichs.", "Gut für Bestien, Jäger, Sylvaneth und naturalistische Schemata.", ["Basis: dunkle Erde", "Textur: Wurzeln, Rinde, Blätter", "Trockenbürsten: Tan oder Moosgrün", "Akzent: Grasbüschel"]),
+      swamp: base("Sumpf / Marschland", "Nasser Schlamm, Schilf, stehendes Wasser, Algen, Knochen und halb versunkene Steine.", "Nützlich für schmutzige, untote, monströse oder Nurgle-nahe Stimmungen.", ["Basis: dunkles Olivbraun", "Textur: Schlamm, Schilf, Steine", "Glanz: Wasserpfützen", "Akzent: kränkliches Gras"]),
+      desert: base("Wüste, Steppe oder Ockerstaub", "Trockener Sand, rissige Erde, warmer Staub, sonnengebleichte Felsen und karger Bewuchs.", "Ausgezeichnet für blaue, grüne, violette oder kalte Schemata.", ["Basis: Ockerbraun", "Textur: Sand und Felsen", "Trockenbürsten: Knochen oder heller Sand", "Akzent: trockenes Gras"]),
+      snow: base("Schnee, Frost und heller Stein", "Schneeflecken, eisige Steine, Frostgras, helle Asche und kalte Marmorstücke.", "Mit dunklen Modellen für Silhouettenkontrast verwenden.", ["Basis: dunkler Fels", "Trockenbürsten: helles Grau", "Schnee: in Flecken auftragen", "Akzent: Eiskristalle"]),
+      volcanic: base("Asche, Lava und verbrannter Boden", "Schwarze Asche, rissige Lava, verkohlte Erde, Ruß, Schädel und verbrannter Stein.", "Gut für Chaos, Feuerstimmungen, Monster und helle warme Akzente.", ["Basis: schwarzbraune Asche", "Textur: Crackle-Paste", "Trockenbürsten: graue Asche", "Akzent: Lavarisse"]),
+      arcane: base("Arkane Runen / Kristalle", "Runenstein, Zauberkreise, Kristalle, Bücher, Rauch und magische Geländefragmente.", "Am besten für Zauberer, Champions und starke magische Akzentfarben.", ["Basis: neutraler Stein", "Textur: eingeritzte Linien", "Leuchten: Fokusakzent wiederholen", "Akzent: Kristalle"]),
+      ghur: base("Ghurische Badlands", "Staub, trockene Erde, Felsen, rissiger Schlamm, Knochen, Trophäenreste und Jagdgrund.", "Starke Wahl für Destruction, Monster und Bestien.", ["Basis: rötliche Erde", "Textur: Felsen und Knochen", "Trockenbürsten: Tan-Staub", "Akzent: trockene Büschel"]),
+      coastal: base("Küste, Riff oder nasser Stein", "Nasse Felsen, Gezeitentümpel, Muscheln, gebrochene Stege, Korallenstücke und meeresglatte Ruinen.", "Für Seestreitkräfte, nasse Ruinen und aquatische Monster verwenden.", ["Basis: blaugrauer Fels", "Textur: Sand, Muscheln, Schiefer", "Glanz: Gezeitentümpel", "Akzent: Koralle"]),
+      neutral: base("Neutrales Geröll", "Braungraues Geröll, gebrochenes Mauerwerk, Erde, Wurzeln und kleine Steine.", "Sichere Vorgabe, weil sie warme und kalte Paletten unterstützt.", ["Basis: braungraue Erde", "Textur: Grit und Stein", "Trockenbürsten: Tan-Grau", "Akzent: gedeckte Büschel"]),
+      darkMud: base("Dunkler Schlamm / geschwärzte Erde", "Nasser Boden, verbrannter Grund, Graberde, Sumpfschlamm oder aufgewühltes Schlachtfeld.", "Hält helle Modelle geerdet.", ["Basis: dunkler Umbra", "Textur: Schlamm und Grit", "Glanz: nasse Stellen", "Akzent: totes Gras"]),
+      lightAsh: base("Helle Asche, Schnee oder heller Stein", "Aschewüste, Schneeflecken, Marmorsplitter, gebleichter Stein oder trockener Sand.", "Erhöht den Silhouettenkontrast für dunkle Modelle.", ["Basis: helles Graubeige", "Textur: feiner Grit", "Trockenbürsten: gebrochenes Weiß", "Akzent: dunkle Steine"]),
+      darkRim: base("Dunkler Rand und kontrollierte Kante", "Schwarzbrauner Rand, ruhige Textur und zurückhaltende Verwitterung um das Modell.", "Hält die Base visuell eingefasst.", ["Rand: schwarzbraun", "Textur innen halten", "Helle Randfarben vermeiden", "Untere Beine bestauben"]),
+      urban: base("Urbanes Geröll", "Beton, Armierung, Staub, gebrochene Straße, Metallschrott und Granatschäden.", "Klassische 40K-Schlachtfeldrahmung für Infanterie und Panzerung.", ["Basis: dunkler Beton", "Textur: Geröll und Grit", "Trockenbürsten: kaltes Grau", "Akzent: Warnstreifen oder Staub"]),
+      ashWaste: base("Aschewüste", "Grauer Staub, helle Erde, Granattrichter, rostige Trümmer und verbrannter Boden.", "Funktioniert mit den meisten 40K-Armeen und unterstützt helle Rüstung.", ["Basis: graubraune Asche", "Textur: feiner Grit", "Trockenbürsten: heller Staub", "Akzent: Rost oder leere Hülsen"]),
+      hive: base("Makropoldeck / Unterstadt", "Dunkler Metallboden, Schmutz, Kabel, Lüftungen, Warnmarkierungen und Ölflecken.", "Großartig für industrielle 40K-, Necromunda-Stimmungen und Fahrzeugbases.", ["Basis: dunkles Metall", "Textur: Gitter oder Platten", "Weathering: Öl und Rost", "Akzent: Warnfarbe"]),
+      jungle: base("Todeswelt-Dschungel", "Dichter Schlamm, Ranken, Wurzeln, nasse Blätter, Alien-Pflanzen und gebrochener Stein.", "Gut für Xenos, Tyraniden, Scouts und überwucherte Schlachtfelder.", ["Basis: dunkler Schlamm", "Textur: Wurzeln und Blätter", "Glanz: nasse Bereiche", "Akzent: helle Pflanze"]),
+      alien: base("Alienwelt-Bewuchs", "Violetter Boden, fremde Kristalle, Sporen, Chitin und unnatürliche Vegetation.", "Unterstützt Xenos- und bioorganische Paletten.", ["Basis: gedeckter Alienboden", "Textur: Kristalle oder Sporen", "Trockenbürsten: helles Violett", "Akzent: toxisches Leuchten"]),
+      shipDeck: base("Schiffsdeck", "Kalte Metallplatten, Nieten, Kabel, Warnlinien und Maschinenschmutz.", "Nützlich für Enteraktionen, Fahrzeuge und maritime 40K-Szenen.", ["Basis: dunkler Stahl", "Textur: Platten und Nieten", "Weathering: Schmutz", "Akzent: Warnstreifen"])
+    },
+    citadel: {
+      loaded: "{count} Citadel-Farben aus JSON geladen.",
+      sample: "{count} Beispiel-Citadel-Farben werden genutzt, bis die vollständige JSON hinzugefügt ist.",
+      missing: "Noch keine Citadel-Farbdaten verfügbar.",
+      closest: "Nächste Treffer",
+      distance: "Abstand {distance}"
+    },
+    copy: {
+      palette: "Palette",
+      roles: "Rollenplaner",
+      bases: "Base-Umgebungsvorschläge",
+      ladder: "Shade / Layer / Highlight",
+      citadel: "Citadel-Farbtreffer",
+      materials: "Zubehörmaterialien"
+    }
+  });
+
+  Object.assign(TRANSLATIONS.fr, {
+    placements: {
+      dominant: "Surface dominante : armure, robe, peau, coque, treillis ou tissu principal.",
+      secondary: "Surface secondaire : bouclier, cape, panneau, épaulière, tissu ou armure alternative.",
+      contrast: "Zone de contraste : héraldique, gemmes, lueur d'arme, runes, lentilles, plasma ou détails de champion.",
+      small: "Petit accent : bordure, marques d'escouade, effets de sort, sceaux de pureté ou détails de socle."
+    },
+    roleAreas: {
+      dominantSurface: "Armure, peau, robe ou tissu principal",
+      secondarySurface: "Tissu, bouclier, panneau ou armure secondaire",
+      focusAccent: "Accent focal",
+      leatherStraps: "Cuir, sangles et sacoches",
+      woodWeapons: "Bois, lances, arcs et hampes",
+      metalDetails: "Détails métalliques",
+      baseDetails: "Socle et bord",
+      plateArmor: "Armure de plates",
+      clothAndShield: "Tissu, bouclier ou héraldique",
+      insignia: "Insignes et bordures",
+      weapon: "Arme",
+      magicEyes: "Magie, yeux ou gemmes",
+      boneGhostRobe: "Os, peau spectrale ou robe",
+      tornCloth: "Tissu déchiré ou vieille armure",
+      etherealGlow: "Lueur éthérée",
+      bonesTrophies: "Os et trophées",
+      agedMetal: "Métal vieilli",
+      leatherScraps: "Chutes de cuir",
+      graveBase: "Socle de tombe ou maudit",
+      skinScalesArmor: "Peau, écailles ou armure rugueuse",
+      warPaintCloth: "Peinture de guerre, tissu ou bouclier",
+      glyphFocus: "Glyphe ou focus de peinture de guerre",
+      hidesFurs: "Peaux et fourrures",
+      clubsShafts: "Massues et manches",
+      roughMetal: "Métal brut",
+      dustyBase: "Socle poussiéreux",
+      darkArmorMutation: "Armure sombre ou mutation",
+      cloakShieldFur: "Cape, bouclier, fourrure ou peau",
+      daemonicFocus: "Focus démoniaque",
+      brassTrim: "Bordure en laiton",
+      leatherTrophies: "Cuir et trophées",
+      robeMantle: "Robe ou manteau",
+      innerRobe: "Robe intérieure ou écharpe",
+      spellEffect: "Effet de sort",
+      parchmentTrim: "Parchemin ou bord clair",
+      staffWood: "Bois du bâton",
+      jewelry: "Bijoux",
+      mysticBase: "Socle mystique",
+      skinFurScales: "Peau, fourrure ou écailles",
+      bellyWingsPlates: "Ventre, membrane d'aile ou plaques",
+      eyesMouthMagic: "Yeux, bouche, poison ou magie",
+      clawsHornsTeeth: "Griffes, cornes et dents",
+      saddleStraps: "Selle et sangles",
+      chainsArmor: "Chaînes et fragments d'armure",
+      naturalBase: "Socle naturel",
+      powerArmorFatigues: "Armure énergétique, treillis ou combinaison principale",
+      secondaryPanels: "Panneaux secondaires",
+      lensesPlasma: "Lentilles, plasma et capteurs",
+      weaponCasing: "Carcasse d'arme",
+      gunmetal: "Métal sombre",
+      pouchesStraps: "Sacoches et sangles",
+      battlefieldBase: "Socle de champ de bataille",
+      chapterArmor: "Armure de chapitre",
+      pauldronsKnees: "Épaulières, casques et genoux",
+      companyMarkings: "Marquages de compagnie",
+      aquilaTrim: "Aquila, bordures et honneurs",
+      fatiguesCoat: "Treillis ou manteau",
+      armorPlates: "Plaques d'armure",
+      unitMarkings: "Marquages d'unité",
+      traitorArmor: "Armure de traître",
+      trimMutations: "Bordures ou mutations",
+      warpGlow: "Lueur warp",
+      boneTrophies: "Trophées d'os",
+      carapaceArmor: "Carapace ou armure",
+      clothPanels: "Panneaux de tissu",
+      alienEnergy: "Énergie alien",
+      boneClaws: "Griffes d'os",
+      smoothMetal: "Métal lisse",
+      alienBase: "Socle alien",
+      fleshSkin: "Chair ou peau",
+      bioWeapons: "Bio-armes",
+      tongueSacs: "Langue ou sacs",
+      hullArmor: "Blindage de coque",
+      panelsMarkings: "Panneaux et marquages",
+      exhaustDamage: "Dégâts d'échappement et suie",
+      ashWasteBase: "Socle de désert de cendres"
+    },
+    roleUses: {
+      dominant: "À utiliser sur la plus grande zone lisible pour donner une identité claire au schéma.",
+      secondary: "À utiliser sur les surfaces moyennes pour séparer les formes sans voler le point focal.",
+      focus: "À utiliser avec parcimonie près des visages, armes, lentilles, gemmes, magie ou plasma.",
+      leather: "À utiliser pour l'équipement pratique comme ceintures, holsters, sangles, bottes et selles.",
+      wood: "À utiliser pour hampes, arcs, boucliers, caisses, ruines et texture de champ de bataille.",
+      metal: "À utiliser pour lames, bordures, chaînes, armes, évents, boucles et détails mécaniques.",
+      base: "Garder le socle en soutien pour que le modèle reste l'objet le plus fort.",
+      bone: "À utiliser pour dents, crânes, cornes, griffes, parchemin et trophées.",
+      cloth: "À utiliser sur plis, robes, manteaux, bannières, bandages, tabards et équipement souple.",
+      weapon: "À utiliser sur bolters, fusils laser, carcasses, poignées, câbles et boîtiers rigides.",
+      weathering: "À utiliser dans les échappements, éclats, traces d'huile, coloration thermique et accumulation de saleté."
+    },
+    roleTips: {
+      dominant: "Vise environ deux tiers de la figurine visible.",
+      secondary: "Garde-la sous la couleur principale en surface.",
+      focus: "Petit et lumineux se lit mieux que partout et criard.",
+      neutral: "Les neutres aident la palette à respirer.",
+      metal: "Ombre-le sombre, puis termine avec un minuscule point clair.",
+      base: "Répète très subtilement une couleur du modèle sur le socle si l'ensemble manque d'unité.",
+      heroic: "Des éclaircissements de bord nets rendent l'armure d'élite lisible à distance.",
+      grim: "Une saturation plus basse et des ombres plus fortes vendent l'ambiance.",
+      organic: "Utilise des transitions plus douces sur peau, fourrure, écailles et membranes.",
+      weather: "Ajoute rayures, crasse, pigments ou taches après les couleurs de base.",
+      bone: "Commence plus chaud à la racine et éclaircis vers la pointe.",
+      cloth: "Éclaircis les plis plus largement que les arêtes d'armure dure."
+    },
+    ladder: {
+      steps: {
+        deepShade: "Ombre profonde",
+        shadeWash: "Shade / lavis",
+        basecoat: "Couche de base",
+        layer: "Couche",
+        edgeHighlight: "Éclaircissement de bord",
+        focusLight: "Lumière focale"
+      },
+      hints: {
+        deepShade: "Creux profonds et dessous",
+        shadeWash: "Lavis contrôlé, pas une inondation",
+        basecoat: "Couche principale opaque",
+        layer: "Volumes relevés et lumière large",
+        edgeHighlight: "Arêtes, coins et contours durs",
+        focusLight: "Seulement visage, lentilles, runes, gemmes, plasma ou armes clés"
+      },
+      note: "Usage {system} : armure, tissu, peau, écailles, véhicules, capes ou effets d'énergie. Finition {finish} : garder la lumière focale sélective."
+    },
+    materials: {
+      groups: {
+        woods: { label: "Bois et cuir", description: "Pour poignées, arcs, sacs, sangles, boucliers et socles." },
+        neutrals: { label: "Blanc, os et tissu", description: "Pour parchemin, crânes, dents, capes, cordes et contraste clair." },
+        metals: { label: "Métaux", description: "Argent, fer, bronze et or pour armes, bijoux et garnitures." }
+      },
+      items: {
+        darkWood: { name: "Bois sombre", use: "Hampes, arcs, caisses, dos de boucliers et bords de socle" },
+        warmWood: { name: "Bois chaud", use: "Veines du bois, boucliers, boîtes et éléments de terrain" },
+        darkLeather: { name: "Cuir sombre", use: "Ceintures, holsters, bottes, sacs et sangles" },
+        redLeather: { name: "Cuir rougeâtre", use: "Armure de cuir, poignées, selles et sacoches" },
+        offWhite: { name: "Blanc cassé", use: "Tissu, robes, parchemin, cordes et héraldique" },
+        bone: { name: "Os", use: "Crânes, dents, cornes, griffes, parchemin et trophées" },
+        coldWhite: { name: "Blanc froid", use: "Points de lumière, gemmes, neige et reflets de lueur" },
+        blackGrey: { name: "Gris noir", use: "Sous-combinaisons, carcasses d'armes, ombres et évents" },
+        iron: { name: "Fer", use: "Lames, chaînes, boulons, métal sombre et garnitures dures" },
+        silver: { name: "Argent", use: "Arêtes métalliques claires, bijoux et machines propres" },
+        bronze: { name: "Bronze", use: "Vieilles armures, bordures, idoles, machines et garnitures" },
+        gold: { name: "Or", use: "Insignes, honneurs, bijoux, bordures et détails de héros" },
+        baseEarth: { name: "Terre / gravats", use: "Sol du socle, poussière, ruines et texture de champ de bataille" }
+      }
+    },
+    bases: {
+      city: base("Pavés de Cité Franche", "Rues pavées, routes de frontière, dalles, débris de bois et maçonnerie tachée de poudre.", "Idéal pour infanterie disciplinée, artillerie, cavalerie et campagnes urbaines.", ["Base : gris-brun sombre", "Texture : pierres, sable, bois brisé", "Brossage à sec : gris pâle", "Accent : poussière, affiches, touffes d'herbe"]),
+      ruins: base("Ruines de temple de portail de royaume", "Anciennes marches, statues brisées, dalles de temple, éclats de marbre et pierre de royaume fissurée.", "Fonctionne pour héros, unités d'élite et modèles qui demandent un socle héroïque propre.", ["Base : pierre grise froide", "Texture : ardoise, liège, dalles fissurées", "Brossage à sec : gris clair", "Accent : un peu de mousse ou fissures lumineuses"]),
+      graveyard: base("Cimetière / sol maudit", "Terre froide, pierres tombales, herbe morte, os, brume et maçonnerie sombre en ruine.", "Très adapté aux morts-vivants, armées maudites et palettes grimdark froides.", ["Base : terre sombre", "Texture : gravier, crânes, pierre brisée", "Brossage à sec : gris-brun froid", "Accent : herbe morte ou os"]),
+      forest: base("Sol forestier, racines et mousse", "Racines, mousse, feuilles, terre humide, branches tombées et végétation de royaume vivant.", "Bon pour bêtes, chasseurs, Sylvaneth et schémas naturalistes.", ["Base : terre sombre", "Texture : racines, écorce, feuilles", "Brossage à sec : tan ou vert mousse", "Accent : touffes d'herbe"]),
+      swamp: base("Marais / zone humide", "Boue mouillée, roseaux, eau stagnante, algues, os et pierres à moitié englouties.", "Utile pour ambiances sales, mortes-vivantes, monstrueuses ou proches de Nurgle.", ["Base : brun olive sombre", "Texture : boue, roseaux, pierres", "Brillant : flaques d'eau", "Accent : herbe maladive"]),
+      desert: base("Désert, steppe ou poussière ocre", "Sable sec, terre craquelée, poussière chaude, rochers blanchis au soleil et broussailles rares.", "Excellent avec schémas bleus, verts, violets ou froids.", ["Base : brun ocre", "Texture : sable et rochers", "Brossage à sec : os ou sable pâle", "Accent : herbe sèche"]),
+      snow: base("Neige, givre et pierre pâle", "Plaques de neige, pierres glacées, herbe givrée, cendre pâle et fragments de marbre froid.", "À utiliser avec des modèles sombres pour le contraste de silhouette.", ["Base : roche sombre", "Brossage à sec : gris pâle", "Neige : ajouter par plaques", "Accent : cristaux de glace"]),
+      volcanic: base("Cendre, lave et sol brûlé", "Cendre noire, lave craquelée, terre carbonisée, suie, crânes et pierre brûlée.", "Bon pour Chaos, ambiances de feu, monstres et accents chauds brillants.", ["Base : cendre brun-noir", "Texture : pâte craquelée", "Brossage à sec : cendre grise", "Accent : fissures de lave"]),
+      arcane: base("Runes / cristaux arcaniques", "Pierre runique, cercles de sort, cristaux, livres, fumée et fragments de terrain magique.", "Idéal pour sorciers, champions et couleurs d'accent magique fortes.", ["Base : pierre neutre", "Texture : lignes gravées", "Lueur : répéter l'accent focal", "Accent : cristaux"]),
+      ghur: base("Badlands ghurites", "Poussière, terre sèche, rochers, boue craquelée, os, débris de trophées et terrain de chasse.", "Très bon pour Destruction, monstres et bêtes.", ["Base : terre rougeâtre", "Texture : rochers et os", "Brossage à sec : poussière tan", "Accent : touffes sèches"]),
+      coastal: base("Côte, récif ou pierre mouillée", "Rochers humides, flaques de marée, coquillages, docks brisés, fragments de corail et ruines lissées par la mer.", "À utiliser pour forces marines, ruines mouillées et monstres aquatiques.", ["Base : roche bleu-gris", "Texture : sable, coquillages, ardoise", "Brillant : flaques de marée", "Accent : corail"]),
+      neutral: base("Gravats neutres", "Gravats brun-gris, maçonnerie brisée, terre, racines et petites pierres.", "Choix sûr car il soutient les palettes chaudes et froides.", ["Base : terre brun-gris", "Texture : gravier et pierre", "Brossage à sec : tan-gris", "Accent : touffes atténuées"]),
+      darkMud: base("Boue sombre / terre noircie", "Sol mouillé, terrain brûlé, terre de tombe, vase de marais ou champ de bataille retourné.", "Garde les modèles lumineux bien ancrés.", ["Base : ombre brûlée sombre", "Texture : boue et gravier", "Brillant : zones humides", "Accent : herbe morte"]),
+      lightAsh: base("Cendre claire, neige ou pierre pâle", "Désert de cendres, plaques de neige, éclats de marbre, pierre blanchie ou sable sec.", "Augmente le contraste de silhouette pour modèles sombres.", ["Base : gris-beige pâle", "Texture : gravier fin", "Brossage à sec : blanc cassé", "Accent : pierres sombres"]),
+      darkRim: base("Bord sombre et contour contrôlé", "Bord brun-noir, texture discrète et vieillissement retenu autour du modèle.", "Garde le socle visuellement contenu.", ["Bord : brun-noir", "Garder la texture à l'intérieur", "Éviter les couleurs de bord vives", "Poussiérer le bas des jambes"]),
+      urban: base("Gravats urbains", "Béton, barres d'armature, poussière, route brisée, ferraille et dégâts d'obus.", "Cadre de champ de bataille 40K classique pour infanterie et blindés.", ["Base : béton sombre", "Texture : gravats et gravier", "Brossage à sec : gris froid", "Accent : bande de danger ou poussière"]),
+      ashWaste: base("Désert de cendres", "Poussière grise, terre pâle, cratères d'obus, débris rouillés et sol brûlé.", "Fonctionne avec la plupart des armées 40K et soutient les armures brillantes.", ["Base : cendre gris-brun", "Texture : gravier fin", "Brossage à sec : poussière pâle", "Accent : rouille ou douilles tirées"]),
+      hive: base("Pont de ruche / sous-cité", "Sol métallique sombre, crasse, câbles, évents, marquages de danger et taches d'huile.", "Excellent pour 40K industriel, ambiances Necromunda et socles de véhicules.", ["Base : métal sombre", "Texture : grille ou plaques", "Vieillissement : huile et rouille", "Accent : couleur de danger"]),
+      jungle: base("Jungle de monde mortel", "Boue dense, lianes, racines, feuilles mouillées, plantes aliens et pierre brisée.", "Bon pour xenos, Tyranides, éclaireurs et champs de bataille envahis.", ["Base : boue sombre", "Texture : racines et feuilles", "Brillant : zones humides", "Accent : plante vive"]),
+      alien: base("Croissance de monde alien", "Sol violet, cristaux étranges, spores, chitine et végétation surnaturelle.", "Soutient les palettes xenos et bio-organiques.", ["Base : sol alien atténué", "Texture : cristaux ou spores", "Brossage à sec : violet pâle", "Accent : lueur toxique"]),
+      shipDeck: base("Pont de vaisseau", "Plaques de métal froides, rivets, câbles, lignes de danger et crasse mécanique.", "Utile pour abordages, véhicules et scènes navales 40K.", ["Base : acier sombre", "Texture : plaques et rivets", "Vieillissement : crasse", "Accent : bande d'avertissement"])
+    },
+    citadel: {
+      loaded: "{count} peintures Citadel chargées depuis le JSON.",
+      sample: "{count} peintures Citadel d'exemple utilisées jusqu'à l'ajout du JSON complet.",
+      missing: "Aucune donnée de peinture Citadel disponible pour le moment.",
+      closest: "Correspondances les plus proches",
+      distance: "distance {distance}"
+    },
+    copy: {
+      palette: "Palette",
+      roles: "Planificateur de rôles",
+      bases: "Suggestions d'environnements de socle",
+      ladder: "Shade / Layer / Highlight",
+      citadel: "Correspondances Citadel",
+      materials: "Matériaux accessoires"
+    }
+  });
+
+  Object.assign(TRANSLATIONS.es, {
+    placements: {
+      dominant: "Superficie dominante: armadura, túnica, piel, casco, uniforme o tela principal.",
+      secondary: "Superficie secundaria: escudo, capa, panel, hombrera, tela o armadura alternativa.",
+      contrast: "Zona de contraste: heráldica, gemas, brillo de arma, runas, lentes, plasma o detalles de campeón.",
+      small: "Acento pequeño: ribetes, marcas de escuadra, efectos de hechizo, sellos de pureza o detalles de peana."
+    },
+    roleAreas: {
+      dominantSurface: "Armadura, piel, túnica o tela principal",
+      secondarySurface: "Tela, escudo, panel o armadura secundaria",
+      focusAccent: "Acento focal",
+      leatherStraps: "Cuero, correas y bolsas",
+      woodWeapons: "Madera, lanzas, arcos y astiles",
+      metalDetails: "Detalles metálicos",
+      baseDetails: "Peana y borde",
+      plateArmor: "Armadura de placas",
+      clothAndShield: "Tela, escudo o heráldica",
+      insignia: "Insignias y ribetes",
+      weapon: "Arma",
+      magicEyes: "Magia, ojos o gemas",
+      boneGhostRobe: "Hueso, piel espectral o túnica",
+      tornCloth: "Tela rasgada o armadura vieja",
+      etherealGlow: "Brillo etéreo",
+      bonesTrophies: "Huesos y trofeos",
+      agedMetal: "Metal envejecido",
+      leatherScraps: "Retales de cuero",
+      graveBase: "Peana de tumba o maldita",
+      skinScalesArmor: "Piel, escamas o armadura rugosa",
+      warPaintCloth: "Pintura de guerra, tela o escudo",
+      glyphFocus: "Glifo o foco de pintura de guerra",
+      hidesFurs: "Pieles y pelajes",
+      clubsShafts: "Mazas y astiles",
+      roughMetal: "Metal tosco",
+      dustyBase: "Peana polvorienta",
+      darkArmorMutation: "Armadura oscura o mutación",
+      cloakShieldFur: "Capa, escudo, pelaje o piel",
+      daemonicFocus: "Foco demoníaco",
+      brassTrim: "Ribete de latón",
+      leatherTrophies: "Cuero y trofeos",
+      robeMantle: "Túnica o manto",
+      innerRobe: "Túnica interior o fajín",
+      spellEffect: "Efecto de hechizo",
+      parchmentTrim: "Pergamino o ribete pálido",
+      staffWood: "Madera del báculo",
+      jewelry: "Joyería",
+      mysticBase: "Peana mística",
+      skinFurScales: "Piel, pelaje o escamas",
+      bellyWingsPlates: "Vientre, membrana de ala o placas",
+      eyesMouthMagic: "Ojos, boca, veneno o magia",
+      clawsHornsTeeth: "Garras, cuernos y dientes",
+      saddleStraps: "Silla y correas",
+      chainsArmor: "Cadenas y restos de armadura",
+      naturalBase: "Peana natural",
+      powerArmorFatigues: "Servoarmadura, uniforme o traje principal",
+      secondaryPanels: "Paneles secundarios",
+      lensesPlasma: "Lentes, plasma y sensores",
+      weaponCasing: "Carcasa del arma",
+      gunmetal: "Metal oscuro",
+      pouchesStraps: "Bolsas y correas",
+      battlefieldBase: "Peana de campo de batalla",
+      chapterArmor: "Armadura de capítulo",
+      pauldronsKnees: "Hombreras, cascos y rodillas",
+      companyMarkings: "Marcas de compañía",
+      aquilaTrim: "Aquila, ribetes y honores",
+      fatiguesCoat: "Uniforme o abrigo",
+      armorPlates: "Placas de armadura",
+      unitMarkings: "Marcas de unidad",
+      traitorArmor: "Armadura traidora",
+      trimMutations: "Ribetes o mutaciones",
+      warpGlow: "Brillo de la disformidad",
+      boneTrophies: "Trofeos de hueso",
+      carapaceArmor: "Caparazón o armadura",
+      clothPanels: "Paneles de tela",
+      alienEnergy: "Energía alienígena",
+      boneClaws: "Garras de hueso",
+      smoothMetal: "Metal liso",
+      alienBase: "Peana alienígena",
+      fleshSkin: "Carne o piel",
+      bioWeapons: "Bioarmas",
+      tongueSacs: "Lengua o sacos",
+      hullArmor: "Blindaje del casco",
+      panelsMarkings: "Paneles y marcas",
+      exhaustDamage: "Daño de escape y hollín",
+      ashWasteBase: "Peana de yermo de ceniza"
+    },
+    roleUses: {
+      dominant: "Úsalo en la zona legible más grande para que el esquema tenga una identidad clara.",
+      secondary: "Úsalo en superficies medianas para separar formas sin robar el punto focal.",
+      focus: "Úsalo con moderación cerca de caras, armas, lentes, gemas, magia o plasma.",
+      leather: "Úsalo para equipo práctico como cinturones, pistoleras, correas, botas y sillas.",
+      wood: "Úsalo para astiles, arcos, escudos, cajas, ruinas y textura de campo de batalla.",
+      metal: "Úsalo para hojas, ribetes, cadenas, armas, respiraderos, hebillas y detalle mecánico.",
+      base: "Mantén la peana como apoyo para que el modelo siga siendo el objeto más llamativo.",
+      bone: "Úsalo para dientes, cráneos, cuernos, garras, pergamino y trofeos.",
+      cloth: "Úsalo en pliegues, túnicas, abrigos, estandartes, vendas, tabardos y equipo blando.",
+      weapon: "Úsalo en bolters, rifles láser, carcasas, empuñaduras, cables y cubiertas rígidas.",
+      weathering: "Úsalo en escapes, desconchones, marcas de aceite, manchas de calor y acumulación de suciedad."
+    },
+    roleTips: {
+      dominant: "Apunta a unos dos tercios de la miniatura visible.",
+      secondary: "Mantén su superficie por debajo del color principal.",
+      focus: "Pequeño y brillante se lee mejor que grande y estridente.",
+      neutral: "Los neutros ayudan a que la paleta respire.",
+      metal: "Sombréalo oscuro y termina con un punto claro diminuto.",
+      base: "Repite muy sutilmente un color del modelo en la peana si necesita unidad.",
+      heroic: "Las luces de borde afiladas hacen que la armadura de élite se lea a distancia.",
+      grim: "Menos saturación y sombras más fuertes venden el ambiente.",
+      organic: "Usa transiciones más suaves en piel, pelaje, escamas y membranas.",
+      weather: "Añade arañazos, mugre, pigmentos o manchas después de los colores base.",
+      bone: "Empieza más cálido en la raíz e ilumina hacia la punta.",
+      cloth: "Ilumina los pliegues más ancho que los bordes duros de armadura."
+    },
+    ladder: {
+      steps: {
+        deepShade: "Sombra profunda",
+        shadeWash: "Sombra / lavado",
+        basecoat: "Capa base",
+        layer: "Capa",
+        edgeHighlight: "Luz de borde",
+        focusLight: "Luz focal"
+      },
+      hints: {
+        deepShade: "Recesos profundos y partes inferiores",
+        shadeWash: "Lavado controlado, no inundado",
+        basecoat: "Capa principal opaca",
+        layer: "Volúmenes elevados y luz amplia",
+        edgeHighlight: "Bordes, esquinas y contornos duros",
+        focusLight: "Solo cara, lentes, runas, gemas, plasma o armas clave"
+      },
+      note: "Uso en {system}: armadura, tela, piel, escamas, vehículos, capas o efectos de energía. Acabado {finish}: mantén selectiva la luz focal."
+    },
+    materials: {
+      groups: {
+        woods: { label: "Madera y cuero", description: "Para empuñaduras, arcos, bolsas, correas, escudos y peanas." },
+        neutrals: { label: "Blanco, hueso y tela", description: "Para pergamino, cráneos, dientes, capas, cuerdas y contraste claro." },
+        metals: { label: "Metales", description: "Plata, hierro, bronce y oro para armas, joyería y herrajes." }
+      },
+      items: {
+        darkWood: { name: "Madera oscura", use: "Astiles, arcos, cajas, reversos de escudos y bordes de peana" },
+        warmWood: { name: "Madera cálida", use: "Veta de madera, escudos, cajas y piezas de terreno" },
+        darkLeather: { name: "Cuero oscuro", use: "Cinturones, pistoleras, botas, bolsas y correas" },
+        redLeather: { name: "Cuero rojizo", use: "Armadura de cuero, empuñaduras, sillas y bolsas" },
+        offWhite: { name: "Blanco roto", use: "Tela, túnicas, pergamino, cuerdas y heráldica" },
+        bone: { name: "Hueso", use: "Cráneos, dientes, cuernos, garras, pergamino y trofeos" },
+        coldWhite: { name: "Blanco frío", use: "Puntos de luz, gemas, nieve y luces de brillo" },
+        blackGrey: { name: "Gris negro", use: "Trajes interiores, carcasas de armas, sombras y respiraderos" },
+        iron: { name: "Hierro", use: "Hojas, cadenas, pernos, metal oscuro y herrajes duros" },
+        silver: { name: "Plata", use: "Bordes metálicos brillantes, joyería y maquinaria limpia" },
+        bronze: { name: "Bronce", use: "Armadura vieja, ribetes, ídolos, maquinaria y herrajes" },
+        gold: { name: "Oro", use: "Insignias, honores, joyería, ribetes y detalles de héroe" },
+        baseEarth: { name: "Tierra / escombros", use: "Suelo de peana, polvo, ruinas y textura de campo de batalla" }
+      }
+    },
+    bases: {
+      city: base("Adoquines de Ciudad Libre", "Calles pavimentadas, caminos fronterizos, losas, restos de madera y mampostería manchada de pólvora.", "Ideal para infantería disciplinada, artillería, caballería y campañas urbanas.", ["Base: gris marrón oscuro", "Textura: piedras, arena, madera rota", "Pincel seco: gris pálido", "Acento: polvo, carteles, matojos de hierba"]),
+      ruins: base("Ruinas de templo de portal de reino", "Escalones antiguos, estatuas rotas, losas de templo, astillas de mármol y piedra de reino agrietada.", "Funciona para héroes, unidades de élite y modelos que necesitan un pedestal heroico limpio.", ["Base: piedra gris fría", "Textura: pizarra, corcho, losas agrietadas", "Pincel seco: gris claro", "Acento: un poco de musgo o grietas brillantes"]),
+      graveyard: base("Cementerio / suelo maldito", "Tierra fría, lápidas, hierba muerta, huesos, niebla y mampostería oscura en ruinas.", "Encaja muy bien con no muertos, ejércitos malditos y paletas grimdark frías.", ["Base: tierra oscura", "Textura: gravilla, cráneos, piedra rota", "Pincel seco: gris marrón frío", "Acento: hierba muerta o hueso"]),
+      forest: base("Suelo de bosque, raíces y musgo", "Raíces, musgo, hojas, tierra húmeda, ramas caídas y vegetación de reino vivo.", "Bueno para bestias, cazadores, Sylvaneth y esquemas naturalistas.", ["Base: tierra oscura", "Textura: raíces, corteza, hojas", "Pincel seco: tostado o verde musgo", "Acento: matojos de hierba"]),
+      swamp: base("Pantano / marisma", "Barro húmedo, juncos, agua estancada, algas, huesos y piedras medio hundidas.", "Útil para ambientes sucios, no muertos, monstruosos o cercanos a Nurgle.", ["Base: marrón oliva oscuro", "Textura: barro, juncos, piedras", "Brillo: charcos de agua", "Acento: hierba enfermiza"]),
+      desert: base("Desierto, estepa o polvo ocre", "Arena seca, tierra agrietada, polvo cálido, rocas blanqueadas por el sol y matorral escaso.", "Excelente para esquemas azules, verdes, morados o fríos.", ["Base: marrón ocre", "Textura: arena y rocas", "Pincel seco: hueso o arena pálida", "Acento: hierba seca"]),
+      snow: base("Nieve, escarcha y piedra pálida", "Parches de nieve, piedras heladas, hierba escarchada, ceniza pálida y fragmentos de mármol frío.", "Úsalo con modelos oscuros para contraste de silueta.", ["Base: roca oscura", "Pincel seco: gris pálido", "Nieve: añadir en parches", "Acento: cristales de hielo"]),
+      volcanic: base("Ceniza, lava y suelo quemado", "Ceniza negra, lava agrietada, tierra carbonizada, hollín, cráneos y piedra chamuscada.", "Bueno para Caos, ambientes de fuego, monstruos y acentos cálidos brillantes.", ["Base: ceniza marrón negra", "Textura: pasta agrietada", "Pincel seco: ceniza gris", "Acento: grietas de lava"]),
+      arcane: base("Runas / cristales arcanos", "Piedra rúnica, círculos de hechizo, cristales, libros, humo y fragmentos de terreno mágico.", "Ideal para magos, campeones y colores de acento mágico fuertes.", ["Base: piedra neutra", "Textura: líneas talladas", "Brillo: repetir el acento focal", "Acento: cristales"]),
+      ghur: base("Yermos de Ghur", "Polvo, tierra seca, rocas, barro agrietado, huesos, restos de trofeos y terreno de caza.", "Encaja muy bien con Destrucción, monstruos y bestias.", ["Base: tierra rojiza", "Textura: rocas y huesos", "Pincel seco: polvo tostado", "Acento: matojos secos"]),
+      coastal: base("Costa, arrecife o piedra húmeda", "Rocas mojadas, charcas de marea, conchas, muelles rotos, fragmentos de coral y ruinas pulidas por el mar.", "Úsalo para fuerzas marinas, ruinas húmedas y monstruos acuáticos.", ["Base: roca azul gris", "Textura: arena, conchas, pizarra", "Brillo: charcas de marea", "Acento: coral"]),
+      neutral: base("Escombros neutros", "Escombros marrón gris, mampostería rota, tierra, raíces y piedras pequeñas.", "Opción segura porque apoya paletas cálidas y frías.", ["Base: tierra marrón gris", "Textura: gravilla y piedra", "Pincel seco: tostado gris", "Acento: matojos apagados"]),
+      darkMud: base("Barro oscuro / tierra ennegrecida", "Suelo mojado, terreno quemado, tierra de tumba, fango de pantano o campo de batalla removido.", "Mantiene asentados los modelos brillantes.", ["Base: sombra tostada oscura", "Textura: barro y gravilla", "Brillo: zonas húmedas", "Acento: hierba muerta"]),
+      lightAsh: base("Ceniza clara, nieve o piedra pálida", "Yermo de ceniza, parches de nieve, astillas de mármol, piedra blanqueada o arena seca.", "Aumenta el contraste de silueta para modelos oscuros.", ["Base: gris beige pálido", "Textura: gravilla fina", "Pincel seco: blanco roto", "Acento: piedras oscuras"]),
+      darkRim: base("Borde oscuro y contorno controlado", "Borde marrón negro, textura tranquila y desgaste contenido alrededor del modelo.", "Mantiene la peana visualmente contenida.", ["Borde: marrón negro", "Mantener la textura dentro", "Evitar colores de borde brillantes", "Empolvar las piernas inferiores"]),
+      urban: base("Escombros urbanos", "Hormigón, barras de refuerzo, polvo, carretera rota, restos metálicos y daños de proyectil.", "Enmarcado clásico de campo de batalla 40K para infantería y blindados.", ["Base: hormigón oscuro", "Textura: escombros y gravilla", "Pincel seco: gris frío", "Acento: franja de peligro o polvo"]),
+      ashWaste: base("Yermo de ceniza", "Polvo gris, tierra pálida, cráteres de proyectil, restos oxidados y suelo quemado.", "Funciona con la mayoría de ejércitos 40K y apoya armaduras brillantes.", ["Base: ceniza gris marrón", "Textura: gravilla fina", "Pincel seco: polvo pálido", "Acento: óxido o casquillos gastados"]),
+      hive: base("Cubierta de colmena / subciudad", "Suelo de metal oscuro, mugre, cables, respiraderos, marcas de peligro y manchas de aceite.", "Excelente para 40K industrial, ambientes Necromunda y peanas de vehículos.", ["Base: metal oscuro", "Textura: rejilla o placas", "Desgaste: aceite y óxido", "Acento: color de peligro"]),
+      jungle: base("Jungla de mundo letal", "Barro denso, enredaderas, raíces, hojas húmedas, plantas alienígenas y piedra rota.", "Bueno para xenos, Tiránidos, exploradores y campos de batalla invadidos por vegetación.", ["Base: barro oscuro", "Textura: raíces y hojas", "Brillo: zonas húmedas", "Acento: planta brillante"]),
+      alien: base("Crecimiento de mundo alienígena", "Suelo púrpura, cristales extraños, esporas, quitina y vegetación antinatural.", "Apoya paletas xenos y bioorgánicas.", ["Base: suelo alienígena apagado", "Textura: cristales o esporas", "Pincel seco: violeta pálido", "Acento: brillo tóxico"]),
+      shipDeck: base("Cubierta de nave", "Placas de metal frío, remaches, cables, líneas de peligro y mugre de maquinaria.", "Útil para abordajes, vehículos y escenas navales 40K.", ["Base: acero oscuro", "Textura: placas y remaches", "Desgaste: mugre", "Acento: franja de advertencia"])
+    },
+    citadel: {
+      loaded: "Se han cargado {count} pinturas Citadel desde el JSON.",
+      sample: "Usando {count} pinturas Citadel de muestra hasta que se añada el JSON completo.",
+      missing: "Aún no hay datos de pinturas Citadel disponibles.",
+      closest: "Coincidencias más cercanas",
+      distance: "distancia {distance}"
+    },
+    copy: {
+      palette: "Paleta",
+      roles: "Planificador de roles",
+      bases: "Sugerencias de entornos de peana",
+      ladder: "Sombra / Capa / Luz",
+      citadel: "Equivalencias Citadel",
+      materials: "Materiales accesorios"
+    }
+  });
 
   function base(title, use, tip, recipe) {
     return { title, use, tip, recipe };
-  }
-
-  function inherit(language, keys) {
-    keys.forEach(key => {
-      TRANSLATIONS[language][key] = TRANSLATIONS.en[key];
-    });
   }
 
   function getByPath(source, path) {

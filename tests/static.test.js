@@ -14,6 +14,7 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /<script src="src\/citadel\.js"><\/script>/);
   assert.match(html, /<script src="src\/app\.js"><\/script>/);
   assert.match(html, /id="languageSelect"/);
+  assert.match(html, /<option value="es">Español<\/option>/);
   assert.match(html, /id="systemSelect"/);
 });
 
