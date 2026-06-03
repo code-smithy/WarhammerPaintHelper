@@ -1,0 +1,7 @@
+# Local workspace and editor metadata
+.codex/
+.idea/
+
+# OS metadata
+.DS_Store
+Thumbs.db
