@@ -49,6 +49,8 @@ served by a simple static server, because some browsers block local JSON loading
 `file://` URLs. If the paint catalogue JSON cannot be loaded, the app falls back to a
 small sample paint set so the UI remains usable.
 
+If you can't use it locally, just use the [online version hosted here on github](https://code-smithy.github.io/WarhammerPaintHelper/WarhammerPaintHelper.html).
+
 Typical workflow:
 
 1. Pick `Age of Sigmar` or `Warhammer 40,000`.
