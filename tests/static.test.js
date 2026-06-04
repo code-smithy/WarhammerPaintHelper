@@ -19,6 +19,9 @@ test("static HTML references the prepared app assets", () => {
   assert.doesNotMatch(html, /ui\.extraMaterials/);
   assert.doesNotMatch(html, /class="material-toggle"/);
   assert.doesNotMatch(html, /id="materialPalette"/);
+  assert.doesNotMatch(html, /ui\.miniPreview/);
+  assert.doesNotMatch(html, /class="mini-preview"/);
+  assert.doesNotMatch(html, /class="mini"/);
 });
 
 test("paint catalogue JSON is valid and uses manufacturer color groups", () => {

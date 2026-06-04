@@ -1,0 +1,34 @@
+{
+  "manufacturers": [
+    {
+      "name": "Example Manufacturer",
+      "source_urls": [
+        "https://example.com/paint-range"
+      ],
+      "colors": [
+        {
+          "name": "Example Base Red",
+          "hex": "#B21E28",
+          "manufacturer_code": "EX-001",
+          "collection": "Example Range",
+          "range": "Base",
+          "finish": "matte",
+          "status": "confirmed",
+          "source_url": "https://example.com/paint-range/example-base-red",
+          "notes": "Optional note about source, conversion, spelling, or paint behavior."
+        },
+        {
+          "name": "Example Missing Hex",
+          "hex": null,
+          "manufacturer_code": "EX-002",
+          "collection": "Example Range",
+          "range": "Layer",
+          "finish": "",
+          "status": "missing",
+          "source_url": "https://example.com/paint-range/example-missing-hex",
+          "notes": "Entries without a valid six-digit hex value remain documented but are skipped for nearest-colour matching."
+        }
+      ]
+    }
+  ]
+}

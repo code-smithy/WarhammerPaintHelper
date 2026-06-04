@@ -18,7 +18,6 @@ It currently supports:
   and 40K chapter/squad schemes.
 - A clean-to-grimdark finish slider that adjusts generated support colors and paint
   ladder advice.
-- A miniature preview that applies the generated palette to a simple model silhouette.
 - Model role planning for armor, robes, fatigues, default material colors, weapons,
   magic effects, lenses, plasma, bases, and accent areas.
 - Base environment suggestions for fantasy realms and 40K battlefields.

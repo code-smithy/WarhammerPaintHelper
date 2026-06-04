@@ -57,17 +57,6 @@
       paintLadderTitle: $("paintLadderTitle")
     };
 
-    const mini = {
-      head: document.querySelector(".mini .head"),
-      torso: document.querySelector(".mini .torso"),
-      leftArm: document.querySelector(".mini .left-arm"),
-      rightArm: document.querySelector(".mini .right-arm"),
-      leftLeg: document.querySelector(".mini .left-leg"),
-      rightLeg: document.querySelector(".mini .right-leg"),
-      weapon: document.querySelector(".mini .weapon"),
-      base: document.querySelector(".mini .base")
-    };
-
     el.language.value = state.language;
     translateStatic();
     populateDynamicControls();
@@ -227,7 +216,6 @@
       renderPaintMap();
       renderPaintLadder();
       renderCitadelMatches();
-      updateMini();
       setDot();
       el.debug.textContent = t("ui.debug", {
         hex,
@@ -396,30 +384,9 @@
       return `${match.name}${manufacturer} ${match.hex}`;
     }
 
-    function updateMini() {
-      const p0 = currentPalette[0] || { hex: W.primaryHex(state) };
-      const p1 = currentPalette[1] || p0;
-      const p2 = currentPalette[2] || p1;
-      const p3 = currentPalette[3] || p2;
-      const iron = findMaterial("iron");
-      const wood = findMaterial("darkWood");
-      mini.torso.style.background = p0.hex;
-      mini.leftLeg.style.background = p0.hex;
-      mini.rightLeg.style.background = p0.hex;
-      mini.head.style.background = W.hslToHex(state.h, Math.max(10, state.s - 22), Math.min(78, state.l + 20));
-      mini.leftArm.style.background = p1.hex;
-      mini.rightArm.style.background = p1.hex;
-      mini.weapon.style.background = iron ? iron.hex : p2.hex;
-      mini.base.style.background = wood ? wood.hex : p3.hex;
-    }
-
-    function findMaterial(key) {
-      return W.getMaterialFallback(key);
-    }
-
     function resolveRoleColor(ref) {
       if (ref.type === "material") {
-        const material = findMaterial(ref.key);
+        const material = W.getMaterialFallback(ref.key);
         return {
           hex: material.hex,
           name: materialName(material.key)
