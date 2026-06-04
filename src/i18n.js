@@ -298,7 +298,8 @@
         bone: "Use for teeth, skulls, horns, claws, parchment, and trophies.",
         cloth: "Use on folds, robes, coats, banners, wraps, tabards, and soft equipment.",
         weapon: "Use on bolters, lasguns, casings, grips, cables, and hard housings.",
-        weathering: "Use in exhausts, chips, oil marks, heat staining, and dirt buildup."
+        weathering: "Use in exhausts, chips, oil marks, heat staining, and dirt buildup.",
+        extraPalette: "Use as an extra scheme color for accents, markings, effects, heraldry, or special details."
       },
       roleTips: {
         dominant: "Aim for roughly two thirds of the visible miniature.",
@@ -312,7 +313,8 @@
         organic: "Use softer transitions on skin, fur, scales, and membranes.",
         weather: "Add scratches, grime, pigments, or stains after the base colors.",
         bone: "Start warmer at the root and highlight toward the tip.",
-        cloth: "Highlight folds wider than hard armor edges."
+        cloth: "Highlight folds wider than hard armor edges.",
+        extraPalette: "Keep it intentional and smaller than the assigned main and secondary areas."
       },
       ladder: {
         steps: {
@@ -774,7 +776,8 @@
       bone: "Für Zähne, Schädel, Hörner, Klauen, Pergament und Trophäen nutzen.",
       cloth: "Auf Falten, Roben, Mänteln, Bannern, Wickeln, Wappenröcken und weicher Ausrüstung verwenden.",
       weapon: "Auf Boltern, Lasguns, Gehäusen, Griffen, Kabeln und harten Abdeckungen nutzen.",
-      weathering: "Für Auspuffspuren, Kratzer, Ölmarken, Hitzefärbung und Schmutzaufbau verwenden."
+      weathering: "Für Auspuffspuren, Kratzer, Ölmarken, Hitzefärbung und Schmutzaufbau verwenden.",
+      extraPalette: "Als zusätzliche Schemafarbe für Akzente, Markierungen, Effekte, Heraldik oder Sonderdetails nutzen."
     },
     roleTips: {
       dominant: "Ziele auf ungefähr zwei Drittel der sichtbaren Miniatur.",
@@ -788,7 +791,8 @@
       organic: "Weichere Übergänge auf Haut, Fell, Schuppen und Membranen nutzen.",
       weather: "Kratzer, Schmutz, Pigmente oder Flecken nach den Grundfarben ergänzen.",
       bone: "An der Wurzel wärmer beginnen und zur Spitze hin aufhellen.",
-      cloth: "Falten breiter highlighten als harte Rüstungskanten."
+      cloth: "Falten breiter highlighten als harte Rüstungskanten.",
+      extraPalette: "Bewusst einsetzen und kleiner halten als die zugewiesenen Haupt- und Sekundärflächen."
     },
     ladder: {
       steps: {
@@ -961,7 +965,8 @@
       bone: "À utiliser pour dents, crânes, cornes, griffes, parchemin et trophées.",
       cloth: "À utiliser sur plis, robes, manteaux, bannières, bandages, tabards et équipement souple.",
       weapon: "À utiliser sur bolters, fusils laser, carcasses, poignées, câbles et boîtiers rigides.",
-      weathering: "À utiliser dans les échappements, éclats, traces d'huile, coloration thermique et accumulation de saleté."
+      weathering: "À utiliser dans les échappements, éclats, traces d'huile, coloration thermique et accumulation de saleté.",
+      extraPalette: "À utiliser comme couleur de schéma supplémentaire pour accents, marquages, effets, héraldique ou détails spéciaux."
     },
     roleTips: {
       dominant: "Vise environ deux tiers de la figurine visible.",
@@ -975,7 +980,8 @@
       organic: "Utilise des transitions plus douces sur peau, fourrure, écailles et membranes.",
       weather: "Ajoute rayures, crasse, pigments ou taches après les couleurs de base.",
       bone: "Commence plus chaud à la racine et éclaircis vers la pointe.",
-      cloth: "Éclaircis les plis plus largement que les arêtes d'armure dure."
+      cloth: "Éclaircis les plis plus largement que les arêtes d'armure dure.",
+      extraPalette: "Garde-la intentionnelle et plus petite que les zones principales et secondaires assignées."
     },
     ladder: {
       steps: {
@@ -1148,7 +1154,8 @@
       bone: "Úsalo para dientes, cráneos, cuernos, garras, pergamino y trofeos.",
       cloth: "Úsalo en pliegues, túnicas, abrigos, estandartes, vendas, tabardos y equipo blando.",
       weapon: "Úsalo en bolters, rifles láser, carcasas, empuñaduras, cables y cubiertas rígidas.",
-      weathering: "Úsalo en escapes, desconchones, marcas de aceite, manchas de calor y acumulación de suciedad."
+      weathering: "Úsalo en escapes, desconchones, marcas de aceite, manchas de calor y acumulación de suciedad.",
+      extraPalette: "Úsalo como color extra del esquema para acentos, marcas, efectos, heráldica o detalles especiales."
     },
     roleTips: {
       dominant: "Apunta a unos dos tercios de la miniatura visible.",
@@ -1162,7 +1169,8 @@
       organic: "Usa transiciones más suaves en piel, pelaje, escamas y membranas.",
       weather: "Añade arañazos, mugre, pigmentos o manchas después de los colores base.",
       bone: "Empieza más cálido en la raíz e ilumina hacia la punta.",
-      cloth: "Ilumina los pliegues más ancho que los bordes duros de armadura."
+      cloth: "Ilumina los pliegues más ancho que los bordes duros de armadura.",
+      extraPalette: "Mantenlo intencional y más pequeño que las zonas principales y secundarias asignadas."
     },
     ladder: {
       steps: {

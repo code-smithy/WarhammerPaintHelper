@@ -24,6 +24,7 @@
       language: $("languageSelect"),
       system: $("systemSelect"),
       wheel: $("colorWheel"),
+      markers: $("schemeMarkers"),
       dot: $("selectorDot"),
       swatch: $("currentSwatch"),
       hex: $("currentHex"),
@@ -148,7 +149,10 @@
       el.sat.addEventListener("input", update);
       el.light.addEventListener("input", update);
       el.style.addEventListener("input", update);
-      window.addEventListener("resize", setDot);
+      window.addEventListener("resize", () => {
+        setDot();
+        setSchemeMarkers();
+      });
 
       el.hexInput.addEventListener("change", () => {
         const rgb = W.hexToRgb(el.hexInput.value);
@@ -217,6 +221,7 @@
       renderPaintLadder();
       renderCitadelMatches();
       setDot();
+      setSchemeMarkers();
       el.debug.textContent = t("ui.debug", {
         hex,
         firstHex: currentPalette[0].hex,
@@ -242,14 +247,14 @@
     }
 
     function renderRolePlanner() {
-      const profile = W.getRoleProfile(state.system, el.roleStyle.value);
-      el.rolePlan.innerHTML = profile.map(item => {
+      el.rolePlan.innerHTML = rolePlannerItems().map(item => {
         const color = resolveRoleColor(item.colorRef);
+        const area = item.extra ? color.name : t(`roleAreas.${item.areaKey}`);
         return `
           <article class="role-plan-card">
             <div class="role-plan-swatch" style="background:${escapeHtml(color.hex)}"></div>
             <div>
-              <div class="role-plan-area">${escapeHtml(t(`roleAreas.${item.areaKey}`))}</div>
+              <div class="role-plan-area">${escapeHtml(area)}</div>
               <div class="role-plan-source">${escapeHtml(color.hex)} · ${escapeHtml(color.name)}</div>
               <div class="role-plan-use">${escapeHtml(t(`roleUses.${item.useKey}`))}</div>
             </div>
@@ -257,6 +262,24 @@
           </article>
         `;
       }).join("");
+    }
+
+    function rolePlannerItems() {
+      const profile = W.getRoleProfile(state.system, el.roleStyle.value);
+      const usedPaletteIndexes = new Set(profile
+        .filter(item => item.colorRef && item.colorRef.type === "palette")
+        .map(item => item.colorRef.index));
+      const extraPaletteItems = currentPalette
+        .map((color, index) => ({ color, index }))
+        .filter(item => !usedPaletteIndexes.has(item.index))
+        .map(item => ({
+          extra: true,
+          colorRef: { type: "palette", index: item.index },
+          useKey: "extraPalette",
+          tipKey: "extraPalette"
+        }));
+
+      return profile.concat(extraPaletteItems);
     }
 
     function renderBaseAdvice() {
@@ -443,12 +466,32 @@
     function setDot() {
       const rect = el.wheel.getBoundingClientRect();
       const wrap = el.wheel.parentElement.getBoundingClientRect();
-      const r = rect.width / 2;
-      const dotR = r * (state.s / 100);
-      const angle = state.h * Math.PI / 180;
-      el.dot.style.left = `${rect.left + r + Math.cos(angle) * dotR - wrap.left}px`;
-      el.dot.style.top = `${rect.top + r + Math.sin(angle) * dotR - wrap.top}px`;
+      positionWheelMarker(el.dot, state.h, state.s, rect, wrap);
       el.dot.style.background = W.primaryHex(state);
+    }
+
+    function setSchemeMarkers() {
+      const rect = el.wheel.getBoundingClientRect();
+      const wrap = el.wheel.parentElement.getBoundingClientRect();
+      const markers = currentPalette.slice(1);
+
+      el.markers.innerHTML = markers.map((color, index) => (
+        `<span class="scheme-marker" data-marker-index="${index}" style="background:${escapeHtml(color.hex)}"></span>`
+      )).join("");
+
+      el.markers.querySelectorAll(".scheme-marker").forEach((marker, index) => {
+        const color = markers[index];
+        marker.title = `${roleName(color.roleKey)} ${color.hex}`;
+        positionWheelMarker(marker, color.h, color.s, rect, wrap);
+      });
+    }
+
+    function positionWheelMarker(marker, hue, saturation, rect, wrap) {
+      const r = rect.width / 2;
+      const markerR = r * (W.clamp(saturation, 0, 100) / 100);
+      const angle = hue * Math.PI / 180;
+      marker.style.left = `${rect.left + r + Math.cos(angle) * markerR - wrap.left}px`;
+      marker.style.top = `${rect.top + r + Math.sin(angle) * markerR - wrap.top}px`;
     }
 
     function pickFromWheel(event) {
@@ -470,9 +513,10 @@
       const paletteText = currentPalette.map(color => (
         `${roleName(color.roleKey)}: ${color.hex} - HSL(${Math.round(color.h)}, ${Math.round(color.s)}%, ${Math.round(color.l)}%)`
       )).join("\n");
-      const roleText = W.getRoleProfile(state.system, el.roleStyle.value).map(item => {
+      const roleText = rolePlannerItems().map(item => {
         const color = resolveRoleColor(item.colorRef);
-        return `${t(`roleAreas.${item.areaKey}`)}: ${color.hex} (${color.name}) - ${t(`roleUses.${item.useKey}`)} ${t(`roleTips.${item.tipKey}`)}`;
+        const area = item.extra ? color.name : t(`roleAreas.${item.areaKey}`);
+        return `${area}: ${color.hex} (${color.name}) - ${t(`roleUses.${item.useKey}`)} ${t(`roleTips.${item.tipKey}`)}`;
       }).join("\n");
       const baseText = W.baseSuggestions({
         palette: currentPalette,

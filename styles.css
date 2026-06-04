@@ -106,7 +106,26 @@ main {
   pointer-events: none;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 0 2px rgba(0, 0, 0, .72);
-  z-index: 2;
+  z-index: 4;
+}
+
+.scheme-markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.scheme-marker {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, .92);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, .76),
+    0 4px 10px rgba(0, 0, 0, .42);
 }
 
 .field {
