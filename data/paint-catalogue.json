@@ -13,185 +13,37 @@
         "https://painthoarder.com/brands/citadel-colour/lines/contrast",
         "https://painthoarder.com/brands/citadel-colour/lines/base?page=2",
         "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
-        "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
+        "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2",
+        "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147",
+        "https://painthoarder.com/brands/citadel-colour/lines/base?page=1",
+        "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+        "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=1",
+        "https://painthoarder.com/brands/citadel-colour/lines/glaze",
+        "https://painthoarder.com/brands/citadel-colour/lines/layer?page=1",
+        "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+        "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+        "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+        "https://painthoarder.com/brands/citadel-colour/lines/shade",
+        "https://painthoarder.com/brands/citadel-colour/lines/technical?page=1",
+        "https://painthoarder.com/brands/citadel-colour/lines/technical?page=2"
       ],
       "colors": [
         {
           "name": "Abaddon Black",
           "hex": "#231F20",
           "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Administratum Grey",
-          "hex": "#949B94",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Agrax Earthshade",
-          "hex": "#5A543C",
-          "finish": "shade",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Ahriman Blue",
-          "hex": "#00A5B9",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Averland Sunset",
-          "hex": "#FCB825",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Baharroth Blue",
-          "hex": "#78C4C7",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Balor Brown",
-          "hex": "#8B5910",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Balthasar Gold",
-          "hex": "#87542F",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Baneblade Brown",
-          "hex": "#927F6E",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Bugman's Glow",
-          "hex": "#845045",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Caledor Sky",
-          "hex": "#396F9E",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Chaos Black",
-          "hex": "#000000",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Corax White",
-          "hex": "#FFFFFF",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Dryad Bark",
-          "hex": "#34312C",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Evil Sunz Scarlet",
-          "hex": "#C21920",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Flash Gitz Yellow",
-          "hex": "#FFF200",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Kantor Blue",
-          "hex": "#002051",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Khorne Red",
-          "hex": "#6A0002",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Leadbelcher",
-          "hex": "#475659",
-          "finish": "metallic",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Macragge Blue",
-          "hex": "#0D407F",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Mephiston Red",
-          "hex": "#991115",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Moot Green",
-          "hex": "#52B246",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Nuln Oil",
-          "hex": "#151203",
-          "finish": "shade",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Rakarth Flesh",
-          "hex": "#A29E92",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Screaming Skull",
-          "hex": "#D4D3A3",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "White Scar",
-          "hex": "#FFFFFF",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Xereus Purple",
-          "hex": "#471F5E",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Yriel Yellow",
-          "hex": "#FFDB01",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
-        },
-        {
-          "name": "Zandri Dust",
-          "hex": "#9E915C",
-          "status": "confirmed",
-          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#000000",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+            }
+          ],
+          "finish": "base"
         },
         {
           "name": "Adeptus Battlegrey",
@@ -201,32 +53,118 @@
           "source_url": "https://www.paintatlas.com/brands/citadel"
         },
         {
+          "name": "Administratum Grey",
+          "hex": "#949B94",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#989C94",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
           "name": "Aethermatic Blue",
           "hex": "#1C7E92",
           "finish": "contrast",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+          ]
         },
         {
           "name": "Aggaros Dunes",
           "hex": "#706542",
           "finish": "contrast",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+          ]
+        },
+        {
+          "name": "Agrax Earthshade",
+          "hex": "#5A543C",
+          "finish": "shade",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/shade",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#A99D8D",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade"
+            }
+          ]
         },
         {
           "name": "Agrax Earthshade Gloss",
           "hex": "#B4AA9E",
           "finish": "shade",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/shade"
+          ]
+        },
+        {
+          "name": "Agrellan Badland",
+          "hex": "#B39E80",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#A17359",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Agrellan Earth",
           "hex": "#B39E80",
           "finish": "technical",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/technical",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#92816D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Ahriman Blue",
+          "hex": "#00A5B9",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#00708A",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+            }
+          ],
+          "finish": "layer"
         },
         {
           "name": "Air Caste Thinner",
@@ -240,14 +178,43 @@
           "hex": "#004F63",
           "finish": "contrast",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+          ]
         },
         {
           "name": "Alaitoc Blue",
           "hex": "#2F4F85",
           "finish": "layer",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#295788",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Altdorf Guard Blue",
+          "hex": "#2D4696",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#1F56A8",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Angron Red Clear",
@@ -261,28 +228,54 @@
           "hex": "#A5BED4",
           "finish": "contrast",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+          ]
         },
         {
           "name": "'Ardcoat",
           "hex": "#F9F9F9",
           "finish": "technical",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/technical"
+          ]
         },
         {
           "name": "Armageddon Dunes",
           "hex": "#E8D36F",
           "finish": "technical",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/technical",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#FCAF09",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Armageddon Dust",
           "hex": "#D2AD00",
           "finish": "technical",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/technical",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#CBAD0D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Astorath Red",
@@ -296,14 +289,34 @@
           "hex": "#767675",
           "finish": "technical",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/technical",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#787878",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Astrogranite Debris",
           "hex": "#9D9D9D",
           "finish": "technical",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/citadel"
+          "source_url": "https://www.paintatlas.com/brands/citadel",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/technical",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#77726E",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Astronomicon Grey",
@@ -320,6 +333,123 @@
           "source_url": "https://www.paintatlas.com/brands/citadel"
         },
         {
+          "name": "Athonian Camoshade",
+          "hex": "#B6B788",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#798C3D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Auric Armour Gold",
+          "hex": "#FFC451",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#E9C278",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Averland Sunset",
+          "hex": "#FCB825",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#FBB81C",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+            }
+          ],
+          "finish": "base"
+        },
+        {
+          "name": "Baharroth Blue",
+          "hex": "#78C4C7",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#54BDCA",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
+          "name": "Balor Brown",
+          "hex": "#8B5910",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#875408",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
+          "name": "Balthasar Gold",
+          "hex": "#87542F",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#A77353",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+            }
+          ],
+          "finish": "base"
+        },
+        {
+          "name": "Baneblade Brown",
+          "hex": "#927F6E",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#8F7C68",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
           "name": "Barak-Nar Burgundy",
           "hex": "#451636",
           "finish": "base",
@@ -327,123 +457,49 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
         },
         {
-          "name": "Castellan Green",
-          "hex": "#264715",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
-        },
-        {
-          "name": "Catachan Fleshtone",
-          "hex": "#442B25",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
-        },
-        {
-          "name": "Celestra Grey",
-          "hex": "#8BA3A3",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
-        },
-        {
-          "name": "Corvus Black",
-          "hex": "#171314",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
-        },
-        {
-          "name": "Death Korps Drab",
-          "hex": "#3D4539",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
-        },
-        {
-          "name": "Gal Vorbak Red",
-          "hex": "#4B213C",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
-        },
-        {
-          "name": "Grey Knights Steel",
-          "hex": "#B0BDC6",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
-        },
-        {
-          "name": "Grey Seer",
-          "hex": "#A2A5A7",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
-        },
-        {
-          "name": "Auric Armour Gold",
-          "hex": "#FFC451",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
-        },
-        {
-          "name": "Bloodreaver Flesh",
-          "hex": "#6A4848",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
-        },
-        {
-          "name": "Brass Scorpion",
-          "hex": "#A65D2C",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
-        },
-        {
-          "name": "Canoptek Alloy",
-          "hex": "#C3B2AC",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
-        },
-        {
-          "name": "Castellax Bronze",
-          "hex": "#C68351",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
-        },
-        {
-          "name": "Dark Reaper",
-          "hex": "#354D4C",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
-        },
-        {
-          "name": "Deathclaw Brown",
-          "hex": "#AF634F",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
-        },
-        {
-          "name": "Dechala Lilac",
-          "hex": "#B598C9",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
-        },
-        {
           "name": "Basilicanum Grey",
           "hex": "#212121",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+        },
+        {
+          "name": "Bestigor Flesh",
+          "hex": "#D08951",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#D28B57",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Biel-Tan Green",
+          "hex": "#7DA57A",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#479259",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Blackfire Earth",
+          "hex": "#F8902F",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
         },
         {
           "name": "Black Legion",
@@ -467,6 +523,264 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
         },
         {
+          "name": "Blood For The Blood God",
+          "hex": "#600106",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical"
+        },
+        {
+          "name": "Bloodletter",
+          "hex": "#CB2924",
+          "status": "confirmed",
+          "finish": "glaze",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/glaze",
+          "notes": "Glaze finish inferred from legacy Citadel glaze naming; source page requested but not fetchable in this session.",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147",
+            "https://painthoarder.com/brands/citadel-colour/lines/glaze"
+          ]
+        },
+        {
+          "name": "Bloodreaver Flesh",
+          "hex": "#6A4848",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+        },
+        {
+          "name": "Blue Horror",
+          "hex": "#9EB5CE",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#A2BAD2",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Brass Scorpion",
+          "hex": "#A65D2C",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#B7895F",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Bugman Glow",
+          "hex": "#804C43",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+        },
+        {
+          "name": "Bugman's Glow",
+          "hex": "#845045",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ]
+        },
+        {
+          "name": "Cadian Fleshtone",
+          "hex": "#C47652",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#C87958",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Caledor Sky",
+          "hex": "#396F9E",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#366699",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+            }
+          ],
+          "finish": "base"
+        },
+        {
+          "name": "Calgar Blue",
+          "hex": "#2A497F",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+        },
+        {
+          "name": "Caliban Green",
+          "hex": "#003D15",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#00401E",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Canoptek Alloy",
+          "hex": "#C3B2AC",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+        },
+        {
+          "name": "Carroburg Crimson",
+          "hex": "#BE80A4",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade"
+        },
+        {
+          "name": "Cassandora Yellow",
+          "hex": "#F5CC92",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade"
+        },
+        {
+          "name": "Castellan Green",
+          "hex": "#264715",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#304921",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Castellax Bronze",
+          "hex": "#C68351",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+        },
+        {
+          "name": "Catachan Fleshtone",
+          "hex": "#442B25",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+        },
+        {
+          "name": "Celestra Grey",
+          "hex": "#8BA3A3",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#90A8A8",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Ceramite White",
+          "hex": "#FFFFFF",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Changeling Pink",
+          "hex": "#F4AFCE",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Chaos Black",
+          "hex": "#000000",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ]
+        },
+        {
+          "name": "Coelia Greenshade",
+          "hex": "#1B8F85",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#4A7F79",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Contrast Medium",
+          "hex": "#F9F9F9",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical"
+        },
+        {
+          "name": "Corax White",
+          "hex": "#FFFFFF",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "finish": "base"
+        },
+        {
+          "name": "Corvus Black",
+          "hex": "#171314",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+        },
+        {
           "name": "Creed Camo",
           "hex": "#145D2E",
           "finish": "contrast",
@@ -474,11 +788,34 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
         },
         {
+          "name": "Cryptek Armourshade Gloss",
+          "hex": "#856A67",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade"
+        },
+        {
           "name": "Cygor Brown",
           "hex": "#3E1A17",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+        },
+        {
+          "name": "Daemonette Hide",
+          "hex": "#655F81",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#696685",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Dark Angels Green",
@@ -495,11 +832,381 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
         },
         {
+          "name": "Dark Reaper",
+          "hex": "#354D4C",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer"
+        },
+        {
+          "name": "Dawnstone",
+          "hex": "#697068",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#70756E",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Deathclaw Brown",
+          "hex": "#AF634F",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#B36853",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Death Guard Green",
+          "hex": "#6D774D",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#9C9171",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Death Korps Drab",
+          "hex": "#3D4539",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+        },
+        {
+          "name": "Deathworld Forest",
+          "hex": "#556229",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#5D6732",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Dechala Lilac",
+          "hex": "#B598C9",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#B59ECC",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Deepkin Flesh",
+          "hex": "#A9B79F",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#D2D4C7",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Doombull Brown",
+          "hex": "#570003",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#5D000A",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Dorn Yellow",
+          "hex": "#FFF55A",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#E3D28C",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Drakenhof Nightshade",
+          "hex": "#A1A5AF",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade"
+        },
+        {
+          "name": "Druchii Violet",
+          "hex": "#8F6592",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#6A397B",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Dryad Bark",
+          "hex": "#34312C",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#2B2A24",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+            }
+          ],
+          "finish": "base"
+        },
+        {
+          "name": "Eldar Flesh",
+          "hex": "#EDC184",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Elysian Green",
+          "hex": "#6B8C37",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#758E3A",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Emperor Children",
+          "hex": "#B74073",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "notes": "Name spelling kept as listed in source."
+        },
+        {
+          "name": "Emperor's Children",
+          "hex": "#B94278",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Eshin Grey",
+          "hex": "#484B4E",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#4A4F53",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Etherium Blue",
+          "hex": "#A1B9D1",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Evil Sunz Scarlet",
+          "hex": "#C21920",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#C01411",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
+          "name": "Fenrisian Grey",
+          "hex": "#6D94B3",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#709CB7",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Fire Dragon Bright",
+          "hex": "#F4874E",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#F58651",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Flash Gitz Yellow",
+          "hex": "#FFF200",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#FFF300",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
+          "name": "Flayed One Flesh",
+          "hex": "#EEC483",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#CBB48B",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
           "name": "Flesh Tearers Red",
           "hex": "#4B0402",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+        },
+        {
+          "name": "Fuegan Orange",
+          "hex": "#BB7648",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#AD6E38",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Fulgrim Pink",
+          "hex": "#F3ABCA",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#F4AFCC",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Fulgurite Copper",
+          "hex": "#CE8D51",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#BA8F6D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Fyreslayer Flesh",
@@ -509,11 +1216,105 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
         },
         {
+          "name": "Gal Vorbak Red",
+          "hex": "#4B213C",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+        },
+        {
+          "name": "Gauss Blaster Green",
+          "hex": "#7FC1A5",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#84C2A9",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Gehenna Gold",
+          "hex": "#C96B18",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
+        },
+        {
+          "name": "Gehenna's Gold",
+          "hex": "#D49761",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Genestealer Purple",
+          "hex": "#7658A5",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#7761AA",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Golden Griffon",
+          "hex": "#C6B791",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Golgfag Brown",
+          "hex": "#8B5435",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
           "name": "Gore-Grunta Fur",
           "hex": "#613B1F",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+        },
+        {
+          "name": "Gorthor Brown",
+          "hex": "#5F463F",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#654641",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Grey Knights Steel",
+          "hex": "#B0BDC6",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
+        },
+        {
+          "name": "Grey Seer",
+          "hex": "#A2A5A7",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base"
         },
         {
           "name": "Gryph-Charger Grey",
@@ -537,18 +1338,48 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
         },
         {
-          "name": "Iyanden Yellow",
-          "hex": "#DB7F0C",
-          "finish": "contrast",
+          "name": "Hashut Copper",
+          "hex": "#BA885F",
+          "finish": "layer",
           "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#C69169",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
-          "name": "Leviadon Blue",
-          "hex": "#000A13",
-          "finish": "contrast",
+          "name": "Hellion Green",
+          "hex": "#83C3A9",
           "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Hexos Palesun",
+          "hex": "#F1DCA3",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Hexwraith Flame",
+          "hex": "#29A236",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#00AA5C",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Hobgrot Hide",
@@ -558,11 +1389,41 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
         },
         {
+          "name": "Hoeth Blue",
+          "hex": "#4C78AF",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
+        },
+        {
+          "name": "Incubi Darkness",
+          "hex": "#082E32",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#0B4849",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
           "name": "Ionrach Skin",
           "hex": "#97A384",
           "finish": "base",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+        },
+        {
+          "name": "Ironbreaker",
+          "hex": "#899092",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
         },
         {
           "name": "Iron Hands Steel",
@@ -579,6 +1440,254 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
         },
         {
+          "name": "Iyanden Yellow",
+          "hex": "#DB7F0C",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+        },
+        {
+          "name": "Jokaero Orange",
+          "hex": "#ED3814",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#EE3823",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Kabalite Green",
+          "hex": "#008962",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#028D66",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Kakophoni Purple",
+          "hex": "#8869AE",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3"
+        },
+        {
+          "name": "Kantor Blue",
+          "hex": "#002051",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#02134E",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+            }
+          ],
+          "finish": "base"
+        },
+        {
+          "name": "Karak Stone",
+          "hex": "#B7945C",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#BB9662",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Khorne Red",
+          "hex": "#6A0002",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#650001",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+            }
+          ],
+          "finish": "base"
+        },
+        {
+          "name": "Kindleflame",
+          "hex": "#EFB494",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Kislev Flesh",
+          "hex": "#D1A570",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#D6A876",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Knight-Questor Flesh",
+          "hex": "#996563",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3"
+        },
+        {
+          "name": "Krieg Khaki",
+          "hex": "#BCBB7E",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#B7AD78",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Lahmian Medium",
+          "hex": "#F9F9F9",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical"
+        },
+        {
+          "name": "Lamenters Yellow",
+          "hex": "#FBF44C",
+          "status": "confirmed",
+          "finish": "glaze",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/glaze",
+          "notes": "Glaze finish inferred from legacy Citadel glaze naming; source page requested but not fetchable in this session.",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147",
+            "https://painthoarder.com/brands/citadel-colour/lines/glaze"
+          ]
+        },
+        {
+          "name": "Leadbelcher",
+          "hex": "#475659",
+          "finish": "metallic",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#969696",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+            }
+          ]
+        },
+        {
+          "name": "Leviadon Blue",
+          "hex": "#000A13",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast"
+        },
+        {
+          "name": "Liberator Gold",
+          "hex": "#E1BA7F",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#D5C4AA",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Longbeard Grey",
+          "hex": "#B4AEAE",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Loren Forest",
+          "hex": "#486C25",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#51702D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Lothern Blue",
+          "hex": "#2C9BCC",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3"
+        },
+        {
+          "name": "Lucius Lilac",
+          "hex": "#B69FCB",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Lugganath Orange",
+          "hex": "#F69B82",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#F89E86",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
           "name": "Lupercal Green",
           "hex": "#002C2B",
           "finish": "base",
@@ -586,131 +1695,26 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
         },
         {
-          "name": "Morghast Bone",
-          "hex": "#C0A973",
-          "finish": "base",
+          "name": "Lustrian Undergrowth",
+          "hex": "#709811",
           "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
         },
         {
-          "name": "Night Lords Blue",
-          "hex": "#002B5C",
-          "finish": "base",
+          "name": "Macragge Blue",
+          "hex": "#0D407F",
           "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
-        },
-        {
-          "name": "Nocturne Green",
-          "hex": "#162A29",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
-        },
-        {
-          "name": "Orruk Flesh",
-          "hex": "#97C17E",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
-        },
-        {
-          "name": "Phoenician Purple",
-          "hex": "#440052",
-          "finish": "base",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
-        },
-        {
-          "name": "Deepkin Flesh",
-          "hex": "#A9B79F",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Doombull Brown",
-          "hex": "#570003",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Dorn Yellow",
-          "hex": "#FFF55A",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Elysian Green",
-          "hex": "#6B8C37",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Emperor Children",
-          "hex": "#B74073",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2",
-          "notes": "Name spelling kept as listed in source."
-        },
-        {
-          "name": "Eshin Grey",
-          "hex": "#484B4E",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Flayed One Flesh",
-          "hex": "#EEC483",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Fulgurite Copper",
-          "hex": "#CE8D51",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Gehenna Gold",
-          "hex": "#C96B18",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Genestealer Purple",
-          "hex": "#7658A5",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Gorthor Brown",
-          "hex": "#5F463F",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Hashut Copper",
-          "hex": "#BA885F",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
-        },
-        {
-          "name": "Hoeth Blue",
-          "hex": "#4C78AF",
-          "finish": "layer",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=2"
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#0F3D7C",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+            }
+          ],
+          "finish": "base"
         },
         {
           "name": "Magos Purple",
@@ -720,11 +1724,112 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
         },
         {
+          "name": "Martian Ironcrust",
+          "hex": "#CF705D",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical"
+        },
+        {
+          "name": "Martian Ironearth",
+          "hex": "#CF705D",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical"
+        },
+        {
+          "name": "Mechanicus Standard Grey",
+          "hex": "#39484A",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#3D4B4E",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Mephiston Red",
+          "hex": "#991115",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base?page=2",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#960C09",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+            }
+          ],
+          "finish": "base"
+        },
+        {
           "name": "Militarum Green",
           "hex": "#6B7711",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
+        },
+        {
+          "name": "Moot Green",
+          "hex": "#52B246",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#3DAF44",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
+          "name": "Mordant Earth",
+          "hex": "#171314",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical"
+        },
+        {
+          "name": "Morghast Bone",
+          "hex": "#C0A973",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+        },
+        {
+          "name": "Mournfang Brown",
+          "hex": "#490F06",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#650A09",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Naggaroth Night",
+          "hex": "#3B2B50",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
         },
         {
           "name": "Nazdreg Yellow",
@@ -734,11 +1839,179 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
         },
         {
+          "name": "Niblet Green",
+          "hex": "#648B32",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Nighthaunt Gloom",
+          "hex": "#3A686E",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical"
+        },
+        {
+          "name": "Night Lords Blue",
+          "hex": "#002B5C",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+        },
+        {
+          "name": "Nihilakh Oxide",
+          "hex": "#66B39A",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#85B59D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Nocturne Green",
+          "hex": "#162A29",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+        },
+        {
+          "name": "Nuln Oil",
+          "hex": "#151203",
+          "finish": "shade",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/shade",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#9E9A98",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade"
+            }
+          ]
+        },
+        {
+          "name": "Nuln Oil Gloss",
+          "hex": "#B3AFAE",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade"
+        },
+        {
+          "name": "Nurgles Rot",
+          "hex": "#9D8B16",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#9D8C30",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Nurgling Green",
+          "hex": "#7E975E",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#849B63",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Ogryn Camo",
+          "hex": "#96A648",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#9EA94B",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
           "name": "Ork Flesh",
           "hex": "#00591E",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
+        },
+        {
+          "name": "Orruk Flesh",
+          "hex": "#97C17E",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+        },
+        {
+          "name": "Pallid Wych Flesh",
+          "hex": "#CACCBB",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#CDCEBE",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Phalanx Yellow",
+          "hex": "#FFE200",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3"
+        },
+        {
+          "name": "Phoenician Purple",
+          "hex": "#440052",
+          "finish": "base",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=2"
+        },
+        {
+          "name": "Pink Horror",
+          "hex": "#8E2757",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#91305D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
         },
         {
           "name": "Plaguebearer Flesh",
@@ -748,11 +2021,250 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
         },
         {
+          "name": "Praxeti White",
+          "hex": "#FFFFFF",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Rakarth Flesh",
+          "hex": "#A29E92",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#9C998D",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3"
+            }
+          ],
+          "finish": "base"
+        },
+        {
+          "name": "Ratskin Flesh",
+          "hex": "#A86648",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#AE6B4E",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Reikland Fleshshade",
+          "hex": "#BE9A80",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#A34529",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Reikland Fleshshade Gloss",
+          "hex": "#C2A896",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade"
+        },
+        {
+          "name": "Relictor Gold",
+          "hex": "#E8C88D",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Retributor Armour",
+          "hex": "#EDC169",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#CEAE65",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Rhinox Hide",
+          "hex": "#462F30",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#493335",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Runefang Steel",
+          "hex": "#C2C8CC",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3"
+        },
+        {
+          "name": "Runelord Brass",
+          "hex": "#8D806F",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#BCAFA0",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Russ Grey",
+          "hex": "#507085",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#547588",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Ryza Rust",
+          "hex": "#CE6426",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Screamer Pink",
+          "hex": "#7A0E44",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#7C1645",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Screaming Bell",
+          "hex": "#D18A5E",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#B3562B",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Screaming Skull",
+          "hex": "#D4D3A3",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#B9C099",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
+          "name": "Seraphim Sepia",
+          "hex": "#AE8158",
+          "status": "confirmed",
+          "finish": "shade",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/shade",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#BF793E",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
           "name": "Shyish Purple",
           "hex": "#2B0E42",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
+        },
+        {
+          "name": "Sigmarite",
+          "hex": "#DAC38D",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Skarsnik Green",
+          "hex": "#588F6B",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#5F936F",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Skavenblight Dinge",
+          "hex": "#45413B",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4"
         },
         {
           "name": "Skeleton Horde",
@@ -762,11 +2274,95 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
         },
         {
+          "name": "Skink Blue",
+          "hex": "#59C1CE",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Skrag Brown",
+          "hex": "#8B4806",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#904A0F",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Skullcrusher Brass",
+          "hex": "#F4CB7A",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#E9C58B",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Slaanesh Grey",
+          "hex": "#8B8893",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#8E8C97",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
           "name": "Snakebite Leather",
           "hex": "#694C29",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
+        },
+        {
+          "name": "Sons of Horus Green",
+          "hex": "#00545E",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4"
+        },
+        {
+          "name": "Sotek Green",
+          "hex": "#0B6371",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#0C6A74",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Soulstone Blue",
+          "hex": "#142758",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical"
         },
         {
           "name": "Space Wolves Grey",
@@ -776,11 +2372,252 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
         },
         {
+          "name": "Spiritstone Red",
+          "hex": "#8A2A1E",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#FD5D3D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Squig Orange",
+          "hex": "#A74D42",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#A94F44",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Steel Legion Drab",
+          "hex": "#584E2D",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#5F5134",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Stegadon Scale Green",
+          "hex": "#06455D",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#074864",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Stirland Battlemire",
+          "hex": "#70490D",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#321905",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Stirland Mud",
+          "hex": "#482B00",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#473300",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Stormhost Silver",
+          "hex": "#DADDDF",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4"
+        },
+        {
+          "name": "Stormshield",
+          "hex": "#F9F9F9",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical?page=2"
+        },
+        {
+          "name": "Stormvermin Fur",
+          "hex": "#6D655F",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#736C66",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Straken Green",
+          "hex": "#597F1C",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#628026",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Sybarite Green",
+          "hex": "#17A166",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#30A66C",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Sycorax Bronze",
+          "hex": "#BB9F84",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#CBB394",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Sylvaneth Bark",
+          "hex": "#5A5140",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
           "name": "Talassar Blue",
           "hex": "#003B70",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
+        },
+        {
+          "name": "Tallarn Sand",
+          "hex": "#A07409",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#A67610",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Tau Light Ochre",
+          "hex": "#BC6B10",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#BF6E1D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Teclis Blue",
+          "hex": "#3877BF",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4"
+        },
+        {
+          "name": "Temple Guard Blue",
+          "hex": "#239489",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#329B8D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Terminatus Stone",
+          "hex": "#BDAA9B",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
         },
         {
           "name": "Terradon Turquoise",
@@ -790,11 +2627,203 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
         },
         {
+          "name": "Tesseract Glow",
+          "hex": "#65AB46",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical?page=2"
+        },
+        {
+          "name": "The Fang",
+          "hex": "#405B71",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#436276",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Thondia Brown",
+          "hex": "#4F322C",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3"
+        },
+        {
+          "name": "Thousand Sons Blue",
+          "hex": "#00506F",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#18ABCC",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Thunderhawk Blue",
+          "hex": "#396A70",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#417175",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Troll Slayer Orange",
+          "hex": "#F16C23",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#F46C2E",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Tuskgor Fur",
+          "hex": "#863231",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#883736",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Typhus Corrosion",
+          "hex": "#373A22",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#453F31",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Tyrant Skull",
+          "hex": "#C6AF8B",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Ulthuan Grey",
+          "hex": "#C4DDD5",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=4",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#C7E0DA",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
           "name": "Ultramarines Blue",
           "hex": "#091948",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
+        },
+        {
+          "name": "Underhive Ash",
+          "hex": "#BFBD80",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Ungor Flesh",
+          "hex": "#D1A560",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#D7A767",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Ushabti Bone",
+          "hex": "#ABA173",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#BCBC80",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Valhallan Blizzard",
+          "hex": "#E1E1E1",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#FDF9EE",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Verminlord Hide",
+          "hex": "#773A37",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
         },
         {
           "name": "Volupus Pink",
@@ -804,6 +2833,61 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
         },
         {
+          "name": "Vulkan Green",
+          "hex": "#223C2E",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5"
+        },
+        {
+          "name": "Waaagh! Flesh",
+          "hex": "#0B3B36",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#20552B",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Warboss Green",
+          "hex": "#317E57",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#3E7F5D",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Warpfiend Grey",
+          "hex": "#66656E",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#6C6A75",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
           "name": "Warp Lightning",
           "hex": "#005E26",
           "finish": "contrast",
@@ -811,11 +2895,217 @@
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
         },
         {
+          "name": "Warplock Bronze",
+          "hex": "#B36E4F",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#695154",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Warpstone Glow",
+          "hex": "#0F702A",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#1E7332",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Waystone Green",
+          "hex": "#23513D",
+          "status": "confirmed",
+          "finish": "technical",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/technical?page=2",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#018675",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Waywatcher Green",
+          "hex": "#78B04B",
+          "status": "confirmed",
+          "finish": "glaze",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/glaze",
+          "notes": "Glaze finish inferred from legacy Citadel glaze naming; source page requested but not fetchable in this session.",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147",
+            "https://painthoarder.com/brands/citadel-colour/lines/glaze"
+          ]
+        },
+        {
+          "name": "Wazdakka Red",
+          "hex": "#880804",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#8C0A0C",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "White Scar",
+          "hex": "#FFFFFF",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "finish": "layer"
+        },
+        {
+          "name": "Wild Rider Red",
+          "hex": "#E82E1B",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#EB2E28",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Word Bearers Red",
+          "hex": "#620104",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5"
+        },
+        {
+          "name": "Wrack White",
+          "hex": "#DEDAD9",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+        },
+        {
+          "name": "Wraithbone",
+          "hex": "#DBD1B2",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3"
+        },
+        {
           "name": "Wyldwood",
           "hex": "#432822",
           "finish": "contrast",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/citadel-colour/lines/contrast?page=2"
+        },
+        {
+          "name": "Xereus Purple",
+          "hex": "#471F5E",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#47125A",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
+          "name": "XV-88",
+          "hex": "#6C4811",
+          "status": "confirmed",
+          "finish": "base",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#72481E",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Yriel Yellow",
+          "hex": "#FFDB01",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#FFD900",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5"
+            }
+          ],
+          "finish": "layer"
+        },
+        {
+          "name": "Zamesi Desert",
+          "hex": "#D89D1B",
+          "status": "confirmed",
+          "finish": "layer",
+          "source_url": "https://painthoarder.com/brands/citadel-colour/lines/layer?page=5",
+          "source_urls": [
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#DCA026",
+              "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+            }
+          ]
+        },
+        {
+          "name": "Zandri Dust",
+          "hex": "#9E915C",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+          "source_urls": [
+            "https://painthoarder.com/brands/citadel-colour/lines/base?page=3",
+            "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/#comment-5226147"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#988E56",
+              "source_url": "https://painthoarder.com/brands/citadel-colour/lines/base?page=3"
+            }
+          ],
+          "finish": "base"
         }
       ]
     },
