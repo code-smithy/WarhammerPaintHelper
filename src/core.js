@@ -52,27 +52,6 @@
     }
   };
 
-  const MATERIAL_PRESETS = {
-    woods: [
-      { key: "darkWood", hex: "#4A2D19" },
-      { key: "warmWood", hex: "#8A5A2B" },
-      { key: "darkLeather", hex: "#3B2618" },
-      { key: "redLeather", hex: "#7A3F24" }
-    ],
-    neutrals: [
-      { key: "offWhite", hex: "#E8E0CF" },
-      { key: "bone", hex: "#CBB889" },
-      { key: "coldWhite", hex: "#EEF3F8" },
-      { key: "blackGrey", hex: "#20242A" }
-    ],
-    metals: [
-      { key: "iron", hex: "#6D7478" },
-      { key: "silver", hex: "#B9C0C5" },
-      { key: "bronze", hex: "#9B6332" },
-      { key: "gold", hex: "#D2A13D" }
-    ]
-  };
-
   const MATERIAL_FALLBACKS = {
     darkLeather: { key: "darkLeather", hex: "#4B2E1F" },
     redLeather: { key: "redLeather", hex: "#7A3B25" },
@@ -542,11 +521,6 @@
     return result.slice(0, 5);
   }
 
-  function selectedMaterials(selectedGroups) {
-    const groups = Array.isArray(selectedGroups) ? selectedGroups : [];
-    return groups.flatMap(group => MATERIAL_PRESETS[group] || []);
-  }
-
   function getMaterialFallback(key) {
     return MATERIAL_FALLBACKS[key] || MATERIAL_FALLBACKS.baseEarth;
   }
@@ -576,7 +550,6 @@
     SCHEMES,
     SYSTEMS,
     BASE_CATALOG,
-    MATERIAL_PRESETS,
     MATERIAL_FALLBACKS,
     clamp,
     normHue,
@@ -592,7 +565,6 @@
     buildPalette,
     ladderForColor,
     baseSuggestions,
-    selectedMaterials,
     getMaterialFallback,
     getSchemeKeysForSystem,
     getRoleProfileKeys,

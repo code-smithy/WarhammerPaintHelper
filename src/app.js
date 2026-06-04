@@ -42,7 +42,6 @@
       palette: $("palette"),
       paintMap: $("paintMap"),
       paintLadder: $("paintLadder"),
-      materialPalette: $("materialPalette"),
       rolePlan: $("rolePlan"),
       baseAdvice: $("baseAdvice"),
       citadelMatches: $("citadelMatches"),
@@ -58,7 +57,6 @@
       paintLadderTitle: $("paintLadderTitle")
     };
 
-    const materialToggles = Array.from(document.querySelectorAll(".material-toggle"));
     const mini = {
       head: document.querySelector(".mini .head"),
       torso: document.querySelector(".mini .torso"),
@@ -161,7 +159,6 @@
       el.sat.addEventListener("input", update);
       el.light.addEventListener("input", update);
       el.style.addEventListener("input", update);
-      materialToggles.forEach(toggle => toggle.addEventListener("change", update));
       window.addEventListener("resize", setDot);
 
       el.hexInput.addEventListener("change", () => {
@@ -230,7 +227,6 @@
       renderPaintMap();
       renderPaintLadder();
       renderCitadelMatches();
-      renderMaterials();
       updateMini();
       setDot();
       el.debug.textContent = t("ui.debug", {
@@ -400,26 +396,6 @@
       return `${match.name}${manufacturer} ${match.hex}`;
     }
 
-    function renderMaterials() {
-      const mats = selectedMaterials();
-      if (!mats.length) {
-        el.materialPalette.innerHTML = `<p class="notes">${escapeHtml(t("ui.noMaterials"))}</p>`;
-        return;
-      }
-
-      el.materialPalette.innerHTML = mats.map(material => `
-        <article class="material-card">
-          <div class="material-swatch" style="background:${escapeHtml(material.hex)}"></div>
-          <div class="material-body">
-            <strong>${escapeHtml(materialName(material.key))}</strong><br>
-            <code title="${escapeHtml(t("ui.copyPalette"))}">${escapeHtml(material.hex)}</code>
-            <p>${escapeHtml(materialUse(material.key))}</p>
-          </div>
-        </article>
-      `).join("");
-      el.materialPalette.querySelectorAll("code").forEach(node => node.addEventListener("click", () => copyText(node.textContent)));
-    }
-
     function updateMini() {
       const p0 = currentPalette[0] || { hex: W.primaryHex(state) };
       const p1 = currentPalette[1] || p0;
@@ -437,21 +413,13 @@
       mini.base.style.background = wood ? wood.hex : p3.hex;
     }
 
-    function selectedMaterialGroups() {
-      return materialToggles.filter(toggle => toggle.checked).map(toggle => toggle.value);
-    }
-
-    function selectedMaterials() {
-      return W.selectedMaterials(selectedMaterialGroups());
-    }
-
     function findMaterial(key) {
-      return selectedMaterials().find(material => material.key === key) || null;
+      return W.getMaterialFallback(key);
     }
 
     function resolveRoleColor(ref) {
       if (ref.type === "material") {
-        const material = findMaterial(ref.key) || W.getMaterialFallback(ref.key);
+        const material = findMaterial(ref.key);
         return {
           hex: material.hex,
           name: materialName(material.key)
@@ -474,10 +442,6 @@
 
     function materialName(key) {
       return t(`materials.items.${key}.name`);
-    }
-
-    function materialUse(key) {
-      return t(`materials.items.${key}.use`);
     }
 
     function drawWheel() {
@@ -561,17 +525,13 @@
       const catalogueText = W.mapPaletteToCatalogue(currentPalette, cataloguePaints, { limit: 3 }).map(color => (
         `${roleName(color.roleKey)} ${color.hex}: ` + color.matches.map(paintMatchLabel).join(", ")
       )).join("\n");
-      const materialText = selectedMaterials().map(material => (
-        `${materialName(material.key)}: ${material.hex} - ${materialUse(material.key)}`
-      )).join("\n");
 
       return [
         `${t("copy.palette")}:\n${paletteText}`,
         `${t("copy.roles")}:\n${roleText}`,
         `${t("copy.bases")}:\n${baseText}`,
         `${t("copy.ladder")}:\n${ladderText}`,
-        `${t("copy.citadel")}:\n${catalogueText}`,
-        materialText ? `${t("copy.materials")}:\n${materialText}` : ""
+        `${t("copy.citadel")}:\n${catalogueText}`
       ].filter(Boolean).join("\n\n");
     }
 

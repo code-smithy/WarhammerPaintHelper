@@ -28,7 +28,6 @@
         finishStyle: "Finish style",
         grimdark: "Grimdark / weathered",
         clean: "Clean / vibrant",
-        extraMaterials: "Extra materials",
         copyPalette: "Copy palette",
         copied: "Copied",
         randomColor: "Random color",
@@ -40,9 +39,6 @@
         modelRolesDescription: "Short overview of the generated main colors.",
         paintLadderDescription: "Practical paint steps for shadows, basecoat, layers, edge highlights, and focus light.",
         citadelMatches: "Paint catalogue matches",
-        accessoryMaterials: "Accessory and material colors",
-        accessoryMaterialsDescription: "Disabled by default.",
-        noMaterials: "No extra materials selected.",
         why: "Why",
         build: "Build",
         debug: "Debug: main color {hex} | first palette card {firstHex} | HSL({h}, {s}%, {l}%) | finish {finish}",
@@ -339,11 +335,6 @@
         note: "{system} use: armor, cloth, skin, scales, vehicles, cloaks, or energy effects. {finish} finish: keep focus light selective."
       },
       materials: {
-        groups: {
-          woods: { label: "Wood and leather", description: "For grips, bows, bags, straps, shields, and bases." },
-          neutrals: { label: "White, bone, and cloth", description: "For parchment, skulls, teeth, cloaks, ropes, and bright contrast." },
-          metals: { label: "Metals", description: "Silver, iron, bronze, and gold for weapons, jewelry, and fittings." }
-        },
         items: {
           darkWood: { name: "Dark wood", use: "Hafts, bows, crates, shield backs, and base rims" },
           warmWood: { name: "Warm wood", use: "Wood grain, shields, boxes, and terrain bits" },
@@ -395,8 +386,7 @@
         roles: "Role planner",
         bases: "Base environment suggestions",
         ladder: "Shade / Layer / Highlight",
-        citadel: "Paint catalogue matches",
-        materials: "Accessory materials"
+        citadel: "Paint catalogue matches"
       }
     },
     de: {
@@ -417,7 +407,6 @@
         finishStyle: "Finish-Stil",
         grimdark: "Grimdark / verwittert",
         clean: "Sauber / leuchtend",
-        extraMaterials: "Zusatzmaterialien",
         copyPalette: "Palette kopieren",
         copied: "Kopiert",
         randomColor: "Zufallsfarbe",
@@ -429,9 +418,6 @@
         modelRolesDescription: "Kurzüberblick der generierten Hauptfarben.",
         paintLadderDescription: "Praktische Malstufen für Schatten, Basecoat, Layer, Kantenhighlights und Fokuslicht.",
         citadelMatches: "Farbkatalog-Treffer",
-        accessoryMaterials: "Zubehör- und Materialfarben",
-        accessoryMaterialsDescription: "Standardmäßig deaktiviert.",
-        noMaterials: "Keine Zusatzmaterialien ausgewählt.",
         why: "Warum",
         build: "Bau",
         debug: "Debug: Hauptfarbe {hex} | erste Palettenkarte {firstHex} | HSL({h}, {s}%, {l}%) | Finish {finish}",
@@ -518,7 +504,6 @@
         finishStyle: "Style de finition",
         grimdark: "Grimdark / usé",
         clean: "Propre / vibrant",
-        extraMaterials: "Matériaux supplémentaires",
         copyPalette: "Copier la palette",
         copied: "Copié",
         randomColor: "Couleur aléatoire",
@@ -530,9 +515,6 @@
         modelRolesDescription: "Aperçu court des couleurs principales générées.",
         paintLadderDescription: "Étapes pratiques pour ombres, basecoat, layers, edge highlights et lumière focale.",
         citadelMatches: "Catalogue de peintures",
-        accessoryMaterials: "Couleurs d'accessoires et de matériaux",
-        accessoryMaterialsDescription: "Désactivé par défaut.",
-        noMaterials: "Aucun matériau supplémentaire sélectionné.",
         why: "Pourquoi",
         build: "Construction",
         debug: "Debug : couleur principale {hex} | première carte {firstHex} | HSL({h}, {s}%, {l}%) | finition {finish}",
@@ -619,7 +601,6 @@
         finishStyle: "Estilo de acabado",
         grimdark: "Grimdark / envejecido",
         clean: "Limpio / vibrante",
-        extraMaterials: "Materiales adicionales",
         copyPalette: "Copiar paleta",
         copied: "Copiado",
         randomColor: "Color aleatorio",
@@ -631,9 +612,6 @@
         modelRolesDescription: "Resumen breve de los colores principales generados.",
         paintLadderDescription: "Pasos prácticos para sombras, capa base, capas, luces de borde y luz focal.",
         citadelMatches: "Catálogo de pinturas",
-        accessoryMaterials: "Colores de accesorios y materiales",
-        accessoryMaterialsDescription: "Desactivado por defecto.",
-        noMaterials: "No se han seleccionado materiales adicionales.",
         why: "Por qué",
         build: "Construcción",
         debug: "Depuración: color principal {hex} | primera tarjeta de paleta {firstHex} | HSL({h}, {s}%, {l}%) | acabado {finish}",
@@ -836,11 +814,6 @@
       note: "{system}-Einsatz: Rüstung, Stoff, Haut, Schuppen, Fahrzeuge, Umhänge oder Energieeffekte. {finish}-Finish: Fokuslicht selektiv halten."
     },
     materials: {
-      groups: {
-        woods: { label: "Holz und Leder", description: "Für Griffe, Bögen, Taschen, Riemen, Schilde und Bases." },
-        neutrals: { label: "Weiß, Knochen und Stoff", description: "Für Pergament, Schädel, Zähne, Umhänge, Seile und hellen Kontrast." },
-        metals: { label: "Metalle", description: "Silber, Eisen, Bronze und Gold für Waffen, Schmuck und Beschläge." }
-      },
       items: {
         darkWood: { name: "Dunkles Holz", use: "Schäfte, Bögen, Kisten, Schildrücken und Baseränder" },
         warmWood: { name: "Warmes Holz", use: "Holzmaserung, Schilde, Boxen und Geländeteile" },
@@ -892,8 +865,7 @@
       roles: "Rollenplaner",
       bases: "Base-Umgebungsvorschläge",
       ladder: "Shade / Layer / Highlight",
-      citadel: "Farbkatalog-Treffer",
-      materials: "Zubehörmaterialien"
+      citadel: "Farbkatalog-Treffer"
     }
   });
 
@@ -1029,11 +1001,6 @@
       note: "Usage {system} : armure, tissu, peau, écailles, véhicules, capes ou effets d'énergie. Finition {finish} : garder la lumière focale sélective."
     },
     materials: {
-      groups: {
-        woods: { label: "Bois et cuir", description: "Pour poignées, arcs, sacs, sangles, boucliers et socles." },
-        neutrals: { label: "Blanc, os et tissu", description: "Pour parchemin, crânes, dents, capes, cordes et contraste clair." },
-        metals: { label: "Métaux", description: "Argent, fer, bronze et or pour armes, bijoux et garnitures." }
-      },
       items: {
         darkWood: { name: "Bois sombre", use: "Hampes, arcs, caisses, dos de boucliers et bords de socle" },
         warmWood: { name: "Bois chaud", use: "Veines du bois, boucliers, boîtes et éléments de terrain" },
@@ -1085,8 +1052,7 @@
       roles: "Planificateur de rôles",
       bases: "Suggestions d'environnements de socle",
       ladder: "Shade / Layer / Highlight",
-      citadel: "Correspondances du catalogue",
-      materials: "Matériaux accessoires"
+      citadel: "Correspondances du catalogue"
     }
   });
 
@@ -1222,11 +1188,6 @@
       note: "Uso en {system}: armadura, tela, piel, escamas, vehículos, capas o efectos de energía. Acabado {finish}: mantén selectiva la luz focal."
     },
     materials: {
-      groups: {
-        woods: { label: "Madera y cuero", description: "Para empuñaduras, arcos, bolsas, correas, escudos y peanas." },
-        neutrals: { label: "Blanco, hueso y tela", description: "Para pergamino, cráneos, dientes, capas, cuerdas y contraste claro." },
-        metals: { label: "Metales", description: "Plata, hierro, bronce y oro para armas, joyería y herrajes." }
-      },
       items: {
         darkWood: { name: "Madera oscura", use: "Astiles, arcos, cajas, reversos de escudos y bordes de peana" },
         warmWood: { name: "Madera cálida", use: "Veta de madera, escudos, cajas y piezas de terreno" },
@@ -1278,8 +1239,7 @@
       roles: "Planificador de roles",
       bases: "Sugerencias de entornos de peana",
       ladder: "Sombra / Capa / Luz",
-      citadel: "Equivalencias del catálogo",
-      materials: "Materiales accesorios"
+      citadel: "Equivalencias del catálogo"
     }
   });
 

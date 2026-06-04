@@ -16,6 +16,9 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="languageSelect"/);
   assert.match(html, /<option value="es">Español<\/option>/);
   assert.match(html, /id="systemSelect"/);
+  assert.doesNotMatch(html, /ui\.extraMaterials/);
+  assert.doesNotMatch(html, /class="material-toggle"/);
+  assert.doesNotMatch(html, /id="materialPalette"/);
 });
 
 test("paint catalogue JSON is valid and uses manufacturer color groups", () => {

@@ -6,7 +6,8 @@
         "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
         "https://citadel-colours-json.tiiny.site/json/Citadel-Colours-189-from-Bolter-and-Chainsword-for-ArtistAssistApp",
         "https://www.reddit.com/r/Warhammer40k/comments/1lmn5z2/citadel_paint_hex_codes_189_of_them_in_json_for/",
-        "http://uk.games-workshop.com/storefront/store.uk?do=List_Models&code=300952&orignav=300810"
+        "http://uk.games-workshop.com/storefront/store.uk?do=List_Models&code=300952&orignav=300810",
+        "https://www.paintatlas.com/brands/citadel"
       ],
       "colors": [
         {
@@ -185,6 +186,132 @@
           "hex": "#9E915C",
           "status": "confirmed",
           "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Adeptus Battlegrey",
+          "hex": "#4A4C58",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Aethermatic Blue",
+          "hex": "#1C7E92",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Aggaros Dunes",
+          "hex": "#706542",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Agrax Earthshade Gloss",
+          "hex": "#B4AA9E",
+          "finish": "shade",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Agrellan Earth",
+          "hex": "#B39E80",
+          "finish": "technical",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Air Caste Thinner",
+          "hex": "#F9F9F9",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Akhelian Green",
+          "hex": "#004F63",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Alaitoc Blue",
+          "hex": "#2F4F85",
+          "finish": "layer",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Angron Red Clear",
+          "hex": "#E21823",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Apothecary White",
+          "hex": "#A5BED4",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "'Ardcoat",
+          "hex": "#F9F9F9",
+          "finish": "technical",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Armageddon Dunes",
+          "hex": "#E8D36F",
+          "finish": "technical",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Armageddon Dust",
+          "hex": "#D2AD00",
+          "finish": "technical",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Astorath Red",
+          "hex": "#A9311E",
+          "finish": "dry",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Astrogranite",
+          "hex": "#767675",
+          "finish": "technical",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Astrogranite Debris",
+          "hex": "#9D9D9D",
+          "finish": "technical",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Astronomicon Grey",
+          "hex": "#93ABAF",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
+        },
+        {
+          "name": "Asurmen Blue Wash",
+          "hex": "#273E51",
+          "finish": "shade",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/citadel"
         }
       ]
     },
@@ -199,7 +326,8 @@
         "http://www.ttfxmedia.com/vallejo/cgi-bin/_modelis_carta.asp?p1=ing&p2=gamecolor",
         "http://www.ttfxmedia.com/vallejo/cgi-bin/_modelis_info.asp?p1=ing&p2=gamecolor&p3=1#gamecolorinfo",
         "http://www.acrylicosvallejo.com/en_US/media/e588d28183cec31ffd6dcee6d3718fc3.cms/equivalencias-rev05.pdf",
-        "https://redgrimm.github.io/paint-conversion/p3.html"
+        "https://redgrimm.github.io/paint-conversion/p3.html",
+        "https://www.paintatlas.com/brands/vallejo"
       ],
       "colors": [
         {
@@ -329,6 +457,139 @@
           "collection": "Model Color",
           "status": "confirmed",
           "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "3B Russian Green",
+          "hex": "#474946",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "6K Russian Brown",
+          "hex": "#4D4C4A",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "7K Russian Tan",
+          "hex": "#787059",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "A-14 Steel Grey",
+          "hex": "#697271",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "A-24M Camouflage Green",
+          "hex": "#575944",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "A-28M Greyish Blue",
+          "hex": "#719F92",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Abyssal Turquoise",
+          "hex": "#1B3E54",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Acid",
+          "hex": "#539E5D",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Afrikakorps Tank Crew",
+          "hex": "#6E705B",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Afrikakorps Tank Crew Highlights",
+          "hex": "#A99D75",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Aged White",
+          "hex": "#E3D3AF",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Aggressor Gray",
+          "hex": "#7B7C7E",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "AII SV. Gol Light Blue",
+          "hex": "#7CC5D6",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Alien Purple",
+          "hex": "#6D62A6",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Aluminium",
+          "hex": "#AEAEAE",
+          "finish": "metallic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Aluminum (Metallic)",
+          "hex": "#ACACB6",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Amaranth Red",
+          "hex": "#D14E30",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Amethyst",
+          "hex": "#702A81",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
+        },
+        {
+          "name": "Andrea Blue",
+          "hex": "#0270AF",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/vallejo"
         }
       ]
     },
@@ -449,6 +710,194 @@
           "collection": "Formula",
           "status": "confirmed",
           "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        }
+      ]
+    },
+    {
+      "name": "Army Painter",
+      "source_urls": [
+        "https://www.paintatlas.com/brands/army-painter",
+        "https://wheelswingshobbies.com/blog/army-painter-warpaints-fanatic-complete-colour-guide/",
+        "https://www.goldengoblingames.com/citadel-vallejo-and-warpaints-fanatic-equivalence-charts",
+        "https://bolterandchainsword.com/topic/384071-warpaints-fanatic-colour-conversion-chart-from-the-army-painter/"
+      ],
+      "colors": [
+        {
+          "name": "Abomination Gore",
+          "hex": "#A32F26",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Absolution Green",
+          "hex": "#22311F",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Abyssal Black",
+          "hex": "#21201D",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Abyssal Blue",
+          "hex": "#00506C",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Aegis Aqua",
+          "hex": "#32B3D5",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Aegis Suit Satin Varnish",
+          "hex": "#F4F7F7",
+          "finish": "primer",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Afterglow",
+          "hex": "#E4EA8D",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Agate Skin",
+          "hex": "#D7877B",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Aged Hide",
+          "hex": "#D56C4F",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Algae Green",
+          "hex": "#9CAA53",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Alien Purple",
+          "hex": "#6154A3",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Alpha Blue",
+          "hex": "#667DC0",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Amber Skin",
+          "hex": "#C4A083",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Amulet Aqua",
+          "hex": "#68C5B6",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Ancient Honey",
+          "hex": "#EBBD21",
+          "finish": "contrast",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Ancient Mummy",
+          "hex": "#FDEAA9",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Ancient Stone",
+          "hex": "#D0C3A3",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Angel Green",
+          "hex": "#20321D",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Angelic Red",
+          "hex": "#D42C39",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Angelic Yellow",
+          "hex": "#F9DF1C",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Anti-Shine Matt Varnish",
+          "hex": "#F0F0F0",
+          "finish": "primer",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Aqua Alchemy",
+          "hex": "#24BBA6",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Aquamarine",
+          "hex": "#56C4CD",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Archangel Red",
+          "hex": "#C52822",
+          "finish": "air",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/brands/army-painter"
+        },
+        {
+          "name": "Matt Black",
+          "hex": "#000000",
+          "manufacturer_code": "WP1101",
+          "collection": "Warpaints",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/paints/army-painter-matt-black"
         }
       ]
     },

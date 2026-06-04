@@ -242,7 +242,6 @@ button:hover {
 }
 
 .palette,
-.materials-grid,
 .paint-map,
 .ladder-grid,
 .citadel-grid {
@@ -252,7 +251,6 @@ button:hover {
 }
 
 .card,
-.material-card,
 .paint-map-card,
 .ladder-card,
 .match-card {
@@ -269,7 +267,6 @@ button:hover {
 }
 
 .swatch::after,
-.material-swatch::after,
 .match-swatch::after {
   content: "";
   position: absolute;
@@ -280,7 +277,6 @@ button:hover {
 }
 
 .card-body,
-.material-body,
 .paint-map-card,
 .match-body {
   padding: 13px;
@@ -298,7 +294,6 @@ button:hover {
 }
 
 .hex:hover,
-.material-body code:hover,
 .paint-map-card code:hover,
 .ladder-step code:hover {
   text-decoration: underline;
@@ -419,36 +414,6 @@ button:hover {
   border-radius: 50%;
 }
 
-.material-controls {
-  display: grid;
-  gap: 10px;
-}
-
-.check-row {
-  display: grid;
-  grid-template-columns: 22px 1fr;
-  gap: 10px;
-  align-items: start;
-  padding: 11px;
-  background: var(--panel2);
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  color: var(--text);
-  margin: 0;
-}
-
-.check-row input {
-  margin-top: 2px;
-  accent-color: var(--accent);
-}
-
-.check-row small {
-  display: block;
-  color: var(--muted);
-  line-height: 1.35;
-  margin-top: 3px;
-}
-
 .section-box {
   margin-top: 18px;
 }
@@ -461,14 +426,12 @@ button:hover {
   margin-bottom: 12px;
 }
 
-.material-swatch,
 .match-swatch {
   height: 78px;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, .12);
 }
 
-.material-body p,
 .match-body p {
   margin: 7px 0 0;
   color: var(--muted);

@@ -19,17 +19,15 @@ It currently supports:
 - A clean-to-grimdark finish slider that adjusts generated support colors and paint
   ladder advice.
 - A miniature preview that applies the generated palette to a simple model silhouette.
-- Model role planning for armor, robes, fatigues, leather, wood, metals, weapons,
+- Model role planning for armor, robes, fatigues, default material colors, weapons,
   magic effects, lenses, plasma, bases, and accent areas.
 - Base environment suggestions for fantasy realms and 40K battlefields.
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue matching across manufacturer color groups. The catalogue lives at
   `data/paint-catalogue.json` and uses `manufacturers[].colors[]` entries.
 - Match metadata for manufacturer, collection, range, finish, status, and distance.
-- Optional accessory material colors for wood, leather, cloth, bone, white, iron,
-  silver, bronze, and gold.
 - A copy button for exporting the generated palette, role plan, base ideas, paint ladder,
-  catalogue matches, and selected material colors.
+  and catalogue matches.
 
 ## How To Use
 
