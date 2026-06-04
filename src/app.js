@@ -26,6 +26,7 @@
     let catalogueSource = "sample";
     let selectedManufacturers = new Set();
     let producerFiltersInitialized = false;
+    let paintSelectorOptions = [];
     let hoverTimer = null;
     let activeHoverTarget = null;
 
@@ -45,6 +46,8 @@
       secondarySwatch: $("secondarySwatch"),
       secondaryHex: $("secondaryHex"),
       secondaryHsl: $("secondaryHsl"),
+      paintSearch: $("paintSearchInput"),
+      paintSelect: $("paintSelect"),
       hexInput: $("hexInput"),
       secondaryHexInput: $("secondaryHexInput"),
       schemeField: $("schemeField"),
@@ -91,6 +94,7 @@
     translateStatic();
     populateDynamicControls();
     renderProducerFilters(true);
+    renderPaintSelectorOptions();
     drawWheel();
     attachEvents();
     update();
@@ -99,6 +103,7 @@
       cataloguePaints = result.paints;
       catalogueSource = result.source;
       renderProducerFilters(true);
+      renderPaintSelectorOptions();
       update();
     });
 
@@ -114,6 +119,7 @@
         node.textContent = t(node.dataset.i18n);
       });
       renderProducerFilters(false);
+      renderPaintSelectorOptions();
     }
 
     function populateDynamicControls() {
@@ -206,6 +212,24 @@
         } else {
           selectedManufacturers.delete(producer);
         }
+        renderPaintSelectorOptions();
+        update();
+      });
+      el.paintSearch.addEventListener("input", renderPaintSelectorOptions);
+      el.paintSelect.addEventListener("change", () => {
+        if (!el.paintSelect.value) {
+          return;
+        }
+        const paint = paintSelectorOptions[Number(el.paintSelect.value)];
+        if (!paint) {
+          return;
+        }
+        setPrimaryFromHex(paint.hex);
+        if (state.mode === "heraldic") {
+          el.activeColor.value = "primary";
+          state.activeColor = "primary";
+        }
+        syncSlidersToActiveColor();
         update();
       });
       el.sat.addEventListener("input", update);
@@ -217,15 +241,10 @@
       });
 
       el.hexInput.addEventListener("change", () => {
-        const rgb = W.hexToRgb(el.hexInput.value);
-        if (!rgb) {
+        if (!setPrimaryFromHex(el.hexInput.value)) {
           el.hexInput.value = W.primaryHex(state);
           return;
         }
-        const hsl = W.rgbToHsl(rgb.r, rgb.g, rgb.b);
-        state.h = hsl.h;
-        state.s = hsl.s;
-        state.l = hsl.l;
         if (state.mode !== "heraldic" || state.activeColor === "primary") {
           syncSlidersToActiveColor();
         }
@@ -381,6 +400,18 @@
       const color = activeWheelColor();
       el.sat.value = Math.round(color.s);
       el.light.value = Math.round(color.l);
+    }
+
+    function setPrimaryFromHex(hex) {
+      const rgb = W.hexToRgb(hex);
+      if (!rgb) {
+        return false;
+      }
+      const hsl = W.rgbToHsl(rgb.r, rgb.g, rgb.b);
+      state.h = hsl.h;
+      state.s = hsl.s;
+      state.l = hsl.l;
+      return true;
     }
 
     function renderHeraldicPreview() {
@@ -570,6 +601,41 @@
     function paintMatchLabel(match) {
       const manufacturer = match.manufacturer ? ` (${match.manufacturer})` : "";
       return `${match.name}${manufacturer} ${match.hex}`;
+    }
+
+    function renderPaintSelectorOptions() {
+      const query = el.paintSearch.value.trim().toLowerCase();
+      paintSelectorOptions = filteredCataloguePaints()
+        .filter(paint => !query || paintSelectorText(paint).toLowerCase().includes(query))
+        .sort((a, b) => paintSelectorText(a).localeCompare(paintSelectorText(b)));
+
+      const placeholder = paintSelectorOptions.length
+        ? t("ui.paintSelectPlaceholder", { count: paintSelectorOptions.length })
+        : t("ui.paintSelectEmpty");
+      el.paintSelect.innerHTML = [
+        `<option value="">${escapeHtml(placeholder)}</option>`,
+        ...paintSelectorOptions.map((paint, index) => (
+          `<option value="${index}">${escapeHtml(paintSelectorLabel(paint))}</option>`
+        ))
+      ].join("");
+      el.paintSelect.value = "";
+    }
+
+    function paintSelectorText(paint) {
+      return [
+        paint.name,
+        paint.manufacturer,
+        paint.collection,
+        paint.range,
+        paint.finish,
+        paint.manufacturerCode,
+        paint.hex
+      ].filter(Boolean).join(" ");
+    }
+
+    function paintSelectorLabel(paint) {
+      const meta = [paint.manufacturer, paint.collection, paint.range].filter(Boolean).join(" / ");
+      return meta ? `${paint.name} - ${meta} - ${paint.hex}` : `${paint.name} - ${paint.hex}`;
     }
 
     function renderProducerFilters(resetSelection) {

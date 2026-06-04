@@ -61,6 +61,41 @@
         </div>
       </div>
 
+      <div id="schemeField" class="field">
+        <label for="schemeSelect" data-i18n="ui.scheme">Color scheme</label>
+        <select id="schemeSelect"></select>
+      </div>
+
+      <div class="field">
+        <label for="satRange" data-i18n="ui.saturation">Saturation</label>
+        <div class="inline">
+          <input id="satRange" type="range" min="5" max="100" value="70" />
+          <input id="satValue" type="text" value="70%" readonly />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="lightRange" data-i18n="ui.lightness">Lightness</label>
+        <div class="inline">
+          <input id="lightRange" type="range" min="10" max="90" value="46" />
+          <input id="lightValue" type="text" value="46%" readonly />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="styleRange" data-i18n="ui.finishStyle">Finish style</label>
+        <div class="inline">
+          <input id="styleRange" type="range" min="-100" max="100" value="0" />
+          <input id="styleValue" type="text" value="Balanced" readonly />
+        </div>
+        <div class="style-scale">
+          <span data-i18n="ui.grimdark">Grimdark / weathered</span>
+          <strong data-i18n="finish.balanced">Balanced</strong>
+          <span data-i18n="ui.clean">Clean / vibrant</span>
+        </div>
+        <div id="styleSummary" class="style-summary"></div>
+      </div>
+
       <div id="secondaryColorPanel" class="current-color heraldic-only" hidden>
         <div id="secondarySwatch" class="current-swatch"></div>
         <div>
@@ -71,6 +106,16 @@
       </div>
 
       <div class="field">
+        <label for="paintSearchInput" data-i18n="ui.paintSearch">Filter catalogue colours</label>
+        <input id="paintSearchInput" type="text" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <label for="paintSelect" data-i18n="ui.paintSelect">Choose main colour from catalogue</label>
+        <select id="paintSelect"></select>
+      </div>
+
+      <div class="field">
         <label for="hexInput" data-i18n="ui.hexInput">Enter HEX color directly</label>
         <input id="hexInput" type="text" value="#2457C5" maxlength="7" autocomplete="off" />
       </div>
@@ -78,11 +123,6 @@
       <div id="secondaryHexField" class="field heraldic-only" hidden>
         <label for="secondaryHexInput" data-i18n="heraldic.secondaryHexInput">Enter secondary HEX directly</label>
         <input id="secondaryHexInput" type="text" value="#F1EDE1" maxlength="7" autocomplete="off" />
-      </div>
-
-      <div id="schemeField" class="field">
-        <label for="schemeSelect" data-i18n="ui.scheme">Color scheme</label>
-        <select id="schemeSelect"></select>
       </div>
 
       <div id="heraldicControls" class="heraldic-only" hidden>
@@ -120,36 +160,6 @@
       <div class="field">
         <div class="field-label" data-i18n="ui.paintProducers">Paint producers</div>
         <div id="producerFilters" class="producer-filters"></div>
-      </div>
-
-      <div class="field">
-        <label for="satRange" data-i18n="ui.saturation">Saturation</label>
-        <div class="inline">
-          <input id="satRange" type="range" min="5" max="100" value="70" />
-          <input id="satValue" type="text" value="70%" readonly />
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="lightRange" data-i18n="ui.lightness">Lightness</label>
-        <div class="inline">
-          <input id="lightRange" type="range" min="10" max="90" value="46" />
-          <input id="lightValue" type="text" value="46%" readonly />
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="styleRange" data-i18n="ui.finishStyle">Finish style</label>
-        <div class="inline">
-          <input id="styleRange" type="range" min="-100" max="100" value="0" />
-          <input id="styleValue" type="text" value="Balanced" readonly />
-        </div>
-        <div class="style-scale">
-          <span data-i18n="ui.grimdark">Grimdark / weathered</span>
-          <strong data-i18n="finish.balanced">Balanced</strong>
-          <span data-i18n="ui.clean">Clean / vibrant</span>
-        </div>
-        <div id="styleSummary" class="style-summary"></div>
       </div>
 
       <div class="button-row">
