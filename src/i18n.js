@@ -19,6 +19,8 @@
         title: "Warhammer Paint Helper",
         subtitle: "Pick a main color and generate a miniature-ready palette with model roles, base ideas, paint steps, and paint catalogue matches.",
         mode: "Palette mode",
+        faction: "Faction",
+        subfaction: "Subfaction / fixed scheme",
         activeColor: "Wheel edits",
         mainColor: "Main color",
         paintProducers: "Paint producers",
@@ -58,6 +60,18 @@
       modes: {
         single: "Single colour",
         heraldic: "Heraldic"
+      },
+      factionSchemes: {
+        custom: "Custom colour wheel",
+        chooseSubfaction: "Choose a subfaction scheme",
+        noSubfactions: "No fixed schemes for this faction",
+        customHint: "Choose a faction and subfaction to use a fixed scheme, or keep using the colour wheel.",
+        missing: "No fixed faction schemes are loaded.",
+        selectedMeta: "{faction} fixed scheme with {count} labelled colours.",
+        description: "{faction}: {subfaction}, using the {scheme} fixed colour scheme.",
+        defaultNote: "Use the labelled colours as the fixed faction recipe, then adjust finish and basing to taste.",
+        paintEquivalents: "Paint equivalents",
+        noPaintEquivalents: "No fixed paint equivalents listed"
       },
       heraldic: {
         title: "Heraldic two-colour",
@@ -333,7 +347,13 @@
         chargeShade: "Charge shade",
         fieldHighlight: "Field highlight",
         chargeHighlight: "Charge highlight",
-        heraldicAccent: "Heraldic accent"
+        heraldicAccent: "Heraldic accent",
+        factionDominant: "Dominant colour",
+        factionSecondary: "Secondary colour",
+        factionDarkNeutral: "Near-dark neutral",
+        factionLightNeutral: "Near-light neutral",
+        factionAccentOne: "Accent 1",
+        factionAccentTwo: "Accent 2"
       },
       placements: {
         dominant: "Dominant surface: armor, robe, skin, hull, fatigues, or main cloth.",
@@ -531,6 +551,8 @@
         title: "Warhammer Paint Helper",
         subtitle: "Wähle eine Hauptfarbe und erzeuge eine miniaturentaugliche Palette mit Modellrollen, Base-Ideen, Malstufen und Farbkatalog-Treffern.",
         mode: "Palettenmodus",
+        faction: "Fraktion",
+        subfaction: "Unterfraktion / festes Schema",
         activeColor: "Farbrad bearbeitet",
         mainColor: "Hauptfarbe",
         paintProducers: "Farbhersteller",
@@ -570,6 +592,18 @@
       modes: {
         single: "Einzelfarbe",
         heraldic: "Heraldik"
+      },
+      factionSchemes: {
+        custom: "Eigenes Farbrad",
+        chooseSubfaction: "Unterfraktionsschema wählen",
+        noSubfactions: "Keine festen Schemas für diese Fraktion",
+        customHint: "Wähle Fraktion und Unterfraktion für ein festes Schema oder nutze weiter das Farbrad.",
+        missing: "Keine festen Fraktionsschemata geladen.",
+        selectedMeta: "{faction}: festes Schema mit {count} beschrifteten Farben.",
+        description: "{faction}: {subfaction}, mit dem festen Farbschema {scheme}.",
+        defaultNote: "Nutze die beschrifteten Farben als festes Fraktionsrezept und passe Finish und Base nach Geschmack an.",
+        paintEquivalents: "Farbentsprechungen",
+        noPaintEquivalents: "Keine festen Farbentsprechungen gelistet"
       },
       heraldic: {
         title: "Heraldik mit zwei Farben",
@@ -680,7 +714,7 @@
         chapter: { title: "40K-Chapter / Truppschema", desc: "Rüstungsfarbe, Panel-Schatten, Kompaniemarkierung und Linsen- oder Plasmaakzent.", note: "Für 40K-Rüstungspanel, Helme, Schulterpanzer, Waffen und Truppkennzeichen." }
       },
       schemeRoles: {
-        primary: "Hauptfarbe", contrast: "Kontrastfarbe", leftAccent: "Akzent links", rightAccent: "Akzent rechts", secondary: "Sekundärfarbe", accent: "Akzentfarbe", shadow: "Schattenfarbe", highlight: "Highlightfarbe", darkNeighbor: "Dunkler Nebenton", lightNeighbor: "Heller Nebenton", layer: "Layerfarbe", deepShadow: "Tiefer Schatten", edgeHighlight: "Kantenhighlight", basecoat: "Basecoat", coolShadow: "Kalter Schatten", warmLayer: "Warmer Layer", strongAccent: "Starker Akzent", neighbor: "Nebenton", secondaryAccent: "Sekundärakzent", coolCounter: "Kalte Gegenfarbe", coolAccent: "Kalter Akzent", darkBase: "Dunkler Grundton", dustyLayer: "Staubiger Layer", dirtyAccent: "Schmutziger Akzent", realmGlow: "Realm-Glow", realmAccent: "Realm-Akzent", realmShadow: "Realm-Schatten", armor: "Rüstungsfarbe", panelShade: "Panel-Schatten", companyMarking: "Kompaniemarkierung", lensAccent: "Linsenakzent", fieldColor: "Feldfarbe", chargeColor: "Zeichenfarbe", fieldShadow: "Feldschatten", chargeShade: "Zeichenschatten", fieldHighlight: "Feldhighlight", chargeHighlight: "Zeichenhighlight", heraldicAccent: "Heraldik-Akzent"
+        primary: "Hauptfarbe", contrast: "Kontrastfarbe", leftAccent: "Akzent links", rightAccent: "Akzent rechts", secondary: "Sekundärfarbe", accent: "Akzentfarbe", shadow: "Schattenfarbe", highlight: "Highlightfarbe", darkNeighbor: "Dunkler Nebenton", lightNeighbor: "Heller Nebenton", layer: "Layerfarbe", deepShadow: "Tiefer Schatten", edgeHighlight: "Kantenhighlight", basecoat: "Basecoat", coolShadow: "Kalter Schatten", warmLayer: "Warmer Layer", strongAccent: "Starker Akzent", neighbor: "Nebenton", secondaryAccent: "Sekundärakzent", coolCounter: "Kalte Gegenfarbe", coolAccent: "Kalter Akzent", darkBase: "Dunkler Grundton", dustyLayer: "Staubiger Layer", dirtyAccent: "Schmutziger Akzent", realmGlow: "Realm-Glow", realmAccent: "Realm-Akzent", realmShadow: "Realm-Schatten", armor: "Rüstungsfarbe", panelShade: "Panel-Schatten", companyMarking: "Kompaniemarkierung", lensAccent: "Linsenakzent", fieldColor: "Feldfarbe", chargeColor: "Zeichenfarbe", fieldShadow: "Feldschatten", chargeShade: "Zeichenschatten", fieldHighlight: "Feldhighlight", chargeHighlight: "Zeichenhighlight", heraldicAccent: "Heraldik-Akzent", factionDominant: "Dominante Farbe", factionSecondary: "Sekundärfarbe", factionDarkNeutral: "Dunkler Neutralton", factionLightNeutral: "Heller Neutralton", factionAccentOne: "Akzent 1", factionAccentTwo: "Akzent 2"
       }
     },
     fr: {
@@ -692,6 +726,8 @@
         title: "Warhammer Paint Helper",
         subtitle: "Choisis une couleur principale et génère une palette pour figurines avec rôles, idées de socle, étapes de peinture et correspondances du catalogue.",
         mode: "Mode de palette",
+        faction: "Faction",
+        subfaction: "Sous-faction / schéma fixe",
         activeColor: "Roue modifie",
         mainColor: "Couleur principale",
         paintProducers: "Fabricants de peinture",
@@ -731,6 +767,18 @@
       modes: {
         single: "Couleur unique",
         heraldic: "Heraldique"
+      },
+      factionSchemes: {
+        custom: "Roue de couleur personnalisée",
+        chooseSubfaction: "Choisir un schéma de sous-faction",
+        noSubfactions: "Aucun schéma fixe pour cette faction",
+        customHint: "Choisis une faction et une sous-faction pour utiliser un schéma fixe, ou continue avec la roue.",
+        missing: "Aucun schéma de faction fixe chargé.",
+        selectedMeta: "{faction} : schéma fixe avec {count} couleurs étiquetées.",
+        description: "{faction} : {subfaction}, avec le schéma fixe {scheme}.",
+        defaultNote: "Utilise les couleurs étiquetées comme recette fixe, puis ajuste finition et socle.",
+        paintEquivalents: "Équivalents de peinture",
+        noPaintEquivalents: "Aucun équivalent fixe indiqué"
       },
       heraldic: {
         title: "Heraldique deux couleurs",
@@ -818,7 +866,7 @@
         chapter: { title: "Chapitre / escouade 40K", desc: "Couleur d'armure, ombre de panneau, marquage de compagnie et accent lentille ou plasma.", note: "Pour panneaux d'armure 40K, casques, épaulières, armes et identifiants d'escouade." }
       },
       schemeRoles: {
-        primary: "Couleur principale", contrast: "Couleur de contraste", leftAccent: "Accent gauche", rightAccent: "Accent droit", secondary: "Couleur secondaire", accent: "Couleur d'accent", shadow: "Couleur d'ombre", highlight: "Couleur de highlight", darkNeighbor: "Voisine sombre", lightNeighbor: "Voisine claire", layer: "Couleur de layer", deepShadow: "Ombre profonde", edgeHighlight: "Edge highlight", basecoat: "Basecoat", coolShadow: "Ombre froide", warmLayer: "Layer chaud", strongAccent: "Accent fort", neighbor: "Couleur voisine", secondaryAccent: "Accent secondaire", coolCounter: "Contre-couleur froide", coolAccent: "Accent froid", darkBase: "Base sombre", dustyLayer: "Layer poussiéreux", dirtyAccent: "Accent sale", realmGlow: "Lueur de royaume", realmAccent: "Accent de royaume", realmShadow: "Ombre de royaume", armor: "Couleur d'armure", panelShade: "Ombre de panneau", companyMarking: "Marquage de compagnie", lensAccent: "Accent de lentille", fieldColor: "Couleur de champ", chargeColor: "Couleur de charge", fieldShadow: "Ombre du champ", chargeShade: "Ombre de charge", fieldHighlight: "Highlight du champ", chargeHighlight: "Highlight de charge", heraldicAccent: "Accent heraldique"
+        primary: "Couleur principale", contrast: "Couleur de contraste", leftAccent: "Accent gauche", rightAccent: "Accent droit", secondary: "Couleur secondaire", accent: "Couleur d'accent", shadow: "Couleur d'ombre", highlight: "Couleur de highlight", darkNeighbor: "Voisine sombre", lightNeighbor: "Voisine claire", layer: "Couleur de layer", deepShadow: "Ombre profonde", edgeHighlight: "Edge highlight", basecoat: "Basecoat", coolShadow: "Ombre froide", warmLayer: "Layer chaud", strongAccent: "Accent fort", neighbor: "Couleur voisine", secondaryAccent: "Accent secondaire", coolCounter: "Contre-couleur froide", coolAccent: "Accent froid", darkBase: "Base sombre", dustyLayer: "Layer poussiéreux", dirtyAccent: "Accent sale", realmGlow: "Lueur de royaume", realmAccent: "Accent de royaume", realmShadow: "Ombre de royaume", armor: "Couleur d'armure", panelShade: "Ombre de panneau", companyMarking: "Marquage de compagnie", lensAccent: "Accent de lentille", fieldColor: "Couleur de champ", chargeColor: "Couleur de charge", fieldShadow: "Ombre du champ", chargeShade: "Ombre de charge", fieldHighlight: "Highlight du champ", chargeHighlight: "Highlight de charge", heraldicAccent: "Accent heraldique", factionDominant: "Couleur dominante", factionSecondary: "Couleur secondaire", factionDarkNeutral: "Neutre sombre", factionLightNeutral: "Neutre clair", factionAccentOne: "Accent 1", factionAccentTwo: "Accent 2"
       }
     },
     es: {
@@ -830,6 +878,8 @@
         title: "Warhammer Paint Helper",
         subtitle: "Elige un color principal y genera una paleta lista para miniaturas con roles del modelo, ideas de peana, pasos de pintura y equivalencias del catálogo.",
         mode: "Modo de paleta",
+        faction: "Facción",
+        subfaction: "Subfacción / esquema fijo",
         activeColor: "Rueda edita",
         mainColor: "Color principal",
         paintProducers: "Fabricantes de pintura",
@@ -869,6 +919,18 @@
       modes: {
         single: "Color unico",
         heraldic: "Heraldico"
+      },
+      factionSchemes: {
+        custom: "Rueda de color personalizada",
+        chooseSubfaction: "Elegir esquema de subfacción",
+        noSubfactions: "No hay esquemas fijos para esta facción",
+        customHint: "Elige facción y subfacción para usar un esquema fijo, o sigue con la rueda.",
+        missing: "No se han cargado esquemas fijos de facción.",
+        selectedMeta: "{faction}: esquema fijo con {count} colores etiquetados.",
+        description: "{faction}: {subfaction}, usando el esquema fijo {scheme}.",
+        defaultNote: "Usa los colores etiquetados como receta fija y ajusta acabado y peana al gusto.",
+        paintEquivalents: "Equivalencias de pintura",
+        noPaintEquivalents: "No hay equivalencias fijas indicadas"
       },
       heraldic: {
         title: "Heraldico de dos colores",
@@ -956,7 +1018,7 @@
         chapter: { title: "Capítulo 40K / esquema de escuadra", desc: "Color de armadura, sombra de panel, marca de compañía y acento de lentes o plasma.", note: "Diseñado para paneles de armadura 40K, cascos, hombreras, carcasas de armas e identificadores de escuadra." }
       },
       schemeRoles: {
-        primary: "Color principal", contrast: "Color de contraste", leftAccent: "Acento izquierdo", rightAccent: "Acento derecho", secondary: "Color secundario", accent: "Color de acento", shadow: "Color de sombra", highlight: "Color de luz", darkNeighbor: "Vecino oscuro", lightNeighbor: "Vecino claro", layer: "Color de capa", deepShadow: "Sombra profunda", edgeHighlight: "Luz de borde", basecoat: "Capa base", coolShadow: "Sombra fría", warmLayer: "Capa cálida", strongAccent: "Acento fuerte", neighbor: "Color vecino", secondaryAccent: "Acento secundario", coolCounter: "Contracolor frío", coolAccent: "Acento frío", darkBase: "Tono base oscuro", dustyLayer: "Capa polvorienta", dirtyAccent: "Acento sucio", realmGlow: "Brillo de reino", realmAccent: "Acento de reino", realmShadow: "Sombra de reino", armor: "Color de armadura", panelShade: "Sombra de panel", companyMarking: "Marca de compañía", lensAccent: "Acento de lente", fieldColor: "Color de campo", chargeColor: "Color de carga", fieldShadow: "Sombra de campo", chargeShade: "Sombra de carga", fieldHighlight: "Luz de campo", chargeHighlight: "Luz de carga", heraldicAccent: "Acento heraldico"
+        primary: "Color principal", contrast: "Color de contraste", leftAccent: "Acento izquierdo", rightAccent: "Acento derecho", secondary: "Color secundario", accent: "Color de acento", shadow: "Color de sombra", highlight: "Color de luz", darkNeighbor: "Vecino oscuro", lightNeighbor: "Vecino claro", layer: "Color de capa", deepShadow: "Sombra profunda", edgeHighlight: "Luz de borde", basecoat: "Capa base", coolShadow: "Sombra fría", warmLayer: "Capa cálida", strongAccent: "Acento fuerte", neighbor: "Color vecino", secondaryAccent: "Acento secundario", coolCounter: "Contracolor frío", coolAccent: "Acento frío", darkBase: "Tono base oscuro", dustyLayer: "Capa polvorienta", dirtyAccent: "Acento sucio", realmGlow: "Brillo de reino", realmAccent: "Acento de reino", realmShadow: "Sombra de reino", armor: "Color de armadura", panelShade: "Sombra de panel", companyMarking: "Marca de compañía", lensAccent: "Acento de lente", fieldColor: "Color de campo", chargeColor: "Color de carga", fieldShadow: "Sombra de campo", chargeShade: "Sombra de carga", fieldHighlight: "Luz de campo", chargeHighlight: "Luz de carga", heraldicAccent: "Acento heraldico", factionDominant: "Color dominante", factionSecondary: "Color secundario", factionDarkNeutral: "Neutro oscuro", factionLightNeutral: "Neutro claro", factionAccentOne: "Acento 1", factionAccentTwo: "Acento 2"
       }
     }
   };

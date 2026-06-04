@@ -1,6 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const core = require("../src/core.js");
+const factions = require("../src/factions.js");
 
 test("converts basic HSL values to HEX", () => {
   assert.equal(core.hslToHex(0, 100, 50), "#FF0000");
@@ -127,4 +128,22 @@ test("scores automatic heraldic accents by use case", () => {
   assert.equal(core.buildHeraldicPalette(blueWhite, { accentKey: "auto" }).at(-1).hex, "#D2A13D");
   assert.equal(core.buildHeraldicPalette(blackYellow, { accentKey: "autoMetal" }).at(-1).hex, "#B9C0C5");
   assert.notEqual(core.buildHeraldicPalette(redWhite, { accentKey: "autoFocal" }).at(-1).hex, "#D2A13D");
+});
+
+test("builds fixed faction palettes separately for AoS and 40K", () => {
+  const schemes = core.normalizeFactionSchemes(factions.DEFAULT_FACTION_SCHEMES);
+  const aosSchemes = core.getFactionSchemesForSystem(schemes, "aos");
+  const k40Schemes = core.getFactionSchemesForSystem(schemes, "k40");
+  const ultramarines = k40Schemes.find(scheme => scheme.subfaction === "Ultramarines");
+
+  assert.ok(aosSchemes.length > 0);
+  assert.ok(k40Schemes.length > 0);
+  assert.ok(aosSchemes.every(scheme => scheme.system === "aos"));
+  assert.ok(k40Schemes.every(scheme => scheme.system === "k40"));
+  assert.ok(ultramarines);
+
+  const palette = core.buildFactionSchemePalette(ultramarines);
+  assert.equal(palette[0].hex, "#184A83");
+  assert.equal(palette[0].roleKey, "factionDominant");
+  assert.ok(palette.some(color => color.roleKey === "factionAccentOne"));
 });

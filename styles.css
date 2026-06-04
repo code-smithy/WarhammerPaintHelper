@@ -145,6 +145,14 @@ label {
   margin-bottom: 8px;
 }
 
+.faction-scheme-meta {
+  min-height: 18px;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.35;
+}
+
 .producer-filters {
   display: grid;
   gap: 7px;

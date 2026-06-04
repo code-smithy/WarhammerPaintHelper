@@ -13,6 +13,7 @@
       language: detectLanguage(W),
       system: "aos",
       mode: "single",
+      factionSchemeId: "",
       activeColor: "primary",
       secondary: { h: 45, s: 16, l: 92 },
       heraldicLayout: "split",
@@ -23,6 +24,7 @@
     let translator = W.createTranslator(state.language);
     let currentPalette = [];
     let cataloguePaints = W.DEFAULT_PAINT_CATALOGUE || W.DEFAULT_CITADEL_PAINTS;
+    let factionSchemes = W.normalizeFactionSchemes(W.DEFAULT_FACTION_SCHEMES || W.DEFAULT_FACTION_SCHEME_DATA || []);
     let catalogueSource = "sample";
     let selectedManufacturers = new Set();
     let producerFiltersInitialized = false;
@@ -35,6 +37,9 @@
       language: $("languageSelect"),
       system: $("systemSelect"),
       mode: $("modeSelect"),
+      faction: $("factionSelect"),
+      subfaction: $("subfactionSelect"),
+      factionMeta: $("factionSchemeMeta"),
       activeColor: $("activeColorSelect"),
       wheel: $("colorWheel"),
       markers: $("schemeMarkers"),
@@ -120,11 +125,13 @@
       });
       renderProducerFilters(false);
       renderPaintSelectorOptions();
+      populateFactionControls();
     }
 
     function populateDynamicControls() {
       setSelectOptions(el.system, ["aos", "k40"], key => t(`systems.${key}`), state.system);
       state.system = el.system.value;
+      populateFactionControls();
 
       setSelectOptions(
         el.scheme,
@@ -168,11 +175,13 @@
 
       el.system.addEventListener("change", () => {
         state.system = el.system.value;
+        state.factionSchemeId = "";
         populateDynamicControls();
         update();
       });
 
       el.mode.addEventListener("change", () => {
+        clearFactionScheme();
         state.mode = el.mode.value;
         syncSlidersToActiveColor();
         update();
@@ -184,7 +193,22 @@
         update();
       });
 
+      el.faction.addEventListener("change", () => {
+        const schemes = factionSchemesForCurrentSystem()
+          .filter(scheme => scheme.faction === el.faction.value);
+        state.factionSchemeId = schemes.length ? schemes[0].id : "";
+        populateFactionControls(el.faction.value);
+        update();
+      });
+
+      el.subfaction.addEventListener("change", () => {
+        state.factionSchemeId = el.subfaction.value;
+        populateFactionControls();
+        update();
+      });
+
       el.wheel.addEventListener("pointerdown", event => {
+        clearFactionScheme();
         if (el.wheel.setPointerCapture) {
           el.wheel.setPointerCapture(event.pointerId);
         }
@@ -196,7 +220,10 @@
         }
       });
       el.wheel.addEventListener("click", pickFromWheel);
-      el.scheme.addEventListener("change", update);
+      el.scheme.addEventListener("change", () => {
+        clearFactionScheme();
+        update();
+      });
       el.heraldicLayout.addEventListener("change", update);
       el.heraldicRatio.addEventListener("change", update);
       el.heraldicAccent.addEventListener("change", update);
@@ -224,6 +251,7 @@
         if (!paint) {
           return;
         }
+        clearFactionScheme();
         setPrimaryFromHex(paint.hex);
         if (state.mode === "heraldic") {
           el.activeColor.value = "primary";
@@ -232,8 +260,14 @@
         syncSlidersToActiveColor();
         update();
       });
-      el.sat.addEventListener("input", update);
-      el.light.addEventListener("input", update);
+      el.sat.addEventListener("input", () => {
+        clearFactionScheme();
+        update();
+      });
+      el.light.addEventListener("input", () => {
+        clearFactionScheme();
+        update();
+      });
       el.style.addEventListener("input", update);
       window.addEventListener("resize", () => {
         setDot();
@@ -241,6 +275,7 @@
       });
 
       el.hexInput.addEventListener("change", () => {
+        clearFactionScheme();
         if (!setPrimaryFromHex(el.hexInput.value)) {
           el.hexInput.value = W.primaryHex(state);
           return;
@@ -252,6 +287,7 @@
       });
 
       el.secondaryHexInput.addEventListener("change", () => {
+        clearFactionScheme();
         const rgb = W.hexToRgb(el.secondaryHexInput.value);
         if (!rgb) {
           el.secondaryHexInput.value = W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l);
@@ -265,6 +301,7 @@
       });
 
       el.random.addEventListener("click", () => {
+        clearFactionScheme();
         const randomColor = {
           h: Math.floor(Math.random() * 360),
           s: Math.floor(45 + Math.random() * 45),
@@ -303,25 +340,44 @@
       hidePaintTooltip();
       state.mode = el.mode.value;
       state.activeColor = el.activeColor.value;
-      applySlidersToActiveColor();
       state.style = Number(el.style.value);
       state.heraldicLayout = el.heraldicLayout.value;
       state.heraldicRatio = el.heraldicRatio.value;
       state.heraldicAccent = el.heraldicAccent.value;
+      const factionScheme = selectedFactionScheme();
+      if (!factionScheme) {
+        applySlidersToActiveColor();
+      }
       const schemeKey = el.scheme.value;
       const scheme = W.SCHEMES[schemeKey] || W.SCHEMES.complementary;
-      const hex = W.primaryHex(state);
-      const secondaryHex = W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l);
       const finishKey = W.styleLabelKey(state.style);
       const finishLabel = t(`finish.${finishKey}`);
-      const isHeraldic = state.mode === "heraldic";
-      currentPalette = isHeraldic
+      const isFactionScheme = Boolean(factionScheme);
+      const isHeraldic = !isFactionScheme && state.mode === "heraldic";
+      currentPalette = isFactionScheme
+        ? W.buildFactionSchemePalette(factionScheme)
+        : isHeraldic
         ? W.buildHeraldicPalette(state, {
           layoutKey: state.heraldicLayout,
           ratioKey: state.heraldicRatio,
           accentKey: state.heraldicAccent
         })
         : W.buildPalette(state, schemeKey);
+      if (isFactionScheme && currentPalette[0]) {
+        state.h = currentPalette[0].h;
+        state.s = currentPalette[0].s;
+        state.l = currentPalette[0].l;
+        if (currentPalette[1]) {
+          state.secondary = {
+            h: currentPalette[1].h,
+            s: currentPalette[1].s,
+            l: currentPalette[1].l
+          };
+        }
+        syncSlidersToActiveColor();
+      }
+      const hex = currentPalette[0] ? currentPalette[0].hex : W.primaryHex(state);
+      const secondaryHex = W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l);
 
       setHeraldicVisibility(isHeraldic);
       el.swatch.style.background = hex;
@@ -342,8 +398,16 @@
       el.lightOut.value = `${Math.round(activeColor.l)}%`;
       el.styleOut.value = finishLabel;
       el.styleSummary.textContent = t(`finish.summary.${finishKey}`);
-      el.title.textContent = isHeraldic ? t("heraldic.title") : t(`schemes.${schemeKey}.title`);
-      el.desc.textContent = isHeraldic
+      el.title.textContent = isFactionScheme
+        ? factionSchemeTitle(factionScheme)
+        : isHeraldic ? t("heraldic.title") : t(`schemes.${schemeKey}.title`);
+      el.desc.textContent = isFactionScheme
+        ? t("factionSchemes.description", {
+          faction: factionScheme.faction,
+          subfaction: factionScheme.subfaction,
+          scheme: factionScheme.schemeName
+        })
+        : isHeraldic
         ? t("heraldic.description", {
           layout: t(`heraldic.layouts.${state.heraldicLayout}`),
           ratio: t(`heraldic.ratios.${state.heraldicRatio}`)
@@ -352,7 +416,11 @@
       el.rolePlannerTitle.textContent = t(`systemCopy.${state.system}.rolePlannerTitle`);
       el.baseAdviceTitle.textContent = t(`systemCopy.${state.system}.baseAdviceTitle`);
       el.paintLadderTitle.textContent = t(`systemCopy.${state.system}.paintLadderTitle`);
-      el.notes.innerHTML = `<strong>${escapeHtml(t("ui.paintingNotes"))}:</strong> ${escapeHtml(isHeraldic ? t("heraldic.note") : t(`schemes.${schemeKey}.note`))}<br><br><strong>${escapeHtml(t(`systemCopy.${state.system}.finishPrefix`))}:</strong> ${escapeHtml(t(`finish.summary.${finishKey}`))}`;
+      const paintEquivalentText = factionScheme
+        ? `<br><br><strong>${escapeHtml(t("factionSchemes.paintEquivalents"))}:</strong> ${escapeHtml(factionScheme.paintEquivalents || t("factionSchemes.noPaintEquivalents"))}`
+        : "";
+      el.notes.innerHTML = `<strong>${escapeHtml(t("ui.paintingNotes"))}:</strong> ${escapeHtml(paintingNoteText(factionScheme, isHeraldic, schemeKey))}${paintEquivalentText}<br><br><strong>${escapeHtml(t(`systemCopy.${state.system}.finishPrefix`))}:</strong> ${escapeHtml(t(`finish.summary.${finishKey}`))}`;
+      renderFactionSchemeMeta(factionScheme);
 
       renderPalette(scheme);
       renderRolePlanner();
@@ -370,6 +438,85 @@
         s: state.s,
         l: state.l,
         finish: finishLabel
+      });
+    }
+
+    function populateFactionControls(preferredFaction) {
+      const schemes = factionSchemesForCurrentSystem();
+      const selected = selectedFactionScheme();
+      const factionNames = unique(schemes.map(scheme => scheme.faction));
+      const factionValue = preferredFaction || (selected && selected.faction) || "";
+
+      setSelectOptions(
+        el.faction,
+        ["", ...factionNames],
+        key => key || t("factionSchemes.custom"),
+        factionValue
+      );
+
+      const subfactionSchemes = el.faction.value
+        ? schemes.filter(scheme => scheme.faction === el.faction.value)
+        : [];
+      setOptionObjects(
+        el.subfaction,
+        [{ value: "", label: subfactionSchemes.length ? t("factionSchemes.chooseSubfaction") : t("factionSchemes.noSubfactions") }]
+          .concat(subfactionSchemes.map(scheme => ({
+            value: scheme.id,
+            label: `${scheme.subfaction} - ${scheme.schemeName}`
+          }))),
+        selected && subfactionSchemes.some(scheme => scheme.id === selected.id) ? selected.id : ""
+      );
+      el.subfaction.disabled = !subfactionSchemes.length;
+    }
+
+    function setOptionObjects(select, options, preferredValue) {
+      select.innerHTML = options.map(option => (
+        `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>`
+      )).join("");
+      select.value = options.some(option => option.value === preferredValue) ? preferredValue : options[0].value;
+    }
+
+    function factionSchemesForCurrentSystem() {
+      return W.getFactionSchemesForSystem(factionSchemes, state.system);
+    }
+
+    function selectedFactionScheme() {
+      return factionSchemes.find(scheme => scheme.id === state.factionSchemeId && scheme.system === state.system) || null;
+    }
+
+    function clearFactionScheme() {
+      if (!state.factionSchemeId) {
+        return;
+      }
+      state.factionSchemeId = "";
+      populateFactionControls();
+    }
+
+    function unique(values) {
+      return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
+    }
+
+    function factionSchemeTitle(scheme) {
+      return `${scheme.subfaction} - ${scheme.schemeName}`;
+    }
+
+    function paintingNoteText(factionScheme, isHeraldic, schemeKey) {
+      if (factionScheme) {
+        return factionScheme.notes || t("factionSchemes.defaultNote");
+      }
+      return isHeraldic ? t("heraldic.note") : t(`schemes.${schemeKey}.note`);
+    }
+
+    function renderFactionSchemeMeta(factionScheme) {
+      if (!factionScheme) {
+        el.factionMeta.textContent = factionSchemes.length
+          ? t("factionSchemes.customHint")
+          : t("factionSchemes.missing");
+        return;
+      }
+      el.factionMeta.textContent = t("factionSchemes.selectedMeta", {
+        faction: factionScheme.faction,
+        count: currentPalette.length
       });
     }
 
@@ -429,10 +576,10 @@
 
     function renderPalette() {
       el.palette.innerHTML = currentPalette.map(color => `
-        <article class="card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(roleName(color.roleKey))}">
+          <article class="card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(colorName(color))}">
           <div class="swatch" style="background:${escapeHtml(color.hex)}"></div>
           <div class="card-body">
-            <div class="role">${escapeHtml(roleName(color.roleKey))}</div>
+            <div class="role">${escapeHtml(colorName(color))}</div>
             <code class="hex" title="${escapeHtml(t("ui.copyPalette"))}">${escapeHtml(color.hex)}</code>
             <div class="meta">HSL(${Math.round(color.h)}, ${Math.round(color.s)}%, ${Math.round(color.l)}%)</div>
           </div>
@@ -512,10 +659,10 @@
               ? t("placements.contrast")
           : t("placements.small");
         return `
-          <article class="paint-map-card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(roleName(color.roleKey))}">
+          <article class="paint-map-card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(colorName(color))}">
             <div class="paint-map-swatch" style="background:${escapeHtml(color.hex)}"></div>
             <div>
-              <div class="role">${escapeHtml(roleName(color.roleKey))}</div>
+              <div class="role">${escapeHtml(colorName(color))}</div>
               <code>${escapeHtml(color.hex)}</code>
               <div class="meta">${escapeHtml(placement)}</div>
             </div>
@@ -540,7 +687,7 @@
 
         return `
           <article class="ladder-card">
-            <div class="ladder-title">${escapeHtml(roleName(color.roleKey))}</div>
+            <div class="ladder-title">${escapeHtml(colorName(color))}</div>
             <div class="ladder-steps">${steps}</div>
             <p class="recipe-note">${escapeHtml(t("ladder.note", {
               system: t(`systems.${state.system}`),
@@ -578,7 +725,7 @@
           <article class="match-card">
             <div class="match-swatch" style="background:${escapeHtml(color.hex)}"></div>
             <div class="match-body">
-              <div class="match-name">${escapeHtml(roleName(color.roleKey))}</div>
+              <div class="match-name">${escapeHtml(colorName(color))}</div>
               <div class="match-distance">${escapeHtml(color.hex)}</div>
               <p>${escapeHtml(t("citadel.closest"))}</p>
               <div class="match-list">${matches}</div>
@@ -808,6 +955,10 @@
       return t(`schemeRoles.${key}`);
     }
 
+    function colorName(color) {
+      return color.roleLabel || roleName(color.roleKey);
+    }
+
     function materialName(key) {
       return t(`materials.items.${key}.name`);
     }
@@ -916,7 +1067,7 @@
 
     function buildCopyText() {
       const paletteText = currentPalette.map(color => (
-        `${roleName(color.roleKey)}: ${color.hex} - HSL(${Math.round(color.h)}, ${Math.round(color.s)}%, ${Math.round(color.l)}%)`
+        `${colorName(color)}: ${color.hex} - HSL(${Math.round(color.h)}, ${Math.round(color.s)}%, ${Math.round(color.l)}%)`
       )).join("\n");
       const roleText = rolePlannerItems().map(item => {
         const color = resolveRoleColor(item.colorRef);
@@ -934,12 +1085,12 @@
         return `${t(`bases.${base.key}.title`)}: ${base.hex} - ${t(`bases.${base.key}.use`)}\n${t("ui.why")}: ${t(`bases.${base.key}.tip`)}\n${t("ui.build")}: ${Array.isArray(recipe) ? recipe.join(" -> ") : ""}`;
       }).join("\n");
       const ladderText = currentPalette.slice(0, 4).map(color => (
-        `${roleName(color.roleKey)}:\n` + W.ladderForColor(color, state.style).map(step => (
+        `${colorName(color)}:\n` + W.ladderForColor(color, state.style).map(step => (
           `  ${t(`ladder.steps.${step.key}`)}: ${step.hex} - ${t(`ladder.hints.${step.key}`)}`
         )).join("\n")
       )).join("\n\n");
       const catalogueText = W.mapPaletteToCatalogue(currentPalette, filteredCataloguePaints(), { limit: 3 }).map(color => (
-        `${roleName(color.roleKey)} ${color.hex}: ` + color.matches.map(paintMatchLabel).join(", ")
+        `${colorName(color)} ${color.hex}: ` + color.matches.map(paintMatchLabel).join(", ")
       )).join("\n");
 
       return [

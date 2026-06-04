@@ -10,6 +10,7 @@ test("static HTML references the prepared app assets", () => {
 
   assert.match(html, /<link rel="stylesheet" href="styles\.css"/);
   assert.match(html, /<script src="src\/core\.js"><\/script>/);
+  assert.match(html, /<script src="src\/factions\.js"><\/script>/);
   assert.match(html, /<script src="src\/i18n\.js"><\/script>/);
   assert.match(html, /<script src="src\/citadel\.js"><\/script>/);
   assert.match(html, /<script src="src\/app\.js"><\/script>/);
@@ -17,6 +18,9 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /<option value="es">Español<\/option>/);
   assert.match(html, /id="systemSelect"/);
   assert.match(html, /id="modeSelect"/);
+  assert.match(html, /id="factionSelect"/);
+  assert.match(html, /id="subfactionSelect"/);
+  assert.match(html, /id="factionSchemeMeta"/);
   assert.match(html, /id="secondaryHexInput"/);
   assert.match(html, /id="heraldicLayoutSelect"/);
   assert.match(html, /id="heraldicPreview"/);
@@ -29,6 +33,22 @@ test("static HTML references the prepared app assets", () => {
   assert.doesNotMatch(html, /ui\.miniPreview/);
   assert.doesNotMatch(html, /class="mini-preview"/);
   assert.doesNotMatch(html, /class="mini"/);
+});
+
+test("fixed faction scheme data is separated by game system", () => {
+  const data = JSON.parse(fs.readFileSync(path.join(root, "data", "faction-schemes.json"), "utf8"));
+
+  assert.ok(Array.isArray(data.schemes));
+  assert.ok(data.schemes.some(scheme => scheme.system === "aos"));
+  assert.ok(data.schemes.some(scheme => scheme.system === "k40"));
+  assert.ok(data.schemes.some(scheme => scheme.system === "k40" && scheme.faction === "Space Marines"));
+  assert.ok(data.schemes.some(scheme => scheme.system === "aos" && scheme.faction === "Stormcast Eternals"));
+  data.schemes.forEach(scheme => {
+    assert.match(scheme.id, /^(aos|k40)-/);
+    assert.ok(Array.isArray(scheme.roles));
+    assert.ok(scheme.roles.length >= 4);
+    scheme.roles.forEach(role => assert.match(role.hex, /^#[0-9A-F]{6}$/));
+  });
 });
 
 test("paint catalogue JSON is valid and uses manufacturer color groups", () => {

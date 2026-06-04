@@ -38,6 +38,17 @@
         </select>
       </div>
 
+      <div class="field">
+        <label for="factionSelect" data-i18n="ui.faction">Faction</label>
+        <select id="factionSelect"></select>
+      </div>
+
+      <div class="field">
+        <label for="subfactionSelect" data-i18n="ui.subfaction">Subfaction / fixed scheme</label>
+        <select id="subfactionSelect"></select>
+        <div id="factionSchemeMeta" class="faction-scheme-meta"></div>
+      </div>
+
       <div id="heraldicWheelControl" class="field heraldic-only" hidden>
         <label for="activeColorSelect" data-i18n="ui.activeColor">Wheel edits</label>
         <select id="activeColorSelect">
@@ -228,6 +239,7 @@
   </main>
 
   <script src="src/core.js"></script>
+  <script src="src/factions.js"></script>
   <script src="src/i18n.js"></script>
   <script src="src/citadel.js"></script>
   <script src="src/app.js"></script>

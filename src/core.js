@@ -322,6 +322,15 @@
     shipDeck: { hex: "#40474D" }
   };
 
+  const FACTION_SCHEME_ROLE_KEYS = {
+    D: "factionDominant",
+    S: "factionSecondary",
+    ND: "factionDarkNeutral",
+    NL: "factionLightNeutral",
+    A1: "factionAccentOne",
+    A2: "factionAccentTwo"
+  };
+
   function role(areaKey, colorRef, useKey, tipKey) {
     return { areaKey, colorRef, useKey, tipKey };
   }
@@ -459,6 +468,75 @@
       roleKey,
       hex: hslToHex(nh, ns, nl)
     };
+  }
+
+  function normalizeFactionSchemes(input) {
+    const schemes = Array.isArray(input)
+      ? input
+      : Array.isArray(input && input.schemes)
+        ? input.schemes
+        : [];
+
+    return schemes.map((scheme, index) => {
+      const roles = Array.isArray(scheme && scheme.roles)
+        ? scheme.roles.map(role => {
+          const hex = String(role.hex || "").trim().toUpperCase();
+          return /^#[0-9A-F]{6}$/.test(hex)
+            ? {
+              code: String(role.code || ""),
+              name: String(role.name || role.code || ""),
+              hex
+            }
+            : null;
+        }).filter(Boolean)
+        : [];
+
+      if (!scheme || !scheme.system || !scheme.faction || !scheme.subfaction || !roles.length) {
+        return null;
+      }
+
+      return {
+        id: String(scheme.id || `${scheme.system}-${index}`),
+        system: String(scheme.system),
+        faction: String(scheme.faction),
+        subfaction: String(scheme.subfaction),
+        schemeName: String(scheme.schemeName || scheme.subfaction),
+        roles,
+        paintEquivalents: String(scheme.paintEquivalents || ""),
+        notes: String(scheme.notes || "")
+      };
+    }).filter(Boolean);
+  }
+
+  function getFactionSchemesForSystem(schemes, systemKey) {
+    const normalized = normalizeFactionSchemes(schemes);
+    return normalized
+      .filter(scheme => scheme.system === systemKey)
+      .sort((a, b) => (
+        a.faction.localeCompare(b.faction) ||
+        a.subfaction.localeCompare(b.subfaction)
+      ));
+  }
+
+  function buildFactionSchemePalette(scheme) {
+    const normalized = normalizeFactionSchemes([scheme])[0];
+    if (!normalized) {
+      return [];
+    }
+
+    return normalized.roles.map(role => {
+      const rgb = hexToRgb(role.hex);
+      const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+      return {
+        h: hsl.h,
+        s: hsl.s,
+        l: hsl.l,
+        roleKey: FACTION_SCHEME_ROLE_KEYS[role.code] || "factionAccentOne",
+        roleCode: role.code,
+        roleLabel: role.name,
+        hex: role.hex
+      };
+    });
   }
 
   function applyFinishToColor(h, s, l, index, style) {
@@ -755,6 +833,7 @@
     HERALDIC_ACCENTS,
     SYSTEMS,
     BASE_CATALOG,
+    FACTION_SCHEME_ROLE_KEYS,
     MATERIAL_FALLBACKS,
     clamp,
     normHue,
@@ -767,7 +846,10 @@
     styleFactor,
     primaryHex,
     applyFinishToColor,
+    normalizeFactionSchemes,
+    getFactionSchemesForSystem,
     buildPalette,
+    buildFactionSchemePalette,
     buildHeraldicPalette,
     ladderForColor,
     baseSuggestions,
