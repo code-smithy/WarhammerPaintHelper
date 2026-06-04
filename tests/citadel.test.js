@@ -2,7 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const citadel = require("../src/citadel.js");
 
-test("normalizes supported Citadel JSON shapes", () => {
+test("normalizes supported paint catalogue JSON shapes", () => {
   const fromArray = citadel.normalizeCitadelPaints([
     { name: "Test Red", hex: "#AA0000", range: "Base" },
     { name: "Invalid", hex: "nope" }
@@ -12,10 +12,70 @@ test("normalizes supported Citadel JSON shapes", () => {
   });
 
   assert.deepEqual(fromArray, [
-    { id: "0", name: "Test Red", hex: "#AA0000", range: "Base", finish: "" }
+    {
+      id: "0",
+      name: "Test Red",
+      hex: "#AA0000",
+      range: "Base",
+      finish: "",
+      manufacturer: "",
+      collection: "",
+      status: "",
+      sourceUrl: "",
+      notes: "",
+      manufacturerCode: ""
+    }
   ]);
   assert.deepEqual(fromObject, [
-    { id: "0", name: "Test Blue", hex: "#0033AA", range: "Layer", finish: "" }
+    {
+      id: "0",
+      name: "Test Blue",
+      hex: "#0033AA",
+      range: "Layer",
+      finish: "",
+      manufacturer: "",
+      collection: "",
+      status: "",
+      sourceUrl: "",
+      notes: "",
+      manufacturerCode: ""
+    }
+  ]);
+});
+
+test("flattens manufacturer colour catalogue entries", () => {
+  const paints = citadel.normalizePaintCatalogue({
+    manufacturers: [
+      {
+        name: "Example Paints",
+        colors: [
+          {
+            name: "Catalogue Red",
+            hex: "#AA0000",
+            collection: "Game Color",
+            status: "confirmed",
+            source_url: "https://example.test/colors"
+          },
+          { name: "Missing Hex", hex: null, status: "missing" }
+        ]
+      }
+    ]
+  });
+
+  assert.deepEqual(paints, [
+    {
+      id: "Example Paints:Catalogue Red",
+      name: "Catalogue Red",
+      hex: "#AA0000",
+      range: "",
+      finish: "",
+      manufacturer: "Example Paints",
+      collection: "Game Color",
+      status: "confirmed",
+      sourceUrl: "https://example.test/colors",
+      notes: "",
+      manufacturerCode: ""
+    }
   ]);
 });
 
@@ -37,7 +97,7 @@ test("maps generated palette entries to closest paints", () => {
     { roleKey: "primary", hex: "#FF0000" },
     { roleKey: "contrast", hex: "#0000FF" }
   ];
-  const mapped = citadel.mapPaletteToCitadel(palette, [
+  const mapped = citadel.mapPaletteToCatalogue(palette, [
     { name: "Red", hex: "#FF0000" },
     { name: "Blue", hex: "#0000FF" }
   ], { limit: 1 });

@@ -21,6 +21,7 @@
     { name: "XV-88", hex: "#8C5A2B", range: "Base" },
     { name: "Naggaroth Night", hex: "#3E275E", range: "Base" }
   ];
+  const DEFAULT_PAINT_CATALOGUE = DEFAULT_CITADEL_PAINTS;
 
   function normalizeHex(hex) {
     const clean = String(hex || "").trim().replace("#", "");
@@ -42,28 +43,67 @@
     };
   }
 
-  function normalizeCitadelPaints(input) {
-    const rawPaints = Array.isArray(input)
-      ? input
-      : Array.isArray(input && input.paints)
-        ? input.paints
-        : Array.isArray(input && input.colors)
-          ? input.colors
-          : [];
+  function collectCatalogueEntries(input) {
+    if (Array.isArray(input)) {
+      return input.map(paint => ({ paint }));
+    }
 
-    return rawPaints.map((paint, index) => {
-      const hex = normalizeHex(paint.hex || paint.color || paint.colour || paint.rgbHex);
-      if (!hex) {
-        return null;
-      }
-      return {
-        id: paint.id || paint.slug || String(index),
-        name: String(paint.name || paint.paint || paint.label || `Citadel ${index + 1}`),
-        hex,
-        range: paint.range || paint.type || paint.category || "",
-        finish: paint.finish || paint.medium || ""
-      };
-    }).filter(Boolean);
+    if (Array.isArray(input && input.manufacturers)) {
+      return input.manufacturers.flatMap(manufacturer => {
+        const colors = Array.isArray(manufacturer && manufacturer.colors) ? manufacturer.colors : [];
+        return colors.map(paint => ({ paint, manufacturer }));
+      });
+    }
+
+    const paints = Array.isArray(input && input.paints)
+      ? input.paints
+      : Array.isArray(input && input.colors)
+        ? input.colors
+        : [];
+
+    return paints.map(paint => ({ paint }));
+  }
+
+  function normalizePaintEntry(paint, index, manufacturer) {
+    if (!paint || typeof paint !== "object") {
+      return null;
+    }
+
+    const hex = normalizeHex(paint.hex || paint.color || paint.colour || paint.rgbHex);
+    if (!hex) {
+      return null;
+    }
+
+    const manufacturerName = String(
+      (manufacturer && manufacturer.name) || paint.manufacturer || paint.brand || ""
+    );
+    const name = String(paint.name || paint.paint || paint.label || `Paint ${index + 1}`);
+    const manufacturerCode = paint.manufacturer_code || paint.manufacturerCode || paint.code || "";
+    const id = paint.id || paint.slug || manufacturerCode || (manufacturerName ? `${manufacturerName}:${name}` : String(index));
+
+    return {
+      id: String(id),
+      name,
+      hex,
+      range: paint.range || paint.type || paint.category || "",
+      finish: paint.finish || paint.medium || "",
+      manufacturer: manufacturerName,
+      collection: paint.collection || paint.line || paint.series || "",
+      status: paint.status || "",
+      sourceUrl: paint.source_url || paint.sourceUrl || "",
+      notes: paint.notes || "",
+      manufacturerCode
+    };
+  }
+
+  function normalizeCitadelPaints(input) {
+    return collectCatalogueEntries(input)
+      .map((entry, index) => normalizePaintEntry(entry.paint, index, entry.manufacturer))
+      .filter(Boolean);
+  }
+
+  function normalizePaintCatalogue(input) {
+    return normalizeCitadelPaints(input);
   }
 
   function colorDistance(hexA, hexB) {
@@ -89,7 +129,7 @@
       .slice(0, max);
   }
 
-  function mapPaletteToCitadel(palette, paints, options) {
+  function mapPaletteToCatalogue(palette, paints, options) {
     const limit = options && options.limit ? options.limit : 3;
     const normalized = normalizeCitadelPaints(paints);
     return (palette || []).map(color => ({
@@ -98,14 +138,18 @@
     }));
   }
 
-  async function loadCitadelPaints(url, fallbackPaints) {
-    const fallback = normalizeCitadelPaints(fallbackPaints || DEFAULT_CITADEL_PAINTS);
+  function mapPaletteToCitadel(palette, paints, options) {
+    return mapPaletteToCatalogue(palette, paints, options);
+  }
+
+  async function loadPaintCatalogue(url, fallbackPaints) {
+    const fallback = normalizeCitadelPaints(fallbackPaints || DEFAULT_PAINT_CATALOGUE);
     if (typeof fetch !== "function") {
       return { paints: fallback, source: "sample" };
     }
 
     try {
-      const response = await fetch(url || "data/citadel-colours.json", { cache: "no-store" });
+      const response = await fetch(url || "data/paint-catalogue.json", { cache: "no-store" });
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
@@ -119,13 +163,21 @@
     }
   }
 
+  function loadCitadelPaints(url, fallbackPaints) {
+    return loadPaintCatalogue(url, fallbackPaints);
+  }
+
   return {
     DEFAULT_CITADEL_PAINTS,
+    DEFAULT_PAINT_CATALOGUE,
     normalizeHex,
     normalizeCitadelPaints,
+    normalizePaintCatalogue,
     colorDistance,
     findClosestPaints,
+    mapPaletteToCatalogue,
     mapPaletteToCitadel,
+    loadPaintCatalogue,
     loadCitadelPaints
   };
 }));

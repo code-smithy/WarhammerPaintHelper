@@ -16,8 +16,8 @@
 
     let translator = W.createTranslator(state.language);
     let currentPalette = [];
-    let citadelPaints = W.DEFAULT_CITADEL_PAINTS;
-    let citadelSource = "sample";
+    let cataloguePaints = W.DEFAULT_PAINT_CATALOGUE || W.DEFAULT_CITADEL_PAINTS;
+    let catalogueSource = "sample";
 
     const $ = id => document.getElementById(id);
     const el = {
@@ -77,9 +77,9 @@
     attachEvents();
     update();
 
-    W.loadCitadelPaints("data/citadel-colours.json").then(result => {
-      citadelPaints = result.paints;
-      citadelSource = result.source;
+    W.loadPaintCatalogue("data/paint-catalogue.json").then(result => {
+      cataloguePaints = result.paints;
+      catalogueSource = result.source;
       update();
     });
 
@@ -351,20 +351,25 @@
     }
 
     function renderCitadelMatches() {
-      const mapped = W.mapPaletteToCitadel(currentPalette, citadelPaints, { limit: 3 });
-      const statusKey = citadelPaints.length ? (citadelSource === "json" ? "loaded" : "sample") : "missing";
-      el.citadelStatus.textContent = t(`citadel.${statusKey}`, { count: citadelPaints.length }) + " " + t("ui.citadelJsonHint");
+      const mapped = W.mapPaletteToCatalogue(currentPalette, cataloguePaints, { limit: 3 });
+      const statusKey = cataloguePaints.length ? (catalogueSource === "json" ? "loaded" : "sample") : "missing";
+      el.citadelStatus.textContent = t(`citadel.${statusKey}`, { count: cataloguePaints.length }) + " " + t("ui.citadelJsonHint");
       el.citadelMatches.innerHTML = mapped.map(color => {
         const matches = color.matches.length
-          ? color.matches.map(match => `
-            <div class="match-row">
-              <span class="match-chip" style="background:${escapeHtml(match.hex)}"></span>
-              <div>
-                <div>${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code></div>
-                <div class="meta">${escapeHtml(match.range || "")} ${escapeHtml(t("citadel.distance", { distance: match.distance }))}</div>
+          ? color.matches.map(match => {
+            const meta = [paintMatchMeta(match), t("citadel.distance", { distance: match.distance })]
+              .filter(Boolean)
+              .join(" - ");
+            return `
+              <div class="match-row">
+                <span class="match-chip" style="background:${escapeHtml(match.hex)}"></span>
+                <div>
+                  <div>${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code></div>
+                  <div class="meta">${escapeHtml(meta)}</div>
+                </div>
               </div>
-            </div>
-          `).join("")
+            `;
+          }).join("")
           : `<p class="notes">${escapeHtml(t("citadel.missing"))}</p>`;
         return `
           <article class="match-card">
@@ -378,6 +383,21 @@
           </article>
         `;
       }).join("");
+    }
+
+    function paintMatchMeta(match) {
+      return [
+        match.manufacturer,
+        match.collection,
+        match.range,
+        match.finish,
+        match.status
+      ].filter(Boolean).join(" / ");
+    }
+
+    function paintMatchLabel(match) {
+      const manufacturer = match.manufacturer ? ` (${match.manufacturer})` : "";
+      return `${match.name}${manufacturer} ${match.hex}`;
     }
 
     function renderMaterials() {
@@ -538,8 +558,8 @@
           `  ${t(`ladder.steps.${step.key}`)}: ${step.hex} - ${t(`ladder.hints.${step.key}`)}`
         )).join("\n")
       )).join("\n\n");
-      const citadelText = W.mapPaletteToCitadel(currentPalette, citadelPaints, { limit: 3 }).map(color => (
-        `${roleName(color.roleKey)} ${color.hex}: ` + color.matches.map(match => `${match.name} ${match.hex}`).join(", ")
+      const catalogueText = W.mapPaletteToCatalogue(currentPalette, cataloguePaints, { limit: 3 }).map(color => (
+        `${roleName(color.roleKey)} ${color.hex}: ` + color.matches.map(paintMatchLabel).join(", ")
       )).join("\n");
       const materialText = selectedMaterials().map(material => (
         `${materialName(material.key)}: ${material.hex} - ${materialUse(material.key)}`
@@ -550,7 +570,7 @@
         `${t("copy.roles")}:\n${roleText}`,
         `${t("copy.bases")}:\n${baseText}`,
         `${t("copy.ladder")}:\n${ladderText}`,
-        `${t("copy.citadel")}:\n${citadelText}`,
+        `${t("copy.citadel")}:\n${catalogueText}`,
         materialText ? `${t("copy.materials")}:\n${materialText}` : ""
       ].filter(Boolean).join("\n\n");
     }

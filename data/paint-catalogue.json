@@ -1,0 +1,524 @@
+{
+  "manufacturers": [
+    {
+      "name": "Citadel Colours",
+      "source_urls": [
+        "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/",
+        "https://citadel-colours-json.tiiny.site/json/Citadel-Colours-189-from-Bolter-and-Chainsword-for-ArtistAssistApp",
+        "https://www.reddit.com/r/Warhammer40k/comments/1lmn5z2/citadel_paint_hex_codes_189_of_them_in_json_for/",
+        "http://uk.games-workshop.com/storefront/store.uk?do=List_Models&code=300952&orignav=300810"
+      ],
+      "colors": [
+        {
+          "name": "Abaddon Black",
+          "hex": "#231F20",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Administratum Grey",
+          "hex": "#949B94",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Agrax Earthshade",
+          "hex": "#5A543C",
+          "finish": "shade",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Ahriman Blue",
+          "hex": "#00A5B9",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Averland Sunset",
+          "hex": "#FCB825",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Baharroth Blue",
+          "hex": "#78C4C7",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Balor Brown",
+          "hex": "#8B5910",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Balthasar Gold",
+          "hex": "#87542F",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Baneblade Brown",
+          "hex": "#927F6E",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Bugman's Glow",
+          "hex": "#845045",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Caledor Sky",
+          "hex": "#396F9E",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Chaos Black",
+          "hex": "#000000",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Corax White",
+          "hex": "#FFFFFF",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Dryad Bark",
+          "hex": "#34312C",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Evil Sunz Scarlet",
+          "hex": "#C21920",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Flash Gitz Yellow",
+          "hex": "#FFF200",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Kantor Blue",
+          "hex": "#002051",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Khorne Red",
+          "hex": "#6A0002",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Leadbelcher",
+          "hex": "#475659",
+          "finish": "metallic",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Macragge Blue",
+          "hex": "#0D407F",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Mephiston Red",
+          "hex": "#991115",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Moot Green",
+          "hex": "#52B246",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Nuln Oil",
+          "hex": "#151203",
+          "finish": "shade",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Rakarth Flesh",
+          "hex": "#A29E92",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Screaming Skull",
+          "hex": "#D4D3A3",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "White Scar",
+          "hex": "#FFFFFF",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Xereus Purple",
+          "hex": "#471F5E",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Yriel Yellow",
+          "hex": "#FFDB01",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        },
+        {
+          "name": "Zandri Dust",
+          "hex": "#9E915C",
+          "status": "confirmed",
+          "source_url": "https://bolterandchainsword.com/topic/352780-paint-color-hexadecimal-codes/"
+        }
+      ]
+    },
+    {
+      "name": "Vallejo",
+      "source_urls": [
+        "http://home.att.net/~katamaran/vallejo.html",
+        "http://myminiaturepainting.com/conversion/citadelgame.html",
+        "http://www.nugaming.com/html/vallejo_paints.html#CitadelVallajoConversionTable",
+        "http://www.ttfxmedia.com/vallejo/cgi-bin/_modelis_carta.asp?p1=ing&p2=modelcolor&p3=1&p4=0",
+        "http://www.ttfxmedia.com/vallejo/cgi-bin/_modelis_info.asp?p1=ing&p2=modelcolor&p3=1#modelcolorinfo",
+        "http://www.ttfxmedia.com/vallejo/cgi-bin/_modelis_carta.asp?p1=ing&p2=gamecolor",
+        "http://www.ttfxmedia.com/vallejo/cgi-bin/_modelis_info.asp?p1=ing&p2=gamecolor&p3=1#gamecolorinfo",
+        "http://www.acrylicosvallejo.com/en_US/media/e588d28183cec31ffd6dcee6d3718fc3.cms/equivalencias-rev05.pdf",
+        "https://redgrimm.github.io/paint-conversion/p3.html"
+      ],
+      "colors": [
+        {
+          "name": "Dead White",
+          "hex": "#FFFFFF",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "notes": "Hex value from public conversion table; older Vallejo source URLs were unavailable or blocked during lookup."
+        },
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Glossy Black",
+          "hex": "#010101",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Bloody Red",
+          "hex": "#BF282E",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Hot Orange",
+          "hex": "#E43027",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Gold Yellow",
+          "hex": "#FDB318",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Sun Yellow",
+          "hex": "#FFCF07",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Camoflage Green",
+          "hex": "#71753A",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "notes": "Spelling kept as listed in source."
+        },
+        {
+          "name": "Olive Green",
+          "hex": "#6A8B3A",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Sick Green",
+          "hex": "#096638",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Magic Blue",
+          "hex": "#024381",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Electric Blue",
+          "hex": "#008CBF",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Turquoise",
+          "hex": "#03676F",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Royal Purple",
+          "hex": "#4B2967",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Warlord Purple",
+          "hex": "#7D1A44",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Offwhite",
+          "hex": "#F5F4DA",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Ivory",
+          "hex": "#EFF1D9",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Flat Earth",
+          "hex": "#87643C",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        }
+      ]
+    },
+    {
+      "name": "Privateer Press P3 Formula",
+      "source_urls": [
+        "https://redgrimm.github.io/paint-conversion/p3.html"
+      ],
+      "colors": [
+        {
+          "name": "Sanguine Base",
+          "hex": "#6C160F",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Skorne Red",
+          "hex": "#B01F24",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Khador Red Base",
+          "hex": "#EE2824",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Heartfire",
+          "hex": "#F6B046",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Cygnus Yellow",
+          "hex": "#F3E72E",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Battlefield Brown",
+          "hex": "#32251C",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Bloodstone",
+          "hex": "#9E4822",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Gnarls Green",
+          "hex": "#126232",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Traitor Green",
+          "hex": "#809065",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Cygnar Base Blue",
+          "hex": "#124B9B",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Arcane Blue",
+          "hex": "#7ACFD9",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Beaten Purple",
+          "hex": "#552A72",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Murderous Magenta",
+          "hex": "#A81F5E",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Jack Bone",
+          "hex": "#D6D4AA",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Thamar Black",
+          "hex": "#040707",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Morrow White",
+          "hex": "#FEFBFD",
+          "collection": "Formula",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        }
+      ]
+    },
+    {
+      "name": "INSTAR",
+      "source_urls": [
+        "https://shop.instarpaint.com"
+      ],
+      "colors": [
+        {
+          "name": "Xeno Purple",
+          "hex": null,
+          "collection": "Alpha",
+          "status": "missing",
+          "source_url": "https://shop.instarpaint.com",
+          "notes": "Product name visible on manufacturer site; hex value not exposed in fetched page."
+        },
+        {
+          "name": "Pure Black",
+          "hex": null,
+          "manufacturer_code": "PBk7",
+          "collection": "Alpha",
+          "status": "missing",
+          "source_url": "https://shop.instarpaint.com",
+          "notes": "Pigment code visible on manufacturer site; hex value not exposed in fetched page."
+        },
+        {
+          "name": "Pure Blue",
+          "hex": null,
+          "manufacturer_code": "PB15.3",
+          "collection": "Alpha",
+          "status": "missing",
+          "source_url": "https://shop.instarpaint.com",
+          "notes": "Pigment code visible on manufacturer site; hex value not exposed in fetched page."
+        },
+        {
+          "name": "Pure Green",
+          "hex": null,
+          "manufacturer_code": "PG7",
+          "collection": "Alpha",
+          "status": "missing",
+          "source_url": "https://shop.instarpaint.com",
+          "notes": "Pigment code visible on manufacturer site; hex value not exposed in fetched page."
+        },
+        {
+          "name": "Pure Magenta",
+          "hex": null,
+          "manufacturer_code": "PR122",
+          "collection": "Alpha",
+          "status": "missing",
+          "source_url": "https://shop.instarpaint.com",
+          "notes": "Pigment code visible on manufacturer site; hex value not exposed in fetched page."
+        }
+      ]
+    },
+    {
+      "name": "Generic RGB Reference",
+      "source_urls": [
+        "https://convertingcolors.com/rgb-color-84_119_87.html"
+      ],
+      "colors": [
+        {
+          "name": "RGB 84 119 87",
+          "hex": "#547757",
+          "manufacturer_code": "RGB(84,119,87)",
+          "status": "confirmed",
+          "source_url": "https://convertingcolors.com/rgb-color-84_119_87.html",
+          "notes": "Not a paint manufacturer color; included because the URL was supplied as a reference color."
+        }
+      ]
+    }
+  ]
+}

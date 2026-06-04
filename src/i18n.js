@@ -17,7 +17,7 @@
         system: "Game system",
         eyebrow: "Miniature Palette Tool",
         title: "Warhammer Paint Helper",
-        subtitle: "Pick a main color and generate a miniature-ready palette with model roles, base ideas, paint steps, and Citadel paint matches.",
+        subtitle: "Pick a main color and generate a miniature-ready palette with model roles, base ideas, paint steps, and paint catalogue matches.",
         mainColor: "Main color",
         hexInput: "Enter HEX color directly",
         scheme: "Color scheme",
@@ -39,14 +39,14 @@
         modelRoles: "Model roles",
         modelRolesDescription: "Short overview of the generated main colors.",
         paintLadderDescription: "Practical paint steps for shadows, basecoat, layers, edge highlights, and focus light.",
-        citadelMatches: "Citadel paint matches",
+        citadelMatches: "Paint catalogue matches",
         accessoryMaterials: "Accessory and material colors",
         accessoryMaterialsDescription: "Disabled by default.",
         noMaterials: "No extra materials selected.",
         why: "Why",
         build: "Build",
         debug: "Debug: main color {hex} | first palette card {firstHex} | HSL({h}, {s}%, {l}%) | finish {finish}",
-        citadelJsonHint: "Drop the full paint list into data/citadel-colours.json when it is ready."
+        citadelJsonHint: "Source: data/paint-catalogue.json."
       },
       systems: {
         aos: "Age of Sigmar",
@@ -384,9 +384,9 @@
         shipDeck: base("Ship deck", "Cold metal plating, rivets, cables, hazard lines, and machine grime.", "Useful for boarding actions, vehicles, and naval 40K scenes.", ["Base: dark steel", "Texture: plates and rivets", "Weather: grime", "Accent: warning stripe"])
       },
       citadel: {
-        loaded: "Loaded {count} Citadel paints from JSON.",
-        sample: "Using {count} sample Citadel paints until the full JSON is added.",
-        missing: "No Citadel paint data available yet.",
+        loaded: "Loaded {count} catalogue paints from JSON.",
+        sample: "Using {count} sample catalogue paints until the JSON loads.",
+        missing: "No catalogue paint data available yet.",
         closest: "Closest matches",
         distance: "distance {distance}"
       },
@@ -395,7 +395,7 @@
         roles: "Role planner",
         bases: "Base environment suggestions",
         ladder: "Shade / Layer / Highlight",
-        citadel: "Citadel paint matches",
+        citadel: "Paint catalogue matches",
         materials: "Accessory materials"
       }
     },
@@ -406,7 +406,7 @@
         system: "Spielsystem",
         eyebrow: "Miniaturen-Paletten-Tool",
         title: "Warhammer Paint Helper",
-        subtitle: "Wähle eine Hauptfarbe und erzeuge eine miniaturentaugliche Palette mit Modellrollen, Base-Ideen, Malstufen und Citadel-Farbtreffern.",
+        subtitle: "Wähle eine Hauptfarbe und erzeuge eine miniaturentaugliche Palette mit Modellrollen, Base-Ideen, Malstufen und Farbkatalog-Treffern.",
         mainColor: "Hauptfarbe",
         hexInput: "HEX-Farbe direkt eingeben",
         scheme: "Farbschema",
@@ -428,14 +428,14 @@
         modelRoles: "Rollen am Modell",
         modelRolesDescription: "Kurzüberblick der generierten Hauptfarben.",
         paintLadderDescription: "Praktische Malstufen für Schatten, Basecoat, Layer, Kantenhighlights und Fokuslicht.",
-        citadelMatches: "Citadel-Farbtreffer",
+        citadelMatches: "Farbkatalog-Treffer",
         accessoryMaterials: "Zubehör- und Materialfarben",
         accessoryMaterialsDescription: "Standardmäßig deaktiviert.",
         noMaterials: "Keine Zusatzmaterialien ausgewählt.",
         why: "Warum",
         build: "Bau",
         debug: "Debug: Hauptfarbe {hex} | erste Palettenkarte {firstHex} | HSL({h}, {s}%, {l}%) | Finish {finish}",
-        citadelJsonHint: "Lege die vollständige Farbliste in data/citadel-colours.json ab, sobald sie bereit ist."
+        citadelJsonHint: "Quelle: data/paint-catalogue.json."
       },
       systems: {
         aos: "Age of Sigmar",
@@ -507,7 +507,7 @@
         system: "Système de jeu",
         eyebrow: "Outil de palette miniature",
         title: "Warhammer Paint Helper",
-        subtitle: "Choisis une couleur principale et génère une palette pour figurines avec rôles, idées de socle, étapes de peinture et correspondances Citadel.",
+        subtitle: "Choisis une couleur principale et génère une palette pour figurines avec rôles, idées de socle, étapes de peinture et correspondances du catalogue.",
         mainColor: "Couleur principale",
         hexInput: "Entrer une couleur HEX",
         scheme: "Schéma de couleurs",
@@ -529,14 +529,14 @@
         modelRoles: "Rôles sur le modèle",
         modelRolesDescription: "Aperçu court des couleurs principales générées.",
         paintLadderDescription: "Étapes pratiques pour ombres, basecoat, layers, edge highlights et lumière focale.",
-        citadelMatches: "Correspondances Citadel",
+        citadelMatches: "Catalogue de peintures",
         accessoryMaterials: "Couleurs d'accessoires et de matériaux",
         accessoryMaterialsDescription: "Désactivé par défaut.",
         noMaterials: "Aucun matériau supplémentaire sélectionné.",
         why: "Pourquoi",
         build: "Construction",
         debug: "Debug : couleur principale {hex} | première carte {firstHex} | HSL({h}, {s}%, {l}%) | finition {finish}",
-        citadelJsonHint: "Dépose la liste complète dans data/citadel-colours.json quand elle sera prête."
+        citadelJsonHint: "Source : data/paint-catalogue.json."
       },
       systems: {
         aos: "Age of Sigmar",
@@ -608,7 +608,7 @@
         system: "Sistema de juego",
         eyebrow: "Herramienta de paletas para miniaturas",
         title: "Warhammer Paint Helper",
-        subtitle: "Elige un color principal y genera una paleta lista para miniaturas con roles del modelo, ideas de peana, pasos de pintura y equivalencias Citadel.",
+        subtitle: "Elige un color principal y genera una paleta lista para miniaturas con roles del modelo, ideas de peana, pasos de pintura y equivalencias del catálogo.",
         mainColor: "Color principal",
         hexInput: "Introducir color HEX directamente",
         scheme: "Esquema de color",
@@ -630,14 +630,14 @@
         modelRoles: "Roles del modelo",
         modelRolesDescription: "Resumen breve de los colores principales generados.",
         paintLadderDescription: "Pasos prácticos para sombras, capa base, capas, luces de borde y luz focal.",
-        citadelMatches: "Equivalencias Citadel",
+        citadelMatches: "Catálogo de pinturas",
         accessoryMaterials: "Colores de accesorios y materiales",
         accessoryMaterialsDescription: "Desactivado por defecto.",
         noMaterials: "No se han seleccionado materiales adicionales.",
         why: "Por qué",
         build: "Construcción",
         debug: "Depuración: color principal {hex} | primera tarjeta de paleta {firstHex} | HSL({h}, {s}%, {l}%) | acabado {finish}",
-        citadelJsonHint: "Coloca la lista completa de pinturas en data/citadel-colours.json cuando esté lista."
+        citadelJsonHint: "Fuente: data/paint-catalogue.json."
       },
       systems: {
         aos: "Age of Sigmar",
@@ -881,9 +881,9 @@
       shipDeck: base("Schiffsdeck", "Kalte Metallplatten, Nieten, Kabel, Warnlinien und Maschinenschmutz.", "Nützlich für Enteraktionen, Fahrzeuge und maritime 40K-Szenen.", ["Basis: dunkler Stahl", "Textur: Platten und Nieten", "Weathering: Schmutz", "Akzent: Warnstreifen"])
     },
     citadel: {
-      loaded: "{count} Citadel-Farben aus JSON geladen.",
-      sample: "{count} Beispiel-Citadel-Farben werden genutzt, bis die vollständige JSON hinzugefügt ist.",
-      missing: "Noch keine Citadel-Farbdaten verfügbar.",
+      loaded: "{count} Farben aus dem Katalog-JSON geladen.",
+      sample: "{count} Beispielfarben werden genutzt, bis das Katalog-JSON geladen ist.",
+      missing: "Noch keine Farbkatalogdaten verfügbar.",
       closest: "Nächste Treffer",
       distance: "Abstand {distance}"
     },
@@ -892,7 +892,7 @@
       roles: "Rollenplaner",
       bases: "Base-Umgebungsvorschläge",
       ladder: "Shade / Layer / Highlight",
-      citadel: "Citadel-Farbtreffer",
+      citadel: "Farbkatalog-Treffer",
       materials: "Zubehörmaterialien"
     }
   });
@@ -1074,9 +1074,9 @@
       shipDeck: base("Pont de vaisseau", "Plaques de métal froides, rivets, câbles, lignes de danger et crasse mécanique.", "Utile pour abordages, véhicules et scènes navales 40K.", ["Base : acier sombre", "Texture : plaques et rivets", "Vieillissement : crasse", "Accent : bande d'avertissement"])
     },
     citadel: {
-      loaded: "{count} peintures Citadel chargées depuis le JSON.",
-      sample: "{count} peintures Citadel d'exemple utilisées jusqu'à l'ajout du JSON complet.",
-      missing: "Aucune donnée de peinture Citadel disponible pour le moment.",
+      loaded: "{count} peintures du catalogue chargées depuis le JSON.",
+      sample: "{count} peintures d'exemple utilisées jusqu'au chargement du JSON.",
+      missing: "Aucune donnée de catalogue de peintures disponible pour le moment.",
       closest: "Correspondances les plus proches",
       distance: "distance {distance}"
     },
@@ -1085,7 +1085,7 @@
       roles: "Planificateur de rôles",
       bases: "Suggestions d'environnements de socle",
       ladder: "Shade / Layer / Highlight",
-      citadel: "Correspondances Citadel",
+      citadel: "Correspondances du catalogue",
       materials: "Matériaux accessoires"
     }
   });
@@ -1267,9 +1267,9 @@
       shipDeck: base("Cubierta de nave", "Placas de metal frío, remaches, cables, líneas de peligro y mugre de maquinaria.", "Útil para abordajes, vehículos y escenas navales 40K.", ["Base: acero oscuro", "Textura: placas y remaches", "Desgaste: mugre", "Acento: franja de advertencia"])
     },
     citadel: {
-      loaded: "Se han cargado {count} pinturas Citadel desde el JSON.",
-      sample: "Usando {count} pinturas Citadel de muestra hasta que se añada el JSON completo.",
-      missing: "Aún no hay datos de pinturas Citadel disponibles.",
+      loaded: "Se han cargado {count} pinturas del catálogo desde el JSON.",
+      sample: "Usando {count} pinturas de muestra hasta que se cargue el JSON.",
+      missing: "Aún no hay datos del catálogo de pinturas.",
       closest: "Coincidencias más cercanas",
       distance: "distancia {distance}"
     },
@@ -1278,7 +1278,7 @@
       roles: "Planificador de roles",
       bases: "Sugerencias de entornos de peana",
       ladder: "Sombra / Capa / Luz",
-      citadel: "Equivalencias Citadel",
+      citadel: "Equivalencias del catálogo",
       materials: "Materiales accesorios"
     }
   });
