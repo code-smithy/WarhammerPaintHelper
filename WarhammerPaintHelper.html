@@ -30,6 +30,22 @@
 
   <main>
     <section class="panel controls" aria-label="Color controls">
+      <div class="field">
+        <label for="modeSelect" data-i18n="ui.mode">Palette mode</label>
+        <select id="modeSelect">
+          <option value="single" data-i18n="modes.single">Single colour</option>
+          <option value="heraldic" data-i18n="modes.heraldic">Heraldic</option>
+        </select>
+      </div>
+
+      <div id="heraldicWheelControl" class="field heraldic-only" hidden>
+        <label for="activeColorSelect" data-i18n="ui.activeColor">Wheel edits</label>
+        <select id="activeColorSelect">
+          <option value="primary" data-i18n="heraldic.active.primary">Field colour</option>
+          <option value="secondary" data-i18n="heraldic.active.secondary">Charge colour</option>
+        </select>
+      </div>
+
       <div class="wheel-wrap">
         <canvas id="colorWheel" width="620" height="620" aria-label="Color wheel"></canvas>
         <div id="schemeMarkers" class="scheme-markers" aria-hidden="true"></div>
@@ -39,9 +55,18 @@
       <div class="current-color">
         <div id="currentSwatch" class="current-swatch"></div>
         <div>
-          <strong data-i18n="ui.mainColor">Main color</strong><br />
+          <strong id="primaryColorLabel" data-i18n="ui.mainColor">Main color</strong><br />
           <code id="currentHex">#2457C5</code>
           <div id="currentHsl" class="meta">HSL(220, 70%, 46%)</div>
+        </div>
+      </div>
+
+      <div id="secondaryColorPanel" class="current-color heraldic-only" hidden>
+        <div id="secondarySwatch" class="current-swatch"></div>
+        <div>
+          <strong data-i18n="heraldic.secondaryColor">Charge colour</strong><br />
+          <code id="secondaryHex">#F1EDE1</code>
+          <div id="secondaryHsl" class="meta">HSL(45, 16%, 92%)</div>
         </div>
       </div>
 
@@ -50,9 +75,36 @@
         <input id="hexInput" type="text" value="#2457C5" maxlength="7" autocomplete="off" />
       </div>
 
-      <div class="field">
+      <div id="secondaryHexField" class="field heraldic-only" hidden>
+        <label for="secondaryHexInput" data-i18n="heraldic.secondaryHexInput">Enter secondary HEX directly</label>
+        <input id="secondaryHexInput" type="text" value="#F1EDE1" maxlength="7" autocomplete="off" />
+      </div>
+
+      <div id="schemeField" class="field">
         <label for="schemeSelect" data-i18n="ui.scheme">Color scheme</label>
         <select id="schemeSelect"></select>
+      </div>
+
+      <div id="heraldicControls" class="heraldic-only" hidden>
+        <div class="field">
+          <label for="heraldicLayoutSelect" data-i18n="heraldic.layout">Heraldry layout</label>
+          <select id="heraldicLayoutSelect"></select>
+        </div>
+        <div class="field">
+          <label for="heraldicRatioSelect" data-i18n="heraldic.ratio">Colour balance</label>
+          <select id="heraldicRatioSelect"></select>
+        </div>
+        <div class="field">
+          <label for="heraldicAccentSelect" data-i18n="heraldic.accent">Heraldic accent</label>
+          <select id="heraldicAccentSelect"></select>
+        </div>
+        <div id="heraldicPreview" class="heraldic-preview" aria-hidden="true">
+          <div class="heraldic-shield">
+            <div class="heraldic-layer heraldic-layer-a"></div>
+            <div class="heraldic-layer heraldic-layer-b"></div>
+            <div class="heraldic-layer heraldic-layer-accent"></div>
+          </div>
+        </div>
       </div>
 
       <div class="field">

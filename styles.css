@@ -208,6 +208,99 @@ input[type="range"] {
   border: 1px solid rgba(255, 255, 255, .18);
 }
 
+[hidden] {
+  display: none !important;
+}
+
+.heraldic-preview {
+  display: grid;
+  place-items: center;
+  padding: 13px;
+  margin: 0 0 17px;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.heraldic-shield {
+  position: relative;
+  width: 112px;
+  height: 132px;
+  overflow: hidden;
+  background: var(--heraldic-primary, #2457C5);
+  clip-path: polygon(50% 0, 96% 16%, 86% 78%, 50% 100%, 14% 78%, 4% 16%);
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .26), 0 14px 28px rgba(0, 0, 0, .32);
+}
+
+.heraldic-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.heraldic-layer-b {
+  background: var(--heraldic-secondary, #F1EDE1);
+}
+
+.heraldic-layer-accent {
+  background: var(--heraldic-accent, #D2A13D);
+}
+
+.heraldic-preview[data-layout="split"] .heraldic-layer-b {
+  left: 50%;
+}
+
+.heraldic-preview[data-layout="split"] .heraldic-layer-accent {
+  left: calc(50% - 3px);
+  right: auto;
+  width: 6px;
+}
+
+.heraldic-preview[data-layout="quartered"] .heraldic-layer-b {
+  background:
+    linear-gradient(90deg, transparent 50%, var(--heraldic-secondary, #F1EDE1) 50%) top / 100% 50% no-repeat,
+    linear-gradient(90deg, var(--heraldic-secondary, #F1EDE1) 50%, transparent 50%) bottom / 100% 50% no-repeat;
+}
+
+.heraldic-preview[data-layout="quartered"] .heraldic-layer-accent {
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 2px), var(--heraldic-accent, #D2A13D) calc(50% - 2px), var(--heraldic-accent, #D2A13D) calc(50% + 2px), transparent calc(50% + 2px)),
+    linear-gradient(0deg, transparent calc(50% - 2px), var(--heraldic-accent, #D2A13D) calc(50% - 2px), var(--heraldic-accent, #D2A13D) calc(50% + 2px), transparent calc(50% + 2px));
+}
+
+.heraldic-preview[data-layout="diagonal"] .heraldic-layer-b {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.heraldic-preview[data-layout="diagonal"] .heraldic-layer-accent {
+  transform: rotate(-43deg);
+  top: 48%;
+  bottom: auto;
+  height: 7px;
+}
+
+.heraldic-preview[data-layout="stripe"] .heraldic-layer-b {
+  left: 34%;
+  right: 34%;
+}
+
+.heraldic-preview[data-layout="stripe"] .heraldic-layer-accent {
+  left: calc(50% - 4px);
+  right: auto;
+  width: 8px;
+}
+
+.heraldic-preview[data-layout="border"] .heraldic-layer-b {
+  inset: 14px;
+  clip-path: inherit;
+}
+
+.heraldic-preview[data-layout="border"] .heraldic-layer-accent {
+  inset: 0;
+  background: transparent;
+  box-shadow: inset 0 0 0 8px var(--heraldic-accent, #D2A13D);
+}
+
 code {
   color: var(--accent);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;

@@ -11,7 +11,13 @@
       l: 46,
       style: 0,
       language: detectLanguage(W),
-      system: "aos"
+      system: "aos",
+      mode: "single",
+      activeColor: "primary",
+      secondary: { h: 45, s: 16, l: 92 },
+      heraldicLayout: "split",
+      heraldicRatio: "dominant",
+      heraldicAccent: "auto"
     };
 
     let translator = W.createTranslator(state.language);
@@ -25,14 +31,27 @@
     const el = {
       language: $("languageSelect"),
       system: $("systemSelect"),
+      mode: $("modeSelect"),
+      activeColor: $("activeColorSelect"),
       wheel: $("colorWheel"),
       markers: $("schemeMarkers"),
       dot: $("selectorDot"),
       swatch: $("currentSwatch"),
+      primaryColorLabel: $("primaryColorLabel"),
       hex: $("currentHex"),
       hsl: $("currentHsl"),
+      secondarySwatch: $("secondarySwatch"),
+      secondaryHex: $("secondaryHex"),
+      secondaryHsl: $("secondaryHsl"),
       hexInput: $("hexInput"),
+      secondaryHexInput: $("secondaryHexInput"),
+      schemeField: $("schemeField"),
       scheme: $("schemeSelect"),
+      heraldicControls: $("heraldicControls"),
+      heraldicLayout: $("heraldicLayoutSelect"),
+      heraldicRatio: $("heraldicRatioSelect"),
+      heraldicAccent: $("heraldicAccentSelect"),
+      heraldicPreview: $("heraldicPreview"),
       roleStyle: $("roleStyleSelect"),
       baseTheme: $("baseThemeSelect"),
       sat: $("satRange"),
@@ -62,6 +81,8 @@
     };
     el.swatch.classList.add("paint-hover-target");
     el.swatch.tabIndex = 0;
+    el.secondarySwatch.classList.add("paint-hover-target");
+    el.secondarySwatch.tabIndex = 0;
 
     el.language.value = state.language;
     translateStatic();
@@ -111,6 +132,9 @@
         key => key === "auto" ? t("baseOptions.auto") : t(`bases.${key}.title`),
         el.baseTheme.value
       );
+      setSelectOptions(el.heraldicLayout, Object.keys(W.HERALDIC_LAYOUTS), key => t(`heraldic.layouts.${key}`), el.heraldicLayout.value || state.heraldicLayout);
+      setSelectOptions(el.heraldicRatio, Object.keys(W.HERALDIC_RATIOS), key => t(`heraldic.ratios.${key}`), el.heraldicRatio.value || state.heraldicRatio);
+      setSelectOptions(el.heraldicAccent, Object.keys(W.HERALDIC_ACCENTS), key => t(`heraldic.accents.${key}`), el.heraldicAccent.value || state.heraldicAccent);
     }
 
     function setSelectOptions(select, keys, labelForKey, preferredValue) {
@@ -136,6 +160,18 @@
         update();
       });
 
+      el.mode.addEventListener("change", () => {
+        state.mode = el.mode.value;
+        syncSlidersToActiveColor();
+        update();
+      });
+
+      el.activeColor.addEventListener("change", () => {
+        state.activeColor = el.activeColor.value;
+        syncSlidersToActiveColor();
+        update();
+      });
+
       el.wheel.addEventListener("pointerdown", event => {
         if (el.wheel.setPointerCapture) {
           el.wheel.setPointerCapture(event.pointerId);
@@ -149,6 +185,9 @@
       });
       el.wheel.addEventListener("click", pickFromWheel);
       el.scheme.addEventListener("change", update);
+      el.heraldicLayout.addEventListener("change", update);
+      el.heraldicRatio.addEventListener("change", update);
+      el.heraldicAccent.addEventListener("change", update);
       el.roleStyle.addEventListener("change", update);
       el.baseTheme.addEventListener("change", update);
       el.sat.addEventListener("input", update);
@@ -169,17 +208,40 @@
         state.h = hsl.h;
         state.s = hsl.s;
         state.l = hsl.l;
-        el.sat.value = state.s;
-        el.light.value = state.l;
+        if (state.mode !== "heraldic" || state.activeColor === "primary") {
+          syncSlidersToActiveColor();
+        }
+        update();
+      });
+
+      el.secondaryHexInput.addEventListener("change", () => {
+        const rgb = W.hexToRgb(el.secondaryHexInput.value);
+        if (!rgb) {
+          el.secondaryHexInput.value = W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l);
+          return;
+        }
+        state.secondary = W.rgbToHsl(rgb.r, rgb.g, rgb.b);
+        if (state.mode === "heraldic" && state.activeColor === "secondary") {
+          syncSlidersToActiveColor();
+        }
         update();
       });
 
       el.random.addEventListener("click", () => {
-        state.h = Math.floor(Math.random() * 360);
-        state.s = Math.floor(45 + Math.random() * 45);
-        state.l = Math.floor(34 + Math.random() * 24);
-        el.sat.value = state.s;
-        el.light.value = state.l;
+        const randomColor = {
+          h: Math.floor(Math.random() * 360),
+          s: Math.floor(45 + Math.random() * 45),
+          l: Math.floor(34 + Math.random() * 24)
+        };
+        if (state.mode === "heraldic" && state.activeColor === "secondary") {
+          state.secondary = randomColor;
+          syncSlidersToActiveColor();
+        } else {
+          state.h = randomColor.h;
+          state.s = randomColor.s;
+          state.l = randomColor.l;
+          syncSlidersToActiveColor();
+        }
         update();
       });
 
@@ -202,32 +264,58 @@
 
     function update() {
       hidePaintTooltip();
-      state.s = Number(el.sat.value);
-      state.l = Number(el.light.value);
+      state.mode = el.mode.value;
+      state.activeColor = el.activeColor.value;
+      applySlidersToActiveColor();
       state.style = Number(el.style.value);
+      state.heraldicLayout = el.heraldicLayout.value;
+      state.heraldicRatio = el.heraldicRatio.value;
+      state.heraldicAccent = el.heraldicAccent.value;
       const schemeKey = el.scheme.value;
       const scheme = W.SCHEMES[schemeKey] || W.SCHEMES.complementary;
       const hex = W.primaryHex(state);
+      const secondaryHex = W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l);
       const finishKey = W.styleLabelKey(state.style);
       const finishLabel = t(`finish.${finishKey}`);
-      currentPalette = W.buildPalette(state, schemeKey);
+      const isHeraldic = state.mode === "heraldic";
+      currentPalette = isHeraldic
+        ? W.buildHeraldicPalette(state, {
+          layoutKey: state.heraldicLayout,
+          ratioKey: state.heraldicRatio,
+          accentKey: state.heraldicAccent
+        })
+        : W.buildPalette(state, schemeKey);
 
+      setHeraldicVisibility(isHeraldic);
       el.swatch.style.background = hex;
       el.swatch.dataset.colorHex = hex;
-      el.swatch.dataset.colorName = t("ui.mainColor");
+      el.swatch.dataset.colorName = isHeraldic ? t("heraldic.primaryColor") : t("ui.mainColor");
+      el.primaryColorLabel.textContent = isHeraldic ? t("heraldic.primaryColor") : t("ui.mainColor");
       el.hex.textContent = hex;
       el.hsl.textContent = `HSL(${Math.round(state.h)}, ${Math.round(state.s)}%, ${Math.round(state.l)}%)`;
       el.hexInput.value = hex;
-      el.satOut.value = `${Math.round(state.s)}%`;
-      el.lightOut.value = `${Math.round(state.l)}%`;
+      el.secondarySwatch.style.background = secondaryHex;
+      el.secondarySwatch.dataset.colorHex = secondaryHex;
+      el.secondarySwatch.dataset.colorName = t("heraldic.secondaryColor");
+      el.secondaryHex.textContent = secondaryHex;
+      el.secondaryHsl.textContent = `HSL(${Math.round(state.secondary.h)}, ${Math.round(state.secondary.s)}%, ${Math.round(state.secondary.l)}%)`;
+      el.secondaryHexInput.value = secondaryHex;
+      const activeColor = activeWheelColor();
+      el.satOut.value = `${Math.round(activeColor.s)}%`;
+      el.lightOut.value = `${Math.round(activeColor.l)}%`;
       el.styleOut.value = finishLabel;
       el.styleSummary.textContent = t(`finish.summary.${finishKey}`);
-      el.title.textContent = t(`schemes.${schemeKey}.title`);
-      el.desc.textContent = t(`schemes.${schemeKey}.desc`);
+      el.title.textContent = isHeraldic ? t("heraldic.title") : t(`schemes.${schemeKey}.title`);
+      el.desc.textContent = isHeraldic
+        ? t("heraldic.description", {
+          layout: t(`heraldic.layouts.${state.heraldicLayout}`),
+          ratio: t(`heraldic.ratios.${state.heraldicRatio}`)
+        })
+        : t(`schemes.${schemeKey}.desc`);
       el.rolePlannerTitle.textContent = t(`systemCopy.${state.system}.rolePlannerTitle`);
       el.baseAdviceTitle.textContent = t(`systemCopy.${state.system}.baseAdviceTitle`);
       el.paintLadderTitle.textContent = t(`systemCopy.${state.system}.paintLadderTitle`);
-      el.notes.innerHTML = `<strong>${escapeHtml(t("ui.paintingNotes"))}:</strong> ${escapeHtml(t(`schemes.${schemeKey}.note`))}<br><br><strong>${escapeHtml(t(`systemCopy.${state.system}.finishPrefix`))}:</strong> ${escapeHtml(t(`finish.summary.${finishKey}`))}`;
+      el.notes.innerHTML = `<strong>${escapeHtml(t("ui.paintingNotes"))}:</strong> ${escapeHtml(isHeraldic ? t("heraldic.note") : t(`schemes.${schemeKey}.note`))}<br><br><strong>${escapeHtml(t(`systemCopy.${state.system}.finishPrefix`))}:</strong> ${escapeHtml(t(`finish.summary.${finishKey}`))}`;
 
       renderPalette(scheme);
       renderRolePlanner();
@@ -237,6 +325,7 @@
       renderCitadelMatches();
       setDot();
       setSchemeMarkers();
+      renderHeraldicPreview();
       el.debug.textContent = t("ui.debug", {
         hex,
         firstHex: currentPalette[0].hex,
@@ -245,6 +334,48 @@
         l: state.l,
         finish: finishLabel
       });
+    }
+
+    function setHeraldicVisibility(isHeraldic) {
+      document.querySelectorAll(".heraldic-only").forEach(node => {
+        node.hidden = !isHeraldic;
+      });
+      el.schemeField.hidden = isHeraldic;
+      el.activeColor.disabled = !isHeraldic;
+      el.heraldicLayout.disabled = !isHeraldic;
+      el.heraldicRatio.disabled = !isHeraldic;
+      el.heraldicAccent.disabled = !isHeraldic;
+    }
+
+    function applySlidersToActiveColor() {
+      const s = Number(el.sat.value);
+      const l = Number(el.light.value);
+      if (state.mode === "heraldic" && state.activeColor === "secondary") {
+        state.secondary.s = s;
+        state.secondary.l = l;
+        return;
+      }
+      state.s = s;
+      state.l = l;
+    }
+
+    function syncSlidersToActiveColor() {
+      const color = activeWheelColor();
+      el.sat.value = Math.round(color.s);
+      el.light.value = Math.round(color.l);
+    }
+
+    function renderHeraldicPreview() {
+      if (state.mode !== "heraldic") {
+        return;
+      }
+      const primary = W.primaryHex(state);
+      const secondary = W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l);
+      const accent = currentPalette.find(color => color.roleKey === "heraldicAccent") || currentPalette[currentPalette.length - 1];
+      el.heraldicPreview.dataset.layout = state.heraldicLayout;
+      el.heraldicPreview.style.setProperty("--heraldic-primary", primary);
+      el.heraldicPreview.style.setProperty("--heraldic-secondary", secondary);
+      el.heraldicPreview.style.setProperty("--heraldic-accent", accent ? accent.hex : "#D2A13D");
     }
 
     function renderPalette() {
@@ -585,8 +716,9 @@
     function setDot() {
       const rect = el.wheel.getBoundingClientRect();
       const wrap = el.wheel.parentElement.getBoundingClientRect();
-      positionWheelMarker(el.dot, state.h, state.s, rect, wrap);
-      el.dot.style.background = W.primaryHex(state);
+      const color = activeWheelColor();
+      positionWheelMarker(el.dot, color.h, color.s, rect, wrap);
+      el.dot.style.background = color.hex;
     }
 
     function setSchemeMarkers() {
@@ -622,10 +754,36 @@
       if (dist > r) {
         return;
       }
-      state.h = Math.round(W.normHue(Math.atan2(dy, dx) * 180 / Math.PI));
-      state.s = Math.round(W.clamp(dist / r * 100, 5, 100));
-      el.sat.value = state.s;
+      const picked = {
+        h: Math.round(W.normHue(Math.atan2(dy, dx) * 180 / Math.PI)),
+        s: Math.round(W.clamp(dist / r * 100, 5, 100)),
+        l: state.activeColor === "secondary" && state.mode === "heraldic" ? state.secondary.l : state.l
+      };
+      if (state.mode === "heraldic" && state.activeColor === "secondary") {
+        state.secondary = picked;
+      } else {
+        state.h = picked.h;
+        state.s = picked.s;
+      }
+      syncSlidersToActiveColor();
       update();
+    }
+
+    function activeWheelColor() {
+      if (state.mode === "heraldic" && state.activeColor === "secondary") {
+        return {
+          h: state.secondary.h,
+          s: state.secondary.s,
+          l: state.secondary.l,
+          hex: W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l)
+        };
+      }
+      return {
+        h: state.h,
+        s: state.s,
+        l: state.l,
+        hex: W.primaryHex(state)
+      };
     }
 
     function buildCopyText() {

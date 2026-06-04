@@ -100,3 +100,31 @@ test("creates paint ladders with stable step keys", () => {
   ]);
   ladder.forEach(step => assert.match(step.hex, /^#[0-9A-F]{6}$/));
 });
+
+test("builds a heraldic two-anchor palette", () => {
+  const state = {
+    h: 220,
+    s: 70,
+    l: 46,
+    style: 0,
+    secondary: { h: 45, s: 16, l: 92 }
+  };
+  const palette = core.buildHeraldicPalette(state, { accentKey: "gold" });
+
+  assert.equal(palette[0].roleKey, "fieldColor");
+  assert.equal(palette[0].hex, core.primaryHex(state));
+  assert.equal(palette[1].roleKey, "chargeColor");
+  assert.equal(palette[1].hex, core.hslToHex(45, 16, 92));
+  assert.equal(palette.at(-1).roleKey, "heraldicAccent");
+  palette.forEach(color => assert.match(color.hex, /^#[0-9A-F]{6}$/));
+});
+
+test("scores automatic heraldic accents by use case", () => {
+  const blueWhite = { h: 220, s: 70, l: 46, secondary: { h: 45, s: 16, l: 92 } };
+  const redWhite = { h: 4, s: 74, l: 48, secondary: { h: 45, s: 16, l: 92 } };
+  const blackYellow = { h: 220, s: 12, l: 10, secondary: { h: 50, s: 80, l: 55 } };
+
+  assert.equal(core.buildHeraldicPalette(blueWhite, { accentKey: "auto" }).at(-1).hex, "#D2A13D");
+  assert.equal(core.buildHeraldicPalette(blackYellow, { accentKey: "autoMetal" }).at(-1).hex, "#B9C0C5");
+  assert.notEqual(core.buildHeraldicPalette(redWhite, { accentKey: "autoFocal" }).at(-1).hex, "#D2A13D");
+});

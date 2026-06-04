@@ -18,6 +18,8 @@
         eyebrow: "Miniature Palette Tool",
         title: "Warhammer Paint Helper",
         subtitle: "Pick a main color and generate a miniature-ready palette with model roles, base ideas, paint steps, and paint catalogue matches.",
+        mode: "Palette mode",
+        activeColor: "Wheel edits",
         mainColor: "Main color",
         hexInput: "Enter HEX color directly",
         scheme: "Color scheme",
@@ -46,6 +48,48 @@
       systems: {
         aos: "Age of Sigmar",
         k40: "Warhammer 40,000"
+      },
+      modes: {
+        single: "Single colour",
+        heraldic: "Heraldic"
+      },
+      heraldic: {
+        title: "Heraldic two-colour",
+        description: "{layout} layout with {ratio} balance, built from two coat-of-arms colours.",
+        note: "Treat the field and charge colours as co-primaries. Keep the accent small, and shade white or pale colours through grey, ivory, or blue-grey rather than pure black.",
+        primaryColor: "Field colour",
+        secondaryColor: "Charge colour",
+        secondaryHexInput: "Enter secondary HEX directly",
+        layout: "Heraldry layout",
+        ratio: "Colour balance",
+        accent: "Heraldic accent",
+        active: {
+          primary: "Field colour",
+          secondary: "Charge colour"
+        },
+        layouts: {
+          split: "Split shield",
+          quartered: "Quartered",
+          diagonal: "Diagonal",
+          stripe: "Central stripe",
+          border: "Border and field"
+        },
+        ratios: {
+          dominant: "70 / 30",
+          balanced: "50 / 50",
+          secondary: "40 / 60"
+        },
+        accents: {
+          auto: "Auto",
+          autoTrim: "Auto: trim",
+          autoFocal: "Auto: focal detail",
+          autoMetal: "Auto: heraldic metal",
+          gold: "Gold",
+          red: "Red",
+          black: "Black",
+          silver: "Silver",
+          lens: "Lens / magic colour"
+        }
       },
       systemCopy: {
         aos: {
@@ -276,7 +320,14 @@
         armor: "Armor color",
         panelShade: "Panel shade",
         companyMarking: "Company marking",
-        lensAccent: "Lens accent"
+        lensAccent: "Lens accent",
+        fieldColor: "Field colour",
+        chargeColor: "Charge colour",
+        fieldShadow: "Field shadow",
+        chargeShade: "Charge shade",
+        fieldHighlight: "Field highlight",
+        chargeHighlight: "Charge highlight",
+        heraldicAccent: "Heraldic accent"
       },
       placements: {
         dominant: "Dominant surface: armor, robe, skin, hull, fatigues, or main cloth.",
@@ -473,6 +524,8 @@
         eyebrow: "Miniaturen-Paletten-Tool",
         title: "Warhammer Paint Helper",
         subtitle: "Wähle eine Hauptfarbe und erzeuge eine miniaturentaugliche Palette mit Modellrollen, Base-Ideen, Malstufen und Farbkatalog-Treffern.",
+        mode: "Palettenmodus",
+        activeColor: "Farbrad bearbeitet",
         mainColor: "Hauptfarbe",
         hexInput: "HEX-Farbe direkt eingeben",
         scheme: "Farbschema",
@@ -501,6 +554,48 @@
       systems: {
         aos: "Age of Sigmar",
         k40: "Warhammer 40.000"
+      },
+      modes: {
+        single: "Einzelfarbe",
+        heraldic: "Heraldik"
+      },
+      heraldic: {
+        title: "Heraldik mit zwei Farben",
+        description: "{layout} mit {ratio} Balance, aus zwei Wappenfarben aufgebaut.",
+        note: "Behandle Feld- und Zeichenfarbe als zwei Hauptfarben. Halte den Akzent klein und schattiere Weiss oder helle Farben ueber Grau, Elfenbein oder Blaugrau.",
+        primaryColor: "Feldfarbe",
+        secondaryColor: "Zeichenfarbe",
+        secondaryHexInput: "Sekundaere HEX-Farbe direkt eingeben",
+        layout: "Heraldik-Layout",
+        ratio: "Farbbalance",
+        accent: "Heraldik-Akzent",
+        active: {
+          primary: "Feldfarbe",
+          secondary: "Zeichenfarbe"
+        },
+        layouts: {
+          split: "Geteilter Schild",
+          quartered: "Geviert",
+          diagonal: "Diagonal",
+          stripe: "Mittelstreifen",
+          border: "Rand und Feld"
+        },
+        ratios: {
+          dominant: "70 / 30",
+          balanced: "50 / 50",
+          secondary: "40 / 60"
+        },
+        accents: {
+          auto: "Auto",
+          autoTrim: "Auto: Besatz",
+          autoFocal: "Auto: Fokusdetail",
+          autoMetal: "Auto: Heraldik-Metall",
+          gold: "Gold",
+          red: "Rot",
+          black: "Schwarz",
+          silver: "Silber",
+          lens: "Linse / Magie"
+        }
       },
       systemCopy: {
         aos: { rolePlannerTitle: "AoS-Rollenplaner", baseAdviceTitle: "AoS-Base-Vorschläge", paintLadderTitle: "AoS Shade / Layer / Highlight", finishPrefix: "AoS-Finish" },
@@ -573,7 +668,7 @@
         chapter: { title: "40K-Chapter / Truppschema", desc: "Rüstungsfarbe, Panel-Schatten, Kompaniemarkierung und Linsen- oder Plasmaakzent.", note: "Für 40K-Rüstungspanel, Helme, Schulterpanzer, Waffen und Truppkennzeichen." }
       },
       schemeRoles: {
-        primary: "Hauptfarbe", contrast: "Kontrastfarbe", leftAccent: "Akzent links", rightAccent: "Akzent rechts", secondary: "Sekundärfarbe", accent: "Akzentfarbe", shadow: "Schattenfarbe", highlight: "Highlightfarbe", darkNeighbor: "Dunkler Nebenton", lightNeighbor: "Heller Nebenton", layer: "Layerfarbe", deepShadow: "Tiefer Schatten", edgeHighlight: "Kantenhighlight", basecoat: "Basecoat", coolShadow: "Kalter Schatten", warmLayer: "Warmer Layer", strongAccent: "Starker Akzent", neighbor: "Nebenton", secondaryAccent: "Sekundärakzent", coolCounter: "Kalte Gegenfarbe", coolAccent: "Kalter Akzent", darkBase: "Dunkler Grundton", dustyLayer: "Staubiger Layer", dirtyAccent: "Schmutziger Akzent", realmGlow: "Realm-Glow", realmAccent: "Realm-Akzent", realmShadow: "Realm-Schatten", armor: "Rüstungsfarbe", panelShade: "Panel-Schatten", companyMarking: "Kompaniemarkierung", lensAccent: "Linsenakzent"
+        primary: "Hauptfarbe", contrast: "Kontrastfarbe", leftAccent: "Akzent links", rightAccent: "Akzent rechts", secondary: "Sekundärfarbe", accent: "Akzentfarbe", shadow: "Schattenfarbe", highlight: "Highlightfarbe", darkNeighbor: "Dunkler Nebenton", lightNeighbor: "Heller Nebenton", layer: "Layerfarbe", deepShadow: "Tiefer Schatten", edgeHighlight: "Kantenhighlight", basecoat: "Basecoat", coolShadow: "Kalter Schatten", warmLayer: "Warmer Layer", strongAccent: "Starker Akzent", neighbor: "Nebenton", secondaryAccent: "Sekundärakzent", coolCounter: "Kalte Gegenfarbe", coolAccent: "Kalter Akzent", darkBase: "Dunkler Grundton", dustyLayer: "Staubiger Layer", dirtyAccent: "Schmutziger Akzent", realmGlow: "Realm-Glow", realmAccent: "Realm-Akzent", realmShadow: "Realm-Schatten", armor: "Rüstungsfarbe", panelShade: "Panel-Schatten", companyMarking: "Kompaniemarkierung", lensAccent: "Linsenakzent", fieldColor: "Feldfarbe", chargeColor: "Zeichenfarbe", fieldShadow: "Feldschatten", chargeShade: "Zeichenschatten", fieldHighlight: "Feldhighlight", chargeHighlight: "Zeichenhighlight", heraldicAccent: "Heraldik-Akzent"
       }
     },
     fr: {
@@ -584,6 +679,8 @@
         eyebrow: "Outil de palette miniature",
         title: "Warhammer Paint Helper",
         subtitle: "Choisis une couleur principale et génère une palette pour figurines avec rôles, idées de socle, étapes de peinture et correspondances du catalogue.",
+        mode: "Mode de palette",
+        activeColor: "Roue modifie",
         mainColor: "Couleur principale",
         hexInput: "Entrer une couleur HEX",
         scheme: "Schéma de couleurs",
@@ -612,6 +709,25 @@
       systems: {
         aos: "Age of Sigmar",
         k40: "Warhammer 40,000"
+      },
+      modes: {
+        single: "Couleur unique",
+        heraldic: "Heraldique"
+      },
+      heraldic: {
+        title: "Heraldique deux couleurs",
+        description: "{layout} avec balance {ratio}, construit depuis deux couleurs d'armoiries.",
+        note: "Traite la couleur de champ et la couleur de charge comme deux couleurs principales. Garde l'accent petit et ombre les blancs par gris, ivoire ou bleu-gris.",
+        primaryColor: "Couleur de champ",
+        secondaryColor: "Couleur de charge",
+        secondaryHexInput: "Entrer la couleur secondaire HEX",
+        layout: "Disposition heraldique",
+        ratio: "Balance des couleurs",
+        accent: "Accent heraldique",
+        active: { primary: "Couleur de champ", secondary: "Couleur de charge" },
+        layouts: { split: "Ecu parti", quartered: "Ecartele", diagonal: "Diagonal", stripe: "Bande centrale", border: "Bordure et champ" },
+        ratios: { dominant: "70 / 30", balanced: "50 / 50", secondary: "40 / 60" },
+        accents: { auto: "Auto", autoTrim: "Auto : bordure", autoFocal: "Auto : detail focal", autoMetal: "Auto : metal heraldique", gold: "Or", red: "Rouge", black: "Noir", silver: "Argent", lens: "Lentille / magie" }
       },
       systemCopy: {
         aos: { rolePlannerTitle: "Planificateur de rôles AoS", baseAdviceTitle: "Suggestions de socles AoS", paintLadderTitle: "AoS Shade / Layer / Highlight", finishPrefix: "Finition AoS" },
@@ -684,7 +800,7 @@
         chapter: { title: "Chapitre / escouade 40K", desc: "Couleur d'armure, ombre de panneau, marquage de compagnie et accent lentille ou plasma.", note: "Pour panneaux d'armure 40K, casques, épaulières, armes et identifiants d'escouade." }
       },
       schemeRoles: {
-        primary: "Couleur principale", contrast: "Couleur de contraste", leftAccent: "Accent gauche", rightAccent: "Accent droit", secondary: "Couleur secondaire", accent: "Couleur d'accent", shadow: "Couleur d'ombre", highlight: "Couleur de highlight", darkNeighbor: "Voisine sombre", lightNeighbor: "Voisine claire", layer: "Couleur de layer", deepShadow: "Ombre profonde", edgeHighlight: "Edge highlight", basecoat: "Basecoat", coolShadow: "Ombre froide", warmLayer: "Layer chaud", strongAccent: "Accent fort", neighbor: "Couleur voisine", secondaryAccent: "Accent secondaire", coolCounter: "Contre-couleur froide", coolAccent: "Accent froid", darkBase: "Base sombre", dustyLayer: "Layer poussiéreux", dirtyAccent: "Accent sale", realmGlow: "Lueur de royaume", realmAccent: "Accent de royaume", realmShadow: "Ombre de royaume", armor: "Couleur d'armure", panelShade: "Ombre de panneau", companyMarking: "Marquage de compagnie", lensAccent: "Accent de lentille"
+        primary: "Couleur principale", contrast: "Couleur de contraste", leftAccent: "Accent gauche", rightAccent: "Accent droit", secondary: "Couleur secondaire", accent: "Couleur d'accent", shadow: "Couleur d'ombre", highlight: "Couleur de highlight", darkNeighbor: "Voisine sombre", lightNeighbor: "Voisine claire", layer: "Couleur de layer", deepShadow: "Ombre profonde", edgeHighlight: "Edge highlight", basecoat: "Basecoat", coolShadow: "Ombre froide", warmLayer: "Layer chaud", strongAccent: "Accent fort", neighbor: "Couleur voisine", secondaryAccent: "Accent secondaire", coolCounter: "Contre-couleur froide", coolAccent: "Accent froid", darkBase: "Base sombre", dustyLayer: "Layer poussiéreux", dirtyAccent: "Accent sale", realmGlow: "Lueur de royaume", realmAccent: "Accent de royaume", realmShadow: "Ombre de royaume", armor: "Couleur d'armure", panelShade: "Ombre de panneau", companyMarking: "Marquage de compagnie", lensAccent: "Accent de lentille", fieldColor: "Couleur de champ", chargeColor: "Couleur de charge", fieldShadow: "Ombre du champ", chargeShade: "Ombre de charge", fieldHighlight: "Highlight du champ", chargeHighlight: "Highlight de charge", heraldicAccent: "Accent heraldique"
       }
     },
     es: {
@@ -695,6 +811,8 @@
         eyebrow: "Herramienta de paletas para miniaturas",
         title: "Warhammer Paint Helper",
         subtitle: "Elige un color principal y genera una paleta lista para miniaturas con roles del modelo, ideas de peana, pasos de pintura y equivalencias del catálogo.",
+        mode: "Modo de paleta",
+        activeColor: "Rueda edita",
         mainColor: "Color principal",
         hexInput: "Introducir color HEX directamente",
         scheme: "Esquema de color",
@@ -723,6 +841,25 @@
       systems: {
         aos: "Age of Sigmar",
         k40: "Warhammer 40,000"
+      },
+      modes: {
+        single: "Color unico",
+        heraldic: "Heraldico"
+      },
+      heraldic: {
+        title: "Heraldico de dos colores",
+        description: "{layout} con balance {ratio}, construido desde dos colores de escudo.",
+        note: "Trata el color de campo y el color de carga como dos principales. Mantén pequeno el acento y sombrea blancos con gris, marfil o gris azulado.",
+        primaryColor: "Color de campo",
+        secondaryColor: "Color de carga",
+        secondaryHexInput: "Introducir HEX secundario",
+        layout: "Disposicion heraldica",
+        ratio: "Balance de color",
+        accent: "Acento heraldico",
+        active: { primary: "Color de campo", secondary: "Color de carga" },
+        layouts: { split: "Escudo partido", quartered: "Cuartelado", diagonal: "Diagonal", stripe: "Franja central", border: "Borde y campo" },
+        ratios: { dominant: "70 / 30", balanced: "50 / 50", secondary: "40 / 60" },
+        accents: { auto: "Auto", autoTrim: "Auto: ribete", autoFocal: "Auto: detalle focal", autoMetal: "Auto: metal heraldico", gold: "Oro", red: "Rojo", black: "Negro", silver: "Plata", lens: "Lente / magia" }
       },
       systemCopy: {
         aos: { rolePlannerTitle: "Planificador de roles AoS", baseAdviceTitle: "Sugerencias de peanas AoS", paintLadderTitle: "AoS Sombra / Capa / Luz", finishPrefix: "Acabado AoS" },
@@ -795,7 +932,7 @@
         chapter: { title: "Capítulo 40K / esquema de escuadra", desc: "Color de armadura, sombra de panel, marca de compañía y acento de lentes o plasma.", note: "Diseñado para paneles de armadura 40K, cascos, hombreras, carcasas de armas e identificadores de escuadra." }
       },
       schemeRoles: {
-        primary: "Color principal", contrast: "Color de contraste", leftAccent: "Acento izquierdo", rightAccent: "Acento derecho", secondary: "Color secundario", accent: "Color de acento", shadow: "Color de sombra", highlight: "Color de luz", darkNeighbor: "Vecino oscuro", lightNeighbor: "Vecino claro", layer: "Color de capa", deepShadow: "Sombra profunda", edgeHighlight: "Luz de borde", basecoat: "Capa base", coolShadow: "Sombra fría", warmLayer: "Capa cálida", strongAccent: "Acento fuerte", neighbor: "Color vecino", secondaryAccent: "Acento secundario", coolCounter: "Contracolor frío", coolAccent: "Acento frío", darkBase: "Tono base oscuro", dustyLayer: "Capa polvorienta", dirtyAccent: "Acento sucio", realmGlow: "Brillo de reino", realmAccent: "Acento de reino", realmShadow: "Sombra de reino", armor: "Color de armadura", panelShade: "Sombra de panel", companyMarking: "Marca de compañía", lensAccent: "Acento de lente"
+        primary: "Color principal", contrast: "Color de contraste", leftAccent: "Acento izquierdo", rightAccent: "Acento derecho", secondary: "Color secundario", accent: "Color de acento", shadow: "Color de sombra", highlight: "Color de luz", darkNeighbor: "Vecino oscuro", lightNeighbor: "Vecino claro", layer: "Color de capa", deepShadow: "Sombra profunda", edgeHighlight: "Luz de borde", basecoat: "Capa base", coolShadow: "Sombra fría", warmLayer: "Capa cálida", strongAccent: "Acento fuerte", neighbor: "Color vecino", secondaryAccent: "Acento secundario", coolCounter: "Contracolor frío", coolAccent: "Acento frío", darkBase: "Tono base oscuro", dustyLayer: "Capa polvorienta", dirtyAccent: "Acento sucio", realmGlow: "Brillo de reino", realmAccent: "Acento de reino", realmShadow: "Sombra de reino", armor: "Color de armadura", panelShade: "Sombra de panel", companyMarking: "Marca de compañía", lensAccent: "Acento de lente", fieldColor: "Color de campo", chargeColor: "Color de carga", fieldShadow: "Sombra de campo", chargeShade: "Sombra de carga", fieldHighlight: "Luz de campo", chargeHighlight: "Luz de carga", heraldicAccent: "Acento heraldico"
       }
     }
   };

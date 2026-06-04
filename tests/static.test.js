@@ -16,6 +16,10 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="languageSelect"/);
   assert.match(html, /<option value="es">Español<\/option>/);
   assert.match(html, /id="systemSelect"/);
+  assert.match(html, /id="modeSelect"/);
+  assert.match(html, /id="secondaryHexInput"/);
+  assert.match(html, /id="heraldicLayoutSelect"/);
+  assert.match(html, /id="heraldicPreview"/);
   assert.doesNotMatch(html, /ui\.extraMaterials/);
   assert.doesNotMatch(html, /class="material-toggle"/);
   assert.doesNotMatch(html, /id="materialPalette"/);

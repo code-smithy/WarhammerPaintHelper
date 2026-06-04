@@ -97,6 +97,32 @@
     }
   };
 
+  const HERALDIC_LAYOUTS = {
+    split: {},
+    quartered: {},
+    diagonal: {},
+    stripe: {},
+    border: {}
+  };
+
+  const HERALDIC_RATIOS = {
+    dominant: { primary: 70, secondary: 30 },
+    balanced: { primary: 50, secondary: 50 },
+    secondary: { primary: 40, secondary: 60 }
+  };
+
+  const HERALDIC_ACCENTS = {
+    auto: {},
+    autoTrim: {},
+    autoFocal: {},
+    autoMetal: {},
+    gold: { h: 43, s: 72, l: 52, hex: "#D2A13D" },
+    red: { h: 4, s: 74, l: 48, hex: "#D03A2E" },
+    black: { h: 220, s: 12, l: 10, hex: "#151821" },
+    silver: { h: 205, s: 14, l: 76, hex: "#B9C0C5" },
+    lens: {}
+  };
+
   const MATERIAL_FALLBACKS = {
     darkLeather: { key: "darkLeather", hex: "#4B2E1F" },
     redLeather: { key: "redLeather", hex: "#7A3B25" },
@@ -422,6 +448,19 @@
     return hslToHex(state.h, state.s, state.l);
   }
 
+  function colorFromHsl(h, s, l, roleKey) {
+    const nh = normHue(h);
+    const ns = clamp(s, 5, 100);
+    const nl = clamp(l, 6, 96);
+    return {
+      h: nh,
+      s: ns,
+      l: nl,
+      roleKey,
+      hex: hslToHex(nh, ns, nl)
+    };
+  }
+
   function applyFinishToColor(h, s, l, index, style) {
     const f = styleFactor(style);
     if (index === 0) {
@@ -570,6 +609,124 @@
     return MATERIAL_FALLBACKS[key] || MATERIAL_FALLBACKS.baseEarth;
   }
 
+  function buildHeraldicPalette(state, options) {
+    const secondary = state.secondary || { h: 45, s: 16, l: 92 };
+    const accentKey = options && options.accentKey ? options.accentKey : "auto";
+    const primary = colorFromHsl(state.h, state.s, state.l, "fieldColor");
+    const charge = colorFromHsl(secondary.h, secondary.s, secondary.l, "chargeColor");
+    const whiteLikeCharge = charge.s <= 24 && charge.l >= 72;
+    const chargeShadeHue = whiteLikeCharge ? primary.h : charge.h;
+    const accent = heraldicAccent(primary, charge, accentKey);
+
+    return [
+      primary,
+      charge,
+      colorFromHsl(primary.h, primary.s - 12, primary.l - 26, "fieldShadow"),
+      colorFromHsl(chargeShadeHue, charge.s + (whiteLikeCharge ? 18 : -8), charge.l - 24, "chargeShade"),
+      colorFromHsl(primary.h, primary.s - 8, primary.l + 24, "fieldHighlight"),
+      colorFromHsl(charge.h, charge.s - 8, charge.l + 12, "chargeHighlight"),
+      accent
+    ];
+  }
+
+  function heraldicAccent(primary, charge, accentKey) {
+    const preset = accentKey === "lens"
+      ? lensAccent(primary, charge)
+      : HERALDIC_ACCENTS[accentKey] && HERALDIC_ACCENTS[accentKey].hex
+      ? HERALDIC_ACCENTS[accentKey]
+      : autoHeraldicAccent(primary, charge, accentKey);
+    return {
+      h: preset.h,
+      s: preset.s,
+      l: preset.l,
+      roleKey: "heraldicAccent",
+      hex: preset.hex
+    };
+  }
+
+  function lensAccent(primary, charge) {
+    const base = primary.s >= charge.s ? primary : charge;
+    const h = normHue(base.h + 180);
+    const s = clamp(Math.max(primary.s, charge.s) + 18, 58, 100);
+    const l = clamp(Math.min(Math.max(primary.l, charge.l) + 8, 48), 42, 78);
+    return { h, s, l, hex: hslToHex(h, s, l) };
+  }
+
+  function autoHeraldicAccent(primary, charge, accentKey) {
+    const profile = autoAccentProfile(accentKey);
+    const candidates = heraldicAccentCandidates(primary, charge);
+    return candidates
+      .map(candidate => ({
+        ...candidate,
+        score: scoreHeraldicAccent(candidate, primary, charge, profile)
+      }))
+      .sort((a, b) => b.score - a.score)[0];
+  }
+
+  function autoAccentProfile(accentKey) {
+    const key = accentKey || "auto";
+    if (key === "autoMetal") {
+      return { preferred: ["gold", "silver"], avoid: ["lens"], metal: 26, focal: 0, trim: 14 };
+    }
+    if (key === "autoFocal") {
+      return { preferred: ["red", "lens", "gold"], avoid: ["black"], metal: 0, focal: 28, trim: 0 };
+    }
+    if (key === "autoTrim") {
+      return { preferred: ["gold", "silver", "black"], avoid: ["lens"], metal: 14, focal: 0, trim: 24 };
+    }
+    return { preferred: ["gold", "silver", "red", "black", "lens"], avoid: [], metal: 10, focal: 8, trim: 8 };
+  }
+
+  function heraldicAccentCandidates(primary, charge) {
+    return [
+      { key: "gold", ...HERALDIC_ACCENTS.gold },
+      { key: "silver", ...HERALDIC_ACCENTS.silver },
+      { key: "black", ...HERALDIC_ACCENTS.black },
+      { key: "red", ...HERALDIC_ACCENTS.red },
+      { key: "lens", ...lensAccent(primary, charge) }
+    ];
+  }
+
+  function scoreHeraldicAccent(candidate, primary, charge, profile) {
+    const contrast = Math.min(valueContrast(candidate, primary), valueContrast(candidate, charge));
+    const hueGap = accentHueGap(candidate, primary, charge);
+    const duplicatePenalty = colorSimilarityPenalty(candidate, primary) + colorSimilarityPenalty(candidate, charge);
+    const lightPenalty = candidate.l > 68 && (primary.l > 70 || charge.l > 70) ? 18 : 0;
+    const darkPenalty = candidate.l < 18 && (primary.l < 28 || charge.l < 28) ? 18 : 0;
+    const preferred = profile.preferred.includes(candidate.key) ? 16 - profile.preferred.indexOf(candidate.key) * 2 : 0;
+    const avoided = profile.avoid.includes(candidate.key) ? 28 : 0;
+    const metalBonus = (candidate.key === "gold" || candidate.key === "silver") ? profile.metal : 0;
+    const focalBonus = (candidate.key === "red" || candidate.key === "lens") ? profile.focal : 0;
+    const trimBonus = (candidate.key === "gold" || candidate.key === "silver" || candidate.key === "black") ? profile.trim : 0;
+
+    return contrast * 1.15 + hueGap * .35 + preferred + metalBonus + focalBonus + trimBonus
+      - duplicatePenalty - lightPenalty - darkPenalty - avoided;
+  }
+
+  function valueContrast(a, b) {
+    return Math.abs(a.l - b.l);
+  }
+
+  function hueDistance(a, b) {
+    const diff = Math.abs(normHue(a) - normHue(b));
+    return Math.min(diff, 360 - diff);
+  }
+
+  function accentHueGap(candidate, primary, charge) {
+    const chromaticAnchors = [primary, charge].filter(color => color.s > 28 && color.l < 82);
+    if (!chromaticAnchors.length) {
+      return 90;
+    }
+    return Math.min(...chromaticAnchors.map(color => hueDistance(candidate.h, color.h)));
+  }
+
+  function colorSimilarityPenalty(a, b) {
+    const closeHue = hueDistance(a.h, b.h) < 24;
+    const closeSat = Math.abs(a.s - b.s) < 18;
+    const closeLight = Math.abs(a.l - b.l) < 18;
+    return closeHue && closeSat && closeLight ? 34 : 0;
+  }
+
   function getSystem(systemKey) {
     return SYSTEMS[systemKey] || SYSTEMS.aos;
   }
@@ -593,6 +750,9 @@
 
   return {
     SCHEMES,
+    HERALDIC_LAYOUTS,
+    HERALDIC_RATIOS,
+    HERALDIC_ACCENTS,
     SYSTEMS,
     BASE_CATALOG,
     MATERIAL_FALLBACKS,
@@ -608,6 +768,7 @@
     primaryHex,
     applyFinishToColor,
     buildPalette,
+    buildHeraldicPalette,
     ladderForColor,
     baseSuggestions,
     getMaterialFallback,
