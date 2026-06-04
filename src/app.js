@@ -18,6 +18,8 @@
     let currentPalette = [];
     let cataloguePaints = W.DEFAULT_PAINT_CATALOGUE || W.DEFAULT_CITADEL_PAINTS;
     let catalogueSource = "sample";
+    let hoverTimer = null;
+    let activeHoverTarget = null;
 
     const $ = id => document.getElementById(id);
     const el = {
@@ -55,8 +57,11 @@
       debug: $("debugState"),
       rolePlannerTitle: $("rolePlannerTitle"),
       baseAdviceTitle: $("baseAdviceTitle"),
-      paintLadderTitle: $("paintLadderTitle")
+      paintLadderTitle: $("paintLadderTitle"),
+      paintTooltip: createPaintTooltip()
     };
+    el.swatch.classList.add("paint-hover-target");
+    el.swatch.tabIndex = 0;
 
     el.language.value = state.language;
     translateStatic();
@@ -186,9 +191,17 @@
           el.copy.textContent = old;
         }, 900);
       });
+
+      document.addEventListener("mouseover", handlePaintHoverStart);
+      document.addEventListener("mouseout", handlePaintHoverEnd);
+      document.addEventListener("focusin", handlePaintHoverStart);
+      document.addEventListener("focusout", handlePaintHoverEnd);
+      window.addEventListener("scroll", hidePaintTooltip, true);
+      window.addEventListener("resize", hidePaintTooltip);
     }
 
     function update() {
+      hidePaintTooltip();
       state.s = Number(el.sat.value);
       state.l = Number(el.light.value);
       state.style = Number(el.style.value);
@@ -200,6 +213,8 @@
       currentPalette = W.buildPalette(state, schemeKey);
 
       el.swatch.style.background = hex;
+      el.swatch.dataset.colorHex = hex;
+      el.swatch.dataset.colorName = t("ui.mainColor");
       el.hex.textContent = hex;
       el.hsl.textContent = `HSL(${Math.round(state.h)}, ${Math.round(state.s)}%, ${Math.round(state.l)}%)`;
       el.hexInput.value = hex;
@@ -234,7 +249,7 @@
 
     function renderPalette() {
       el.palette.innerHTML = currentPalette.map(color => `
-        <article class="card">
+        <article class="card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(roleName(color.roleKey))}">
           <div class="swatch" style="background:${escapeHtml(color.hex)}"></div>
           <div class="card-body">
             <div class="role">${escapeHtml(roleName(color.roleKey))}</div>
@@ -251,7 +266,7 @@
         const color = resolveRoleColor(item.colorRef);
         const area = item.extra ? color.name : t(`roleAreas.${item.areaKey}`);
         return `
-          <article class="role-plan-card">
+          <article class="role-plan-card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(color.name)}">
             <div class="role-plan-swatch" style="background:${escapeHtml(color.hex)}"></div>
             <div>
               <div class="role-plan-area">${escapeHtml(area)}</div>
@@ -294,7 +309,7 @@
         const recipe = t(`bases.${base.key}.recipe`);
         const steps = Array.isArray(recipe) ? recipe.join(" -> ") : "";
         return `
-          <article class="base-advice-card">
+          <article class="base-advice-card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(base.hex)}" data-color-name="${escapeHtml(t(`bases.${base.key}.title`))}">
             <div class="base-advice-swatch" style="background:${escapeHtml(base.hex)}"></div>
             <div>
               <div class="base-advice-title">${escapeHtml(t(`bases.${base.key}.title`))}</div>
@@ -315,9 +330,9 @@
             ? t("placements.secondary")
             : index === 2
               ? t("placements.contrast")
-              : t("placements.small");
+          : t("placements.small");
         return `
-          <article class="paint-map-card">
+          <article class="paint-map-card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(roleName(color.roleKey))}">
             <div class="paint-map-swatch" style="background:${escapeHtml(color.hex)}"></div>
             <div>
               <div class="role">${escapeHtml(roleName(color.roleKey))}</div>
@@ -333,7 +348,7 @@
     function renderPaintLadder() {
       el.paintLadder.innerHTML = currentPalette.slice(0, 4).map(color => {
         const steps = W.ladderForColor(color, state.style).map(step => `
-          <div class="ladder-step">
+          <div class="ladder-step paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(step.hex)}" data-color-name="${escapeHtml(t(`ladder.steps.${step.key}`))}">
             <div class="ladder-swatch" style="background:${escapeHtml(step.hex)}"></div>
             <div>
               <strong>${escapeHtml(t(`ladder.steps.${step.key}`))}</strong>
@@ -405,6 +420,110 @@
     function paintMatchLabel(match) {
       const manufacturer = match.manufacturer ? ` (${match.manufacturer})` : "";
       return `${match.name}${manufacturer} ${match.hex}`;
+    }
+
+    function createPaintTooltip() {
+      const tooltip = document.createElement("div");
+      tooltip.className = "paint-tooltip";
+      tooltip.setAttribute("role", "tooltip");
+      tooltip.setAttribute("aria-hidden", "true");
+      document.body.appendChild(tooltip);
+      return tooltip;
+    }
+
+    function handlePaintHoverStart(event) {
+      const target = event.target.closest("[data-color-hex]");
+      if (!target) {
+        return;
+      }
+      if (activeHoverTarget === target) {
+        return;
+      }
+      hidePaintTooltip();
+      activeHoverTarget = target;
+      hoverTimer = setTimeout(() => {
+        showPaintTooltip(target);
+      }, 550);
+    }
+
+    function handlePaintHoverEnd(event) {
+      const target = event.target.closest("[data-color-hex]");
+      if (!target) {
+        return;
+      }
+      if (event.relatedTarget && target.contains(event.relatedTarget)) {
+        return;
+      }
+      if (target === activeHoverTarget) {
+        hidePaintTooltip();
+      }
+    }
+
+    function showPaintTooltip(target) {
+      if (target !== activeHoverTarget) {
+        return;
+      }
+      const hex = target.dataset.colorHex;
+      const colorName = target.dataset.colorName || hex;
+      const matches = cataloguePaints.length ? W.findClosestPaints(hex, cataloguePaints, 3) : [];
+      const matchRows = matches.length
+        ? matches.map(match => {
+          const meta = [paintMatchMeta(match), t("citadel.distance", { distance: match.distance })]
+            .filter(Boolean)
+            .join(" - ");
+          return `
+            <div class="paint-tooltip-row">
+              <span class="match-chip" style="background:${escapeHtml(match.hex)}"></span>
+              <div>
+                <div class="paint-tooltip-name">${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code></div>
+                <div class="meta">${escapeHtml(meta)}</div>
+              </div>
+            </div>
+          `;
+        }).join("")
+        : `<p class="notes">${escapeHtml(t("citadel.missing"))}</p>`;
+
+      el.paintTooltip.innerHTML = `
+        <div class="paint-tooltip-head">
+          <span class="paint-tooltip-swatch" style="background:${escapeHtml(hex)}"></span>
+          <div>
+            <div class="paint-tooltip-title">${escapeHtml(colorName)}</div>
+            <code>${escapeHtml(hex)}</code>
+          </div>
+        </div>
+        <div class="paint-tooltip-subtitle">${escapeHtml(t("citadel.closest"))}</div>
+        <div class="paint-tooltip-list">${matchRows}</div>
+      `;
+      el.paintTooltip.classList.add("is-visible");
+      el.paintTooltip.setAttribute("aria-hidden", "false");
+      positionPaintTooltip(target);
+    }
+
+    function positionPaintTooltip(target) {
+      const rect = target.getBoundingClientRect();
+      const gap = 12;
+      const margin = 12;
+      const tooltipRect = el.paintTooltip.getBoundingClientRect();
+      const maxLeft = window.innerWidth - tooltipRect.width - margin;
+      let left = rect.left + rect.width / 2 - tooltipRect.width / 2;
+      let top = rect.bottom + gap;
+
+      left = W.clamp(left, margin, Math.max(margin, maxLeft));
+      if (top + tooltipRect.height > window.innerHeight - margin) {
+        top = rect.top - tooltipRect.height - gap;
+      }
+      top = Math.max(margin, top);
+
+      el.paintTooltip.style.left = `${left}px`;
+      el.paintTooltip.style.top = `${top}px`;
+    }
+
+    function hidePaintTooltip() {
+      clearTimeout(hoverTimer);
+      hoverTimer = null;
+      activeHoverTarget = null;
+      el.paintTooltip.classList.remove("is-visible");
+      el.paintTooltip.setAttribute("aria-hidden", "true");
     }
 
     function resolveRoleColor(ref) {
