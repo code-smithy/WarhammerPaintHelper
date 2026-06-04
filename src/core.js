@@ -20,6 +20,15 @@
     tetradic: {
       colors: [[0, 0, 0, "primary"], [90, 0, 8, "secondary"], [180, 0, -8, "contrast"], [270, 8, 14, "accent"]]
     },
+    limitedPalette: {
+      colors: [[0, 0, 0, "primary"], [35, -10, 8, "secondary"], [180, -6, 4, "accent"]]
+    },
+    highContrast: {
+      colors: [[0, 0, 0, "primary"], [0, -10, -34, "deepShadow"], [0, -18, 34, "edgeHighlight"], [180, 16, 10, "strongAccent"]]
+    },
+    lowContrast: {
+      colors: [[0, 0, 0, "primary"], [-18, -24, -8, "shadow"], [18, -26, 8, "dustyLayer"], [45, -32, 4, "dirtyAccent"]]
+    },
     analogous: {
       colors: [[0, 0, 0, "primary"], [-35, -4, -10, "shadow"], [35, -4, 12, "highlight"]]
     },
@@ -41,8 +50,44 @@
     warmCool: {
       colors: [[0, 0, 0, "primary"], [22, -2, 12, "warmLayer"], [190, -5, -5, "coolCounter"], [215, -10, 10, "coolAccent"]]
     },
+    boxArt: {
+      colors: [[0, 0, 0, "armor"], [0, -18, -28, "panelShade"], [40, -6, 14, "companyMarking"], [180, 16, 10, "lensAccent"]]
+    },
+    eavyMetal: {
+      colors: [[0, 0, 0, "basecoat"], [0, -8, -30, "deepShadow"], [0, -12, 36, "edgeHighlight"], [180, 18, 12, "strongAccent"]]
+    },
     grimdark: {
       colors: [[0, 0, 0, "primary"], [0, -32, -22, "darkBase"], [35, -25, 10, "dustyLayer"], [180, -28, 0, "dirtyAccent"]]
+    },
+    blanchitsu: {
+      colors: [[0, -26, -6, "primary"], [28, -38, 8, "dustyLayer"], [0, -42, -26, "darkBase"], [180, -34, -2, "dirtyAccent"]]
+    },
+    comicBook: {
+      colors: [[0, 14, 0, "primary"], [0, -2, -34, "deepShadow"], [0, 8, 32, "edgeHighlight"], [120, 14, 10, "accent"]]
+    },
+    military: {
+      colors: [[0, -42, -4, "primary"], [32, -48, 10, "dustyLayer"], [-28, -48, -12, "shadow"], [180, -56, -6, "dirtyAccent"]]
+    },
+    paradeReady: {
+      colors: [[0, 0, 0, "primary"], [30, -6, 10, "secondary"], [0, -8, 24, "edgeHighlight"], [180, 8, 8, "accent"]]
+    },
+    battleReady: {
+      colors: [[0, -8, -2, "primary"], [0, -18, -20, "shadow"], [35, -18, 8, "secondary"]]
+    },
+    display: {
+      colors: [[0, 0, 0, "primary"], [0, -4, -36, "deepShadow"], [0, -8, 38, "edgeHighlight"], [180, 14, 10, "strongAccent"], [35, -4, 12, "highlight"]]
+    },
+    muted: {
+      colors: [[0, -30, -2, "primary"], [-25, -36, -8, "shadow"], [30, -34, 10, "dustyLayer"], [180, -40, 0, "dirtyAccent"]]
+    },
+    saturated: {
+      colors: [[0, 18, 0, "primary"], [120, 16, 8, "secondary"], [240, 18, -4, "accent"], [180, 18, 10, "strongAccent"]]
+    },
+    pastel: {
+      colors: [[0, -30, 26, "primary"], [35, -34, 24, "secondary"], [180, -26, 28, "accent"], [-35, -36, 20, "highlight"]]
+    },
+    neon: {
+      colors: [[0, 20, 8, "primary"], [180, 24, 18, "strongAccent"], [120, 22, 14, "accent"], [0, -10, -30, "darkBase"]]
     },
     realm: {
       colors: [[0, 0, 0, "primary"], [42, -8, 16, "realmGlow"], [180, 12, 8, "realmAccent"], [-35, -14, -16, "realmShadow"]]
@@ -198,7 +243,7 @@
 
   const SYSTEMS = {
     aos: {
-      schemeKeys: ["complementary", "split", "triadic", "tetradic", "analogous", "analogousWide", "monochrome", "zenithal", "accented", "compound", "warmCool", "grimdark", "realm"],
+      schemeKeys: ["monochrome", "analogous", "complementary", "split", "triadic", "tetradic", "limitedPalette", "highContrast", "lowContrast", "analogousWide", "zenithal", "accented", "compound", "warmCool", "boxArt", "eavyMetal", "grimdark", "blanchitsu", "comicBook", "military", "paradeReady", "battleReady", "display", "muted", "saturated", "pastel", "neon", "realm"],
       roleProfileKeys: ["balanced", "stormcast", "death", "destruction", "chaos", "wizard", "beast"],
       baseThemeKeys: ["auto", "city", "ruins", "graveyard", "forest", "swamp", "desert", "snow", "volcanic", "arcane", "ghur", "coastal"],
       profileBaseKeys: {
@@ -212,7 +257,7 @@
       }
     },
     k40: {
-      schemeKeys: ["chapter", "complementary", "split", "triadic", "tetradic", "analogous", "monochrome", "zenithal", "accented", "warmCool", "grimdark"],
+      schemeKeys: ["chapter", "monochrome", "analogous", "complementary", "split", "triadic", "tetradic", "limitedPalette", "highContrast", "lowContrast", "zenithal", "accented", "warmCool", "boxArt", "eavyMetal", "grimdark", "blanchitsu", "comicBook", "military", "paradeReady", "battleReady", "display", "muted", "saturated", "pastel", "neon"],
       roleProfileKeys: ["balanced", "spaceMarines", "guard", "chaosMarines", "xenos", "tyranids", "vehicle"],
       baseThemeKeys: ["auto", "urban", "ashWaste", "hive", "jungle", "desert", "snow", "volcanic", "alien", "shipDeck"],
       profileBaseKeys: {

@@ -32,6 +32,40 @@ test("builds every configured system scheme without invalid colors", () => {
   }
 });
 
+test("exposes common colour theory and Warhammer hobby scheme names", () => {
+  const requestedSchemes = [
+    "monochrome",
+    "analogous",
+    "complementary",
+    "split",
+    "triadic",
+    "tetradic",
+    "limitedPalette",
+    "highContrast",
+    "lowContrast",
+    "boxArt",
+    "eavyMetal",
+    "grimdark",
+    "blanchitsu",
+    "comicBook",
+    "military",
+    "paradeReady",
+    "battleReady",
+    "display",
+    "muted",
+    "saturated",
+    "pastel",
+    "neon"
+  ];
+
+  for (const systemKey of Object.keys(core.SYSTEMS)) {
+    const schemeKeys = core.getSchemeKeysForSystem(systemKey);
+    requestedSchemes.forEach(schemeKey => {
+      assert.ok(schemeKeys.includes(schemeKey), `${systemKey} should include ${schemeKey}`);
+    });
+  }
+});
+
 test("has role profiles and base suggestions for both supported game systems", () => {
   const state = { h: 220, s: 70, l: 46, style: -75 };
   const palette = core.buildPalette(state, "complementary");

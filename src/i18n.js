@@ -119,6 +119,21 @@
           desc: "Four colors in two complementary pairs. Powerful, but it needs clear color hierarchy.",
           note: "Use the extra colors for accents, base details, weapons, shields, banners, or squad markings."
         },
+        limitedPalette: {
+          title: "Limited palette",
+          desc: "A deliberately small set of 3 to 5 main paints for cohesive armies and faster decisions.",
+          note: "Repeat the same few colors across surfaces, materials, and bases so the model reads as one controlled scheme."
+        },
+        highContrast: {
+          title: "High-contrast scheme",
+          desc: "Strong separation between darks and lights for display painting and tabletop readability.",
+          note: "Push shadows deep and highlights bright, then keep the strongest accent near the face, weapon, magic, or lenses."
+        },
+        lowContrast: {
+          title: "Low-contrast scheme",
+          desc: "Muted, subtle differences for gritty, realistic, weathered, or stealthy models.",
+          note: "Keep transitions close together and let texture, grime, chips, and material contrast do more of the work."
+        },
         analogous: {
           title: "Analogous",
           desc: "Neighboring colors for a harmonious, organic, less aggressive scheme.",
@@ -154,10 +169,70 @@
           desc: "Warm and cool areas for high readability at tabletop distance.",
           note: "Separate warm and cool zones clearly, for example a warm robe against cold armor."
         },
+        boxArt: {
+          title: "Box art scheme",
+          desc: "A clean studio-style palette inspired by official Games Workshop presentation schemes.",
+          note: "Use crisp shadows, readable armour or cloth panels, a clear marking color, and a bright focal accent."
+        },
+        eavyMetal: {
+          title: "'Eavy Metal style",
+          desc: "Crisp, clean, high-contrast edge highlights close to the classic GW studio look.",
+          note: "Keep blends tidy, panel lines dark, and edge highlights sharp, especially around faces, armour plates, and weapons."
+        },
         grimdark: {
           title: "Muted / grimdark",
           desc: "Desaturated, darker variants with a controlled accent for dirty or realistic models.",
           note: "Washes, sponge chipping, pigments, and selective bright edges will matter more than large saturated areas."
+        },
+        blanchitsu: {
+          title: "Blanchitsu",
+          desc: "Weird, muted, sepia, gothic, painterly, and dirty, inspired by John Blanche's Warhammer art mood.",
+          note: "Use dusty layers, stained shadows, restrained accents, freehand marks, weathering, and odd material contrasts."
+        },
+        comicBook: {
+          title: "Comic-book style",
+          desc: "Saturated colors, strong lining, and sharp contrast for a graphic illustrated miniature look.",
+          note: "Separate shapes with dark lining, push highlights boldly, and keep the accent clean enough to read from distance."
+        },
+        military: {
+          title: "Realistic military scheme",
+          desc: "Khaki, olive, tan, grey, drab greens, weathering, and restrained saturation.",
+          note: "Use muted surfaces, practical markings, dust, scratches, soot, and metals that look functional rather than decorative."
+        },
+        paradeReady: {
+          title: "Parade-ready scheme",
+          desc: "Clean, readable, polished army-painting standard with tidy highlights and clear colour placement.",
+          note: "Keep surfaces neat, highlights consistent, and accents strong enough to identify units without becoming noisy."
+        },
+        battleReady: {
+          title: "Battle-ready scheme",
+          desc: "Simple tabletop standard: base colours, shade, and a small number of practical highlights.",
+          note: "Prioritize blocked-in colour, controlled shade, clean bases, and one or two readable accents."
+        },
+        display: {
+          title: "Display scheme",
+          desc: "Advanced contrast and composition with refined shadows, highlights, and focal colour choices.",
+          note: "Plan the brightest lights and strongest accents around the face, weapon, or story point of the miniature."
+        },
+        muted: {
+          title: "Muted scheme",
+          desc: "Desaturated colours for realistic, weathered, historical, or grimdark-inspired painting.",
+          note: "Let surface texture and weathering carry interest while keeping chroma controlled across the whole model."
+        },
+        saturated: {
+          title: "Saturated scheme",
+          desc: "Bright, punchy colours with high visual impact for bold armies and heroic centrepieces.",
+          note: "Balance the intensity by limiting where the brightest colors appear and keeping shadows readable."
+        },
+        pastel: {
+          title: "Pastel scheme",
+          desc: "Soft, pale colours for unusual, stylised, magical, ghostly, or elegant armies.",
+          note: "Use gentle shadows and clean edges so the pale colors stay deliberate rather than unfinished."
+        },
+        neon: {
+          title: "Neon scheme",
+          desc: "Very bright accents for plasma, lenses, magic, cyberpunk effects, and supernatural glow.",
+          note: "Keep the neon areas small and surround them with darker values so the glow feels intense."
         },
         realm: {
           title: "AoS realm contrast",
@@ -471,6 +546,9 @@
         split: { title: "Split-Komplementär", desc: "Kontrastreich, aber leichter kontrollierbar als ein reines Komplementärpaar.", note: "Halte die Hauptfarbe dominant. Die Split-Akzente trennen Stoff, Banner, Markierungen oder Magieeffekte." },
         triadic: { title: "Triadisch", desc: "Drei gleichmäßig verteilte Farben für Helden, Banner, Trupps und Fraktionsidentität.", note: "Eine Farbe führt, die zweite trägt Nebenflächen, die dritte bleibt Detail." },
         tetradic: { title: "Tetradisch", desc: "Vier Farben in zwei Komplementärpaaren. Stark, aber es braucht klare Hierarchie.", note: "Nutze zusätzliche Farben für Akzente, Bases, Waffen, Schilde, Banner oder Truppmarkierungen." },
+        limitedPalette: { title: "Begrenzte Palette", desc: "Eine bewusst kleine Auswahl von 3 bis 5 Hauptfarben für stimmige Armeen und schnelle Entscheidungen.", note: "Wiederhole dieselben wenigen Farben auf Flächen, Materialien und Bases, damit das Modell kontrolliert wirkt." },
+        highContrast: { title: "Kontrastreiches Schema", desc: "Starke Trennung zwischen Dunkel und Hell für Display-Malerei und Lesbarkeit auf dem Tisch.", note: "Schatten tief und Highlights hell setzen; der stärkste Akzent gehört nahe Gesicht, Waffe, Magie oder Linsen." },
+        lowContrast: { title: "Kontrastarmes Schema", desc: "Gedämpfte, subtile Unterschiede für grittige, realistische, verwitterte oder getarnte Modelle.", note: "Halte Übergänge eng beieinander und lass Textur, Schmutz, Abplatzer und Materialkontrast arbeiten." },
         analogous: { title: "Analog", desc: "Benachbarte Farben für ein harmonisches, organisches und weniger aggressives Schema.", note: "Sehr gut für Monster, Roben, Geister, Waldthemen, Haut, Schuppen und natürliche Armeen." },
         analogousWide: { title: "Breit analog", desc: "Fünf verwandte Farbtöne für weiche Übergänge, Monsterhaut, Stofflagen und große Flächen.", note: "Die äußeren Töne funktionieren gut als Lasur, Schatten oder leichte Kantenvariation." },
         monochrome: { title: "Monochromatisch", desc: "Eine Farbe in mehreren Helligkeiten für saubere Regimenter, Grimdark-Rüstung oder disziplinierte Trupps.", note: "Dunkel als Shade, Hauptfarbe als Basecoat, helle Varianten als Layer und Kantenhighlight." },
@@ -478,7 +556,19 @@
         accented: { title: "Analog mit Akzent", desc: "Ruhige Grundpalette mit starkem Gegenakzent für Linsen, Runen, Plasma oder Heraldik.", note: "Analoge Farben tragen den Körper. Der Gegenakzent bleibt klein und hell." },
         compound: { title: "Compound / Double Split", desc: "Hauptfarbe, Nachbarfarbe und zwei Gegenakzente. Gut für komplexe Helden.", note: "Funktioniert bei Charaktermodellen mit vielen Materialien. Hauptfarbe dominant halten." },
         warmCool: { title: "Warm-Kalt-Kontrast", desc: "Warme und kalte Bereiche für hohe Lesbarkeit auf Spieltischdistanz.", note: "Trenne warme und kalte Zonen klar, etwa warme Robe gegen kalte Rüstung." },
+        boxArt: { title: "Box-Art-Schema", desc: "Saubere Studio-Palette, inspiriert von offiziellen Games-Workshop-Präsentationsschemen.", note: "Nutze klare Schatten, lesbare Rüstungs- oder Stoffflächen, eine Markierungsfarbe und einen hellen Fokusakzent." },
+        eavyMetal: { title: "'Eavy-Metal-Stil", desc: "Saubere, kontrastreiche Kantenhighlights nahe am klassischen GW-Studiolook.", note: "Blends sauber halten, Panel-Linien dunkel setzen und Kanten an Gesicht, Rüstung und Waffen scharf highlighten." },
         grimdark: { title: "Gedämpft / Grimdark", desc: "Entsättigte, dunklere Varianten mit kontrolliertem Akzent für schmutzige oder realistischere Modelle.", note: "Washes, Schwamm-Chipping, Pigmente und selektive helle Kanten zählen mehr als große gesättigte Flächen." },
+        blanchitsu: { title: "Blanchitsu", desc: "Seltsam, gedämpft, sepia, gotisch, malerisch und schmutzig, inspiriert von John Blanches Warhammer-Stimmung.", note: "Nutze staubige Layer, fleckige Schatten, sparsame Akzente, Freehands, Weathering und eigenartige Materialkontraste." },
+        comicBook: { title: "Comicbuch-Stil", desc: "Gesättigte Farben, starkes Lining und scharfer Kontrast für einen grafischen Illustrationslook.", note: "Trenne Formen mit dunklen Linien, setze Highlights mutig und halte den Akzent auf Distanz gut lesbar." },
+        military: { title: "Realistisches Militärschema", desc: "Khaki, Oliv, Tan, Grau, matte Grüntöne, Weathering und zurückhaltende Sättigung.", note: "Nutze gedämpfte Flächen, praktische Markierungen, Staub, Kratzer, Ruß und funktionale Metalle." },
+        paradeReady: { title: "Parade-ready", desc: "Sauberer, lesbarer und polierter Armeestandard mit ordentlichen Highlights und klarer Farbplatzierung.", note: "Flächen sauber halten, Highlights konsistent setzen und Akzente stark, aber nicht laut verwenden." },
+        battleReady: { title: "Battle-ready", desc: "Einfacher Tabletop-Standard: Grundfarben, Shade und wenige praktische Highlights.", note: "Priorisiere blockierte Farben, kontrollierte Shades, saubere Bases und ein bis zwei lesbare Akzente." },
+        display: { title: "Display-Schema", desc: "Fortgeschrittener Kontrast und Komposition mit verfeinerten Schatten, Highlights und Fokusfarben.", note: "Plane die hellsten Lichter und stärksten Akzente um Gesicht, Waffe oder erzählerischen Mittelpunkt." },
+        muted: { title: "Gedämpftes Schema", desc: "Entsättigte Farben für realistische, verwitterte, historische oder grimdark-inspirierte Bemalung.", note: "Lass Oberflächentextur und Weathering interessant wirken, während die Farbstärke kontrolliert bleibt." },
+        saturated: { title: "Gesättigtes Schema", desc: "Helle, kräftige Farben mit hoher Wirkung für mutige Armeen und heroische Mittelpunktmodelle.", note: "Begrenze die intensivsten Farben und halte die Schatten lesbar, damit die Palette nicht kippt." },
+        pastel: { title: "Pastellschema", desc: "Weiche, helle Farben für ungewöhnliche, stilisierte, magische, geisterhafte oder elegante Armeen.", note: "Nutze sanfte Schatten und saubere Kanten, damit die blassen Farben bewusst statt unfertig wirken." },
+        neon: { title: "Neonschema", desc: "Sehr helle Akzente für Plasma, Linsen, Magie, Cyberpunk-Effekte und übernatürliches Leuchten.", note: "Halte Neonflächen klein und umgib sie mit dunkleren Werten, damit das Leuchten intensiv wirkt." },
         realm: { title: "AoS-Realm-Kontrast", desc: "Hauptfarbe plus Realm-Glow, übernatürlicher Akzent und geerdeter Schatten.", note: "Für Age-of-Sigmar-Armeen, die Realm-Stimmung brauchen, ohne die Hauptlesbarkeit zu verlieren." },
         chapter: { title: "40K-Chapter / Truppschema", desc: "Rüstungsfarbe, Panel-Schatten, Kompaniemarkierung und Linsen- oder Plasmaakzent.", note: "Für 40K-Rüstungspanel, Helme, Schulterpanzer, Waffen und Truppkennzeichen." }
       },
@@ -567,6 +657,9 @@
         split: { title: "Complémentaire divisée", desc: "Riche en contraste, mais plus facile à contrôler qu'un couple complémentaire pur.", note: "Garde la couleur principale dominante. Les deux accents séparent tissus, bannières, marquages ou magie." },
         triadic: { title: "Triadique", desc: "Trois couleurs espacées pour héros, bannières, escouades et identité de faction.", note: "Une couleur dirige, la deuxième sert les surfaces secondaires, la troisième reste en détail." },
         tetradic: { title: "Tétradique", desc: "Quatre couleurs en deux paires complémentaires. Puissant, mais demande une hiérarchie claire.", note: "Utilise les couleurs en plus pour accents, socles, armes, boucliers, bannières ou marquages." },
+        limitedPalette: { title: "Palette limitée", desc: "Un petit ensemble volontaire de 3 à 5 peintures principales pour des armées cohérentes.", note: "Répète les mêmes quelques couleurs sur surfaces, matériaux et socles pour garder un schéma contrôlé." },
+        highContrast: { title: "Schéma très contrasté", desc: "Forte séparation entre ombres et lumières pour la lisibilité et la peinture d'exposition.", note: "Pousse les ombres et les lumières, puis garde l'accent le plus fort près du visage, de l'arme, de la magie ou des lentilles." },
+        lowContrast: { title: "Schéma peu contrasté", desc: "Différences subtiles et atténuées pour modèles réalistes, usés, furtifs ou gritty.", note: "Garde les transitions proches et laisse texture, saleté, éclats et contraste de matériaux faire le travail." },
         analogous: { title: "Analogue", desc: "Couleurs voisines pour un schéma harmonieux, organique et moins agressif.", note: "Excellent pour monstres, robes, esprits, thèmes forestiers, peau, écailles et armées naturelles." },
         analogousWide: { title: "Analogue large", desc: "Cinq teintes liées pour transitions douces, peau de monstre, tissus et grandes surfaces.", note: "Les teintes extérieures fonctionnent comme glacis, ombres ou variations de bord." },
         monochrome: { title: "Monochrome", desc: "Une teinte en plusieurs valeurs pour régiments propres, armures grimdark ou escouades disciplinées.", note: "Foncé comme shade, couleur principale comme basecoat, variantes claires comme layers et edge highlights." },
@@ -574,7 +667,19 @@
         accented: { title: "Analogue avec accent", desc: "Palette calme avec accent opposé fort pour lentilles, runes, plasma ou héraldique.", note: "Les couleurs analogues portent le corps. L'accent opposé reste petit et lumineux." },
         compound: { title: "Compound / double split", desc: "Couleur principale, voisine et deux accents opposés. Bon pour héros complexes.", note: "Fonctionne sur les personnages avec beaucoup de matériaux. Garde la principale dominante." },
         warmCool: { title: "Contraste chaud-froid", desc: "Zones chaudes et froides pour une bonne lisibilité à distance de jeu.", note: "Sépare clairement les zones, par exemple robe chaude contre armure froide." },
+        boxArt: { title: "Schéma box art", desc: "Palette de studio propre inspirée des schémas officiels de présentation Games Workshop.", note: "Utilise des ombres nettes, des panneaux lisibles, une couleur de marquage claire et un accent focal lumineux." },
+        eavyMetal: { title: "Style 'Eavy Metal", desc: "Éclaircissements de bord nets, propres et très contrastés, proches du style studio GW classique.", note: "Garde les dégradés propres, les lignes de panneau sombres et les arêtes bien marquées autour du visage, de l'armure et des armes." },
         grimdark: { title: "Atténué / grimdark", desc: "Variantes plus sombres et désaturées avec accent contrôlé pour modèles sales ou réalistes.", note: "Washes, chipping à l'éponge, pigments et bords clairs sélectifs comptent plus que de grandes zones saturées." },
+        blanchitsu: { title: "Blanchitsu", desc: "Étrange, atténué, sépia, gothique, pictural et sale, inspiré par l'ambiance Warhammer de John Blanche.", note: "Utilise couches poussiéreuses, ombres tachées, accents retenus, freehands, weathering et contrastes de matériaux étranges." },
+        comicBook: { title: "Style bande dessinée", desc: "Couleurs saturées, lining fort et contraste net pour un rendu graphique illustré.", note: "Sépare les formes avec des lignes sombres, pousse les highlights et garde l'accent lisible à distance." },
+        military: { title: "Schéma militaire réaliste", desc: "Kaki, olive, tan, gris, verts ternes, weathering et saturation retenue.", note: "Utilise surfaces atténuées, marquages pratiques, poussière, rayures, suie et métaux fonctionnels." },
+        paradeReady: { title: "Parade-ready", desc: "Standard d'armée propre, lisible et poli avec highlights ordonnés et placement clair.", note: "Garde les surfaces propres, les highlights cohérents et les accents assez forts sans devenir bruyants." },
+        battleReady: { title: "Battle-ready", desc: "Standard tabletop simple : couleurs de base, shade et quelques highlights pratiques.", note: "Priorise couleurs posées, shade contrôlé, socles propres et un ou deux accents lisibles." },
+        display: { title: "Schéma display", desc: "Contraste et composition avancés avec ombres, lumières et choix de focalisation raffinés.", note: "Planifie les lumières les plus fortes et les accents autour du visage, de l'arme ou du point narratif." },
+        muted: { title: "Schéma atténué", desc: "Couleurs désaturées pour peinture réaliste, usée, historique ou inspirée grimdark.", note: "Laisse texture et weathering porter l'intérêt tout en gardant la chroma contrôlée." },
+        saturated: { title: "Schéma saturé", desc: "Couleurs vives et percutantes pour armées audacieuses et pièces héroïques.", note: "Limite les couleurs les plus intenses et garde les ombres lisibles pour équilibrer l'impact." },
+        pastel: { title: "Schéma pastel", desc: "Couleurs douces et pâles pour armées inhabituelles, stylisées, magiques, spectrales ou élégantes.", note: "Utilise ombres douces et arêtes propres pour que les couleurs pâles semblent volontaires." },
+        neon: { title: "Schéma néon", desc: "Accents très brillants pour plasma, lentilles, magie, cyberpunk et lueurs surnaturelles.", note: "Garde les zones néon petites et entoure-les de valeurs sombres pour intensifier la lueur." },
         realm: { title: "Contraste de royaume AoS", desc: "Couleur principale plus lueur de royaume, accent surnaturel et ombre ancrée.", note: "Pour armées AoS qui veulent une ambiance de royaume sans perdre la lecture principale." },
         chapter: { title: "Chapitre / escouade 40K", desc: "Couleur d'armure, ombre de panneau, marquage de compagnie et accent lentille ou plasma.", note: "Pour panneaux d'armure 40K, casques, épaulières, armes et identifiants d'escouade." }
       },
@@ -663,6 +768,9 @@
         split: { title: "Complementario dividido", desc: "Rico en contraste, pero más fácil de controlar que una pareja complementaria pura.", note: "Mantén dominante el color principal. Los dos acentos divididos pueden separar telas, estandartes, marcas de escuadra o efectos mágicos." },
         triadic: { title: "Triádico", desc: "Tres colores espaciados uniformemente para héroes, estandartes, escuadras e identidad de facción.", note: "Deja que un color lidere, usa el segundo para superficies secundarias más grandes y reserva el tercero para detalles." },
         tetradic: { title: "Tetrádico", desc: "Cuatro colores en dos parejas complementarias. Potente, pero necesita una jerarquía clara.", note: "Usa los colores extra para acentos, detalles de peana, armas, escudos, estandartes o marcas de escuadra." },
+        limitedPalette: { title: "Paleta limitada", desc: "Un conjunto deliberadamente pequeño de 3 a 5 pinturas principales para ejércitos coherentes.", note: "Repite los mismos pocos colores en superficies, materiales y peanas para que el esquema se vea controlado." },
+        highContrast: { title: "Esquema de alto contraste", desc: "Separación fuerte entre luces y sombras para display y legibilidad en mesa.", note: "Empuja sombras profundas y luces brillantes, y reserva el acento más fuerte para cara, arma, magia o lentes." },
+        lowContrast: { title: "Esquema de bajo contraste", desc: "Diferencias sutiles y apagadas para modelos realistas, desgastados, furtivos o gritty.", note: "Mantén transiciones cercanas y deja que textura, mugre, desconchones y materiales hagan más trabajo." },
         analogous: { title: "Análogo", desc: "Colores vecinos para un esquema armonioso, orgánico y menos agresivo.", note: "Excelente para monstruos, túnicas, espíritus, temas forestales, piel, escamas y ejércitos naturalistas." },
         analogousWide: { title: "Análogo amplio", desc: "Cinco tonos relacionados para transiciones suaves, piel de monstruo, capas de tela y superficies grandes.", note: "Los tonos exteriores funcionan bien como veladuras, sombras o variación sutil de bordes." },
         monochrome: { title: "Monocromático", desc: "Un tono en varios valores para regimientos limpios, armaduras grimdark o escuadras disciplinadas.", note: "Usa la variante oscura como sombra, el color principal como capa base y las variantes claras como capas y luces de borde." },
@@ -670,7 +778,19 @@
         accented: { title: "Análogo con acento", desc: "Una paleta base tranquila con un acento opuesto fuerte para lentes, runas, plasma o heráldica.", note: "Los colores análogos llevan el cuerpo. Mantén el acento opuesto pequeño y brillante." },
         compound: { title: "Compuesto / doble dividido", desc: "Color principal, un vecino y dos acentos opuestos. Bueno para héroes complejos.", note: "Funciona en personajes con muchos materiales. Mantén dominante el color principal." },
         warmCool: { title: "Contraste cálido-frío", desc: "Zonas cálidas y frías para alta legibilidad a distancia de mesa.", note: "Separa claramente las zonas cálidas y frías, por ejemplo una túnica cálida contra una armadura fría." },
+        boxArt: { title: "Esquema box art", desc: "Paleta limpia de estudio inspirada en los esquemas oficiales de presentación de Games Workshop.", note: "Usa sombras nítidas, paneles legibles, un color claro de marca y un acento focal brillante." },
+        eavyMetal: { title: "Estilo 'Eavy Metal", desc: "Luces de borde limpias, nítidas y de alto contraste, cercanas al estilo clásico de estudio GW.", note: "Mantén degradados limpios, líneas de panel oscuras y bordes afilados en caras, armaduras y armas." },
         grimdark: { title: "Apagado / grimdark", desc: "Variantes más oscuras y desaturadas con un acento controlado para modelos sucios o realistas.", note: "Los lavados, desconchones con esponja, pigmentos y bordes brillantes selectivos importan más que grandes áreas saturadas." },
+        blanchitsu: { title: "Blanchitsu", desc: "Extraño, apagado, sepia, gótico, pictórico y sucio, inspirado por el ambiente Warhammer de John Blanche.", note: "Usa capas polvorientas, sombras manchadas, acentos contenidos, freehands, weathering y contrastes raros de material." },
+        comicBook: { title: "Estilo cómic", desc: "Colores saturados, blacklining fuerte y contraste nítido para un aspecto gráfico ilustrado.", note: "Separa formas con líneas oscuras, empuja las luces y mantén el acento legible a distancia." },
+        military: { title: "Esquema militar realista", desc: "Caqui, oliva, tan, gris, verdes apagados, weathering y saturación contenida.", note: "Usa superficies apagadas, marcas prácticas, polvo, arañazos, hollín y metales funcionales." },
+        paradeReady: { title: "Parade-ready", desc: "Estándar de ejército limpio, legible y pulido con luces ordenadas y color claro.", note: "Mantén superficies limpias, luces consistentes y acentos fuertes sin volverlos ruidosos." },
+        battleReady: { title: "Battle-ready", desc: "Estándar sencillo de mesa: colores base, sombra y quizá algunas luces prácticas.", note: "Prioriza color bloqueado, sombras controladas, peanas limpias y uno o dos acentos legibles." },
+        display: { title: "Esquema display", desc: "Contraste y composición avanzados con sombras, luces y colores focales refinados.", note: "Planifica las luces más fuertes y los acentos alrededor de la cara, arma o punto narrativo." },
+        muted: { title: "Esquema apagado", desc: "Colores desaturados para pintura realista, desgastada, histórica o inspirada en grimdark.", note: "Deja que textura y weathering aporten interés mientras mantienes la saturación controlada." },
+        saturated: { title: "Esquema saturado", desc: "Colores brillantes e impactantes para ejércitos atrevidos y miniaturas heroicas.", note: "Limita los colores más intensos y conserva sombras legibles para equilibrar el impacto." },
+        pastel: { title: "Esquema pastel", desc: "Colores suaves y pálidos para ejércitos inusuales, estilizados, mágicos, espectrales o elegantes.", note: "Usa sombras suaves y bordes limpios para que los colores pálidos parezcan intencionales." },
+        neon: { title: "Esquema neón", desc: "Acentos muy brillantes para plasma, lentes, magia, cyberpunk y brillos sobrenaturales.", note: "Mantén pequeñas las zonas neón y rodéalas de valores oscuros para intensificar el brillo." },
         realm: { title: "Contraste de reino AoS", desc: "Color principal más brillo de reino, acento sobrenatural y una sombra asentada.", note: "Creado para ejércitos de Age of Sigmar que necesitan ambiente de reino sin perder la lectura principal de la miniatura." },
         chapter: { title: "Capítulo 40K / esquema de escuadra", desc: "Color de armadura, sombra de panel, marca de compañía y acento de lentes o plasma.", note: "Diseñado para paneles de armadura 40K, cascos, hombreras, carcasas de armas e identificadores de escuadra." }
       },
