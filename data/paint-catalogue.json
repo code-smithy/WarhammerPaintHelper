@@ -3856,7 +3856,12 @@
         "https://www.goldengoblingames.com/citadel-vallejo-and-warpaints-fanatic-equivalence-charts",
         "https://bolterandchainsword.com/topic/384071-warpaints-fanatic-colour-conversion-chart-from-the-army-painter/",
         "https://painthoarder.com/brands/army-painter/lines/warpaints-primer",
-        "https://painthoarder.com/brands/army-painter/lines/warpaints-primer?page=2"
+        "https://painthoarder.com/brands/army-painter/lines/warpaints-primer?page=2",
+        "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+        "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+        "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+        "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+        "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
       ],
       "colors": [
         {
@@ -3869,9 +3874,19 @@
         {
           "name": "Absolution Green",
           "hex": "#22311F",
-          "finish": "contrast",
+          "finish": "speedpaint",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/army-painter"
+          "source_url": "https://www.paintatlas.com/brands/army-painter",
+          "collection": "Speedpaint Set 2.0",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#214A28",
+              "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+            }
+          ]
         },
         {
           "name": "Abyssal Black",
@@ -3918,16 +3933,24 @@
         {
           "name": "Aged Hide",
           "hex": "#D56C4F",
-          "finish": "contrast",
+          "finish": "speedpaint",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/army-painter"
+          "source_url": "https://www.paintatlas.com/brands/army-painter",
+          "collection": "Speedpaint Set 2.0",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
         },
         {
           "name": "Algae Green",
           "hex": "#9CAA53",
-          "finish": "contrast",
+          "finish": "speedpaint",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/army-painter"
+          "source_url": "https://www.paintatlas.com/brands/army-painter",
+          "collection": "Speedpaint Set 2.0",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
         },
         {
           "name": "Alien Purple",
@@ -3960,9 +3983,13 @@
         {
           "name": "Ancient Honey",
           "hex": "#EBBD21",
-          "finish": "contrast",
+          "finish": "speedpaint",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/army-painter"
+          "source_url": "https://www.paintatlas.com/brands/army-painter",
+          "collection": "Speedpaint Set 2.0",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
         },
         {
           "name": "Ancient Mummy",
@@ -4028,21 +4055,34 @@
           "source_url": "https://www.paintatlas.com/brands/army-painter"
         },
         {
-          "name": "Matt Black",
-          "hex": "#000000",
-          "manufacturer_code": "WP1101",
-          "collection": "Warpaints",
-          "finish": "acrylic",
-          "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/paints/army-painter-matt-black"
-        },
-        {
           "name": "Army Green",
           "hex": "#66693A",
           "collection": "Warpaints Primer",
           "finish": "primer",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
+        },
+        {
+          "name": "Ashen Stone",
+          "hex": "#B3B9B9",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Aztec Gold",
+          "hex": "#62732F",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
         },
         {
           "name": "Barbarian Flesh",
@@ -4053,6 +4093,105 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
         },
         {
+          "name": "Battleship Grey",
+          "hex": "#B7C6C9",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Beowulf Blue",
+          "hex": "#0C3F80",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Blinding Light",
+          "hex": "#F5F4EF",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Blood Red",
+          "hex": "#DB3016",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Bony Matter",
+          "hex": "#B69471",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Brazen Copper",
+          "hex": "#6A3D37",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Bright Red",
+          "hex": "#E15A3D",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Broadsword Silver",
+          "hex": "#595854",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Brownish Decay",
+          "hex": "#7B6C33",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
           "name": "Brush-On Primer",
           "hex": "#A0A3A2",
           "collection": "Warpaints Primer",
@@ -4061,12 +4200,100 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
         },
         {
+          "name": "Burnished Red",
+          "hex": "#633B33",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Burnt Moss",
+          "hex": "#4D5A50",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Camo Cloak",
+          "hex": "#5A713B",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Caribbean Ocean",
+          "hex": "#09A6B5",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
+          "name": "Carmine Dragon",
+          "hex": "#DC3058",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=1"
+          ]
+        },
+        {
           "name": "Chaotic Red",
           "hex": "#6C2A31",
           "collection": "Warpaints Primer",
           "finish": "primer",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
+        },
+        {
+          "name": "Charming Chartreuse",
+          "hex": "#C9CF47",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Cloudburst Blue",
+          "hex": "#3C4258",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Crusader Skin",
+          "hex": "#EB9A5B",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
         },
         {
           "name": "Crystal Blue",
@@ -4085,12 +4312,34 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
         },
         {
+          "name": "Dark Wood",
+          "hex": "#482D1A",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
           "name": "Desert Yellow",
           "hex": "#C18C17",
           "collection": "Warpaints Primer",
           "finish": "primer",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
+        },
+        {
+          "name": "Desolate Brown",
+          "hex": "#7A703B",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
         },
         {
           "name": "Dragon Red",
@@ -4101,12 +4350,111 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
         },
         {
+          "name": "Dusk Red",
+          "hex": "#603E3D",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Enchanted Steel",
+          "hex": "#4F595B",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Familiar Pink",
+          "hex": "#D62F7F",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Fire Drake",
+          "hex": "#D2916B",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Fire Giant Orange",
+          "hex": "#E77924",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Forest Sprite",
+          "hex": "#6FA045",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
           "name": "Fur Brown",
           "hex": "#993822",
           "collection": "Warpaints Primer",
           "finish": "primer",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
+        },
+        {
+          "name": "Ghillie Dew",
+          "hex": "#90AC23",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Ghoul Green",
+          "hex": "#44A963",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Glittering Loot",
+          "hex": "#836608",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
         },
         {
           "name": "Goblin Green",
@@ -4117,12 +4465,56 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
         },
         {
+          "name": "Goddess Glow",
+          "hex": "#9A5751",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Golden Armour",
+          "hex": "#714808",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Gravelord Grey",
+          "hex": "#44474C",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
           "name": "Greenskin",
           "hex": "#1B613A",
           "collection": "Warpaints Primer",
           "finish": "primer",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
+        },
+        {
+          "name": "Grim Black",
+          "hex": "#161511",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
         },
         {
           "name": "Gun Metal",
@@ -4133,12 +4525,164 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
         },
         {
+          "name": "Gunner Camo",
+          "hex": "#325141",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Hardened Leather",
+          "hex": "#8C501E",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=2"
+          ]
+        },
+        {
+          "name": "Highlord Blue",
+          "hex": "#1B5682",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Hive Dweller Purple",
+          "hex": "#57366B",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Hoard Bronze",
+          "hex": "#867240",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Holy White",
+          "hex": "#E2E1DC",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Hoplite Gold",
+          "hex": "#907317",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Howling Sand",
+          "hex": "#CECFB0",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
           "name": "Leather Brown",
           "hex": "#713E29",
           "collection": "Warpaints Primer",
           "finish": "primer",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
+        },
+        {
+          "name": "Lizardfolk Cyan",
+          "hex": "#39989C",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Maggot Skin",
+          "hex": "#CBC861",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Magic Blue",
+          "hex": "#0B79AE",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Maize Yellow",
+          "hex": "#F6D31F",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Malignant Green",
+          "hex": "#BECB3D",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Matt Black",
+          "hex": "#000000",
+          "manufacturer_code": "WP1101",
+          "collection": "Warpaints",
+          "finish": "acrylic",
+          "status": "confirmed",
+          "source_url": "https://www.paintatlas.com/paints/army-painter-matt-black"
         },
         {
           "name": "Matt White",
@@ -4149,12 +4693,210 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
         },
         {
+          "name": "Moody Mauve",
+          "hex": "#A14F7D",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Moonlake Coral",
+          "hex": "#A5396D",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Mummified Grime",
+          "hex": "#666748",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Murder Scene",
+          "hex": "#6E2A39",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
           "name": "Necrotic Flesh",
           "hex": "#BCBE8C",
           "collection": "Warpaints Primer",
           "finish": "primer",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer"
+        },
+        {
+          "name": "Noble Skin",
+          "hex": "#4F493D",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Nuclear Sunrise",
+          "hex": "#E56F25",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Occultist Cloak",
+          "hex": "#30323E",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Ochre Clay",
+          "hex": "#B8A936",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Orc Skin",
+          "hex": "#258335",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=3"
+          ]
+        },
+        {
+          "name": "Pallid Bone",
+          "hex": "#E1CC95",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Pastel Indigo",
+          "hex": "#9FBCDA",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Pastel Lavender",
+          "hex": "#D5BFD4",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Pastel Salmon",
+          "hex": "#F3C498",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Pastel Seafoam",
+          "hex": "#B8D7C8",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Pastel Yellow",
+          "hex": "#F6E178",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Peachy Flesh",
+          "hex": "#EDA668",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Periwinkle Purple",
+          "hex": "#585396",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Plasmatic Bolt",
+          "hex": "#0A9B8C",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
         },
         {
           "name": "Plate Mail Metal",
@@ -4165,6 +4907,39 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer?page=2"
         },
         {
+          "name": "Polished Silver",
+          "hex": "#888782",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Poppy Red",
+          "hex": "#C8453B",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Princess Pink",
+          "hex": "#E29FB0",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
           "name": "Pure Red",
           "hex": "#C3231E",
           "collection": "Warpaints Primer",
@@ -4173,12 +4948,188 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer?page=2"
         },
         {
+          "name": "Purple Alchemy",
+          "hex": "#AE3F6A",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Purple Swarm",
+          "hex": "#653483",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Raging Sea",
+          "hex": "#1B95A4",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Rigor Mortis",
+          "hex": "#ADAD6F",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Royal Robes",
+          "hex": "#5363A1",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Ruddy Fur",
+          "hex": "#9D4925",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Runic Grey",
+          "hex": "#557989",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Sand Golem",
+          "hex": "#CB9413",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=4"
+          ]
+        },
+        {
+          "name": "Satchel Brown",
+          "hex": "#583D32",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
+        },
+        {
+          "name": "Shamrock Green",
+          "hex": "#60AB2C",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
+        },
+        {
           "name": "Skeleton Bone",
           "hex": "#D0C59A",
           "collection": "Warpaints Primer",
           "finish": "primer",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer?page=2"
+        },
+        {
+          "name": "Slaughter Red",
+          "hex": "#991926",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
+        },
+        {
+          "name": "Speedpaint Medium",
+          "hex": "#F3F0EB",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
+        },
+        {
+          "name": "Talos Bronze",
+          "hex": "#6B3B27",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
+        },
+        {
+          "name": "Thunderbird Blue",
+          "hex": "#66B797",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
+        },
+        {
+          "name": "Tidal Wave",
+          "hex": "#1278B6",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
+        },
+        {
+          "name": "Tyrian Navy",
+          "hex": "#2A414F",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
         },
         {
           "name": "Ultramarine Blue",
@@ -4197,12 +5148,34 @@
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer?page=2"
         },
         {
+          "name": "Warrior Skin",
+          "hex": "#A37051",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
+        },
+        {
           "name": "Wolf Grey",
           "hex": "#517383",
           "collection": "Warpaints Primer",
           "finish": "primer",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/army-painter/lines/warpaints-primer?page=2"
+        },
+        {
+          "name": "Zealot Yellow",
+          "hex": "#F4D008",
+          "collection": "Speedpaint Set 2.0",
+          "finish": "speedpaint",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5",
+          "source_urls": [
+            "https://painthoarder.com/brands/army-painter/lines/speedpaint-set-2-0?page=5"
+          ]
         }
       ]
     },
