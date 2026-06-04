@@ -33,7 +33,7 @@ It currently supports:
   filters for limiting nearest-paint matches by manufacturer.
 - Paint catalogue matching across manufacturer color groups. The catalogue lives at
   `data/paint-catalogue.json` and uses `manufacturers[].colors[]` entries.
-- Match metadata for manufacturer, collection, range, finish, status, and distance.
+- Match metadata for manufacturer, collection, range, finish, and distance.
 - Hover/focus paint tooltips for generated colors, showing the closest catalogue
   matches without leaving the palette view.
 - A copy button for exporting the generated palette, role plan, base ideas, paint ladder,
@@ -122,7 +122,8 @@ Required fields for matching are `name` and a valid six-digit `hex` value. Manuf
 `hex: null` or an invalid hex value can stay in the catalogue for documentation, but they
 are skipped by nearest-colour matching. Optional fields such as `manufacturer_code`,
 `collection`, `range`, `finish`, `status`, `source_url`, and `notes` are preserved by the
-loader and shown or copied where useful.
+loader. The visible colour match information shows manufacturer, collection, range,
+finish, and distance; catalogue status stays internal.
 
 ## Project Structure
 

@@ -740,8 +740,7 @@
         match.manufacturer,
         match.collection,
         match.range,
-        match.finish,
-        match.status
+        match.finish
       ].filter(Boolean).join(" / ");
     }
 
