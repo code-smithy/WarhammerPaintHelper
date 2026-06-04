@@ -24,6 +24,8 @@
     let currentPalette = [];
     let cataloguePaints = W.DEFAULT_PAINT_CATALOGUE || W.DEFAULT_CITADEL_PAINTS;
     let catalogueSource = "sample";
+    let selectedManufacturers = new Set();
+    let producerFiltersInitialized = false;
     let hoverTimer = null;
     let activeHoverTarget = null;
 
@@ -54,6 +56,7 @@
       heraldicPreview: $("heraldicPreview"),
       roleStyle: $("roleStyleSelect"),
       baseTheme: $("baseThemeSelect"),
+      producerFilters: $("producerFilters"),
       sat: $("satRange"),
       light: $("lightRange"),
       satOut: $("satValue"),
@@ -87,6 +90,7 @@
     el.language.value = state.language;
     translateStatic();
     populateDynamicControls();
+    renderProducerFilters(true);
     drawWheel();
     attachEvents();
     update();
@@ -94,6 +98,7 @@
     W.loadPaintCatalogue("data/paint-catalogue.json").then(result => {
       cataloguePaints = result.paints;
       catalogueSource = result.source;
+      renderProducerFilters(true);
       update();
     });
 
@@ -108,6 +113,7 @@
       document.querySelectorAll("[data-i18n]").forEach(node => {
         node.textContent = t(node.dataset.i18n);
       });
+      renderProducerFilters(false);
     }
 
     function populateDynamicControls() {
@@ -190,6 +196,18 @@
       el.heraldicAccent.addEventListener("change", update);
       el.roleStyle.addEventListener("change", update);
       el.baseTheme.addEventListener("change", update);
+      el.producerFilters.addEventListener("change", event => {
+        if (!event.target.matches("input[type='checkbox']")) {
+          return;
+        }
+        const producer = event.target.value;
+        if (event.target.checked) {
+          selectedManufacturers.add(producer);
+        } else {
+          selectedManufacturers.delete(producer);
+        }
+        update();
+      });
       el.sat.addEventListener("input", update);
       el.light.addEventListener("input", update);
       el.style.addEventListener("input", update);
@@ -504,9 +522,10 @@
     }
 
     function renderCitadelMatches() {
-      const mapped = W.mapPaletteToCatalogue(currentPalette, cataloguePaints, { limit: 3 });
+      const paints = filteredCataloguePaints();
+      const mapped = W.mapPaletteToCatalogue(currentPalette, paints, { limit: 3 });
       const statusKey = cataloguePaints.length ? (catalogueSource === "json" ? "loaded" : "sample") : "missing";
-      el.citadelStatus.textContent = t(`citadel.${statusKey}`, { count: cataloguePaints.length }) + " " + t("ui.citadelJsonHint");
+      el.citadelStatus.textContent = t(`citadel.${statusKey}`, { count: paints.length }) + " " + t("ui.citadelJsonHint");
       el.citadelMatches.innerHTML = mapped.map(color => {
         const matches = color.matches.length
           ? color.matches.map(match => {
@@ -553,6 +572,48 @@
       return `${match.name}${manufacturer} ${match.hex}`;
     }
 
+    function renderProducerFilters(resetSelection) {
+      const producers = catalogueManufacturers();
+      if (resetSelection || !producerFiltersInitialized) {
+        selectedManufacturers = new Set(producers.map(producer => producer.key));
+      } else {
+        selectedManufacturers = new Set(producers.map(producer => producer.key).filter(key => selectedManufacturers.has(key)));
+      }
+      producerFiltersInitialized = true;
+
+      el.producerFilters.innerHTML = producers.map(producer => `
+        <label class="producer-option">
+          <input type="checkbox" value="${escapeHtml(producer.key)}" ${selectedManufacturers.has(producer.key) ? "checked" : ""} />
+          <span>${escapeHtml(producer.label)}</span>
+        </label>
+      `).join("");
+    }
+
+    function catalogueManufacturers() {
+      const producerMap = new Map();
+      cataloguePaints.forEach(paint => {
+        const key = paintProducerKey(paint);
+        if (!producerMap.has(key)) {
+          producerMap.set(key, {
+            key,
+            label: paint.manufacturer || t("ui.unknownProducer")
+          });
+        }
+      });
+      return Array.from(producerMap.values()).sort((a, b) => a.label.localeCompare(b.label));
+    }
+
+    function filteredCataloguePaints() {
+      if (!selectedManufacturers.size) {
+        return [];
+      }
+      return cataloguePaints.filter(paint => selectedManufacturers.has(paintProducerKey(paint)));
+    }
+
+    function paintProducerKey(paint) {
+      return paint.manufacturer || "__unknown__";
+    }
+
     function createPaintTooltip() {
       const tooltip = document.createElement("div");
       tooltip.className = "paint-tooltip";
@@ -596,7 +657,8 @@
       }
       const hex = target.dataset.colorHex;
       const colorName = target.dataset.colorName || hex;
-      const matches = cataloguePaints.length ? W.findClosestPaints(hex, cataloguePaints, 3) : [];
+      const paints = filteredCataloguePaints();
+      const matches = paints.length ? W.findClosestPaints(hex, paints, 3) : [];
       const matchRows = matches.length
         ? matches.map(match => {
           const meta = [paintMatchMeta(match), t("citadel.distance", { distance: match.distance })]
@@ -810,7 +872,7 @@
           `  ${t(`ladder.steps.${step.key}`)}: ${step.hex} - ${t(`ladder.hints.${step.key}`)}`
         )).join("\n")
       )).join("\n\n");
-      const catalogueText = W.mapPaletteToCatalogue(currentPalette, cataloguePaints, { limit: 3 }).map(color => (
+      const catalogueText = W.mapPaletteToCatalogue(currentPalette, filteredCataloguePaints(), { limit: 3 }).map(color => (
         `${roleName(color.roleKey)} ${color.hex}: ` + color.matches.map(paintMatchLabel).join(", ")
       )).join("\n");
 
