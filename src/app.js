@@ -1,6 +1,12 @@
 (function () {
   "use strict";
 
+  const SETTINGS_VERSION = 1;
+  const STORAGE_KEYS = {
+    lastSettings: "wph.settings.v1",
+    profiles: "wph.profiles.v1"
+  };
+
   document.addEventListener("DOMContentLoaded", init);
 
   function init() {
@@ -18,13 +24,22 @@
       secondary: { h: 45, s: 16, l: 92 },
       heraldicLayout: "split",
       heraldicRatio: "dominant",
-      heraldicAccent: "auto"
+      heraldicAccent: "auto",
+      schemeKey: "complementary",
+      roleProfileKey: "balanced",
+      baseThemeKey: "auto",
+      paintSearch: "",
+      producerKeys: null
     };
+
+    let pendingProducerKeys = null;
+    applySettingsToState(readSettingsSnapshot(STORAGE_KEYS.lastSettings));
 
     let translator = W.createTranslator(state.language);
     let currentPalette = [];
     let cataloguePaints = W.DEFAULT_PAINT_CATALOGUE || W.DEFAULT_CITADEL_PAINTS;
     let factionSchemes = W.normalizeFactionSchemes(W.DEFAULT_FACTION_SCHEMES || W.DEFAULT_FACTION_SCHEME_DATA || []);
+    let profiles = readProfiles();
     let catalogueSource = "sample";
     let selectedManufacturers = new Set();
     let producerFiltersInitialized = false;
@@ -65,6 +80,12 @@
       roleStyle: $("roleStyleSelect"),
       baseTheme: $("baseThemeSelect"),
       producerFilters: $("producerFilters"),
+      profileName: $("profileNameInput"),
+      savedProfiles: $("savedProfilesSelect"),
+      profileStatus: $("profileStatus"),
+      saveProfile: $("saveProfileBtn"),
+      loadProfile: $("loadProfileBtn"),
+      deleteProfile: $("deleteProfileBtn"),
       sat: $("satRange"),
       light: $("lightRange"),
       satOut: $("satValue"),
@@ -95,11 +116,8 @@
     el.secondarySwatch.classList.add("paint-hover-target");
     el.secondarySwatch.tabIndex = 0;
 
-    el.language.value = state.language;
-    translateStatic();
-    populateDynamicControls();
-    renderProducerFilters(true);
-    renderPaintSelectorOptions();
+    syncControlsFromState();
+    renderProfiles();
     drawWheel();
     attachEvents();
     update();
@@ -126,6 +144,7 @@
       renderProducerFilters(false);
       renderPaintSelectorOptions();
       populateFactionControls();
+      renderProfiles();
     }
 
     function populateDynamicControls() {
@@ -137,23 +156,29 @@
         el.scheme,
         W.getSchemeKeysForSystem(state.system),
         key => t(`schemes.${key}.title`),
-        el.scheme.value
+        state.schemeKey
       );
+      state.schemeKey = el.scheme.value;
       setSelectOptions(
         el.roleStyle,
         W.getRoleProfileKeys(state.system),
         key => t(`profiles.${state.system}.${key}`),
-        el.roleStyle.value
+        state.roleProfileKey
       );
+      state.roleProfileKey = el.roleStyle.value;
       setSelectOptions(
         el.baseTheme,
         W.getBaseThemeKeys(state.system),
         key => key === "auto" ? t("baseOptions.auto") : t(`bases.${key}.title`),
-        el.baseTheme.value
+        state.baseThemeKey
       );
-      setSelectOptions(el.heraldicLayout, Object.keys(W.HERALDIC_LAYOUTS), key => t(`heraldic.layouts.${key}`), el.heraldicLayout.value || state.heraldicLayout);
-      setSelectOptions(el.heraldicRatio, Object.keys(W.HERALDIC_RATIOS), key => t(`heraldic.ratios.${key}`), el.heraldicRatio.value || state.heraldicRatio);
-      setSelectOptions(el.heraldicAccent, Object.keys(W.HERALDIC_ACCENTS), key => t(`heraldic.accents.${key}`), el.heraldicAccent.value || state.heraldicAccent);
+      state.baseThemeKey = el.baseTheme.value;
+      setSelectOptions(el.heraldicLayout, Object.keys(W.HERALDIC_LAYOUTS), key => t(`heraldic.layouts.${key}`), state.heraldicLayout);
+      state.heraldicLayout = el.heraldicLayout.value;
+      setSelectOptions(el.heraldicRatio, Object.keys(W.HERALDIC_RATIOS), key => t(`heraldic.ratios.${key}`), state.heraldicRatio);
+      state.heraldicRatio = el.heraldicRatio.value;
+      setSelectOptions(el.heraldicAccent, Object.keys(W.HERALDIC_ACCENTS), key => t(`heraldic.accents.${key}`), state.heraldicAccent);
+      state.heraldicAccent = el.heraldicAccent.value;
     }
 
     function setSelectOptions(select, keys, labelForKey, preferredValue) {
@@ -162,6 +187,21 @@
         `<option value="${escapeHtml(key)}">${escapeHtml(labelForKey(key))}</option>`
       )).join("");
       select.value = selected;
+    }
+
+    function syncControlsFromState() {
+      el.language.value = state.language;
+      el.mode.value = state.mode;
+      el.activeColor.value = state.activeColor;
+      el.sat.value = Math.round(state.s);
+      el.light.value = Math.round(state.l);
+      el.style.value = Math.round(state.style);
+      el.paintSearch.value = state.paintSearch || "";
+      translateStatic();
+      populateDynamicControls();
+      renderProducerFilters(true);
+      renderPaintSelectorOptions();
+      syncSlidersToActiveColor();
     }
 
     function attachEvents() {
@@ -239,10 +279,26 @@
         } else {
           selectedManufacturers.delete(producer);
         }
+        pendingProducerKeys = null;
+        state.producerKeys = Array.from(selectedManufacturers);
         renderPaintSelectorOptions();
         update();
       });
-      el.paintSearch.addEventListener("input", renderPaintSelectorOptions);
+      el.paintSearch.addEventListener("input", () => {
+        state.paintSearch = el.paintSearch.value;
+        renderPaintSelectorOptions();
+        saveLastSettings();
+      });
+      el.saveProfile.addEventListener("click", saveNamedProfile);
+      el.loadProfile.addEventListener("click", loadSelectedProfile);
+      el.deleteProfile.addEventListener("click", deleteSelectedProfile);
+      el.savedProfiles.addEventListener("change", () => {
+        const profile = selectedProfile();
+        el.profileName.value = profile ? profile.name : "";
+        el.loadProfile.disabled = !profile;
+        el.deleteProfile.disabled = !profile;
+        setProfileStatus("");
+      });
       el.paintSelect.addEventListener("change", () => {
         if (!el.paintSelect.value) {
           return;
@@ -344,6 +400,11 @@
       state.heraldicLayout = el.heraldicLayout.value;
       state.heraldicRatio = el.heraldicRatio.value;
       state.heraldicAccent = el.heraldicAccent.value;
+      state.schemeKey = el.scheme.value;
+      state.roleProfileKey = el.roleStyle.value;
+      state.baseThemeKey = el.baseTheme.value;
+      state.paintSearch = el.paintSearch.value;
+      state.producerKeys = pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers);
       const factionScheme = selectedFactionScheme();
       if (!factionScheme) {
         applySlidersToActiveColor();
@@ -439,6 +500,7 @@
         l: state.l,
         finish: finishLabel
       });
+      saveLastSettings();
     }
 
     function populateFactionControls(preferredFaction) {
@@ -786,11 +848,19 @@
 
     function renderProducerFilters(resetSelection) {
       const producers = catalogueManufacturers();
-      if (resetSelection || !producerFiltersInitialized) {
-        selectedManufacturers = new Set(producers.map(producer => producer.key));
+      const producerKeys = producers.map(producer => producer.key);
+      if (Array.isArray(pendingProducerKeys)) {
+        const matchingKeys = producerKeys.filter(key => pendingProducerKeys.includes(key));
+        selectedManufacturers = new Set(matchingKeys);
+        if (catalogueSource === "json" || !pendingProducerKeys.length) {
+          pendingProducerKeys = null;
+        }
+      } else if (resetSelection || !producerFiltersInitialized) {
+        selectedManufacturers = new Set(producerKeys);
       } else {
-        selectedManufacturers = new Set(producers.map(producer => producer.key).filter(key => selectedManufacturers.has(key)));
+        selectedManufacturers = new Set(producerKeys.filter(key => selectedManufacturers.has(key)));
       }
+      state.producerKeys = pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers);
       producerFiltersInitialized = true;
 
       el.producerFilters.innerHTML = producers.map(producer => `
@@ -824,6 +894,199 @@
 
     function paintProducerKey(paint) {
       return paint.manufacturer || "__unknown__";
+    }
+
+    function saveLastSettings() {
+      writeJson(STORAGE_KEYS.lastSettings, createSettingsSnapshot());
+    }
+
+    function saveNamedProfile() {
+      const name = cleanProfileName(el.profileName.value) || defaultProfileName();
+      const existing = profiles.find(profile => profile.name.toLowerCase() === name.toLowerCase());
+      const profile = {
+        id: existing ? existing.id : `profile-${Date.now()}`,
+        name,
+        savedAt: new Date().toISOString(),
+        settings: createSettingsSnapshot()
+      };
+
+      if (existing) {
+        profiles = profiles.map(item => item.id === existing.id ? profile : item);
+      } else {
+        profiles = profiles.concat(profile);
+      }
+      profiles.sort((a, b) => a.name.localeCompare(b.name));
+      writeJson(STORAGE_KEYS.profiles, profiles);
+      renderProfiles(profile.id);
+      el.profileName.value = name;
+      setProfileStatus(t("ui.profileSaved", { name }));
+    }
+
+    function loadSelectedProfile() {
+      const profile = selectedProfile();
+      if (!profile) {
+        setProfileStatus(t("ui.profileMissing"));
+        return;
+      }
+      if (!applySettingsToState(profile.settings)) {
+        setProfileStatus(t("ui.profileMissing"));
+        return;
+      }
+      syncControlsFromState();
+      renderProfiles(profile.id);
+      update();
+      el.profileName.value = profile.name;
+      setProfileStatus(t("ui.profileLoaded", { name: profile.name }));
+    }
+
+    function deleteSelectedProfile() {
+      const profile = selectedProfile();
+      if (!profile) {
+        setProfileStatus(t("ui.profileMissing"));
+        return;
+      }
+      profiles = profiles.filter(item => item.id !== profile.id);
+      writeJson(STORAGE_KEYS.profiles, profiles);
+      renderProfiles();
+      el.profileName.value = "";
+      setProfileStatus(t("ui.profileDeleted", { name: profile.name }));
+    }
+
+    function selectedProfile() {
+      return profiles.find(profile => profile.id === el.savedProfiles.value) || null;
+    }
+
+    function renderProfiles(selectedId) {
+      if (!el.savedProfiles) {
+        return;
+      }
+      const placeholder = profiles.length ? t("ui.profilePlaceholder") : t("ui.noProfiles");
+      el.savedProfiles.innerHTML = [
+        `<option value="">${escapeHtml(placeholder)}</option>`,
+        ...profiles.map(profile => (
+          `<option value="${escapeHtml(profile.id)}">${escapeHtml(profile.name)}</option>`
+        ))
+      ].join("");
+      el.savedProfiles.value = profiles.some(profile => profile.id === selectedId) ? selectedId : "";
+      const hasSelection = Boolean(el.savedProfiles.value);
+      el.loadProfile.disabled = !profiles.length || !hasSelection;
+      el.deleteProfile.disabled = !profiles.length || !hasSelection;
+    }
+
+    function setProfileStatus(message) {
+      el.profileStatus.textContent = message;
+    }
+
+    function defaultProfileName() {
+      return `${t(`systems.${state.system}`)} ${W.primaryHex(state)}`;
+    }
+
+    function cleanProfileName(name) {
+      return String(name || "").trim().replace(/\s+/g, " ").slice(0, 60);
+    }
+
+    function createSettingsSnapshot() {
+      return {
+        version: SETTINGS_VERSION,
+        savedAt: new Date().toISOString(),
+        h: state.h,
+        s: state.s,
+        l: state.l,
+        style: state.style,
+        language: state.language,
+        system: state.system,
+        mode: state.mode,
+        factionSchemeId: state.factionSchemeId,
+        activeColor: state.activeColor,
+        secondary: {
+          h: state.secondary.h,
+          s: state.secondary.s,
+          l: state.secondary.l
+        },
+        heraldicLayout: state.heraldicLayout,
+        heraldicRatio: state.heraldicRatio,
+        heraldicAccent: state.heraldicAccent,
+        schemeKey: state.schemeKey,
+        roleProfileKey: state.roleProfileKey,
+        baseThemeKey: state.baseThemeKey,
+        paintSearch: state.paintSearch,
+        producerKeys: pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers)
+      };
+    }
+
+    function applySettingsToState(snapshot) {
+      if (!snapshot || typeof snapshot !== "object") {
+        return false;
+      }
+
+      state.language = W.hasLanguage(snapshot.language) ? snapshot.language : state.language;
+      state.system = ["aos", "k40"].includes(snapshot.system) ? snapshot.system : state.system;
+      state.mode = ["single", "heraldic"].includes(snapshot.mode) ? snapshot.mode : state.mode;
+      state.activeColor = ["primary", "secondary"].includes(snapshot.activeColor) ? snapshot.activeColor : state.activeColor;
+      state.h = validNumber(snapshot.h) ? W.normHue(snapshot.h) : state.h;
+      state.s = validNumber(snapshot.s) ? W.clamp(snapshot.s, 5, 100) : state.s;
+      state.l = validNumber(snapshot.l) ? W.clamp(snapshot.l, 10, 90) : state.l;
+      state.style = validNumber(snapshot.style) ? W.clamp(snapshot.style, -100, 100) : state.style;
+      if (snapshot.secondary && typeof snapshot.secondary === "object") {
+        state.secondary = {
+          h: validNumber(snapshot.secondary.h) ? W.normHue(snapshot.secondary.h) : state.secondary.h,
+          s: validNumber(snapshot.secondary.s) ? W.clamp(snapshot.secondary.s, 5, 100) : state.secondary.s,
+          l: validNumber(snapshot.secondary.l) ? W.clamp(snapshot.secondary.l, 10, 90) : state.secondary.l
+        };
+      }
+      state.factionSchemeId = typeof snapshot.factionSchemeId === "string" ? snapshot.factionSchemeId : "";
+      state.heraldicLayout = typeof snapshot.heraldicLayout === "string" ? snapshot.heraldicLayout : state.heraldicLayout;
+      state.heraldicRatio = typeof snapshot.heraldicRatio === "string" ? snapshot.heraldicRatio : state.heraldicRatio;
+      state.heraldicAccent = typeof snapshot.heraldicAccent === "string" ? snapshot.heraldicAccent : state.heraldicAccent;
+      state.schemeKey = typeof snapshot.schemeKey === "string" ? snapshot.schemeKey : state.schemeKey;
+      state.roleProfileKey = typeof snapshot.roleProfileKey === "string" ? snapshot.roleProfileKey : state.roleProfileKey;
+      state.baseThemeKey = typeof snapshot.baseThemeKey === "string" ? snapshot.baseThemeKey : state.baseThemeKey;
+      state.paintSearch = typeof snapshot.paintSearch === "string" ? snapshot.paintSearch : "";
+      state.producerKeys = Array.isArray(snapshot.producerKeys)
+        ? snapshot.producerKeys.filter(key => typeof key === "string")
+        : null;
+      pendingProducerKeys = Array.isArray(state.producerKeys) ? state.producerKeys.slice() : null;
+      return true;
+    }
+
+    function validNumber(value) {
+      return typeof value === "number" && Number.isFinite(value);
+    }
+
+    function readSettingsSnapshot(key) {
+      const snapshot = readJson(key);
+      return snapshot && typeof snapshot === "object" ? snapshot : null;
+    }
+
+    function readProfiles() {
+      const storedProfiles = readJson(STORAGE_KEYS.profiles);
+      if (!Array.isArray(storedProfiles)) {
+        return [];
+      }
+      return storedProfiles
+        .filter(profile => profile && typeof profile.id === "string" && typeof profile.name === "string" && profile.settings)
+        .map(profile => ({
+          id: profile.id,
+          name: cleanProfileName(profile.name) || "Profile",
+          savedAt: typeof profile.savedAt === "string" ? profile.savedAt : "",
+          settings: profile.settings
+        }));
+    }
+
+    function readJson(key) {
+      const raw = safeLocalStorage("get", key);
+      if (!raw) {
+        return null;
+      }
+      try {
+        return JSON.parse(raw);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function writeJson(key, value) {
+      safeLocalStorage("set", key, JSON.stringify(value));
     }
 
     function createPaintTooltip() {

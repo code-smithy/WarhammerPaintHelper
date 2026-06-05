@@ -181,6 +181,32 @@ label {
   accent-color: var(--accent);
 }
 
+.profile-panel {
+  margin: 18px 0;
+  padding: 13px;
+  background: rgba(36, 43, 56, .74);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.profile-panel .field:last-of-type {
+  margin-bottom: 10px;
+}
+
+.profile-actions {
+  display: grid;
+  grid-template-columns: 1fr .7fr .7fr;
+  gap: 8px;
+}
+
+.profile-status {
+  min-height: 18px;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.35;
+}
+
 select,
 input[type="text"] {
   width: 100%;
@@ -372,6 +398,11 @@ button {
 
 button.secondary {
   background: #384253;
+  color: var(--text);
+}
+
+button.danger {
+  background: #5a3338;
   color: var(--text);
 }
 
@@ -735,5 +766,9 @@ button:hover {
   #colorWheel {
     width: 280px;
     height: 280px;
+  }
+
+  .profile-actions {
+    grid-template-columns: 1fr;
   }
 }

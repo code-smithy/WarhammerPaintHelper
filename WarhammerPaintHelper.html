@@ -173,6 +173,23 @@
         <div id="producerFilters" class="producer-filters"></div>
       </div>
 
+      <div class="profile-panel" aria-label="Saved profiles">
+        <div class="field">
+          <label for="profileNameInput" data-i18n="ui.profileName">Profile name</label>
+          <input id="profileNameInput" type="text" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="savedProfilesSelect" data-i18n="ui.savedProfiles">Saved profiles</label>
+          <select id="savedProfilesSelect"></select>
+          <div id="profileStatus" class="profile-status" aria-live="polite"></div>
+        </div>
+        <div class="profile-actions">
+          <button id="saveProfileBtn" type="button" data-i18n="ui.saveProfile">Save profile</button>
+          <button id="loadProfileBtn" type="button" class="secondary" data-i18n="ui.loadProfile">Load</button>
+          <button id="deleteProfileBtn" type="button" class="secondary danger" data-i18n="ui.deleteProfile">Delete</button>
+        </div>
+      </div>
+
       <div class="button-row">
         <button id="copyPaletteBtn" data-i18n="ui.copyPalette">Copy palette</button>
         <button id="randomBtn" class="secondary" data-i18n="ui.randomColor">Random color</button>
