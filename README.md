@@ -8,9 +8,9 @@ also be used for any miniature, model, or tabletop painting project.
 ## What It Does
 
 The app lets you pick a main color from a color wheel, enter a HEX value directly, choose
-a paint from the catalogue, select a fixed faction scheme, or roll a random color. It then
-generates painting-friendly color schemes with role suggestions, paint matches, and steps
-you can turn into a practical miniature painting plan.
+a paint from the catalogue, select a fixed faction scheme, or roll a full random palette.
+It then generates painting-friendly color schemes with role suggestions, paint matches,
+and steps you can turn into a practical miniature painting plan.
 
 It currently supports:
 
@@ -33,6 +33,9 @@ It currently supports:
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue search, direct paint selection for the main color, and producer
   filters for limiting nearest-paint matches by manufacturer.
+- A random palette button that can vary game system, custom or faction schemes, colors,
+  scheme type, finish, role planner, base environment, heraldic settings, and producer
+  filters.
 - Automatic browser-local restore of the last used settings, plus named local profiles
   for keeping multiple miniature paint plans.
 - Shareable palette links that encode the current Warhammer paint scheme settings in
@@ -44,8 +47,7 @@ It currently supports:
 - Match metadata for manufacturer, collection, range, finish, and distance.
 - Hover/focus paint tooltips for generated colors, showing the closest catalogue
   matches without leaving the palette view.
-- A copy button for exporting the generated palette, role plan, base ideas, paint ladder,
-  fixed faction notes, paint equivalents, and catalogue matches.
+- Click-to-copy HEX values for generated colors and paint ladder steps.
 
 ## How To Use
 
@@ -64,9 +66,11 @@ Typical workflow:
 1. Pick `Age of Sigmar` or `Warhammer 40,000`.
 2. Either use the color wheel and scheme controls, or choose a faction and subfaction for
    a fixed Warhammer paint scheme.
-3. Adjust finish, role planner, base environment, and paint producer filters.
-4. Save a named profile or copy a share link if you want to keep or send the scheme.
-5. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
+3. Use `Random palette` when you want the app to explore across systems, schemes, colors,
+   faction data, finish styles, and planning options for you.
+4. Adjust finish, role planner, base environment, and paint producer filters.
+5. Save a named profile or copy a share link if you want to keep or send the scheme.
+6. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
    as a painting plan.
 
 ## Saved Settings and Profiles

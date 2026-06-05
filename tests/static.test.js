@@ -30,6 +30,8 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="profileNameInput"/);
   assert.match(html, /id="savedProfilesSelect"/);
   assert.match(html, /id="copyShareLinkBtn"/);
+  assert.match(html, /id="randomBtn"/);
+  assert.doesNotMatch(html, /id="copyPaletteBtn"/);
   assert.doesNotMatch(html, /ui\.extraMaterials/);
   assert.doesNotMatch(html, /class="material-toggle"/);
   assert.doesNotMatch(html, /id="materialPalette"/);

@@ -105,7 +105,6 @@
       title: $("schemeTitle"),
       desc: $("schemeDescription"),
       notes: $("paintNotes"),
-      copy: $("copyPaletteBtn"),
       random: $("randomBtn"),
       debug: $("debugState"),
       rolePlannerTitle: $("rolePlannerTitle"),
@@ -143,9 +142,6 @@
       document.querySelectorAll("[data-i18n]").forEach(node => {
         node.textContent = t(node.dataset.i18n);
       });
-      renderProducerFilters(false);
-      renderPaintSelectorOptions();
-      populateFactionControls();
       renderProfiles();
     }
 
@@ -212,6 +208,8 @@
         saveLanguage(state.language);
         translateStatic();
         populateDynamicControls();
+        renderProducerFilters(false);
+        renderPaintSelectorOptions();
         update();
       });
 
@@ -363,31 +361,7 @@
       });
 
       el.random.addEventListener("click", () => {
-        clearFactionScheme();
-        const randomColor = {
-          h: Math.floor(Math.random() * 360),
-          s: Math.floor(45 + Math.random() * 45),
-          l: Math.floor(34 + Math.random() * 24)
-        };
-        if (state.mode === "heraldic" && state.activeColor === "secondary") {
-          state.secondary = randomColor;
-          syncSlidersToActiveColor();
-        } else {
-          state.h = randomColor.h;
-          state.s = randomColor.s;
-          state.l = randomColor.l;
-          syncSlidersToActiveColor();
-        }
-        update();
-      });
-
-      el.copy.addEventListener("click", () => {
-        copyText(buildCopyText());
-        const old = el.copy.textContent;
-        el.copy.textContent = t("ui.copied");
-        setTimeout(() => {
-          el.copy.textContent = old;
-        }, 900);
+        randomizePalette();
       });
 
       document.addEventListener("mouseover", handlePaintHoverStart);
@@ -812,11 +786,6 @@
       ].filter(Boolean).join(" / ");
     }
 
-    function paintMatchLabel(match) {
-      const manufacturer = match.manufacturer ? ` (${match.manufacturer})` : "";
-      return `${match.name}${manufacturer} ${match.hex}`;
-    }
-
     function renderPaintSelectorOptions() {
       const query = el.paintSearch.value.trim().toLowerCase();
       paintSelectorOptions = filteredCataloguePaints()
@@ -900,6 +869,75 @@
 
     function paintProducerKey(paint) {
       return paint.manufacturer || "__unknown__";
+    }
+
+    function randomizePalette() {
+      state.system = randomChoice(["aos", "k40"]);
+      state.mode = randomChoice(["single", "heraldic"]);
+      state.activeColor = "primary";
+      state.factionSchemeId = "";
+      state.schemeKey = randomChoice(W.getSchemeKeysForSystem(state.system));
+      state.roleProfileKey = randomChoice(W.getRoleProfileKeys(state.system));
+      state.baseThemeKey = randomChoice(W.getBaseThemeKeys(state.system));
+      state.heraldicLayout = randomChoice(Object.keys(W.HERALDIC_LAYOUTS));
+      state.heraldicRatio = randomChoice(Object.keys(W.HERALDIC_RATIOS));
+      state.heraldicAccent = randomChoice(Object.keys(W.HERALDIC_ACCENTS));
+      state.style = randomInt(-100, 100);
+      state.paintSearch = "";
+
+      const randomPrimary = randomCatalogueColor() || randomHobbyColor();
+      state.h = randomPrimary.h;
+      state.s = randomPrimary.s;
+      state.l = randomPrimary.l;
+      state.secondary = randomHobbyColor();
+
+      const schemesForSystem = factionSchemesForSystem(state.system);
+      if (schemesForSystem.length && Math.random() < 0.34) {
+        state.factionSchemeId = randomChoice(schemesForSystem).id;
+        state.mode = "single";
+      }
+
+      const producers = catalogueManufacturers().map(producer => producer.key);
+      state.producerKeys = randomProducerKeys(producers);
+      pendingProducerKeys = state.producerKeys.slice();
+      syncControlsFromState();
+      update();
+    }
+
+    function randomCatalogueColor() {
+      if (!cataloguePaints.length || Math.random() < 0.45) {
+        return null;
+      }
+      const paint = randomChoice(cataloguePaints.filter(item => item.hex));
+      if (!paint) {
+        return null;
+      }
+      const rgb = W.hexToRgb(paint.hex);
+      return rgb ? W.rgbToHsl(rgb.r, rgb.g, rgb.b) : null;
+    }
+
+    function randomHobbyColor() {
+      return {
+        h: randomInt(0, 359),
+        s: randomInt(38, 92),
+        l: randomInt(28, 72)
+      };
+    }
+
+    function randomProducerKeys(producerKeys) {
+      if (!producerKeys.length || Math.random() < 0.5) {
+        return producerKeys.slice();
+      }
+      const selected = producerKeys.filter(() => Math.random() < 0.65);
+      return selected.length ? selected : producerKeys.slice();
+    }
+
+    function randomChoice(items) {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function randomInt(min, max) {
+      return Math.floor(min + Math.random() * (max - min + 1));
     }
 
     function saveLastSettings() {
@@ -1428,43 +1466,6 @@
         l: state.l,
         hex: W.primaryHex(state)
       };
-    }
-
-    function buildCopyText() {
-      const paletteText = currentPalette.map(color => (
-        `${colorName(color)}: ${color.hex} - HSL(${Math.round(color.h)}, ${Math.round(color.s)}%, ${Math.round(color.l)}%)`
-      )).join("\n");
-      const roleText = rolePlannerItems().map(item => {
-        const color = resolveRoleColor(item.colorRef);
-        const area = item.extra ? color.name : t(`roleAreas.${item.areaKey}`);
-        return `${area}: ${color.hex} (${color.name}) - ${t(`roleUses.${item.useKey}`)} ${t(`roleTips.${item.tipKey}`)}`;
-      }).join("\n");
-      const baseText = W.baseSuggestions({
-        palette: currentPalette,
-        state,
-        systemKey: state.system,
-        roleProfileKey: el.roleStyle.value,
-        baseThemeKey: el.baseTheme.value
-      }).map(base => {
-        const recipe = t(`bases.${base.key}.recipe`);
-        return `${t(`bases.${base.key}.title`)}: ${base.hex} - ${t(`bases.${base.key}.use`)}\n${t("ui.why")}: ${t(`bases.${base.key}.tip`)}\n${t("ui.build")}: ${Array.isArray(recipe) ? recipe.join(" -> ") : ""}`;
-      }).join("\n");
-      const ladderText = currentPalette.slice(0, 4).map(color => (
-        `${colorName(color)}:\n` + W.ladderForColor(color, state.style).map(step => (
-          `  ${t(`ladder.steps.${step.key}`)}: ${step.hex} - ${t(`ladder.hints.${step.key}`)}`
-        )).join("\n")
-      )).join("\n\n");
-      const catalogueText = W.mapPaletteToCatalogue(currentPalette, filteredCataloguePaints(), { limit: 3 }).map(color => (
-        `${colorName(color)} ${color.hex}: ` + color.matches.map(paintMatchLabel).join(", ")
-      )).join("\n");
-
-      return [
-        `${t("copy.palette")}:\n${paletteText}`,
-        `${t("copy.roles")}:\n${roleText}`,
-        `${t("copy.bases")}:\n${baseText}`,
-        `${t("copy.ladder")}:\n${ladderText}`,
-        `${t("copy.citadel")}:\n${catalogueText}`
-      ].filter(Boolean).join("\n\n");
     }
 
     function copyText(text) {
