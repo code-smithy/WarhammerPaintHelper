@@ -1,18 +1,20 @@
 # Warhammer Paint Helper
 
-Warhammer Paint Helper is a static color scheme generator for miniature painting. It is
-aimed at Warhammer Age of Sigmar and Warhammer 40,000 hobbyists, but it can also be used
-for any miniature, model, or tabletop painting project that needs a quick palette idea.
+Warhammer Paint Helper is a static miniature paint scheme generator for planning
+tabletop color palettes. It is aimed at Warhammer Age of Sigmar and Warhammer 40,000
+hobbyists looking for quick faction colors, paint recipes, or palette ideas, but it can
+also be used for any miniature, model, or tabletop painting project.
 
 ## What It Does
 
 The app lets you pick a main color from a color wheel, enter a HEX value directly, choose
-a paint from the catalogue, select a fixed faction scheme, or roll a random color, then
-generates painting-friendly palettes around it.
+a paint from the catalogue, select a fixed faction scheme, or roll a random color. It then
+generates painting-friendly color schemes with role suggestions, paint matches, and steps
+you can turn into a practical miniature painting plan.
 
 It currently supports:
 
-- Age of Sigmar and Warhammer 40,000 modes.
+- Age of Sigmar and Warhammer 40,000 color scheme modes.
 - English, German, French, and Spanish language selection.
 - Fixed faction and subfaction schemes, kept separate by game system. The included data
   currently covers 60 Age of Sigmar schemes and 67 Warhammer 40,000 schemes.
@@ -31,8 +33,10 @@ It currently supports:
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue search, direct paint selection for the main color, and producer
   filters for limiting nearest-paint matches by manufacturer.
-- Paint catalogue matching across manufacturer color groups. The catalogue lives at
-  `data/paint-catalogue.json` and uses `manufacturers[].colors[]` entries.
+- Paint catalogue matching across manufacturer color groups, useful for finding close
+  alternatives to Citadel, Vallejo, Army Painter, and other miniature paints. The
+  catalogue lives at `data/paint-catalogue.json` and uses `manufacturers[].colors[]`
+  entries.
 - Match metadata for manufacturer, collection, range, finish, and distance.
 - Hover/focus paint tooltips for generated colors, showing the closest catalogue
   matches without leaving the palette view.
@@ -49,18 +53,18 @@ served by a simple static server, because some browsers block local JSON loading
 `file://` URLs. If the paint catalogue JSON cannot be loaded, the app falls back to a
 small sample paint set so the UI remains usable.
 
-If you can't use it locally, just use the [online version hosted here on github](https://code-smithy.github.io/WarhammerPaintHelper/WarhammerPaintHelper.html).
+If you can't use it locally, just use the [online version hosted on GitHub Pages](https://code-smithy.github.io/WarhammerPaintHelper/WarhammerPaintHelper.html).
 
 Typical workflow:
 
 1. Pick `Age of Sigmar` or `Warhammer 40,000`.
 2. Either use the color wheel and scheme controls, or choose a faction and subfaction for
-   a fixed recipe.
+   a fixed Warhammer paint scheme.
 3. Adjust finish, role planner, base environment, and paint producer filters.
 4. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
    as a painting plan.
 
-## Fixed Faction Schemes
+## Faction Paint Schemes
 
 Fixed schemes live in two generated files:
 
@@ -83,13 +87,14 @@ The source data was derived from `faction colours.xlsx`. Each scheme includes:
 - `paintEquivalents`: named paint suggestions when available.
 - `notes`: markings, finish, and faction-specific painting guidance.
 
-The app filters faction and subfaction choices by the selected game system, so AoS and 40K
-schemes do not mix.
+The app filters faction and subfaction choices by the selected game system, so Age of
+Sigmar and Warhammer 40,000 schemes do not mix.
 
 ## Paint Catalogue JSON
 
 The live catalogue file is `data/paint-catalogue.json`; use it as the starting point for new catalogues
-or new manufacturers.
+or new manufacturers. The catalogue is designed for miniature paint matching, paint range
+comparison, and nearest-colour lookup from generated palettes.
 
 The app expects this shape:
 
