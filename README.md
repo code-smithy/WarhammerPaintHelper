@@ -33,6 +33,10 @@ It currently supports:
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue search, direct paint selection for the main color, and producer
   filters for limiting nearest-paint matches by manufacturer.
+- Automatic browser-local restore of the last used settings, plus named local profiles
+  for keeping multiple miniature paint plans.
+- Shareable palette links that encode the current Warhammer paint scheme settings in
+  the URL for bookmarking or sending to another hobbyist.
 - Paint catalogue matching across manufacturer color groups, useful for finding close
   alternatives to Citadel, Vallejo, Army Painter, and other miniature paints. The
   catalogue lives at `data/paint-catalogue.json` and uses `manufacturers[].colors[]`
@@ -61,8 +65,21 @@ Typical workflow:
 2. Either use the color wheel and scheme controls, or choose a faction and subfaction for
    a fixed Warhammer paint scheme.
 3. Adjust finish, role planner, base environment, and paint producer filters.
-4. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
+4. Save a named profile or copy a share link if you want to keep or send the scheme.
+5. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
    as a painting plan.
+
+## Saved Settings and Profiles
+
+The app automatically stores the last-used settings in the browser with `localStorage`,
+so returning to the same browser and device restores the previous palette setup. Named
+profiles use the same browser-local storage and are useful for keeping separate army,
+faction, unit, or test schemes without needing an account or backend.
+
+The `Copy share link` button creates a URL with the current system, colors, scheme,
+finish, role planner, base theme, faction scheme, heraldic options, search text, and
+producer filters. Opening a share link applies those URL settings first, then continues
+to auto-save changes locally as normal.
 
 ## Faction Paint Schemes
 

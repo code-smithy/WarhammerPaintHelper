@@ -34,6 +34,7 @@
 
     let pendingProducerKeys = null;
     applySettingsToState(readSettingsSnapshot(STORAGE_KEYS.lastSettings));
+    applySettingsToState(readSettingsFromUrl());
 
     let translator = W.createTranslator(state.language);
     let currentPalette = [];
@@ -86,6 +87,7 @@
       saveProfile: $("saveProfileBtn"),
       loadProfile: $("loadProfileBtn"),
       deleteProfile: $("deleteProfileBtn"),
+      copyShareLink: $("copyShareLinkBtn"),
       sat: $("satRange"),
       light: $("lightRange"),
       satOut: $("satValue"),
@@ -292,6 +294,10 @@
       el.saveProfile.addEventListener("click", saveNamedProfile);
       el.loadProfile.addEventListener("click", loadSelectedProfile);
       el.deleteProfile.addEventListener("click", deleteSelectedProfile);
+      el.copyShareLink.addEventListener("click", () => {
+        copyText(buildShareUrl());
+        setProfileStatus(t("ui.shareLinkCopied"));
+      });
       el.savedProfiles.addEventListener("change", () => {
         const profile = selectedProfile();
         el.profileName.value = profile ? profile.name : "";
@@ -1014,6 +1020,42 @@
       };
     }
 
+    function buildShareUrl() {
+      const snapshot = createSettingsSnapshot();
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams();
+      params.set("wph", String(SETTINGS_VERSION));
+      params.set("system", snapshot.system);
+      params.set("mode", snapshot.mode);
+      params.set("hex", W.primaryHex(state).slice(1));
+      params.set("style", String(Math.round(snapshot.style)));
+      params.set("scheme", snapshot.schemeKey);
+      params.set("role", snapshot.roleProfileKey);
+      params.set("base", snapshot.baseThemeKey);
+      params.set("lang", snapshot.language);
+
+      if (snapshot.factionSchemeId) {
+        params.set("faction", snapshot.factionSchemeId);
+      }
+      if (snapshot.mode === "heraldic") {
+        params.set("active", snapshot.activeColor);
+        params.set("shex", W.hslToHex(snapshot.secondary.h, snapshot.secondary.s, snapshot.secondary.l).slice(1));
+        params.set("layout", snapshot.heraldicLayout);
+        params.set("ratio", snapshot.heraldicRatio);
+        params.set("accent", snapshot.heraldicAccent);
+      }
+      if (snapshot.paintSearch) {
+        params.set("search", snapshot.paintSearch);
+      }
+      if (snapshot.producerKeys.length) {
+        params.set("producers", snapshot.producerKeys.join(","));
+      }
+
+      url.search = params.toString();
+      url.hash = "";
+      return url.toString();
+    }
+
     function applySettingsToState(snapshot) {
       if (!snapshot || typeof snapshot !== "object") {
         return false;
@@ -1047,6 +1089,67 @@
         : null;
       pendingProducerKeys = Array.isArray(state.producerKeys) ? state.producerKeys.slice() : null;
       return true;
+    }
+
+    function readSettingsFromUrl() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (!params.has("wph") && !params.has("hex")) {
+          return null;
+        }
+
+        const snapshot = {};
+        const primary = hslFromHexParam(params.get("hex"));
+        const secondary = hslFromHexParam(params.get("shex"));
+        if (primary) {
+          snapshot.h = primary.h;
+          snapshot.s = primary.s;
+          snapshot.l = primary.l;
+        }
+        if (secondary) {
+          snapshot.secondary = secondary;
+        }
+        setStringSetting(snapshot, "language", params.get("lang"));
+        setStringSetting(snapshot, "system", params.get("system"));
+        setStringSetting(snapshot, "mode", params.get("mode"));
+        setStringSetting(snapshot, "factionSchemeId", params.get("faction"));
+        setStringSetting(snapshot, "activeColor", params.get("active"));
+        setStringSetting(snapshot, "heraldicLayout", params.get("layout"));
+        setStringSetting(snapshot, "heraldicRatio", params.get("ratio"));
+        setStringSetting(snapshot, "heraldicAccent", params.get("accent"));
+        setStringSetting(snapshot, "schemeKey", params.get("scheme"));
+        setStringSetting(snapshot, "roleProfileKey", params.get("role"));
+        setStringSetting(snapshot, "baseThemeKey", params.get("base"));
+        setStringSetting(snapshot, "paintSearch", params.get("search"));
+        const style = Number(params.get("style"));
+        if (Number.isFinite(style)) {
+          snapshot.style = style;
+        }
+        const producers = params.get("producers");
+        if (producers !== null) {
+          snapshot.producerKeys = producers.split(",")
+            .map(value => value.trim())
+            .filter(Boolean);
+        }
+        return snapshot;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function hslFromHexParam(value) {
+      if (!value) {
+        return null;
+      }
+      const hex = value.startsWith("#") ? value : `#${value}`;
+      const rgb = W.hexToRgb(hex);
+      return rgb ? W.rgbToHsl(rgb.r, rgb.g, rgb.b) : null;
+    }
+
+    function setStringSetting(target, key, value) {
+      if (typeof value === "string" && value) {
+        target[key] = value;
+      }
     }
 
     function validNumber(value) {

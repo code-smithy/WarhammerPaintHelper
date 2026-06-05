@@ -195,7 +195,7 @@ label {
 
 .profile-actions {
   display: grid;
-  grid-template-columns: 1fr .7fr .7fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 
