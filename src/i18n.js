@@ -202,6 +202,11 @@
           desc: "A deliberately small set of 3 to 5 main paints for cohesive armies and faster decisions.",
           note: "Repeat the same few colors across surfaces, materials, and bases so the model reads as one controlled scheme."
         },
+        zorn: {
+          title: "Zorn limited palette",
+          desc: "A painterly restricted scheme inspired by ochre, muted red, ivory, and ivory-black mixes.",
+          note: "Best with warm main colors. Use the red sparingly, push the near-black into cool shadows, and let ivory highlights tie flesh, leather, bone, cloth, and bases together."
+        },
         highContrast: {
           title: "High-contrast scheme",
           desc: "Strong separation between darks and lights for display painting and tabletop readability.",
@@ -716,6 +721,7 @@
         triadic: { title: "Triadisch", desc: "Drei gleichmäßig verteilte Farben für Helden, Banner, Trupps und Fraktionsidentität.", note: "Eine Farbe führt, die zweite trägt Nebenflächen, die dritte bleibt Detail." },
         tetradic: { title: "Tetradisch", desc: "Vier Farben in zwei Komplementärpaaren. Stark, aber es braucht klare Hierarchie.", note: "Nutze zusätzliche Farben für Akzente, Bases, Waffen, Schilde, Banner oder Truppmarkierungen." },
         limitedPalette: { title: "Begrenzte Palette", desc: "Eine bewusst kleine Auswahl von 3 bis 5 Hauptfarben für stimmige Armeen und schnelle Entscheidungen.", note: "Wiederhole dieselben wenigen Farben auf Flächen, Materialien und Bases, damit das Modell kontrolliert wirkt." },
+        zorn: { title: "Zorn-Palette", desc: "Ein malerisches, eingeschraenktes Schema, inspiriert von Ocker, gedaempftem Rot, Elfenbein und Ivory-Black-Mischungen.", note: "Am besten mit warmen Hauptfarben. Rot sparsam einsetzen, den Fast-Schwarz-Ton fuer kuehle Schatten nutzen und Elfenbein fuer Haut, Leder, Knochen, Stoff und Bases verbinden." },
         highContrast: { title: "Kontrastreiches Schema", desc: "Starke Trennung zwischen Dunkel und Hell für Display-Malerei und Lesbarkeit auf dem Tisch.", note: "Schatten tief und Highlights hell setzen; der stärkste Akzent gehört nahe Gesicht, Waffe, Magie oder Linsen." },
         lowContrast: { title: "Kontrastarmes Schema", desc: "Gedämpfte, subtile Unterschiede für grittige, realistische, verwitterte oder getarnte Modelle.", note: "Halte Übergänge eng beieinander und lass Textur, Schmutz, Abplatzer und Materialkontrast arbeiten." },
         analogous: { title: "Analog", desc: "Benachbarte Farben für ein harmonisches, organisches und weniger aggressives Schema.", note: "Sehr gut für Monster, Roben, Geister, Waldthemen, Haut, Schuppen und natürliche Armeen." },
@@ -882,6 +888,7 @@
         triadic: { title: "Triadique", desc: "Trois couleurs espacées pour héros, bannières, escouades et identité de faction.", note: "Une couleur dirige, la deuxième sert les surfaces secondaires, la troisième reste en détail." },
         tetradic: { title: "Tétradique", desc: "Quatre couleurs en deux paires complémentaires. Puissant, mais demande une hiérarchie claire.", note: "Utilise les couleurs en plus pour accents, socles, armes, boucliers, bannières ou marquages." },
         limitedPalette: { title: "Palette limitée", desc: "Un petit ensemble volontaire de 3 à 5 peintures principales pour des armées cohérentes.", note: "Répète les mêmes quelques couleurs sur surfaces, matériaux et socles pour garder un schéma contrôlé." },
+        zorn: { title: "Palette Zorn limitee", desc: "Schema restreint et pictural inspire par l'ocre, le rouge attenue, l'ivoire et les melanges noir ivoire.", note: "Fonctionne mieux avec une couleur principale chaude. Garde le rouge rare, pousse le presque-noir dans les ombres froides et utilise l'ivoire pour lier peau, cuir, os, tissu et socles." },
         highContrast: { title: "Schéma très contrasté", desc: "Forte séparation entre ombres et lumières pour la lisibilité et la peinture d'exposition.", note: "Pousse les ombres et les lumières, puis garde l'accent le plus fort près du visage, de l'arme, de la magie ou des lentilles." },
         lowContrast: { title: "Schéma peu contrasté", desc: "Différences subtiles et atténuées pour modèles réalistes, usés, furtifs ou gritty.", note: "Garde les transitions proches et laisse texture, saleté, éclats et contraste de matériaux faire le travail." },
         analogous: { title: "Analogue", desc: "Couleurs voisines pour un schéma harmonieux, organique et moins agressif.", note: "Excellent pour monstres, robes, esprits, thèmes forestiers, peau, écailles et armées naturelles." },
@@ -1048,6 +1055,7 @@
         triadic: { title: "Triádico", desc: "Tres colores espaciados uniformemente para héroes, estandartes, escuadras e identidad de facción.", note: "Deja que un color lidere, usa el segundo para superficies secundarias más grandes y reserva el tercero para detalles." },
         tetradic: { title: "Tetrádico", desc: "Cuatro colores en dos parejas complementarias. Potente, pero necesita una jerarquía clara.", note: "Usa los colores extra para acentos, detalles de peana, armas, escudos, estandartes o marcas de escuadra." },
         limitedPalette: { title: "Paleta limitada", desc: "Un conjunto deliberadamente pequeño de 3 a 5 pinturas principales para ejércitos coherentes.", note: "Repite los mismos pocos colores en superficies, materiales y peanas para que el esquema se vea controlado." },
+        zorn: { title: "Paleta limitada Zorn", desc: "Esquema pictorico restringido inspirado en ocre, rojo apagado, marfil y mezclas de negro marfil.", note: "Funciona mejor con colores principales calidos. Usa el rojo con moderacion, lleva el casi negro a sombras frias y deja que el marfil una piel, cuero, hueso, tela y peanas." },
         highContrast: { title: "Esquema de alto contraste", desc: "Separación fuerte entre luces y sombras para display y legibilidad en mesa.", note: "Empuja sombras profundas y luces brillantes, y reserva el acento más fuerte para cara, arma, magia o lentes." },
         lowContrast: { title: "Esquema de bajo contraste", desc: "Diferencias sutiles y apagadas para modelos realistas, desgastados, furtivos o gritty.", note: "Mantén transiciones cercanas y deja que textura, mugre, desconchones y materiales hagan más trabajo." },
         analogous: { title: "Análogo", desc: "Colores vecinos para un esquema armonioso, orgánico y menos agresivo.", note: "Excelente para monstruos, túnicas, espíritus, temas forestales, piel, escamas y ejércitos naturalistas." },

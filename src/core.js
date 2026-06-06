@@ -23,6 +23,9 @@
     limitedPalette: {
       colors: [[0, 0, 0, "primary"], [35, -10, 8, "secondary"], [180, -6, 4, "accent"]]
     },
+    zorn: {
+      colors: [[0, -12, 0, "primary"], [16, -24, -4, "secondary"], [215, -60, -34, "darkBase"], [42, -44, 34, "edgeHighlight"], [64, -48, -8, "dustyLayer"]]
+    },
     highContrast: {
       colors: [[0, 0, 0, "primary"], [0, -10, -34, "deepShadow"], [0, -18, 34, "edgeHighlight"], [180, 16, 10, "strongAccent"]]
     },
@@ -269,7 +272,7 @@
 
   const SYSTEMS = {
     aos: {
-      schemeKeys: ["monochrome", "analogous", "complementary", "split", "triadic", "tetradic", "limitedPalette", "highContrast", "lowContrast", "analogousWide", "zenithal", "accented", "compound", "warmCool", "boxArt", "eavyMetal", "grimdark", "blanchitsu", "comicBook", "military", "paradeReady", "battleReady", "display", "muted", "saturated", "pastel", "neon", "realm"],
+      schemeKeys: ["monochrome", "analogous", "complementary", "split", "triadic", "tetradic", "limitedPalette", "zorn", "highContrast", "lowContrast", "analogousWide", "zenithal", "accented", "compound", "warmCool", "boxArt", "eavyMetal", "grimdark", "blanchitsu", "comicBook", "military", "paradeReady", "battleReady", "display", "muted", "saturated", "pastel", "neon", "realm"],
       roleProfileKeys: ["balanced", "stormcast", "death", "destruction", "chaos", "wizard", "beast"],
       baseThemeKeys: ["auto", "city", "ruins", "graveyard", "forest", "swamp", "desert", "snow", "volcanic", "arcane", "ghur", "coastal"],
       profileBaseKeys: {
@@ -283,7 +286,7 @@
       }
     },
     k40: {
-      schemeKeys: ["chapter", "monochrome", "analogous", "complementary", "split", "triadic", "tetradic", "limitedPalette", "highContrast", "lowContrast", "zenithal", "accented", "warmCool", "boxArt", "eavyMetal", "grimdark", "blanchitsu", "comicBook", "military", "paradeReady", "battleReady", "display", "muted", "saturated", "pastel", "neon"],
+      schemeKeys: ["chapter", "monochrome", "analogous", "complementary", "split", "triadic", "tetradic", "limitedPalette", "zorn", "highContrast", "lowContrast", "zenithal", "accented", "warmCool", "boxArt", "eavyMetal", "grimdark", "blanchitsu", "comicBook", "military", "paradeReady", "battleReady", "display", "muted", "saturated", "pastel", "neon"],
       roleProfileKeys: ["balanced", "spaceMarines", "guard", "chaosMarines", "xenos", "tyranids", "vehicle"],
       baseThemeKeys: ["auto", "urban", "ashWaste", "hive", "jungle", "desert", "snow", "volcanic", "alien", "shipDeck"],
       profileBaseKeys: {

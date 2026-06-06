@@ -42,6 +42,7 @@ test("exposes common colour theory and Warhammer hobby scheme names", () => {
     "triadic",
     "tetradic",
     "limitedPalette",
+    "zorn",
     "highContrast",
     "lowContrast",
     "boxArt",
@@ -65,6 +66,25 @@ test("exposes common colour theory and Warhammer hobby scheme names", () => {
       assert.ok(schemeKeys.includes(schemeKey), `${systemKey} should include ${schemeKey}`);
     });
   }
+});
+
+test("builds a muted Zorn-inspired limited palette", () => {
+  const palette = core.buildPalette({ h: 36, s: 62, l: 46, style: -20 }, "zorn");
+
+  assert.equal(palette.length, 5);
+  assert.deepEqual(palette.map(color => color.roleKey), [
+    "primary",
+    "secondary",
+    "darkBase",
+    "edgeHighlight",
+    "dustyLayer"
+  ]);
+  assert.ok(palette[2].l < 25, "Zorn dark base should behave like an ivory-black shadow");
+  assert.ok(palette[3].l > 70, "Zorn highlight should behave like an ivory highlight");
+  palette.forEach(color => {
+    assert.match(color.hex, /^#[0-9A-F]{6}$/);
+    assert.ok(color.s <= 62, "Zorn palette should stay restrained");
+  });
 });
 
 test("has role profiles and base suggestions for both supported game systems", () => {
