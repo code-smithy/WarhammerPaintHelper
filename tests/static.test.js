@@ -8,12 +8,13 @@ const root = path.resolve(__dirname, "..");
 test("static HTML references the prepared app assets", () => {
   const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
 
-  assert.match(html, /<link rel="stylesheet" href="styles\.css"/);
-  assert.match(html, /<script src="src\/core\.js"><\/script>/);
-  assert.match(html, /<script src="src\/factions\.js"><\/script>/);
-  assert.match(html, /<script src="src\/i18n\.js"><\/script>/);
-  assert.match(html, /<script src="src\/citadel\.js"><\/script>/);
-  assert.match(html, /<script src="src\/app\.js"><\/script>/);
+  assert.match(html, /<link rel="stylesheet" href="styles\.css\?v=0\.2"/);
+  assert.match(html, /<script src="src\/core\.js\?v=0\.2"><\/script>/);
+  assert.match(html, /<script src="src\/factions\.js\?v=0\.2"><\/script>/);
+  assert.match(html, /<script src="src\/i18n\.js\?v=0\.2"><\/script>/);
+  assert.match(html, /<script src="src\/citadel\.js\?v=0\.2"><\/script>/);
+  assert.match(html, /<script src="src\/app\.js\?v=0\.2"><\/script>/);
+  assert.match(html, /class="app-version"[^>]*>v0\.2<\/p>/);
   assert.match(html, /id="languageSelect"/);
   assert.match(html, /<option value="es">Español<\/option>/);
   assert.match(html, /id="systemSelect"/);
@@ -38,6 +39,17 @@ test("static HTML references the prepared app assets", () => {
   assert.doesNotMatch(html, /ui\.miniPreview/);
   assert.doesNotMatch(html, /class="mini-preview"/);
   assert.doesNotMatch(html, /class="mini"/);
+});
+
+test("asset cache buster matches package major and minor version", () => {
+  const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
+  const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
+  const [major, minor] = packageJson.version.split(".");
+  const majorMinor = `${major}.${minor}`;
+
+  assert.equal(majorMinor, "0.2");
+  assert.match(html, new RegExp(`\\\\?v=${majorMinor}`));
+  assert.match(html, new RegExp(`>v${majorMinor}<`));
 });
 
 test("app randomizer uses the loaded faction scheme helpers", () => {
