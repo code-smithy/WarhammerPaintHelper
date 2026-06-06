@@ -40,6 +40,13 @@ test("static HTML references the prepared app assets", () => {
   assert.doesNotMatch(html, /class="mini"/);
 });
 
+test("app randomizer uses the loaded faction scheme helpers", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.doesNotMatch(app, /\bfactionSchemesForSystem\b/);
+  assert.match(app, /\bfactionSchemesForCurrentSystem\(\)/);
+});
+
 test("fixed faction scheme data is separated by game system", () => {
   const data = JSON.parse(fs.readFileSync(path.join(root, "data", "faction-schemes.json"), "utf8"));
 

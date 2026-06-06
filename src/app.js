@@ -891,7 +891,7 @@
       state.l = randomPrimary.l;
       state.secondary = randomHobbyColor();
 
-      const schemesForSystem = factionSchemesForSystem(state.system);
+      const schemesForSystem = factionSchemesForCurrentSystem();
       if (schemesForSystem.length && Math.random() < 0.34) {
         state.factionSchemeId = randomChoice(schemesForSystem).id;
         state.mode = "single";
