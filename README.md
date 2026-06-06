@@ -182,6 +182,18 @@ palette generation, system data separation, translation lookup, catalogue normal
 and matching, producer filter restore behavior, share-link serialization guards, base
 suggestion behavior, and static asset/version wiring.
 
+For a real browser smoke test, install Playwright Core and run:
+
+```sh
+npm install
+npm run test:browser
+```
+
+The browser smoke test serves the static app locally, launches an installed Edge or
+Chrome browser, clicks `Random palette`, and fails on page or console errors. If your
+browser is not in a standard Windows install path, set `PLAYWRIGHT_BROWSER_EXECUTABLE`
+to the browser executable before running the test.
+
 ## Vibe Coded Notice
 
 This project has been completely vibe coded. That means it was built through an
