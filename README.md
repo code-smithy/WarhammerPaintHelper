@@ -209,4 +209,5 @@ by a certified committee of paint-swatch auditors.
 ## Disclaimer
 
 This is an unofficial hobby project. It is not affiliated with, endorsed by, or
-connected to Games Workshop.
+connected to Games Workshop, Citadel, Vallejo, Army Painter, or any other paint
+manufacturer, paint range, miniature company, or hobby brand mentioned in the app.
