@@ -196,10 +196,15 @@ to the browser executable before running the test.
 
 ## Vibe Coded Notice
 
-This project has been completely vibe coded. That means it was built through an
-AI-assisted, exploratory coding process rather than a traditional planned software
-engineering workflow. Please treat it as a hobby tool: useful, fun, and open to
-improvement, but not guaranteed to be perfect.
+This project has been vibe coded, which is the highly rigorous engineering discipline
+of asking an AI for help, squinting at the result, running tests, clicking around in a
+browser, and then declaring that the machine spirit seems mostly appeased.
+
+In keeping with the tradition, this sarcastic notice is itself being written by vibe
+code, because apparently the only thing better than a vibe-coded hobby tool is a
+vibe-coded disclaimer about the vibe-coded hobby tool. Please treat the app as useful,
+fun, and open to improvement, not as a sacred artifact handed down from the mountaintop
+by a certified committee of paint-swatch auditors.
 
 ## Disclaimer
 
