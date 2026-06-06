@@ -826,6 +826,35 @@
     return profiles[profileKey] || profiles.balanced;
   }
 
+  function resolveProducerSelection(options) {
+    const producerKeys = Array.isArray(options && options.producerKeys) ? options.producerKeys : [];
+    const previousSelectedKeys = Array.isArray(options && options.selectedKeys) ? options.selectedKeys : [];
+    const pendingProducerKeys = Array.isArray(options && options.pendingProducerKeys)
+      ? options.pendingProducerKeys
+      : null;
+    const catalogueSource = options && options.catalogueSource;
+    const resetSelection = Boolean(options && options.resetSelection);
+    const initialized = Boolean(options && options.initialized);
+    let selectedKeys;
+    let nextPendingProducerKeys = pendingProducerKeys ? pendingProducerKeys.slice() : null;
+
+    if (pendingProducerKeys) {
+      selectedKeys = producerKeys.filter(key => pendingProducerKeys.includes(key));
+      if (catalogueSource === "json") {
+        nextPendingProducerKeys = null;
+      }
+    } else if (resetSelection || !initialized) {
+      selectedKeys = producerKeys.slice();
+    } else {
+      selectedKeys = producerKeys.filter(key => previousSelectedKeys.includes(key));
+    }
+
+    return {
+      selectedKeys,
+      pendingProducerKeys: nextPendingProducerKeys
+    };
+  }
+
   return {
     SCHEMES,
     HERALDIC_LAYOUTS,
@@ -857,6 +886,7 @@
     getSchemeKeysForSystem,
     getRoleProfileKeys,
     getBaseThemeKeys,
-    getRoleProfile
+    getRoleProfile,
+    resolveProducerSelection
   };
 }));

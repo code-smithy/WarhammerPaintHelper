@@ -292,9 +292,9 @@
       el.saveProfile.addEventListener("click", saveNamedProfile);
       el.loadProfile.addEventListener("click", loadSelectedProfile);
       el.deleteProfile.addEventListener("click", deleteSelectedProfile);
-      el.copyShareLink.addEventListener("click", () => {
-        copyText(buildShareUrl());
-        setProfileStatus(t("ui.shareLinkCopied"));
+      el.copyShareLink.addEventListener("click", async () => {
+        const copied = await copyText(buildShareUrl());
+        setProfileStatus(t(copied ? "ui.shareLinkCopied" : "ui.shareLinkCopyFailed"));
       });
       el.savedProfiles.addEventListener("change", () => {
         const profile = selectedProfile();
@@ -824,17 +824,16 @@
     function renderProducerFilters(resetSelection) {
       const producers = catalogueManufacturers();
       const producerKeys = producers.map(producer => producer.key);
-      if (Array.isArray(pendingProducerKeys)) {
-        const matchingKeys = producerKeys.filter(key => pendingProducerKeys.includes(key));
-        selectedManufacturers = new Set(matchingKeys);
-        if (catalogueSource === "json") {
-          pendingProducerKeys = null;
-        }
-      } else if (resetSelection || !producerFiltersInitialized) {
-        selectedManufacturers = new Set(producerKeys);
-      } else {
-        selectedManufacturers = new Set(producerKeys.filter(key => selectedManufacturers.has(key)));
-      }
+      const resolved = W.resolveProducerSelection({
+        producerKeys,
+        pendingProducerKeys,
+        selectedKeys: Array.from(selectedManufacturers),
+        catalogueSource,
+        resetSelection,
+        initialized: producerFiltersInitialized
+      });
+      selectedManufacturers = new Set(resolved.selectedKeys);
+      pendingProducerKeys = resolved.pendingProducerKeys;
       state.producerKeys = pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers);
       producerFiltersInitialized = true;
 
@@ -1085,7 +1084,7 @@
       if (snapshot.paintSearch) {
         params.set("search", snapshot.paintSearch);
       }
-      if (snapshot.producerKeys.length) {
+      if (!sameStringSet(snapshot.producerKeys, catalogueManufacturers().map(producer => producer.key))) {
         params.set("producers", snapshot.producerKeys.join(","));
       }
 
@@ -1468,12 +1467,16 @@
       };
     }
 
-    function copyText(text) {
+    async function copyText(text) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
-      } else {
-        fallbackCopy(text);
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (error) {
+          return fallbackCopy(text);
+        }
       }
+      return fallbackCopy(text);
     }
 
     function fallbackCopy(text) {
@@ -1481,9 +1484,18 @@
       textarea.value = text;
       document.body.appendChild(textarea);
       textarea.select();
-      document.execCommand("copy");
+      const copied = document.execCommand("copy");
       textarea.remove();
+      return copied;
     }
+  }
+
+  function sameStringSet(left, right) {
+    if (!Array.isArray(left) || !Array.isArray(right) || left.length !== right.length) {
+      return false;
+    }
+    const rightKeys = new Set(right);
+    return left.every(key => rightKeys.has(key));
   }
 
   function detectLanguage(W) {

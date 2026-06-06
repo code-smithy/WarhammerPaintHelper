@@ -105,3 +105,63 @@ test("maps generated palette entries to closest paints", () => {
   assert.equal(mapped[0].matches[0].name, "Red");
   assert.equal(mapped[1].matches[0].name, "Blue");
 });
+
+test("normalizes hex values and rejects malformed colours", () => {
+  assert.equal(citadel.normalizeHex("abc123"), "#ABC123");
+  assert.equal(citadel.normalizeHex(" #00ffaa "), "#00FFAA");
+  assert.equal(citadel.normalizeHex("#12345"), null);
+  assert.equal(citadel.normalizeHex("not-a-colour"), null);
+  assert.equal(citadel.colorDistance("bad", "#000000"), Infinity);
+});
+
+test("catalogue normalization preserves ids and manufacturer codes", () => {
+  const paints = citadel.normalizePaintCatalogue({
+    manufacturers: [
+      {
+        name: "Vallejo",
+        colors: [
+          {
+            id: "vgc-72010",
+            name: "Bloody Red",
+            hex: "A8171A",
+            manufacturer_code: "72.010",
+            line: "Game Color",
+            medium: "Acrylic"
+          }
+        ]
+      }
+    ]
+  });
+
+  assert.deepEqual(paints, [
+    {
+      id: "vgc-72010",
+      name: "Bloody Red",
+      hex: "#A8171A",
+      range: "",
+      finish: "Acrylic",
+      manufacturer: "Vallejo",
+      collection: "Game Color",
+      status: "",
+      sourceUrl: "",
+      notes: "",
+      manufacturerCode: "72.010"
+    }
+  ]);
+});
+
+test("closest paint matching handles invalid targets and empty catalogues", () => {
+  const emptyMatches = citadel.findClosestPaints("#FF0000", [], 3);
+  const invalidTargetMatches = citadel.findClosestPaints("bad", [
+    { name: "Black", hex: "#000000" },
+    { name: "White", hex: "#FFFFFF" }
+  ], 2);
+  const mapped = citadel.mapPaletteToCatalogue([
+    { roleKey: "primary", hex: "#FF0000" }
+  ], [], { limit: 2 });
+
+  assert.deepEqual(emptyMatches, []);
+  assert.equal(invalidTargetMatches.length, 2);
+  invalidTargetMatches.forEach(match => assert.equal(match.distance, Infinity));
+  assert.deepEqual(mapped[0].matches, []);
+});

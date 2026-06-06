@@ -147,3 +147,75 @@ test("builds fixed faction palettes separately for AoS and 40K", () => {
   assert.equal(palette[0].roleKey, "factionDominant");
   assert.ok(palette.some(color => color.roleKey === "factionAccentOne"));
 });
+
+test("resolves producer filters for first render and retained selections", () => {
+  const firstRender = core.resolveProducerSelection({
+    producerKeys: ["Citadel", "Vallejo", "Army Painter"],
+    selectedKeys: [],
+    pendingProducerKeys: null,
+    catalogueSource: "sample",
+    resetSelection: false,
+    initialized: false
+  });
+  const retained = core.resolveProducerSelection({
+    producerKeys: ["Citadel", "Vallejo", "Pro Acryl"],
+    selectedKeys: ["Citadel", "Army Painter"],
+    pendingProducerKeys: null,
+    catalogueSource: "json",
+    resetSelection: false,
+    initialized: true
+  });
+
+  assert.deepEqual(firstRender, {
+    selectedKeys: ["Citadel", "Vallejo", "Army Painter"],
+    pendingProducerKeys: null
+  });
+  assert.deepEqual(retained, {
+    selectedKeys: ["Citadel"],
+    pendingProducerKeys: null
+  });
+});
+
+test("resolves pending producer filters against loaded catalogue keys", () => {
+  const sampleResult = core.resolveProducerSelection({
+    producerKeys: ["Citadel"],
+    selectedKeys: ["Citadel"],
+    pendingProducerKeys: ["Vallejo", "Unknown"],
+    catalogueSource: "sample",
+    resetSelection: true,
+    initialized: true
+  });
+  const jsonResult = core.resolveProducerSelection({
+    producerKeys: ["Citadel", "Vallejo", "Army Painter"],
+    selectedKeys: sampleResult.selectedKeys,
+    pendingProducerKeys: sampleResult.pendingProducerKeys,
+    catalogueSource: "json",
+    resetSelection: true,
+    initialized: true
+  });
+
+  assert.deepEqual(sampleResult, {
+    selectedKeys: [],
+    pendingProducerKeys: ["Vallejo", "Unknown"]
+  });
+  assert.deepEqual(jsonResult, {
+    selectedKeys: ["Vallejo"],
+    pendingProducerKeys: null
+  });
+});
+
+test("base suggestions respect an explicit theme and remove duplicates", () => {
+  const state = { h: 220, s: 70, l: 46, style: 0 };
+  const palette = core.buildPalette(state, "complementary");
+  const suggestions = core.baseSuggestions({
+    palette,
+    state,
+    systemKey: "k40",
+    roleProfileKey: "balanced",
+    baseThemeKey: "urban"
+  });
+
+  assert.equal(suggestions[0].key, "urban");
+  assert.equal(new Set(suggestions.map(item => item.key)).size, suggestions.length);
+  suggestions.forEach(item => assert.match(item.hex, /^#[0-9A-F]{6}$/));
+});

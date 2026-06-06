@@ -12,6 +12,10 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
+Current app version: `v0.2` (`package.json` version `0.2.0`). The static HTML uses the
+major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
+updates on GitHub Pages are less likely to reuse stale browser-cached files.
+
 It currently supports:
 
 - Age of Sigmar and Warhammer 40,000 color scheme modes.
@@ -82,8 +86,8 @@ faction, unit, or test schemes without needing an account or backend.
 
 The `Copy share link` button creates a URL with the current system, colors, scheme,
 finish, role planner, base theme, faction scheme, heraldic options, search text, and
-producer filters. Opening a share link applies those URL settings first, then continues
-to auto-save changes locally as normal.
+producer filters, including an explicitly empty producer selection. Opening a share link
+applies those URL settings first, then continues to auto-save changes locally as normal.
 
 ## Faction Paint Schemes
 
@@ -174,8 +178,9 @@ npm test
 ```
 
 The tests use Node's built-in test runner and cover color generation, fixed faction
-palette generation, system data separation, translation lookup, catalogue mapping, and
-static asset wiring.
+palette generation, system data separation, translation lookup, catalogue normalization
+and matching, producer filter restore behavior, share-link serialization guards, base
+suggestion behavior, and static asset/version wiring.
 
 ## Vibe Coded Notice
 

@@ -46,11 +46,31 @@ test("static HTML references the prepared app assets", () => {
 test("asset cache buster matches package major and minor version", () => {
   const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
   const majorMinor = packageMajorMinorVersion();
-  const assetVersions = Array.from(html.matchAll(/(?:href|src)="[^"]+\?v=([^"]+)"/g), match => match[1]);
+  const localAssets = Array.from(html.matchAll(/(?:href|src)="([^":#]+?\.(?:css|js)(?:\?[^"]*)?)"/g), match => match[1]);
 
-  assert.ok(assetVersions.length >= 6);
-  assetVersions.forEach(version => assert.equal(version, majorMinor));
+  assert.deepEqual(localAssets, [
+    `styles.css?v=${majorMinor}`,
+    `src/core.js?v=${majorMinor}`,
+    `src/factions.js?v=${majorMinor}`,
+    `src/i18n.js?v=${majorMinor}`,
+    `src/citadel.js?v=${majorMinor}`,
+    `src/app.js?v=${majorMinor}`
+  ]);
+  localAssets.forEach(asset => assert.match(asset, new RegExp(`\\?v=${escapeRegExp(majorMinor)}$`)));
   assert.match(html, new RegExp(`>v${majorMinor}<`));
+});
+
+test("application scripts load dependencies before app bootstrap", () => {
+  const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
+  const scripts = Array.from(html.matchAll(/<script src="([^"]+)"><\/script>/g), match => match[1].split("?")[0]);
+
+  assert.deepEqual(scripts, [
+    "src/core.js",
+    "src/factions.js",
+    "src/i18n.js",
+    "src/citadel.js",
+    "src/app.js"
+  ]);
 });
 
 test("app randomizer uses the loaded faction scheme helpers", () => {
@@ -61,10 +81,33 @@ test("app randomizer uses the loaded faction scheme helpers", () => {
 });
 
 test("producer filter restore preserves an explicit empty selection until JSON loads", () => {
+  const core = require("../src/core.js");
+  const sampleResult = core.resolveProducerSelection({
+    producerKeys: ["Citadel"],
+    pendingProducerKeys: [],
+    selectedKeys: ["Citadel"],
+    catalogueSource: "sample",
+    resetSelection: true,
+    initialized: true
+  });
+  const jsonResult = core.resolveProducerSelection({
+    producerKeys: ["Citadel", "Vallejo"],
+    pendingProducerKeys: sampleResult.pendingProducerKeys,
+    selectedKeys: sampleResult.selectedKeys,
+    catalogueSource: "json",
+    resetSelection: true,
+    initialized: true
+  });
+
+  assert.deepEqual(sampleResult, { selectedKeys: [], pendingProducerKeys: [] });
+  assert.deepEqual(jsonResult, { selectedKeys: [], pendingProducerKeys: null });
+});
+
+test("share link code preserves explicit empty producer selections", () => {
   const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
 
-  assert.doesNotMatch(app, /\|\|\s*!pendingProducerKeys\.length/);
-  assert.match(app, /if \(catalogueSource === "json"\) \{\s+pendingProducerKeys = null;/);
+  assert.match(app, /params\.set\("producers", snapshot\.producerKeys\.join\(","\)\)/);
+  assert.doesNotMatch(app, /if \(snapshot\.producerKeys\.length\) \{\s+params\.set\("producers"/);
 });
 
 test("fixed faction scheme data is separated by game system", () => {
