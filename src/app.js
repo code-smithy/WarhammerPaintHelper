@@ -827,7 +827,7 @@
       if (Array.isArray(pendingProducerKeys)) {
         const matchingKeys = producerKeys.filter(key => pendingProducerKeys.includes(key));
         selectedManufacturers = new Set(matchingKeys);
-        if (catalogueSource === "json" || !pendingProducerKeys.length) {
+        if (catalogueSource === "json") {
           pendingProducerKeys = null;
         }
       } else if (resetSelection || !producerFiltersInitialized) {

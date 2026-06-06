@@ -7,14 +7,16 @@ const root = path.resolve(__dirname, "..");
 
 test("static HTML references the prepared app assets", () => {
   const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
+  const assetVersion = packageMajorMinorVersion();
 
-  assert.match(html, /<link rel="stylesheet" href="styles\.css\?v=0\.2"/);
-  assert.match(html, /<script src="src\/core\.js\?v=0\.2"><\/script>/);
-  assert.match(html, /<script src="src\/factions\.js\?v=0\.2"><\/script>/);
-  assert.match(html, /<script src="src\/i18n\.js\?v=0\.2"><\/script>/);
-  assert.match(html, /<script src="src\/citadel\.js\?v=0\.2"><\/script>/);
-  assert.match(html, /<script src="src\/app\.js\?v=0\.2"><\/script>/);
-  assert.match(html, /class="app-version"[^>]*>v0\.2<\/p>/);
+  assert.match(html, /http-equiv="Cache-Control"/);
+  assert.match(html, assetPattern(`styles.css?v=${assetVersion}`));
+  assert.match(html, assetPattern(`src/core.js?v=${assetVersion}`));
+  assert.match(html, assetPattern(`src/factions.js?v=${assetVersion}`));
+  assert.match(html, assetPattern(`src/i18n.js?v=${assetVersion}`));
+  assert.match(html, assetPattern(`src/citadel.js?v=${assetVersion}`));
+  assert.match(html, assetPattern(`src/app.js?v=${assetVersion}`));
+  assert.match(html, new RegExp(`class="app-version"[^>]*>v${escapeRegExp(assetVersion)}</p>`));
   assert.match(html, /id="languageSelect"/);
   assert.match(html, /<option value="es">Español<\/option>/);
   assert.match(html, /id="systemSelect"/);
@@ -43,12 +45,11 @@ test("static HTML references the prepared app assets", () => {
 
 test("asset cache buster matches package major and minor version", () => {
   const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
-  const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
-  const [major, minor] = packageJson.version.split(".");
-  const majorMinor = `${major}.${minor}`;
+  const majorMinor = packageMajorMinorVersion();
+  const assetVersions = Array.from(html.matchAll(/(?:href|src)="[^"]+\?v=([^"]+)"/g), match => match[1]);
 
-  assert.equal(majorMinor, "0.2");
-  assert.match(html, new RegExp(`\\\\?v=${majorMinor}`));
+  assert.ok(assetVersions.length >= 6);
+  assetVersions.forEach(version => assert.equal(version, majorMinor));
   assert.match(html, new RegExp(`>v${majorMinor}<`));
 });
 
@@ -57,6 +58,13 @@ test("app randomizer uses the loaded faction scheme helpers", () => {
 
   assert.doesNotMatch(app, /\bfactionSchemesForSystem\b/);
   assert.match(app, /\bfactionSchemesForCurrentSystem\(\)/);
+});
+
+test("producer filter restore preserves an explicit empty selection until JSON loads", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.doesNotMatch(app, /\|\|\s*!pendingProducerKeys\.length/);
+  assert.match(app, /if \(catalogueSource === "json"\) \{\s+pendingProducerKeys = null;/);
 });
 
 test("fixed faction scheme data is separated by game system", () => {
@@ -100,3 +108,17 @@ test("default paint catalogue file documents the expected structure", () => {
   assert.ok(Object.hasOwn(color, "source_url"));
   assert.ok(Object.hasOwn(color, "notes"));
 });
+
+function packageMajorMinorVersion() {
+  const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
+  const [major, minor] = packageJson.version.split(".");
+  return `${major}.${minor}`;
+}
+
+function assetPattern(assetPath) {
+  return new RegExp(`(?:href|src)="${escapeRegExp(assetPath)}"`);
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
