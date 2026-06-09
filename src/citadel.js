@@ -107,26 +107,52 @@
   }
 
   function colorDistance(hexA, hexB) {
-    const a = hexToRgb(hexA);
-    const b = hexToRgb(hexB);
-    if (!a || !b) {
+    return colorDistanceFromRgb(hexToRgb(hexA), hexB);
+  }
+
+  function colorDistanceFromRgb(targetRgb, hex) {
+    const paintRgb = hexToRgb(hex);
+    if (!targetRgb || !paintRgb) {
       return Number.POSITIVE_INFINITY;
     }
-    const dr = a.r - b.r;
-    const dg = a.g - b.g;
-    const db = a.b - b.b;
+    const dr = targetRgb.r - paintRgb.r;
+    const dg = targetRgb.g - paintRgb.g;
+    const db = targetRgb.b - paintRgb.b;
     return Math.sqrt(dr * dr + dg * dg + db * db);
   }
 
-  function findClosestPaints(hex, paints, limit) {
+  function closestNormalizedPaints(hex, normalizedPaints, limit) {
     const max = Math.max(1, Number(limit) || 3);
-    return normalizeCitadelPaints(paints)
-      .map(paint => ({
+    const targetRgb = hexToRgb(hex);
+    const closest = [];
+
+    normalizedPaints.forEach(paint => {
+      insertClosestPaint(closest, {
         ...paint,
-        distance: Math.round(colorDistance(hex, paint.hex))
-      }))
-      .sort((a, b) => a.distance - b.distance)
-      .slice(0, max);
+        distance: Math.round(colorDistanceFromRgb(targetRgb, paint.hex))
+      }, max);
+    });
+
+    return closest;
+  }
+
+  function insertClosestPaint(closest, candidate, max) {
+    const insertIndex = closest.findIndex(paint => candidate.distance < paint.distance);
+    if (insertIndex === -1) {
+      if (closest.length < max) {
+        closest.push(candidate);
+      }
+      return;
+    }
+
+    closest.splice(insertIndex, 0, candidate);
+    if (closest.length > max) {
+      closest.pop();
+    }
+  }
+
+  function findClosestPaints(hex, paints, limit) {
+    return closestNormalizedPaints(hex, normalizeCitadelPaints(paints), limit);
   }
 
   function mapPaletteToCatalogue(palette, paints, options) {
@@ -134,7 +160,7 @@
     const normalized = normalizeCitadelPaints(paints);
     return (palette || []).map(color => ({
       ...color,
-      matches: normalized.length ? findClosestPaints(color.hex, normalized, limit) : []
+      matches: normalized.length ? closestNormalizedPaints(color.hex, normalized, limit) : []
     }));
   }
 
