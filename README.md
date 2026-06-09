@@ -12,9 +12,29 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.2` (`package.json` version `0.2.0`). The static HTML uses the
+Current app version: `v0.3` (`package.json` version `0.3.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
+
+## Release Notes
+
+### v0.3.0
+
+This release consolidates the recent feature and polish work into a new public app
+version:
+
+- Added Zorn limited palette support for warm, painterly miniature schemes.
+- Expanded random palette generation so it can vary systems, factions, heraldic settings,
+  catalogue colours, producer filters, base advice, and role planning in one click.
+- Added shareable palette URLs and browser-local named profiles for keeping and sending
+  paint plans.
+- Improved paint catalogue handling with manufacturer-grouped JSON, producer filters,
+  match metadata, hover/focus tooltips, and safer fallback behavior while catalogue JSON
+  loads.
+- Added static asset version checks and a browser smoke test for the deployed-style
+  static HTML page.
+- Clarified project disclaimers around Warhammer, paint ranges, paint manufacturers, and
+  unofficial hobby-project status.
 
 It currently supports:
 
