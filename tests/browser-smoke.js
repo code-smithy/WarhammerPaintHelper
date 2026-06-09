@@ -18,6 +18,15 @@ main().catch(error => {
 async function main() {
   const { chromium } = loadPlaywright();
   const executablePath = findBrowserExecutable();
+  if (!executablePath) {
+    const message = "No Edge, Chrome, or Chromium executable found. Set PLAYWRIGHT_BROWSER_EXECUTABLE to a browser path.";
+    if (process.env.WPH_BROWSER_SMOKE_REQUIRED === "true") {
+      throw new Error(message);
+    }
+    console.warn(`Browser smoke skipped: ${message}`);
+    return;
+  }
+
   const server = await startStaticServer();
   const baseUrl = `http://127.0.0.1:${server.address().port}`;
   let browser;
@@ -83,18 +92,47 @@ function loadPlaywright() {
 function findBrowserExecutable() {
   const candidates = [
     process.env.PLAYWRIGHT_BROWSER_EXECUTABLE,
+    ...browserCommandsFromPath(),
+    "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
+    "/usr/bin/google-chrome",
+    "/usr/bin/google-chrome-stable",
+    "/usr/bin/microsoft-edge",
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
     "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",
     "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
   ].filter(Boolean);
-  const executablePath = candidates.find(candidate => fs.existsSync(candidate));
-  if (!executablePath) {
-    throw new Error(
-      "No Edge or Chrome executable found. Set PLAYWRIGHT_BROWSER_EXECUTABLE to a browser path."
-    );
+
+  return candidates.find(candidate => fs.existsSync(candidate)) || null;
+}
+
+function browserCommandsFromPath() {
+  const commands = [
+    "chromium",
+    "chromium-browser",
+    "google-chrome",
+    "google-chrome-stable",
+    "microsoft-edge",
+    "msedge"
+  ];
+  const pathEntries = (process.env.PATH || "")
+    .split(path.delimiter)
+    .filter(Boolean);
+
+  return pathEntries.flatMap(entry => commands.map(command => path.join(entry, command)));
+}
+
+function decodeRequestPathname(pathname, response) {
+  try {
+    return decodeURIComponent(pathname);
+  } catch (error) {
+    response.writeHead(400);
+    response.end("Bad request");
+    return null;
   }
-  return executablePath;
 }
 
 function startStaticServer() {
@@ -106,7 +144,11 @@ function startStaticServer() {
       response.end();
       return;
     }
-    const filePath = path.resolve(root, "." + decodeURIComponent(pathname));
+    const decodedPathname = decodeRequestPathname(pathname, response);
+    if (!decodedPathname) {
+      return;
+    }
+    const filePath = path.resolve(root, "." + decodedPathname);
 
     if (!filePath.startsWith(root + path.sep)) {
       response.writeHead(403);
