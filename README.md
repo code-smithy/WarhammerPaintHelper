@@ -12,69 +12,9 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.6` (`package.json` version `0.6.0`). The static HTML uses the
+Current app version: `v0.7` (`package.json` version `0.7.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
-
-## Release Notes
-
-### v0.6.0
-
-This release makes owned paints visible directly in hover/focus paint tooltips and
-refreshes the static asset cache-buster so browsers fetch the updated UI assets:
-
-- Added an ASCII `[x]` marker beside owned closest-match paints in colour tooltips.
-- Added a bottom-of-page legend explaining that `[x]` means an owned colour.
-- Bumped the public app version from `v0.5` to `v0.6` so hosted pages do not reuse stale
-  `v0.5` assets that do not include the owned-paint tooltip marker.
-
-### v0.5.0
-
-This release adds owned-paint collection tracking and refreshes the static asset
-cache-buster so browsers fetch the matching JavaScript, styling, and translation files
-for the new controls:
-
-- Added a separate Owned colours panel for marking catalogue paints that are already in
-  your collection.
-- Added a select-all-visible control that reflects when every currently filtered
-  catalogue colour is selected.
-- Added an owned-only closest-match toggle so generated palette matches can be limited
-  to paints you own.
-- Marked owned closest-match rows with an Owned badge while still allowing full-catalogue
-  matching when the owned-only toggle is off.
-- Preserved owned paint selections and the owned-only matching preference in browser-local
-  saved settings and named profiles.
-- Bumped the public app version from `v0.4` to `v0.5` so hosted pages do not reuse stale
-  `v0.4` assets that do not include the owned-paint controls.
-
-### v0.4.0
-
-This release adds recipe depth modes and refreshes the static asset cache-buster so
-browsers fetch the matching JavaScript and translation files for the new controls:
-
-- Added beginner, speedpaint, battle-ready, and display-painting recipe modes.
-- Updated generated paint ladders so each mode uses workflow-appropriate steps.
-- Preserved the selected recipe mode in random palettes, saved profiles, and share links.
-- Bumped the public app version from `v0.3` to `v0.4` so hosted pages do not reuse stale
-  `v0.3` scripts that cannot populate the new recipe mode selector.
-
-### v0.3.0
-
-This release consolidates the recent feature and polish work into a new public app
-version:
-
-- Added Zorn limited palette support for warm, painterly miniature schemes.
-- Expanded random palette generation so it can vary systems, factions, heraldic settings,
-  catalogue colours, producer filters, base advice, and role planning in one click.
-- Added shareable palette URLs and browser-local named profiles for keeping and sending
-  paint plans.
-- Improved paint catalogue handling with manufacturer-grouped JSON, producer filters,
-  match metadata, hover/focus tooltips, and safer fallback behavior while catalogue JSON
-  loads.
-- Added static asset version checks and a browser smoke test for the deployed-style
-  static HTML page.
-- Clarified project disclaimers around Warhammer, paint ranges, paint manufacturers, and
-  unofficial hobby-project status.
 
 It currently supports:
 
@@ -283,3 +223,75 @@ by a certified committee of paint-swatch auditors.
 This is an unofficial hobby project. It is not affiliated with, endorsed by, or
 connected to Games Workshop, Citadel, Vallejo, Army Painter, or any other paint
 manufacturer, paint range, miniature company, or hobby brand mentioned in the app.
+
+## Release Notes
+
+### v0.7.0
+
+This release fixes owned-only closest-match filtering and refreshes the static asset
+cache-buster so browsers fetch the corrected UI logic:
+
+- Fixed the owned-only closest-match toggle so unowned colours are excluded from both
+  generated palette match cards and hover/focus paint tooltips.
+- Added regression tests covering owned-only candidate filtering before closest-match
+  calculations.
+- Bumped the public app version from `v0.6` to `v0.7` so hosted pages do not reuse stale
+  `v0.6` assets that can show unowned closest matches.
+
+### v0.6.0
+
+This release makes owned paints visible directly in hover/focus paint tooltips and
+refreshes the static asset cache-buster so browsers fetch the updated UI assets:
+
+- Added an ASCII `[x]` marker beside owned closest-match paints in colour tooltips.
+- Added a bottom-of-page legend explaining that `[x]` means an owned colour.
+- Bumped the public app version from `v0.5` to `v0.6` so hosted pages do not reuse stale
+  `v0.5` assets that do not include the owned-paint tooltip marker.
+
+### v0.5.0
+
+This release adds owned-paint collection tracking and refreshes the static asset
+cache-buster so browsers fetch the matching JavaScript, styling, and translation files
+for the new controls:
+
+- Added a separate Owned colours panel for marking catalogue paints that are already in
+  your collection.
+- Added a select-all-visible control that reflects when every currently filtered
+  catalogue colour is selected.
+- Added an owned-only closest-match toggle so generated palette matches can be limited
+  to paints you own.
+- Marked owned closest-match rows with an Owned badge while still allowing full-catalogue
+  matching when the owned-only toggle is off.
+- Preserved owned paint selections and the owned-only matching preference in browser-local
+  saved settings and named profiles.
+- Bumped the public app version from `v0.4` to `v0.5` so hosted pages do not reuse stale
+  `v0.4` assets that do not include the owned-paint controls.
+
+### v0.4.0
+
+This release adds recipe depth modes and refreshes the static asset cache-buster so
+browsers fetch the matching JavaScript and translation files for the new controls:
+
+- Added beginner, speedpaint, battle-ready, and display-painting recipe modes.
+- Updated generated paint ladders so each mode uses workflow-appropriate steps.
+- Preserved the selected recipe mode in random palettes, saved profiles, and share links.
+- Bumped the public app version from `v0.3` to `v0.4` so hosted pages do not reuse stale
+  `v0.3` scripts that cannot populate the new recipe mode selector.
+
+### v0.3.0
+
+This release consolidates the recent feature and polish work into a new public app
+version:
+
+- Added Zorn limited palette support for warm, painterly miniature schemes.
+- Expanded random palette generation so it can vary systems, factions, heraldic settings,
+  catalogue colours, producer filters, base advice, and role planning in one click.
+- Added shareable palette URLs and browser-local named profiles for keeping and sending
+  paint plans.
+- Improved paint catalogue handling with manufacturer-grouped JSON, producer filters,
+  match metadata, hover/focus tooltips, and safer fallback behavior while catalogue JSON
+  loads.
+- Added static asset version checks and a browser smoke test for the deployed-style
+  static HTML page.
+- Clarified project disclaimers around Warhammer, paint ranges, paint manufacturers, and
+  unofficial hobby-project status.

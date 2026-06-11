@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.7.0
+
+- Fixed owned-only closest-match filtering so unowned colours are excluded from both
+  generated palette match cards and hover/focus paint tooltips.
+- Added regression tests covering owned-only candidate filtering before closest-match
+  calculations.
+- Bumped the static app version and cache-buster from `v0.6` to `v0.7`.
+
 ## v0.6.0
 
 - Added an ASCII `[x]` marker to hover/focus paint tooltips for closest catalogue
