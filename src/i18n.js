@@ -7,7 +7,7 @@
 }(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  const LANGUAGE_KEYS = ["en", "fr", "de", "es"];
+  const LANGUAGE_KEYS = ["en", "fr", "de", "es", "it"];
 
   const TRANSLATIONS = {
     en: {
@@ -1653,6 +1653,282 @@
       citadel: "Equivalencias del catálogo"
     }
   });
+
+  const ITALIAN_TRANSLATIONS = {
+    appTitle: "Warhammer Paint Helper",
+    ui: {
+      language: "Lingua",
+      system: "Sistema di gioco",
+      eyebrow: "Strumento per palette di miniature",
+      title: "Warhammer Paint Helper",
+      subtitle: "Scegli un colore principale e genera una palette pronta per miniature con ruoli del modello, idee per la basetta, passaggi di pittura e corrispondenze del catalogo colori.",
+      mode: "Modalità palette",
+      faction: "Fazione",
+      subfaction: "Sottofazione / schema fisso",
+      activeColor: "Modifica ruota",
+      mainColor: "Colore principale",
+      paintProducers: "Produttori di colori",
+      unknownProducer: "Produttore sconosciuto",
+      paintSearch: "Filtra i colori del catalogo",
+      paintSelect: "Scegli il colore principale dal catalogo",
+      paintSelectPlaceholder: "Seleziona un colore ({count})",
+      paintSelectEmpty: "Nessun colore corrisponde ai filtri attuali",
+      hexInput: "Inserisci direttamente il colore HEX",
+      scheme: "Schema di colore",
+      rolePlanner: "Pianificatore ruoli",
+      baseEnvironment: "Ambiente della basetta",
+      saturation: "Saturazione",
+      lightness: "Luminosità",
+      finishStyle: "Stile di finitura",
+      grimdark: "Grimdark / invecchiato",
+      clean: "Pulito / vibrante",
+      copyPalette: "Copia palette",
+      copied: "Copiato",
+      randomColor: "Palette casuale",
+      profileName: "Nome profilo",
+      savedProfiles: "Profili salvati",
+      saveProfile: "Salva profilo",
+      loadProfile: "Carica",
+      deleteProfile: "Elimina",
+      copyShareLink: "Copia link di condivisione",
+      profilePlaceholder: "Scegli un profilo",
+      noProfiles: "Nessun profilo salvato",
+      profileSaved: "{name} salvato.",
+      profileLoaded: "{name} caricato.",
+      profileDeleted: "{name} eliminato.",
+      shareLinkCopied: "Link di condivisione copiato.",
+      shareLinkCopyFailed: "Impossibile copiare il link di condivisione.",
+      profileMissing: "Scegli prima un profilo salvato.",
+      paintingNotes: "Note di pittura",
+      rolePlannerDescription: "Assegnazioni concrete per superfici, materiali, accenti focali e dettagli della basetta.",
+      baseAdviceDescription: "Concetti di basetta con logica di contrasto, atmosfera, colori dei materiali e una breve ricetta.",
+      modelRoles: "Ruoli del modello",
+      modelRolesDescription: "Breve panoramica dei colori principali generati.",
+      paintLadderDescription: "Passaggi pratici per ombre, base, strati, lumeggiature di bordo e luce focale.",
+      citadelMatches: "Corrispondenze del catalogo colori",
+      why: "Perché",
+      build: "Costruisci",
+      debug: "Debug: colore principale {hex} | prima carta palette {firstHex} | HSL({h}, {s}%, {l}%) | finitura {finish}",
+      citadelJsonHint: "Fonte: data/paint-catalogue.json."
+    },
+    systems: {
+      aos: "Age of Sigmar",
+      k40: "Warhammer 40.000"
+    },
+    modes: {
+      single: "Colore singolo",
+      heraldic: "Araldico"
+    },
+    factionSchemes: {
+      custom: "Ruota colori personalizzata",
+      chooseSubfaction: "Scegli uno schema di sottofazione",
+      noSubfactions: "Nessuno schema fisso per questa fazione",
+      customHint: "Scegli una fazione e una sottofazione per usare uno schema fisso, oppure continua con la ruota colori.",
+      missing: "Nessuno schema fisso di fazione caricato.",
+      selectedMeta: "Schema fisso {faction} con {count} colori etichettati.",
+      description: "{faction}: {subfaction}, usando lo schema fisso {scheme}.",
+      defaultNote: "Usa i colori etichettati come ricetta fissa della fazione, poi regola finitura e basetta a piacere.",
+      paintEquivalents: "Equivalenti colori",
+      noPaintEquivalents: "Nessun equivalente colore fisso indicato"
+    },
+    heraldic: {
+      title: "Araldico a due colori",
+      description: "Schema {layout} con bilanciamento {ratio}, costruito da due colori da stemma.",
+      note: "Tratta i colori di campo e carica come co-primari. Mantieni piccolo l'accento e ombreggia bianco o colori pallidi con grigio, avorio o grigio-blu invece del nero puro.",
+      primaryColor: "Colore del campo",
+      secondaryColor: "Colore della carica",
+      secondaryHexInput: "Inserisci direttamente il HEX secondario",
+      layout: "Layout araldico",
+      ratio: "Bilanciamento colori",
+      accent: "Accento araldico",
+      active: {
+        primary: "Colore del campo",
+        secondary: "Colore della carica"
+      },
+      layouts: {
+        split: "Scudo diviso",
+        quartered: "Inquartato",
+        diagonal: "Diagonale",
+        stripe: "Banda centrale",
+        border: "Bordo e campo"
+      },
+      ratios: {
+        dominant: "70 / 30",
+        balanced: "50 / 50",
+        secondary: "40 / 60"
+      },
+      accents: {
+        auto: "Auto",
+        autoTrim: "Auto: bordatura",
+        autoFocal: "Auto: dettaglio focale",
+        autoMetal: "Auto: metallo araldico",
+        gold: "Oro",
+        red: "Rosso",
+        black: "Nero",
+        silver: "Argento",
+        lens: "Lente / colore magico"
+      }
+    },
+    systemCopy: {
+      aos: {
+        rolePlannerTitle: "Pianificatore ruoli AoS",
+        baseAdviceTitle: "Suggerimenti ambiente basetta AoS",
+        paintLadderTitle: "AoS Ombra / Strato / Lumeggiatura",
+        finishPrefix: "Finitura AoS"
+      },
+      k40: {
+        rolePlannerTitle: "Pianificatore ruoli 40K",
+        baseAdviceTitle: "Suggerimenti basetta campo di battaglia 40K",
+        paintLadderTitle: "40K Ombra / Strato / Lumeggiatura",
+        finishPrefix: "Finitura 40K"
+      }
+    },
+    finish: {
+      grimdark: "Grimdark",
+      weathered: "Invecchiato",
+      balanced: "Bilanciato",
+      clean: "Pulito",
+      vibrant: "Vibrante",
+      summary: {
+        grimdark: "Molto desaturato, ombre sporche, scheggiature, pigmenti e luci selettive.",
+        weathered: "Realistico e usurato con ombre più scure, bordi consumati e texture controllata.",
+        balanced: "Equilibrio tra lettura da tavolo, colore pulito e profondità pittorica.",
+        clean: "Colori più chiari e puliti, bordi nitidi e weathering minimo.",
+        vibrant: "Alta saturazione, forti luci focali e accenti brillanti da esposizione."
+      }
+    },
+    profiles: {
+      aos: {
+        balanced: "AoS bilanciato",
+        stormcast: "Armatura eroica / Stormcast",
+        death: "Morte / non morti",
+        destruction: "Distruzione / orde",
+        chaos: "Caos / demoni",
+        wizard: "Mago / mistico",
+        beast: "Bestia / mostro"
+      },
+      k40: {
+        balanced: "40K bilanciato",
+        spaceMarines: "Space Marines / élite corazzata",
+        guard: "Guardia / fanteria",
+        chaosMarines: "Marines del Caos",
+        xenos: "Xenos / alieni puliti",
+        tyranids: "Tiranidi / bio-organici",
+        vehicle: "Veicolo / armatura grande"
+      }
+    },
+    baseOptions: {
+      auto: "Auto"
+    },
+    schemes: {
+      complementary: { title: "Complementare", desc: "Colore principale con il suo opposto per un contrasto forte e leggibile.", note: "Mantieni dominante il colore principale e usa il complementare per punti focali o dettagli." },
+      split: { title: "Complementare diviso", desc: "Due accenti ai lati dell'opposto diretto, più morbidi del complementare puro.", note: "Ottimo per miniature con molte superfici secondarie e accenti controllati." },
+      triadic: { title: "Triadico", desc: "Tre colori equidistanti per una palette energica e bilanciata.", note: "Scegli un colore dominante e lascia gli altri due come supporto." },
+      tetradic: { title: "Tetradico", desc: "Due coppie complementari per eroi complessi e modelli ricchi di materiali.", note: "Distribuisci i colori con attenzione per evitare un risultato rumoroso." },
+      analogous: { title: "Analogo", desc: "Colori vicini per una palette armoniosa e naturale.", note: "Aggiungi contrasto di valore per mantenere la leggibilità." },
+      monochrome: { title: "Monocromatico", desc: "Variazioni dello stesso colore per un aspetto coeso.", note: "Spingi luci e ombre per evitare superfici piatte." },
+      boxArt: { title: "Schema box art", desc: "Palette pulita da studio ispirata alle presentazioni ufficiali Games Workshop.", note: "Usa ombre nette, pannelli leggibili e un accento focale chiaro." },
+      eavyMetal: { title: "Stile 'Eavy Metal", desc: "Lumeggiature di bordo pulite e ad alto contrasto vicino al classico look studio GW.", note: "Mantieni le linee ordinate, i recessi scuri e i bordi molto nitidi." },
+      grimdark: { title: "Sporco / grimdark", desc: "Varianti desaturate e scure con un accento controllato per modelli realistici o consumati.", note: "Lavature, scheggiature a spugna, pigmenti e luci selettive contano più delle grandi aree sature." },
+      battleReady: { title: "Battle-ready", desc: "Standard da tavolo semplice: colori di base, shade e pochi highlight pratici.", note: "Dai priorità a colori bloccati, shade controllata, basette pulite e uno o due accenti leggibili." },
+      paradeReady: { title: "Parade-ready", desc: "Standard d'armata pulito, leggibile e rifinito con highlight ordinati.", note: "Mantieni superfici pulite, luci coerenti e accenti forti ma non caotici." },
+      chapter: { title: "Capitolo / squadra 40K", desc: "Colore armatura, ombra dei pannelli, marcatura compagnia e accento lente o plasma.", note: "Pensato per pannelli d'armatura 40K, caschi, spallacci, armi e identificativi di squadra." }
+    },
+    schemeRoles: {
+      primary: "Colore principale", contrast: "Colore di contrasto", leftAccent: "Accento sinistro", rightAccent: "Accento destro", secondary: "Colore secondario", accent: "Colore d'accento", shadow: "Colore d'ombra", highlight: "Colore di luce", darkNeighbor: "Vicino scuro", lightNeighbor: "Vicino chiaro", layer: "Colore strato", deepShadow: "Ombra profonda", edgeHighlight: "Lumeggiatura di bordo", basecoat: "Basecoat", coolShadow: "Ombra fredda", warmLayer: "Strato caldo", strongAccent: "Accento forte", neighbor: "Colore vicino", secondaryAccent: "Accento secondario", coolCounter: "Controcolore freddo", coolAccent: "Accento freddo", darkBase: "Base scura", dustyLayer: "Strato polveroso", dirtyAccent: "Accento sporco", realmGlow: "Bagliore di reame", realmAccent: "Accento di reame", realmShadow: "Ombra di reame", armor: "Colore armatura", panelShade: "Ombra pannello", companyMarking: "Marcatura compagnia", lensAccent: "Accento lente", fieldColor: "Colore del campo", chargeColor: "Colore della carica", fieldShadow: "Ombra del campo", chargeShade: "Ombra della carica", fieldHighlight: "Luce del campo", chargeHighlight: "Luce della carica", heraldicAccent: "Accento araldico", factionDominant: "Colore dominante", factionSecondary: "Colore secondario", factionDarkNeutral: "Neutro scuro", factionLightNeutral: "Neutro chiaro", factionAccentOne: "Accento 1", factionAccentTwo: "Accento 2"
+    },
+    placements: {
+      dominant: "Dominante",
+      secondary: "Secondario",
+      contrast: "Contrasto",
+      small: "Piccolo accento"
+    },
+    ladder: {
+      steps: {
+        deepShade: "Ombra profonda",
+        shadeWash: "Shade / lavatura",
+        basecoat: "Basecoat",
+        layer: "Strato",
+        edgeHighlight: "Lumeggiatura di bordo",
+        focusLight: "Luce focale"
+      },
+      hints: {
+        deepShade: "Recessi profondi e lati inferiori",
+        shadeWash: "Lavatura controllata, non allagata",
+        basecoat: "Strato principale coprente",
+        layer: "Volumi rialzati e luce ampia",
+        edgeHighlight: "Bordi, angoli e contorni duri",
+        focusLight: "Solo volto, lenti, rune, gemme, plasma o armi chiave"
+      },
+      note: "Uso {system}: armatura, stoffa, pelle, scaglie, veicoli, mantelli o effetti energetici. Finitura {finish}: mantieni selettiva la luce focale."
+    },
+    materials: {
+      items: {
+        darkWood: { name: "Legno scuro", use: "Aste, archi, casse, retro degli scudi e bordi delle basette" },
+        warmWood: { name: "Legno caldo", use: "Venature del legno, scudi, scatole e dettagli scenici" },
+        darkLeather: { name: "Cuoio scuro", use: "Cinture, fondine, stivali, borse e cinghie" },
+        redLeather: { name: "Cuoio rossiccio", use: "Armature di cuoio, impugnature, selle e tasche" },
+        offWhite: { name: "Bianco sporco", use: "Stoffa, vesti, pergamena, corde e araldica" },
+        bone: { name: "Osso", use: "Teschi, denti, corna, artigli, pergamena e trofei" },
+        coldWhite: { name: "Bianco freddo", use: "Punti luce, gemme, neve e lumeggiature di bagliore" },
+        blackGrey: { name: "Grigio nero", use: "Tute interne, carter armi, ombre e prese d'aria" },
+        iron: { name: "Ferro", use: "Lame, catene, bulloni, metallo brunito e raccordi duri" },
+        silver: { name: "Argento", use: "Bordi metallici brillanti, gioielli e macchinari puliti" },
+        bronze: { name: "Bronzo", use: "Armature antiche, bordature, idoli, macchinari e raccordi" },
+        gold: { name: "Oro", use: "Insegne, onori, gioielli, bordature e dettagli eroici" },
+        baseEarth: { name: "Terra / macerie", use: "Terreno della basetta, polvere, rovine e texture da campo di battaglia" }
+      }
+    },
+    bases: {
+      city: base("Ciottoli della Città Libera", "Strade lastricate, vie di frontiera, pietre, detriti di legno e muratura annerita dalla polvere.", "Ideale per fanteria disciplinata, artiglieria, cavalleria e campagne urbane.", ["Base: grigio-marrone scuro", "Texture: pietre, sabbia, legno rotto", "Pennello asciutto: grigio chiaro", "Accento: polvere, poster, ciuffi d'erba"]),
+      ruins: base("Rovine di tempio del Realmgate", "Gradini antichi, statue rotte, lastre di tempio, schegge di marmo e realmstone crepata.", "Funziona per eroi, unità élite e modelli che richiedono un piedistallo eroico pulito.", ["Base: pietra grigia fredda", "Texture: ardesia, sughero, lastre crepate", "Pennello asciutto: grigio chiaro", "Accento: poco muschio o crepe luminose"]),
+      graveyard: base("Cimitero / terreno maledetto", "Terra fredda, lapidi, erba morta, ossa, nebbia e muratura scura in rovina.", "Molto adatto a non morti, eserciti maledetti e palette grimdark fredde.", ["Base: terra scura", "Texture: graniglia, teschi, pietra rotta", "Pennello asciutto: grigio-marrone freddo", "Accento: erba morta o osso"]),
+      desert: base("Deserto, steppa o polvere ocra", "Sabbia asciutta, terra crepata, polvere calda, rocce sbiancate dal sole e arbusti radi.", "Eccellente per schemi blu, verdi, viola o freddi.", ["Base: marrone ocra", "Texture: sabbia e rocce", "Pennello asciutto: osso o sabbia pallida", "Accento: erba secca"]),
+      urban: base("Macerie urbane", "Cemento, tondini, polvere, strada rotta, rottami metallici e danni da proiettili.", "Classica cornice da campo di battaglia 40K per fanteria e corazzati.", ["Base: cemento scuro", "Texture: macerie e graniglia", "Pennello asciutto: grigio freddo", "Accento: striscia di pericolo o polvere"])
+    },
+    citadel: {
+      loaded: "Caricati {count} colori del catalogo dal JSON.",
+      sample: "Uso {count} colori di esempio finché il JSON non viene caricato.",
+      missing: "Nessun dato del catalogo colori disponibile.",
+      closest: "Corrispondenze più vicine",
+      distance: "distanza {distance}"
+    },
+    copy: {
+      palette: "Palette",
+      roles: "Pianificatore ruoli",
+      bases: "Suggerimenti ambiente basetta",
+      ladder: "Ombra / Strato / Luce",
+      citadel: "Corrispondenze catalogo"
+    }
+  };
+
+  TRANSLATIONS.it = mergeLocale(TRANSLATIONS.en, ITALIAN_TRANSLATIONS);
+  Object.freeze(TRANSLATIONS);
+
+  function mergeLocale(baseLocale, localeOverrides) {
+    if (Array.isArray(baseLocale)) {
+      return Array.isArray(localeOverrides) ? localeOverrides.slice() : baseLocale.slice();
+    }
+    if (!baseLocale || typeof baseLocale !== "object") {
+      return localeOverrides === undefined ? baseLocale : localeOverrides;
+    }
+
+    const merged = {};
+    for (const key of Object.keys(baseLocale)) {
+      merged[key] = mergeLocale(
+        baseLocale[key],
+        localeOverrides && Object.prototype.hasOwnProperty.call(localeOverrides, key) ? localeOverrides[key] : undefined
+      );
+    }
+    if (localeOverrides && typeof localeOverrides === "object" && !Array.isArray(localeOverrides)) {
+      for (const key of Object.keys(localeOverrides)) {
+        if (!Object.prototype.hasOwnProperty.call(merged, key)) {
+          merged[key] = localeOverrides[key];
+        }
+      }
+    }
+    return merged;
+  }
 
   function base(title, use, tip, recipe) {
     return { title, use, tip, recipe };

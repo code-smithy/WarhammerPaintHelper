@@ -39,7 +39,7 @@ version:
 It currently supports:
 
 - Age of Sigmar and Warhammer 40,000 color scheme modes.
-- English, German, French, and Spanish language selection.
+- English, German, French, Spanish, and Italian language selection.
 - Fixed faction and subfaction schemes, kept separate by game system. The included data
   currently covers 60 Age of Sigmar schemes and 67 Warhammer 40,000 schemes.
 - Excel-derived faction scheme data with labelled roles for dominant color, secondary

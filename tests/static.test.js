@@ -19,6 +19,7 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, new RegExp(`class="app-version"[^>]*>v${escapeRegExp(assetVersion)}</p>`));
   assert.match(html, /id="languageSelect"/);
   assert.match(html, /<option value="es">Español<\/option>/);
+  assert.match(html, /<option value="it">Italiano<\/option>/);
   assert.match(html, /id="systemSelect"/);
   assert.match(html, /id="modeSelect"/);
   assert.match(html, /id="factionSelect"/);
