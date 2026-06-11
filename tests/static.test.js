@@ -127,6 +127,14 @@ test("share link code preserves explicit empty producer selections", () => {
   assert.doesNotMatch(app, /if \(snapshot\.producerKeys\.length\) \{\s+params\.set\("producers"/);
 });
 
+test("random palette preserves the current producer filter selection", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.match(app, /syncControlsFromState\(\{ resetProducerSelection: false \}\)/);
+  assert.match(app, /randomCatalogueColor[\s\S]*filteredCataloguePaints\(\)\.filter\(item => item\.hex\)/);
+  assert.doesNotMatch(app, /state\.producerKeys = randomProducerKeys/);
+});
+
 test("owned paint controls persist and filter closest catalogue matches", () => {
   const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
 
