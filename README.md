@@ -12,7 +12,7 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.8` (`package.json` version `0.8.0`). The static HTML uses the
+Current app version: `v0.9` (`package.json` version `0.9.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
 
@@ -43,8 +43,10 @@ It currently supports:
 - A random palette button that can vary game system, custom or faction schemes, colors,
   scheme type, finish, role planner, base environment, heraldic settings, and producer
   filters.
+- Collapsible generated-output sections so you can hide painting notes, role plans, base
+  advice, model roles, paint ladders, or catalogue matches and keep the main window focused.
 - Automatic browser-local restore of the last used settings, plus named local profiles
-  for keeping multiple miniature paint plans.
+  for keeping multiple miniature paint plans, including collapsed section preferences.
 - Shareable palette links that encode the current Warhammer paint scheme settings in
   the URL for bookmarking or sending to another hobbyist.
 - Paint catalogue matching across manufacturer color groups, useful for finding close
@@ -83,15 +85,18 @@ Typical workflow:
    you want suggestions restricted to your collection.
 6. Add unowned tooltip matches or searched catalogue paints to `Shopping list`, then
    remove them when you buy them or no longer need them.
-7. Save a named profile or copy a share link if you want to keep or send the scheme.
-8. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
+7. Collapse any generated-output sections you do not need in the main window; the app
+   remembers that view locally and in named profiles.
+8. Save a named profile or copy a share link if you want to keep or send the scheme.
+9. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
    as a painting plan.
 
 ## Saved Settings and Profiles
 
 The app automatically stores the last-used settings in the browser with `localStorage`,
-so returning to the same browser and device restores the previous palette setup. Named
-profiles use the same browser-local storage and are useful for keeping separate army,
+so returning to the same browser and device restores the previous palette setup, including
+which generated-output sections are collapsed. Named profiles use the same browser-local
+storage and are useful for keeping separate army,
 faction, unit, or test schemes without needing an account or backend.
 
 The `Copy share link` button creates a URL with the current system, colors, scheme,
@@ -229,6 +234,18 @@ connected to Games Workshop, Citadel, Vallejo, Army Painter, or any other paint
 manufacturer, paint range, miniature company, or hobby brand mentioned in the app.
 
 ## Release Notes
+
+### v0.9.0
+
+This release makes the generated main-window sections collapsible and refreshes the static
+asset cache-buster so browsers fetch the updated UI:
+
+- Added collapse/expand controls for painting notes, role planner, base advice, model
+  roles, paint ladder, and catalogue matches.
+- Preserved generated-section collapse preferences in browser-local settings and named
+  profiles so each user can customize their view.
+- Bumped the public app version from `v0.8` to `v0.9` so hosted pages do not reuse stale
+  `v0.8` assets that do not include collapsible output sections.
 
 ### v0.8.0
 

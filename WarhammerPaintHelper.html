@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>Warhammer Paint Helper</title>
-  <link rel="stylesheet" href="styles.css?v=0.8" />
+  <link rel="stylesheet" href="styles.css?v=0.9" />
 </head>
 <body>
   <header>
@@ -28,7 +28,7 @@
       </label>
     </div>
     <p class="eyebrow" data-i18n="ui.eyebrow">Miniature Palette Tool</p>
-    <p class="app-version" aria-label="Application version">v0.8</p>
+    <p class="app-version" aria-label="Application version">v0.9</p>
     <h1 data-i18n="ui.title">Warhammer Paint Helper</h1>
     <p data-i18n="ui.subtitle">Pick a main color and generate a miniature-ready palette with model roles, base ideas, paint steps, and paint catalogue matches.</p>
   </header>
@@ -237,51 +237,79 @@
 
       <div id="palette" class="palette"></div>
 
-      <div class="section-box">
-        <div class="section-head">
+      <div class="section-box" data-collapsible-section="paintingNotes">
+        <div class="section-head collapsible-section-head">
           <h3 data-i18n="ui.paintingNotes">Painting notes</h3>
+          <button type="button" class="secondary collapse-button section-collapse-button" aria-expanded="true" aria-controls="paintingNotesBody" data-section-collapse="paintingNotes"></button>
         </div>
-        <p id="paintNotes" class="notes"></p>
+        <div id="paintingNotesBody" class="section-body">
+          <p id="paintNotes" class="notes"></p>
+        </div>
       </div>
 
-      <div class="section-box">
-        <div class="section-head">
-          <h3 id="rolePlannerTitle">Role planner</h3>
-          <p data-i18n="ui.rolePlannerDescription">Concrete assignments for surfaces, materials, focus accents, and base details.</p>
+      <div class="section-box" data-collapsible-section="rolePlanner">
+        <div class="section-head collapsible-section-head">
+          <div>
+            <h3 id="rolePlannerTitle">Role planner</h3>
+            <p data-i18n="ui.rolePlannerDescription">Concrete assignments for surfaces, materials, focus accents, and base details.</p>
+          </div>
+          <button type="button" class="secondary collapse-button section-collapse-button" aria-expanded="true" aria-controls="rolePlannerBody" data-section-collapse="rolePlanner"></button>
         </div>
-        <div id="rolePlan" class="role-plan-grid"></div>
+        <div id="rolePlannerBody" class="section-body">
+          <div id="rolePlan" class="role-plan-grid"></div>
+        </div>
       </div>
 
-      <div class="section-box">
-        <div class="section-head">
-          <h3 id="baseAdviceTitle">Base environment suggestions</h3>
-          <p data-i18n="ui.baseAdviceDescription">Base concepts with contrast logic, mood, material colors, and a short build recipe.</p>
+      <div class="section-box" data-collapsible-section="baseAdvice">
+        <div class="section-head collapsible-section-head">
+          <div>
+            <h3 id="baseAdviceTitle">Base environment suggestions</h3>
+            <p data-i18n="ui.baseAdviceDescription">Base concepts with contrast logic, mood, material colors, and a short build recipe.</p>
+          </div>
+          <button type="button" class="secondary collapse-button section-collapse-button" aria-expanded="true" aria-controls="baseAdviceBody" data-section-collapse="baseAdvice"></button>
         </div>
-        <div id="baseAdvice" class="base-advice-grid"></div>
+        <div id="baseAdviceBody" class="section-body">
+          <div id="baseAdvice" class="base-advice-grid"></div>
+        </div>
       </div>
 
-      <div class="section-box">
-        <div class="section-head">
-          <h3 data-i18n="ui.modelRoles">Model roles</h3>
-          <p data-i18n="ui.modelRolesDescription">Short overview of the generated main colors.</p>
+      <div class="section-box" data-collapsible-section="modelRoles">
+        <div class="section-head collapsible-section-head">
+          <div>
+            <h3 data-i18n="ui.modelRoles">Model roles</h3>
+            <p data-i18n="ui.modelRolesDescription">Short overview of the generated main colors.</p>
+          </div>
+          <button type="button" class="secondary collapse-button section-collapse-button" aria-expanded="true" aria-controls="modelRolesBody" data-section-collapse="modelRoles"></button>
         </div>
-        <div id="paintMap" class="paint-map"></div>
+        <div id="modelRolesBody" class="section-body">
+          <div id="paintMap" class="paint-map"></div>
+        </div>
       </div>
 
-      <div class="section-box">
-        <div class="section-head">
-          <h3 id="paintLadderTitle">Shade / Layer / Highlight</h3>
-          <p data-i18n="ui.paintLadderDescription">Practical paint steps for shadows, basecoat, layers, edge highlights, and focus light.</p>
+      <div class="section-box" data-collapsible-section="paintLadder">
+        <div class="section-head collapsible-section-head">
+          <div>
+            <h3 id="paintLadderTitle">Shade / Layer / Highlight</h3>
+            <p data-i18n="ui.paintLadderDescription">Practical paint steps for shadows, basecoat, layers, edge highlights, and focus light.</p>
+          </div>
+          <button type="button" class="secondary collapse-button section-collapse-button" aria-expanded="true" aria-controls="paintLadderBody" data-section-collapse="paintLadder"></button>
         </div>
-        <div id="paintLadder" class="ladder-grid"></div>
+        <div id="paintLadderBody" class="section-body">
+          <div id="paintLadder" class="ladder-grid"></div>
+        </div>
       </div>
 
-      <div class="section-box">
-        <div class="section-head">
-          <h3 data-i18n="ui.citadelMatches">Paint catalogue matches</h3>
-          <p id="citadelStatus"></p>
+      <div class="section-box" data-collapsible-section="catalogueMatches">
+        <div class="section-head collapsible-section-head">
+          <div>
+            <h3 data-i18n="ui.citadelMatches">Paint catalogue matches</h3>
+            <p id="citadelStatus"></p>
+          </div>
+          <button type="button" class="secondary collapse-button section-collapse-button" aria-expanded="true" aria-controls="catalogueMatchesBody" data-section-collapse="catalogueMatches"></button>
         </div>
-        <div id="citadelMatches" class="citadel-grid"></div>
+        <div id="catalogueMatchesBody" class="section-body">
+          <div id="citadelMatches" class="citadel-grid"></div>
+        </div>
       </div>
 
       <div class="tooltip-legend" aria-label="Paint tooltip legend">
@@ -318,10 +346,10 @@
 
   </main>
 
-  <script src="src/core.js?v=0.8"></script>
-  <script src="src/factions.js?v=0.8"></script>
-  <script src="src/i18n.js?v=0.8"></script>
-  <script src="src/citadel.js?v=0.8"></script>
-  <script src="src/app.js?v=0.8"></script>
+  <script src="src/core.js?v=0.9"></script>
+  <script src="src/factions.js?v=0.9"></script>
+  <script src="src/i18n.js?v=0.9"></script>
+  <script src="src/citadel.js?v=0.9"></script>
+  <script src="src/app.js?v=0.9"></script>
 </body>
 </html>

@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.9.0
+
+- Added collapse/expand controls to the generated main-window output sections: painting
+  notes, role planner, base advice, model roles, paint ladder, and catalogue matches.
+- Persisted generated-section collapse preferences in saved browser settings and named
+  profiles so users can customize their view.
+- Bumped the static app version and cache-buster from `v0.8` to `v0.9`.
+
 ## v0.8.0
 
 - Added a collapsible Shopping list section at the bottom of the app for tracking
