@@ -47,6 +47,7 @@
     let profiles = readProfiles();
     let catalogueSource = "sample";
     let selectedManufacturers = new Set();
+    let ownedPaintKeys = new Set(state.ownedPaintKeys);
     let producerFiltersInitialized = false;
     let paintSelectorOptions = [];
     let hoverTimer = null;
