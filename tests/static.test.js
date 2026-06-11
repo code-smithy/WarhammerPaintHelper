@@ -125,6 +125,16 @@ test("owned paint controls persist and filter closest catalogue matches", () => 
   assert.match(app, /class="owned-badge"/);
 });
 
+test("owned paint restore state is initialized before saved settings are applied", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+  const declarationIndex = app.indexOf("let ownedPaintKeys = new Set(state.ownedPaintKeys)");
+  const restoreIndex = app.indexOf("applySettingsToState(readSettingsSnapshot");
+
+  assert.notEqual(declarationIndex, -1);
+  assert.notEqual(restoreIndex, -1);
+  assert.ok(declarationIndex < restoreIndex);
+});
+
 test("fixed faction scheme data is separated by game system", () => {
   const data = JSON.parse(fs.readFileSync(path.join(root, "data", "faction-schemes.json"), "utf8"));
 

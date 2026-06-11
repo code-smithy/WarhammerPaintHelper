@@ -36,6 +36,7 @@
     };
 
     let pendingProducerKeys = null;
+    let ownedPaintKeys = new Set(state.ownedPaintKeys);
     applySettingsToState(readSettingsSnapshot(STORAGE_KEYS.lastSettings));
     applySettingsToState(readSettingsFromUrl());
 
