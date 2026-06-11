@@ -32,7 +32,8 @@
       paintSearch: "",
       producerKeys: null,
       ownedPaintKeys: [],
-      onlyOwnedMatches: false
+      onlyOwnedMatches: false,
+      ownedPaintsCollapsed: false
     };
 
     let pendingProducerKeys = null;
@@ -88,6 +89,8 @@
       producerFilters: $("producerFilters"),
       ownedOnlyMatches: $("ownedOnlyMatchesToggle"),
       ownedSelectAllVisible: $("ownedSelectAllVisible"),
+      ownedPaintsCollapse: $("ownedPaintsCollapseBtn"),
+      ownedPaintsBody: $("ownedPaintsBody"),
       ownedPaintStatus: $("ownedPaintStatus"),
       ownedPaintList: $("ownedPaintList"),
       profileName: $("profileNameInput"),
@@ -153,6 +156,7 @@
         node.textContent = t(node.dataset.i18n);
       });
       renderProfiles();
+      syncOwnedPaintsCollapse();
     }
 
     function populateDynamicControls() {
@@ -204,7 +208,8 @@
       select.value = selected;
     }
 
-    function syncControlsFromState() {
+    function syncControlsFromState(options = {}) {
+      const resetProducerSelection = options.resetProducerSelection !== false;
       el.language.value = state.language;
       el.mode.value = state.mode;
       el.activeColor.value = state.activeColor;
@@ -215,9 +220,10 @@
       el.ownedOnlyMatches.checked = Boolean(state.onlyOwnedMatches);
       translateStatic();
       populateDynamicControls();
-      renderProducerFilters(true);
+      renderProducerFilters(resetProducerSelection);
       renderPaintSelectorOptions();
       renderOwnedPaintList();
+      syncOwnedPaintsCollapse();
       syncSlidersToActiveColor();
     }
 
@@ -319,6 +325,11 @@
       });
       el.ownedSelectAllVisible.addEventListener("change", () => {
         setVisibleOwnedPaints(el.ownedSelectAllVisible.checked);
+      });
+      el.ownedPaintsCollapse.addEventListener("click", () => {
+        state.ownedPaintsCollapsed = !state.ownedPaintsCollapsed;
+        syncOwnedPaintsCollapse();
+        saveLastSettings();
       });
       el.ownedPaintList.addEventListener("change", event => {
         if (!event.target.matches("input[type='checkbox']")) {
@@ -922,6 +933,16 @@
         .sort((a, b) => paintSelectorText(a).localeCompare(paintSelectorText(b)));
     }
 
+    function syncOwnedPaintsCollapse() {
+      if (!el.ownedPaintsCollapse || !el.ownedPaintsBody) {
+        return;
+      }
+      const collapsed = Boolean(state.ownedPaintsCollapsed);
+      el.ownedPaintsBody.hidden = collapsed;
+      el.ownedPaintsCollapse.setAttribute("aria-expanded", String(!collapsed));
+      el.ownedPaintsCollapse.textContent = t(collapsed ? "ui.expandOwnedPaints" : "ui.collapseOwnedPaints");
+    }
+
     function renderOwnedPaintList() {
       const paints = ownedListPaints();
       const ownedVisibleCount = paints.filter(paint => ownedPaintKeys.has(paintKey(paint))).length;
@@ -1018,10 +1039,7 @@
         state.mode = "single";
       }
 
-      const producers = catalogueManufacturers().map(producer => producer.key);
-      state.producerKeys = randomProducerKeys(producers);
-      pendingProducerKeys = state.producerKeys.slice();
-      syncControlsFromState();
+      syncControlsFromState({ resetProducerSelection: false });
       update();
     }
 
@@ -1029,7 +1047,7 @@
       if (!cataloguePaints.length || Math.random() < 0.45) {
         return null;
       }
-      const paint = randomChoice(cataloguePaints.filter(item => item.hex));
+      const paint = randomChoice(filteredCataloguePaints().filter(item => item.hex));
       if (!paint) {
         return null;
       }
@@ -1045,13 +1063,6 @@
       };
     }
 
-    function randomProducerKeys(producerKeys) {
-      if (!producerKeys.length || Math.random() < 0.5) {
-        return producerKeys.slice();
-      }
-      const selected = producerKeys.filter(() => Math.random() < 0.65);
-      return selected.length ? selected : producerKeys.slice();
-    }
 
     function randomChoice(items) {
       return items[Math.floor(Math.random() * items.length)];
@@ -1178,7 +1189,8 @@
         paintSearch: state.paintSearch,
         producerKeys: pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers),
         ownedPaintKeys: Array.from(ownedPaintKeys),
-        onlyOwnedMatches: Boolean(state.onlyOwnedMatches)
+        onlyOwnedMatches: Boolean(state.onlyOwnedMatches),
+        ownedPaintsCollapsed: Boolean(state.ownedPaintsCollapsed)
       };
     }
 
@@ -1260,6 +1272,7 @@
         : [];
       ownedPaintKeys = new Set(state.ownedPaintKeys);
       state.onlyOwnedMatches = Boolean(snapshot.onlyOwnedMatches);
+      state.ownedPaintsCollapsed = Boolean(snapshot.ownedPaintsCollapsed);
       return true;
     }
 

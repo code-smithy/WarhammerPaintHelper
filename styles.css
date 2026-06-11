@@ -430,6 +430,28 @@ button:hover {
   margin-bottom: 10px;
 }
 
+.owned-paints-heading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: start;
+}
+
+.owned-paints-heading .section-head.compact {
+  margin-bottom: 0;
+}
+
+.collapse-button {
+  padding: 8px 10px;
+  font-size: .78rem;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.owned-paints-body {
+  margin-top: 10px;
+}
+
 .section-head.compact h3 {
   margin: 0 0 6px;
   font-size: 1rem;

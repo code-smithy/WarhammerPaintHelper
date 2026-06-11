@@ -184,20 +184,25 @@
       </div>
 
       <div class="owned-paints-panel" aria-label="Owned paint colours">
-        <div class="section-head compact">
-          <h3 data-i18n="ui.ownedPaints">Owned colours</h3>
-          <p data-i18n="ui.ownedPaintsDescription">Tick the catalogue colours you own, then optionally limit closest matches to those paints.</p>
+        <div class="owned-paints-heading">
+          <div class="section-head compact">
+            <h3 data-i18n="ui.ownedPaints">Owned colours</h3>
+            <p data-i18n="ui.ownedPaintsDescription">Tick the catalogue colours you own, then optionally limit closest matches to those paints.</p>
+          </div>
+          <button id="ownedPaintsCollapseBtn" type="button" class="secondary collapse-button" aria-expanded="true" aria-controls="ownedPaintsBody"></button>
         </div>
-        <label class="toggle-option">
-          <input id="ownedOnlyMatchesToggle" type="checkbox" />
-          <span data-i18n="ui.onlyOwnedMatches">Only show owned colours in closest matches</span>
-        </label>
-        <label class="toggle-option">
-          <input id="ownedSelectAllVisible" type="checkbox" />
-          <span data-i18n="ui.selectAllVisiblePaints">Select all visible colours</span>
-        </label>
-        <div id="ownedPaintStatus" class="owned-paint-status" aria-live="polite"></div>
-        <div id="ownedPaintList" class="owned-paint-list"></div>
+        <div id="ownedPaintsBody" class="owned-paints-body">
+          <label class="toggle-option">
+            <input id="ownedOnlyMatchesToggle" type="checkbox" />
+            <span data-i18n="ui.onlyOwnedMatches">Only show owned colours in closest matches</span>
+          </label>
+          <label class="toggle-option">
+            <input id="ownedSelectAllVisible" type="checkbox" />
+            <span data-i18n="ui.selectAllVisiblePaints">Select all visible colours</span>
+          </label>
+          <div id="ownedPaintStatus" class="owned-paint-status" aria-live="polite"></div>
+          <div id="ownedPaintList" class="owned-paint-list"></div>
+        </div>
       </div>
 
       <div class="profile-panel" aria-label="Saved profiles">
