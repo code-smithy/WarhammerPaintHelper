@@ -37,6 +37,13 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="ownedSelectAllVisible"/);
   assert.match(html, /id="ownedPaintStatus"/);
   assert.match(html, /id="ownedPaintList"/);
+  assert.match(html, /data-collapsible-section="paintingNotes"/);
+  assert.match(html, /data-collapsible-section="rolePlanner"/);
+  assert.match(html, /data-collapsible-section="baseAdvice"/);
+  assert.match(html, /data-collapsible-section="modelRoles"/);
+  assert.match(html, /data-collapsible-section="paintLadder"/);
+  assert.match(html, /data-collapsible-section="catalogueMatches"/);
+  assert.match(html, /data-section-collapse="paintingNotes"/);
   assert.match(html, /id="shoppingListPanel"/);
   assert.match(html, /id="shoppingListCollapseBtn"/);
   assert.match(html, /id="shoppingSearchInput"/);
@@ -157,6 +164,17 @@ test("owned paint controls persist and filter closest catalogue matches", () => 
   assert.match(app, /ownedPaintKeys\.has\(paintKey\(match\)\)/);
 });
 
+
+test("collapsible generated sections persist in saved settings", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.match(app, /const DEFAULT_SECTION_COLLAPSE = \{/);
+  assert.match(app, /collapsedSections: \{ \.\.\.DEFAULT_SECTION_COLLAPSE \}/);
+  assert.match(app, /sectionCollapseButtons: Array\.from\(document\.querySelectorAll\("\[data-section-collapse\]"\)\)/);
+  assert.match(app, /function syncCollapsibleSections\(\) \{/);
+  assert.match(app, /collapsedSections: \{[\s\S]*\.\.\.DEFAULT_SECTION_COLLAPSE,[\s\S]*\.\.\.state\.collapsedSections/);
+  assert.match(app, /state\.collapsedSections = normalizeCollapsedSections\(snapshot\.collapsedSections\)/);
+});
 
 test("shopping list controls persist and exclude owned colours", () => {
   const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");

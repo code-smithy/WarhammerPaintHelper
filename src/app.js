@@ -6,6 +6,14 @@
     lastSettings: "wph.settings.v1",
     profiles: "wph.profiles.v1"
   };
+  const DEFAULT_SECTION_COLLAPSE = {
+    paintingNotes: false,
+    rolePlanner: false,
+    baseAdvice: false,
+    modelRoles: false,
+    paintLadder: false,
+    catalogueMatches: false
+  };
 
   document.addEventListener("DOMContentLoaded", init);
 
@@ -36,7 +44,8 @@
       ownedPaintsCollapsed: false,
       shoppingPaintKeys: [],
       shoppingListCollapsed: false,
-      shoppingSearch: ""
+      shoppingSearch: "",
+      collapsedSections: { ...DEFAULT_SECTION_COLLAPSE }
     };
 
     let pendingProducerKeys = null;
@@ -134,7 +143,8 @@
       rolePlannerTitle: $("rolePlannerTitle"),
       baseAdviceTitle: $("baseAdviceTitle"),
       paintLadderTitle: $("paintLadderTitle"),
-      paintTooltip: createPaintTooltip()
+      paintTooltip: createPaintTooltip(),
+      sectionCollapseButtons: Array.from(document.querySelectorAll("[data-section-collapse]"))
     };
     el.swatch.classList.add("paint-hover-target");
     el.swatch.tabIndex = 0;
@@ -171,6 +181,7 @@
       renderProfiles();
       syncOwnedPaintsCollapse();
       syncShoppingListCollapse();
+      syncCollapsibleSections();
       renderShoppingList();
     }
 
@@ -241,6 +252,7 @@
       renderShoppingList();
       syncOwnedPaintsCollapse();
       syncShoppingListCollapse();
+      syncCollapsibleSections();
       syncSlidersToActiveColor();
     }
 
@@ -361,6 +373,21 @@
         state.shoppingListCollapsed = !state.shoppingListCollapsed;
         syncShoppingListCollapse();
         saveLastSettings();
+      });
+      el.sectionCollapseButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          const key = button.dataset.sectionCollapse;
+          if (!Object.prototype.hasOwnProperty.call(DEFAULT_SECTION_COLLAPSE, key)) {
+            return;
+          }
+          state.collapsedSections = {
+            ...DEFAULT_SECTION_COLLAPSE,
+            ...state.collapsedSections,
+            [key]: !Boolean(state.collapsedSections[key])
+          };
+          syncCollapsibleSections();
+          saveLastSettings();
+        });
       });
       el.shoppingSearch.addEventListener("input", () => {
         state.shoppingSearch = el.shoppingSearch.value;
@@ -1078,6 +1105,25 @@
       el.shoppingListCollapse.textContent = t(collapsed ? "ui.expandShoppingList" : "ui.collapseShoppingList");
     }
 
+    function syncCollapsibleSections() {
+      el.sectionCollapseButtons.forEach(button => {
+        const key = button.dataset.sectionCollapse;
+        const bodyId = button.getAttribute("aria-controls");
+        const body = bodyId ? document.getElementById(bodyId) : null;
+        if (!body || !Object.prototype.hasOwnProperty.call(DEFAULT_SECTION_COLLAPSE, key)) {
+          return;
+        }
+        const collapsed = Boolean(state.collapsedSections[key]);
+        body.hidden = collapsed;
+        button.setAttribute("aria-expanded", String(!collapsed));
+        button.textContent = t(collapsed ? "ui.expandSection" : "ui.collapseSection");
+        const section = button.closest("[data-collapsible-section]");
+        if (section) {
+          section.classList.toggle("is-collapsed", collapsed);
+        }
+      });
+    }
+
     function shoppingSearchPaints() {
       const query = el.shoppingSearch.value.trim().toLowerCase();
       return cataloguePaints
@@ -1360,7 +1406,11 @@
         ownedPaintsCollapsed: Boolean(state.ownedPaintsCollapsed),
         shoppingPaintKeys: Array.from(shoppingPaintKeys),
         shoppingListCollapsed: Boolean(state.shoppingListCollapsed),
-        shoppingSearch: state.shoppingSearch
+        shoppingSearch: state.shoppingSearch,
+        collapsedSections: {
+          ...DEFAULT_SECTION_COLLAPSE,
+          ...state.collapsedSections
+        }
       };
     }
 
@@ -1449,7 +1499,19 @@
       shoppingPaintKeys = new Set(state.shoppingPaintKeys);
       state.shoppingListCollapsed = Boolean(snapshot.shoppingListCollapsed);
       state.shoppingSearch = typeof snapshot.shoppingSearch === "string" ? snapshot.shoppingSearch : "";
+      state.collapsedSections = normalizeCollapsedSections(snapshot.collapsedSections);
       return true;
+    }
+
+    function normalizeCollapsedSections(value) {
+      const collapsedSections = { ...DEFAULT_SECTION_COLLAPSE };
+      if (!value || typeof value !== "object") {
+        return collapsedSections;
+      }
+      Object.keys(DEFAULT_SECTION_COLLAPSE).forEach(key => {
+        collapsedSections[key] = Boolean(value[key]);
+      });
+      return collapsedSections;
     }
 
     function readSettingsFromUrl() {
