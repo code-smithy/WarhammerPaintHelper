@@ -33,11 +33,15 @@
       producerKeys: null,
       ownedPaintKeys: [],
       onlyOwnedMatches: false,
-      ownedPaintsCollapsed: false
+      ownedPaintsCollapsed: false,
+      shoppingPaintKeys: [],
+      shoppingListCollapsed: false,
+      shoppingSearch: ""
     };
 
     let pendingProducerKeys = null;
     let ownedPaintKeys = new Set(state.ownedPaintKeys);
+    let shoppingPaintKeys = new Set(state.shoppingPaintKeys);
     applySettingsToState(readSettingsSnapshot(STORAGE_KEYS.lastSettings));
     applySettingsToState(readSettingsFromUrl());
 
@@ -93,6 +97,14 @@
       ownedPaintsBody: $("ownedPaintsBody"),
       ownedPaintStatus: $("ownedPaintStatus"),
       ownedPaintList: $("ownedPaintList"),
+      shoppingListPanel: $("shoppingListPanel"),
+      shoppingListCollapse: $("shoppingListCollapseBtn"),
+      shoppingListBody: $("shoppingListBody"),
+      shoppingSearch: $("shoppingSearchInput"),
+      shoppingAddSelect: $("shoppingAddSelect"),
+      addShoppingPaint: $("addShoppingPaintBtn"),
+      shoppingListStatus: $("shoppingListStatus"),
+      shoppingList: $("shoppingList"),
       profileName: $("profileNameInput"),
       savedProfiles: $("savedProfilesSelect"),
       profileStatus: $("profileStatus"),
@@ -141,6 +153,7 @@
       renderProducerFilters(true);
       renderPaintSelectorOptions();
       renderOwnedPaintList();
+      renderShoppingList();
       update();
     });
 
@@ -157,6 +170,8 @@
       });
       renderProfiles();
       syncOwnedPaintsCollapse();
+      syncShoppingListCollapse();
+      renderShoppingList();
     }
 
     function populateDynamicControls() {
@@ -223,7 +238,9 @@
       renderProducerFilters(resetProducerSelection);
       renderPaintSelectorOptions();
       renderOwnedPaintList();
+      renderShoppingList();
       syncOwnedPaintsCollapse();
+      syncShoppingListCollapse();
       syncSlidersToActiveColor();
     }
 
@@ -236,6 +253,7 @@
         renderProducerFilters(false);
         renderPaintSelectorOptions();
         renderOwnedPaintList();
+        renderShoppingList();
         update();
       });
 
@@ -310,12 +328,14 @@
         state.producerKeys = Array.from(selectedManufacturers);
         renderPaintSelectorOptions();
         renderOwnedPaintList();
+        renderShoppingList();
         update();
       });
       el.paintSearch.addEventListener("input", () => {
         state.paintSearch = el.paintSearch.value;
         renderPaintSelectorOptions();
         renderOwnedPaintList();
+        renderShoppingList();
         saveLastSettings();
       });
       el.ownedOnlyMatches.addEventListener("change", () => {
@@ -337,6 +357,42 @@
         }
         toggleOwnedPaint(event.target.value, event.target.checked);
       });
+      el.shoppingListCollapse.addEventListener("click", () => {
+        state.shoppingListCollapsed = !state.shoppingListCollapsed;
+        syncShoppingListCollapse();
+        saveLastSettings();
+      });
+      el.shoppingSearch.addEventListener("input", () => {
+        state.shoppingSearch = el.shoppingSearch.value;
+        renderShoppingList();
+        saveLastSettings();
+      });
+      el.addShoppingPaint.addEventListener("click", () => {
+        addShoppingPaintByKey(el.shoppingAddSelect.value);
+      });
+      el.shoppingAddSelect.addEventListener("change", () => {
+        el.addShoppingPaint.disabled = !el.shoppingAddSelect.value;
+      });
+      el.shoppingList.addEventListener("click", event => {
+        const button = event.target.closest("[data-remove-shopping-key]");
+        if (!button) {
+          return;
+        }
+        removeShoppingPaint(button.dataset.removeShoppingKey);
+      });
+      el.paintTooltip.addEventListener("click", event => {
+        const button = event.target.closest("[data-add-shopping-key]");
+        if (!button) {
+          return;
+        }
+        addShoppingPaintByKey(button.dataset.addShoppingKey);
+        showPaintTooltip(activeHoverTarget);
+      });
+      el.paintTooltip.addEventListener("mouseover", () => {
+        clearTimeout(hoverTimer);
+        hoverTimer = null;
+      });
+      el.paintTooltip.addEventListener("mouseleave", hidePaintTooltip);
       el.saveProfile.addEventListener("click", saveNamedProfile);
       el.loadProfile.addEventListener("click", loadSelectedProfile);
       el.deleteProfile.addEventListener("click", deleteSelectedProfile);
@@ -982,12 +1038,15 @@
         const key = paintKey(paint);
         if (checked) {
           ownedPaintKeys.add(key);
+          shoppingPaintKeys.delete(key);
         } else {
           ownedPaintKeys.delete(key);
         }
       });
       state.ownedPaintKeys = Array.from(ownedPaintKeys);
+      state.shoppingPaintKeys = Array.from(shoppingPaintKeys);
       renderOwnedPaintList();
+      renderShoppingList();
       renderCitadelMatches();
       saveLastSettings();
     }
@@ -998,10 +1057,112 @@
       } else {
         ownedPaintKeys.delete(key);
       }
+      if (ownedPaintKeys.has(key)) {
+        shoppingPaintKeys.delete(key);
+      }
       state.ownedPaintKeys = Array.from(ownedPaintKeys);
+      state.shoppingPaintKeys = Array.from(shoppingPaintKeys);
       renderOwnedPaintList();
+      renderShoppingList();
       renderCitadelMatches();
       saveLastSettings();
+    }
+
+    function syncShoppingListCollapse() {
+      if (!el.shoppingListCollapse || !el.shoppingListBody) {
+        return;
+      }
+      const collapsed = Boolean(state.shoppingListCollapsed);
+      el.shoppingListBody.hidden = collapsed;
+      el.shoppingListCollapse.setAttribute("aria-expanded", String(!collapsed));
+      el.shoppingListCollapse.textContent = t(collapsed ? "ui.expandShoppingList" : "ui.collapseShoppingList");
+    }
+
+    function shoppingSearchPaints() {
+      const query = el.shoppingSearch.value.trim().toLowerCase();
+      return cataloguePaints
+        .filter(paint => !ownedPaintKeys.has(paintKey(paint)))
+        .filter(paint => !shoppingPaintKeys.has(paintKey(paint)))
+        .filter(paint => !query || paintSelectorText(paint).toLowerCase().includes(query))
+        .sort((a, b) => paintSelectorText(a).localeCompare(paintSelectorText(b)))
+        .slice(0, 80);
+    }
+
+    function shoppingListPaints() {
+      return Array.from(shoppingPaintKeys)
+        .map(key => ({ key, paint: paintByKey(key) }))
+        .filter(item => item.paint && !ownedPaintKeys.has(item.key))
+        .sort((a, b) => paintSelectorText(a.paint).localeCompare(paintSelectorText(b.paint)));
+    }
+
+    function renderShoppingList() {
+      if (!el.shoppingList) {
+        return;
+      }
+      el.shoppingSearch.value = state.shoppingSearch || "";
+      pruneOwnedShoppingPaints();
+      const suggestions = shoppingSearchPaints();
+      const selected = shoppingListPaints();
+      const placeholder = suggestions.length
+        ? t("ui.shoppingSearchPlaceholder", { count: suggestions.length })
+        : t("ui.shoppingSearchEmpty");
+      el.shoppingAddSelect.innerHTML = [
+        `<option value="">${escapeHtml(placeholder)}</option>`,
+        ...suggestions.map(paint => {
+          const key = paintKey(paint);
+          return `<option value="${escapeHtml(key)}">${escapeHtml(paintSelectorLabel(paint))}</option>`;
+        })
+      ].join("");
+      el.shoppingAddSelect.value = "";
+      el.addShoppingPaint.disabled = true;
+      el.shoppingListStatus.textContent = t("ui.shoppingListStatus", { count: selected.length });
+      el.shoppingList.innerHTML = selected.length
+        ? selected.map(({ key, paint }) => `
+          <div class="shopping-list-item">
+            <span class="owned-paint-chip" style="background:${escapeHtml(paint.hex)}"></span>
+            <span>
+              <span class="owned-paint-name">${escapeHtml(paint.name)}</span>
+              <span class="owned-paint-meta">${escapeHtml(paintSelectorMeta(paint))} · ${escapeHtml(paint.hex)}</span>
+            </span>
+            <button type="button" class="secondary danger compact-button" data-remove-shopping-key="${escapeHtml(key)}">${escapeHtml(t("ui.removeShoppingPaint"))}</button>
+          </div>
+        `).join("")
+        : `<p class="notes">${escapeHtml(t("ui.shoppingListEmpty"))}</p>`;
+    }
+
+    function addShoppingPaintByKey(key) {
+      const paint = paintByKey(key);
+      if (!paint || ownedPaintKeys.has(key)) {
+        return;
+      }
+      shoppingPaintKeys.add(key);
+      state.shoppingPaintKeys = Array.from(shoppingPaintKeys);
+      renderShoppingList();
+      saveLastSettings();
+    }
+
+    function removeShoppingPaint(key) {
+      shoppingPaintKeys.delete(key);
+      state.shoppingPaintKeys = Array.from(shoppingPaintKeys);
+      renderShoppingList();
+      saveLastSettings();
+    }
+
+    function pruneOwnedShoppingPaints() {
+      let changed = false;
+      shoppingPaintKeys.forEach(key => {
+        if (ownedPaintKeys.has(key) || !paintByKey(key)) {
+          shoppingPaintKeys.delete(key);
+          changed = true;
+        }
+      });
+      if (changed) {
+        state.shoppingPaintKeys = Array.from(shoppingPaintKeys);
+      }
+    }
+
+    function paintByKey(key) {
+      return cataloguePaints.find(paint => paintKey(paint) === key) || null;
     }
 
     function paintKey(paint) {
@@ -1196,7 +1357,10 @@
         producerKeys: pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers),
         ownedPaintKeys: Array.from(ownedPaintKeys),
         onlyOwnedMatches: Boolean(state.onlyOwnedMatches),
-        ownedPaintsCollapsed: Boolean(state.ownedPaintsCollapsed)
+        ownedPaintsCollapsed: Boolean(state.ownedPaintsCollapsed),
+        shoppingPaintKeys: Array.from(shoppingPaintKeys),
+        shoppingListCollapsed: Boolean(state.shoppingListCollapsed),
+        shoppingSearch: state.shoppingSearch
       };
     }
 
@@ -1279,6 +1443,12 @@
       ownedPaintKeys = new Set(state.ownedPaintKeys);
       state.onlyOwnedMatches = Boolean(snapshot.onlyOwnedMatches);
       state.ownedPaintsCollapsed = Boolean(snapshot.ownedPaintsCollapsed);
+      state.shoppingPaintKeys = Array.isArray(snapshot.shoppingPaintKeys)
+        ? snapshot.shoppingPaintKeys.filter(key => typeof key === "string")
+        : [];
+      shoppingPaintKeys = new Set(state.shoppingPaintKeys);
+      state.shoppingListCollapsed = Boolean(snapshot.shoppingListCollapsed);
+      state.shoppingSearch = typeof snapshot.shoppingSearch === "string" ? snapshot.shoppingSearch : "";
       return true;
     }
 
@@ -1395,7 +1565,7 @@
 
     function handlePaintHoverStart(event) {
       const target = event.target.closest("[data-color-hex]");
-      if (!target) {
+      if (!target || el.paintTooltip.contains(event.target)) {
         return;
       }
       if (activeHoverTarget === target) {
@@ -1413,7 +1583,7 @@
       if (!target) {
         return;
       }
-      if (event.relatedTarget && target.contains(event.relatedTarget)) {
+      if (event.relatedTarget && (target.contains(event.relatedTarget) || el.paintTooltip.contains(event.relatedTarget))) {
         return;
       }
       if (target === activeHoverTarget) {
@@ -1434,7 +1604,12 @@
           const meta = [paintMatchMeta(match), t("citadel.distance", { distance: match.distance })]
             .filter(Boolean)
             .join(" - ");
-          const owned = ownedPaintKeys.has(paintKey(match));
+          const key = paintKey(match);
+          const owned = ownedPaintKeys.has(key);
+          const inShoppingList = shoppingPaintKeys.has(key);
+          const action = !owned
+            ? `<button type="button" class="secondary compact-button tooltip-shopping-button" data-add-shopping-key="${escapeHtml(key)}" ${inShoppingList ? "disabled" : ""}>${escapeHtml(t(inShoppingList ? "ui.inShoppingList" : "ui.addToShoppingList"))}</button>`
+            : "";
           return `
             <div class="paint-tooltip-row ${owned ? "owned-tooltip-match" : ""}">
               <span class="match-chip" style="background:${escapeHtml(match.hex)}"></span>
@@ -1443,6 +1618,7 @@
                   ${owned ? `<span class="owned-symbol" title="${escapeHtml(t("ui.ownedBadge"))}">${escapeHtml(t("ui.ownedSymbol"))}</span> ` : ""}${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code>
                 </div>
                 <div class="meta">${escapeHtml(meta)}</div>
+                ${action}
               </div>
             </div>
           `;

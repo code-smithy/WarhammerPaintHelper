@@ -930,3 +930,69 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+
+.shopping-list-panel {
+  grid-column: 1 / -1;
+  padding: 18px;
+}
+
+.shopping-list-heading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: start;
+}
+
+.shopping-list-body {
+  margin-top: 12px;
+}
+
+.shopping-add-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(240px, 1.4fr) auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.shopping-list {
+  display: grid;
+  gap: 8px;
+}
+
+.shopping-list-item {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.compact-button {
+  padding: 7px 9px;
+  font-size: .76rem;
+  line-height: 1.1;
+}
+
+.tooltip-shopping-button {
+  margin-top: 6px;
+  pointer-events: auto;
+}
+
+.paint-tooltip.is-visible {
+  pointer-events: auto;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .58;
+}
+
+@media (max-width: 900px) {
+  .shopping-add-row,
+  .shopping-list-item {
+    grid-template-columns: 1fr;
+  }
+}
