@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.8.0
+
+- Added a collapsible Shopping list section at the bottom of the app for tracking
+  unowned catalogue colours to buy.
+- Added shopping-list actions to hover/focus paint tooltips for unowned closest matches.
+- Added catalogue search and remove controls for shopping-list entries while keeping owned
+  paints excluded from the list.
+- Persisted shopping-list entries, search text, and collapse state in saved browser
+  settings and named profiles.
+- Bumped the static app version and cache-buster from `v0.7` to `v0.8`.
+
 ## v0.7.0
 
 - Fixed owned-only closest-match filtering so unowned colours are excluded from both

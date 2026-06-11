@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>Warhammer Paint Helper</title>
-  <link rel="stylesheet" href="styles.css?v=0.7" />
+  <link rel="stylesheet" href="styles.css?v=0.8" />
 </head>
 <body>
   <header>
@@ -28,7 +28,7 @@
       </label>
     </div>
     <p class="eyebrow" data-i18n="ui.eyebrow">Miniature Palette Tool</p>
-    <p class="app-version" aria-label="Application version">v0.7</p>
+    <p class="app-version" aria-label="Application version">v0.8</p>
     <h1 data-i18n="ui.title">Warhammer Paint Helper</h1>
     <p data-i18n="ui.subtitle">Pick a main color and generate a miniature-ready palette with model roles, base ideas, paint steps, and paint catalogue matches.</p>
   </header>
@@ -290,12 +290,38 @@
       </div>
 
     </section>
+
+    <section id="shoppingListPanel" class="panel shopping-list-panel" aria-label="Shopping list">
+      <div class="shopping-list-heading">
+        <div class="section-head compact">
+          <h3 data-i18n="ui.shoppingList">Shopping list</h3>
+          <p data-i18n="ui.shoppingListDescription">Add unowned colours from tooltips or search the catalogue, then remove them when no longer needed.</p>
+        </div>
+        <button id="shoppingListCollapseBtn" type="button" class="secondary collapse-button" aria-expanded="true" aria-controls="shoppingListBody"></button>
+      </div>
+      <div id="shoppingListBody" class="shopping-list-body">
+        <div class="shopping-add-row">
+          <div class="field">
+            <label for="shoppingSearchInput" data-i18n="ui.shoppingSearch">Search colours to buy</label>
+            <input id="shoppingSearchInput" type="text" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="shoppingAddSelect" data-i18n="ui.shoppingAddColour">Add colour</label>
+            <select id="shoppingAddSelect"></select>
+          </div>
+          <button id="addShoppingPaintBtn" type="button" data-i18n="ui.addShoppingPaint">Add to list</button>
+        </div>
+        <div id="shoppingListStatus" class="owned-paint-status" aria-live="polite"></div>
+        <div id="shoppingList" class="shopping-list"></div>
+      </div>
+    </section>
+
   </main>
 
-  <script src="src/core.js?v=0.7"></script>
-  <script src="src/factions.js?v=0.7"></script>
-  <script src="src/i18n.js?v=0.7"></script>
-  <script src="src/citadel.js?v=0.7"></script>
-  <script src="src/app.js?v=0.7"></script>
+  <script src="src/core.js?v=0.8"></script>
+  <script src="src/factions.js?v=0.8"></script>
+  <script src="src/i18n.js?v=0.8"></script>
+  <script src="src/citadel.js?v=0.8"></script>
+  <script src="src/app.js?v=0.8"></script>
 </body>
 </html>
