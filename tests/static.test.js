@@ -32,6 +32,10 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="paintSelect"/);
   assert.match(html, /id="recipeModeSelect"/);
   assert.match(html, /id="producerFilters"/);
+  assert.match(html, /id="ownedOnlyMatchesToggle"/);
+  assert.match(html, /id="ownedSelectAllVisible"/);
+  assert.match(html, /id="ownedPaintStatus"/);
+  assert.match(html, /id="ownedPaintList"/);
   assert.match(html, /id="profileNameInput"/);
   assert.match(html, /id="savedProfilesSelect"/);
   assert.match(html, /id="copyShareLinkBtn"/);
@@ -110,6 +114,25 @@ test("share link code preserves explicit empty producer selections", () => {
 
   assert.match(app, /params\.set\("producers", snapshot\.producerKeys\.join\(","\)\)/);
   assert.doesNotMatch(app, /if \(snapshot\.producerKeys\.length\) \{\s+params\.set\("producers"/);
+});
+
+test("owned paint controls persist and filter closest catalogue matches", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.match(app, /ownedPaintKeys: Array\.from\(ownedPaintKeys\)/);
+  assert.match(app, /state\.onlyOwnedMatches/);
+  assert.match(app, /filteredCataloguePaints\(\)\.filter\(paint => ownedPaintKeys\.has\(paintKey\(paint\)\)\)/);
+  assert.match(app, /class="owned-badge"/);
+});
+
+test("owned paint restore state is initialized before saved settings are applied", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+  const declarationIndex = app.indexOf("let ownedPaintKeys = new Set(state.ownedPaintKeys)");
+  const restoreIndex = app.indexOf("applySettingsToState(readSettingsSnapshot");
+
+  assert.notEqual(declarationIndex, -1);
+  assert.notEqual(restoreIndex, -1);
+  assert.ok(declarationIndex < restoreIndex);
 });
 
 test("fixed faction scheme data is separated by game system", () => {

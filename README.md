@@ -12,11 +12,30 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.4` (`package.json` version `0.4.0`). The static HTML uses the
+Current app version: `v0.5` (`package.json` version `0.5.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
 
 ## Release Notes
+
+### v0.5.0
+
+This release adds owned-paint collection tracking and refreshes the static asset
+cache-buster so browsers fetch the matching JavaScript, styling, and translation files
+for the new controls:
+
+- Added a separate Owned colours panel for marking catalogue paints that are already in
+  your collection.
+- Added a select-all-visible control that reflects when every currently filtered
+  catalogue colour is selected.
+- Added an owned-only closest-match toggle so generated palette matches can be limited
+  to paints you own.
+- Marked owned closest-match rows with an Owned badge while still allowing full-catalogue
+  matching when the owned-only toggle is off.
+- Preserved owned paint selections and the owned-only matching preference in browser-local
+  saved settings and named profiles.
+- Bumped the public app version from `v0.4` to `v0.5` so hosted pages do not reuse stale
+  `v0.4` assets that do not include the owned-paint controls.
 
 ### v0.4.0
 
@@ -67,8 +86,9 @@ It currently supports:
 - Base environment suggestions for fantasy realms and 40K battlefields.
 - Recipe depth modes for beginner, speedpaint, battle-ready, and display-painting workflows.
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
-- Paint catalogue search, direct paint selection for the main color, and producer
-  filters for limiting nearest-paint matches by manufacturer.
+- Paint catalogue search, direct paint selection for the main color, producer filters
+  for limiting nearest-paint matches by manufacturer, and an owned-colours checklist for
+  tracking paints already in your collection.
 - A random palette button that can vary game system, custom or faction schemes, colors,
   scheme type, finish, role planner, base environment, heraldic settings, and producer
   filters.
@@ -80,6 +100,9 @@ It currently supports:
   alternatives to Citadel, Vallejo, Army Painter, and other miniature paints. The
   catalogue lives at `data/paint-catalogue.json` and uses `manufacturers[].colors[]`
   entries.
+- Owned-paint filtering for closest matches, including badges on matches that are in
+  your marked collection and a select-all-visible helper for quickly checking filtered
+  catalogue results.
 - Match metadata for manufacturer, collection, range, finish, and distance.
 - Hover/focus paint tooltips for generated colors, showing the closest catalogue
   matches without leaving the palette view.
@@ -105,8 +128,10 @@ Typical workflow:
 3. Use `Random palette` when you want the app to explore across systems, schemes, colors,
    faction data, finish styles, and planning options for you.
 4. Adjust finish, recipe mode, role planner, base environment, and paint producer filters.
-5. Save a named profile or copy a share link if you want to keep or send the scheme.
-6. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
+5. In `Owned colours`, tick the paints you own and enable owned-only closest matches if
+   you want suggestions restricted to your collection.
+6. Save a named profile or copy a share link if you want to keep or send the scheme.
+7. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
    as a painting plan.
 
 ## Saved Settings and Profiles
@@ -117,9 +142,12 @@ profiles use the same browser-local storage and are useful for keeping separate 
 faction, unit, or test schemes without needing an account or backend.
 
 The `Copy share link` button creates a URL with the current system, colors, scheme,
-finish, role planner, base theme, faction scheme, heraldic options, search text, and
-producer filters, including an explicitly empty producer selection. Opening a share link
-applies those URL settings first, then continues to auto-save changes locally as normal.
+finish, role planner, base theme, faction scheme, heraldic options, search text, producer
+filters, and the owned-only matching toggle, including an explicitly empty producer
+selection. Opening a share link applies those URL settings first, then continues to
+auto-save changes locally as normal. Owned paint checklists themselves stay
+browser-local through last-used settings and named profiles rather than being embedded in
+share URLs.
 
 ## Faction Paint Schemes
 
@@ -185,7 +213,9 @@ Required fields for matching are `name` and a valid six-digit `hex` value. Manuf
 are skipped by nearest-colour matching. Optional fields such as `manufacturer_code`,
 `collection`, `range`, `finish`, `status`, `source_url`, and `notes` are preserved by the
 loader. The visible colour match information shows manufacturer, collection, range,
-finish, and distance; catalogue status stays internal.
+finish, and distance; catalogue status stays internal. Use the Owned colours panel to
+mark paints you have on hand, highlight those paints in closest matches, and optionally
+limit closest-match calculations to owned paints only.
 
 ## Project Structure
 
@@ -211,8 +241,8 @@ npm test
 
 The tests use Node's built-in test runner and cover color generation, fixed faction
 palette generation, system data separation, translation lookup, catalogue normalization
-and matching, producer filter restore behavior, share-link serialization guards, base
-suggestion behavior, and static asset/version wiring.
+and matching, producer filter restore behavior, owned-paint UI wiring, share-link
+serialization guards, base suggestion behavior, and static asset/version wiring.
 
 For a real browser smoke test, install Playwright Core and run:
 

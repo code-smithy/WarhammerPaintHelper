@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>Warhammer Paint Helper</title>
-  <link rel="stylesheet" href="styles.css?v=0.4" />
+  <link rel="stylesheet" href="styles.css?v=0.5" />
 </head>
 <body>
   <header>
@@ -28,7 +28,7 @@
       </label>
     </div>
     <p class="eyebrow" data-i18n="ui.eyebrow">Miniature Palette Tool</p>
-    <p class="app-version" aria-label="Application version">v0.4</p>
+    <p class="app-version" aria-label="Application version">v0.5</p>
     <h1 data-i18n="ui.title">Warhammer Paint Helper</h1>
     <p data-i18n="ui.subtitle">Pick a main color and generate a miniature-ready palette with model roles, base ideas, paint steps, and paint catalogue matches.</p>
   </header>
@@ -183,6 +183,23 @@
         <div id="producerFilters" class="producer-filters"></div>
       </div>
 
+      <div class="owned-paints-panel" aria-label="Owned paint colours">
+        <div class="section-head compact">
+          <h3 data-i18n="ui.ownedPaints">Owned colours</h3>
+          <p data-i18n="ui.ownedPaintsDescription">Tick the catalogue colours you own, then optionally limit closest matches to those paints.</p>
+        </div>
+        <label class="toggle-option">
+          <input id="ownedOnlyMatchesToggle" type="checkbox" />
+          <span data-i18n="ui.onlyOwnedMatches">Only show owned colours in closest matches</span>
+        </label>
+        <label class="toggle-option">
+          <input id="ownedSelectAllVisible" type="checkbox" />
+          <span data-i18n="ui.selectAllVisiblePaints">Select all visible colours</span>
+        </label>
+        <div id="ownedPaintStatus" class="owned-paint-status" aria-live="polite"></div>
+        <div id="ownedPaintList" class="owned-paint-list"></div>
+      </div>
+
       <div class="profile-panel" aria-label="Saved profiles">
         <div class="field">
           <label for="profileNameInput" data-i18n="ui.profileName">Profile name</label>
@@ -265,10 +282,10 @@
     </section>
   </main>
 
-  <script src="src/core.js?v=0.4"></script>
-  <script src="src/factions.js?v=0.4"></script>
-  <script src="src/i18n.js?v=0.4"></script>
-  <script src="src/citadel.js?v=0.4"></script>
-  <script src="src/app.js?v=0.4"></script>
+  <script src="src/core.js?v=0.5"></script>
+  <script src="src/factions.js?v=0.5"></script>
+  <script src="src/i18n.js?v=0.5"></script>
+  <script src="src/citadel.js?v=0.5"></script>
+  <script src="src/app.js?v=0.5"></script>
 </body>
 </html>

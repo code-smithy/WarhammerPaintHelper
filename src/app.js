@@ -30,10 +30,13 @@
       baseThemeKey: "auto",
       recipeModeKey: "battle",
       paintSearch: "",
-      producerKeys: null
+      producerKeys: null,
+      ownedPaintKeys: [],
+      onlyOwnedMatches: false
     };
 
     let pendingProducerKeys = null;
+    let ownedPaintKeys = new Set(state.ownedPaintKeys);
     applySettingsToState(readSettingsSnapshot(STORAGE_KEYS.lastSettings));
     applySettingsToState(readSettingsFromUrl());
 
@@ -83,6 +86,10 @@
       baseTheme: $("baseThemeSelect"),
       recipeMode: $("recipeModeSelect"),
       producerFilters: $("producerFilters"),
+      ownedOnlyMatches: $("ownedOnlyMatchesToggle"),
+      ownedSelectAllVisible: $("ownedSelectAllVisible"),
+      ownedPaintStatus: $("ownedPaintStatus"),
+      ownedPaintList: $("ownedPaintList"),
       profileName: $("profileNameInput"),
       savedProfiles: $("savedProfilesSelect"),
       profileStatus: $("profileStatus"),
@@ -130,6 +137,7 @@
       catalogueSource = result.source;
       renderProducerFilters(true);
       renderPaintSelectorOptions();
+      renderOwnedPaintList();
       update();
     });
 
@@ -204,10 +212,12 @@
       el.light.value = Math.round(state.l);
       el.style.value = Math.round(state.style);
       el.paintSearch.value = state.paintSearch || "";
+      el.ownedOnlyMatches.checked = Boolean(state.onlyOwnedMatches);
       translateStatic();
       populateDynamicControls();
       renderProducerFilters(true);
       renderPaintSelectorOptions();
+      renderOwnedPaintList();
       syncSlidersToActiveColor();
     }
 
@@ -219,6 +229,7 @@
         populateDynamicControls();
         renderProducerFilters(false);
         renderPaintSelectorOptions();
+        renderOwnedPaintList();
         update();
       });
 
@@ -292,12 +303,28 @@
         pendingProducerKeys = null;
         state.producerKeys = Array.from(selectedManufacturers);
         renderPaintSelectorOptions();
+        renderOwnedPaintList();
         update();
       });
       el.paintSearch.addEventListener("input", () => {
         state.paintSearch = el.paintSearch.value;
         renderPaintSelectorOptions();
+        renderOwnedPaintList();
         saveLastSettings();
+      });
+      el.ownedOnlyMatches.addEventListener("change", () => {
+        state.onlyOwnedMatches = el.ownedOnlyMatches.checked;
+        renderCitadelMatches();
+        saveLastSettings();
+      });
+      el.ownedSelectAllVisible.addEventListener("change", () => {
+        setVisibleOwnedPaints(el.ownedSelectAllVisible.checked);
+      });
+      el.ownedPaintList.addEventListener("change", event => {
+        if (!event.target.matches("input[type='checkbox']")) {
+          return;
+        }
+        toggleOwnedPaint(event.target.value, event.target.checked);
       });
       el.saveProfile.addEventListener("click", saveNamedProfile);
       el.loadProfile.addEventListener("click", loadSelectedProfile);
@@ -757,7 +784,9 @@
     }
 
     function renderCitadelMatches() {
-      const paints = filteredCataloguePaints();
+      const paints = state.onlyOwnedMatches
+        ? filteredCataloguePaints().filter(paint => ownedPaintKeys.has(paintKey(paint)))
+        : filteredCataloguePaints();
       const mapped = W.mapPaletteToCatalogue(currentPalette, paints, { limit: 3 });
       const statusKey = cataloguePaints.length ? (catalogueSource === "json" ? "loaded" : "sample") : "missing";
       el.citadelStatus.textContent = t(`citadel.${statusKey}`, { count: paints.length }) + " " + t("ui.citadelJsonHint");
@@ -767,11 +796,12 @@
             const meta = [paintMatchMeta(match), t("citadel.distance", { distance: match.distance })]
               .filter(Boolean)
               .join(" - ");
+            const owned = ownedPaintKeys.has(paintKey(match));
             return `
-              <div class="match-row">
+              <div class="match-row ${owned ? "owned-match" : ""}">
                 <span class="match-chip" style="background:${escapeHtml(match.hex)}"></span>
                 <div>
-                  <div>${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code></div>
+                  <div>${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code>${owned ? ` <span class="owned-badge">${escapeHtml(t("ui.ownedBadge"))}</span>` : ""}</div>
                   <div class="meta">${escapeHtml(meta)}</div>
                 </div>
               </div>
@@ -832,8 +862,12 @@
     }
 
     function paintSelectorLabel(paint) {
-      const meta = [paint.manufacturer, paint.collection, paint.range].filter(Boolean).join(" / ");
+      const meta = paintSelectorMeta(paint);
       return meta ? `${paint.name} - ${meta} - ${paint.hex}` : `${paint.name} - ${paint.hex}`;
+    }
+
+    function paintSelectorMeta(paint) {
+      return [paint.manufacturer, paint.collection, paint.range].filter(Boolean).join(" / ");
     }
 
     function renderProducerFilters(resetSelection) {
@@ -879,6 +913,78 @@
         return [];
       }
       return cataloguePaints.filter(paint => selectedManufacturers.has(paintProducerKey(paint)));
+    }
+
+    function ownedListPaints() {
+      const query = el.paintSearch.value.trim().toLowerCase();
+      return filteredCataloguePaints()
+        .filter(paint => !query || paintSelectorText(paint).toLowerCase().includes(query))
+        .sort((a, b) => paintSelectorText(a).localeCompare(paintSelectorText(b)));
+    }
+
+    function renderOwnedPaintList() {
+      const paints = ownedListPaints();
+      const ownedVisibleCount = paints.filter(paint => ownedPaintKeys.has(paintKey(paint))).length;
+      const allVisibleSelected = paints.length > 0 && ownedVisibleCount === paints.length;
+      el.ownedSelectAllVisible.checked = allVisibleSelected;
+      el.ownedSelectAllVisible.indeterminate = ownedVisibleCount > 0 && ownedVisibleCount < paints.length;
+      el.ownedSelectAllVisible.disabled = !paints.length;
+      el.ownedPaintStatus.textContent = t(
+        allVisibleSelected ? "ui.ownedPaintsAllSelected" : "ui.ownedPaintsStatus",
+        { owned: ownedPaintKeys.size, visible: paints.length }
+      );
+      el.ownedPaintList.innerHTML = paints.length
+        ? paints.map(paint => {
+          const key = paintKey(paint);
+          return `
+            <label class="owned-paint-option">
+              <input type="checkbox" value="${escapeHtml(key)}" ${ownedPaintKeys.has(key) ? "checked" : ""} />
+              <span class="owned-paint-chip" style="background:${escapeHtml(paint.hex)}"></span>
+              <span>
+                <span class="owned-paint-name">${escapeHtml(paint.name)}</span>
+                <span class="owned-paint-meta">${escapeHtml(paintSelectorMeta(paint))}</span>
+              </span>
+            </label>
+          `;
+        }).join("")
+        : `<p class="notes">${escapeHtml(t("ui.ownedPaintsEmpty"))}</p>`;
+    }
+
+    function setVisibleOwnedPaints(checked) {
+      ownedListPaints().forEach(paint => {
+        const key = paintKey(paint);
+        if (checked) {
+          ownedPaintKeys.add(key);
+        } else {
+          ownedPaintKeys.delete(key);
+        }
+      });
+      state.ownedPaintKeys = Array.from(ownedPaintKeys);
+      renderOwnedPaintList();
+      renderCitadelMatches();
+      saveLastSettings();
+    }
+
+    function toggleOwnedPaint(key, checked) {
+      if (checked) {
+        ownedPaintKeys.add(key);
+      } else {
+        ownedPaintKeys.delete(key);
+      }
+      state.ownedPaintKeys = Array.from(ownedPaintKeys);
+      renderOwnedPaintList();
+      renderCitadelMatches();
+      saveLastSettings();
+    }
+
+    function paintKey(paint) {
+      return [
+        paint.manufacturer,
+        paint.collection,
+        paint.range,
+        paint.name,
+        paint.hex
+      ].map(value => String(value || "").trim().toLowerCase()).join("|");
     }
 
     function paintProducerKey(paint) {
@@ -1070,7 +1176,9 @@
         baseThemeKey: state.baseThemeKey,
         recipeModeKey: state.recipeModeKey,
         paintSearch: state.paintSearch,
-        producerKeys: pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers)
+        producerKeys: pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers),
+        ownedPaintKeys: Array.from(ownedPaintKeys),
+        onlyOwnedMatches: Boolean(state.onlyOwnedMatches)
       };
     }
 
@@ -1101,6 +1209,9 @@
       }
       if (snapshot.paintSearch) {
         params.set("search", snapshot.paintSearch);
+      }
+      if (snapshot.onlyOwnedMatches) {
+        params.set("ownedOnly", "1");
       }
       if (!sameStringSet(snapshot.producerKeys, catalogueManufacturers().map(producer => producer.key))) {
         params.set("producers", snapshot.producerKeys.join(","));
@@ -1144,6 +1255,11 @@
         ? snapshot.producerKeys.filter(key => typeof key === "string")
         : null;
       pendingProducerKeys = Array.isArray(state.producerKeys) ? state.producerKeys.slice() : null;
+      state.ownedPaintKeys = Array.isArray(snapshot.ownedPaintKeys)
+        ? snapshot.ownedPaintKeys.filter(key => typeof key === "string")
+        : [];
+      ownedPaintKeys = new Set(state.ownedPaintKeys);
+      state.onlyOwnedMatches = Boolean(snapshot.onlyOwnedMatches);
       return true;
     }
 
