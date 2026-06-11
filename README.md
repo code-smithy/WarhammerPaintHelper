@@ -12,7 +12,7 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.7` (`package.json` version `0.7.0`). The static HTML uses the
+Current app version: `v0.8` (`package.json` version `0.8.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
 
@@ -37,8 +37,9 @@ It currently supports:
 - Recipe depth modes for beginner, speedpaint, battle-ready, and display-painting workflows.
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue search, direct paint selection for the main color, producer filters
-  for limiting nearest-paint matches by manufacturer, owned-colour tooltip markers, and
-  an owned-colours checklist for tracking paints already in your collection.
+  for limiting nearest-paint matches by manufacturer, owned-colour tooltip badges, an
+  owned-colours checklist for tracking paints already in your collection, and a
+  shopping list for unowned colours you want to buy.
 - A random palette button that can vary game system, custom or faction schemes, colors,
   scheme type, finish, role planner, base environment, heraldic settings, and producer
   filters.
@@ -80,8 +81,10 @@ Typical workflow:
 4. Adjust finish, recipe mode, role planner, base environment, and paint producer filters.
 5. In `Owned colours`, tick the paints you own and enable owned-only closest matches if
    you want suggestions restricted to your collection.
-6. Save a named profile or copy a share link if you want to keep or send the scheme.
-7. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
+6. Add unowned tooltip matches or searched catalogue paints to `Shopping list`, then
+   remove them when you buy them or no longer need them.
+7. Save a named profile or copy a share link if you want to keep or send the scheme.
+8. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
    as a painting plan.
 
 ## Saved Settings and Profiles
@@ -95,7 +98,7 @@ The `Copy share link` button creates a URL with the current system, colors, sche
 finish, role planner, base theme, faction scheme, heraldic options, search text, producer
 filters, and the owned-only matching toggle, including an explicitly empty producer
 selection. Opening a share link applies those URL settings first, then continues to
-auto-save changes locally as normal. Owned paint checklists themselves stay
+auto-save changes locally as normal. Owned paint checklists and shopping lists stay
 browser-local through last-used settings and named profiles rather than being embedded in
 share URLs.
 
@@ -165,7 +168,8 @@ are skipped by nearest-colour matching. Optional fields such as `manufacturer_co
 loader. The visible colour match information shows manufacturer, collection, range,
 finish, and distance; catalogue status stays internal. Use the Owned colours panel to
 mark paints you have on hand, highlight those paints in closest matches, and optionally
-limit closest-match calculations to owned paints only.
+limit closest-match calculations to owned paints only. Use the Shopping list panel or
+tooltip buttons to collect unowned colours you want to buy.
 
 ## Project Structure
 
@@ -173,7 +177,7 @@ limit closest-match calculations to owned paints only.
 - `styles.css` - app styling.
 - `src/core.js` - color math, palette generation, system profiles, base suggestions.
 - `src/factions.js` - bundled fixed faction/subfaction scheme data.
-- `src/i18n.js` - English, German, French, and Spanish translation scaffolding.
+- `src/i18n.js` - English, German, French, Spanish, and Italian translation scaffolding.
 - `src/citadel.js` - paint catalogue normalization and nearest-color matching.
 - `src/app.js` - browser UI controller.
 - `data/faction-schemes.json` - normalized fixed faction/subfaction scheme data.
@@ -191,7 +195,7 @@ npm test
 
 The tests use Node's built-in test runner and cover color generation, fixed faction
 palette generation, system data separation, translation lookup, catalogue normalization
-and matching, producer filter restore behavior, owned-paint UI wiring, share-link
+and matching, producer filter restore behavior, owned-paint and shopping-list UI wiring, share-link
 serialization guards, base suggestion behavior, and static asset/version wiring.
 
 For a real browser smoke test, install Playwright Core and run:
@@ -226,6 +230,22 @@ manufacturer, paint range, miniature company, or hobby brand mentioned in the ap
 
 ## Release Notes
 
+### v0.8.0
+
+This release adds a browser-local shopping list for unowned catalogue colours and
+refreshes the static asset cache-buster so browsers fetch the new UI assets:
+
+- Added a collapsible bottom-of-page `Shopping list` section with catalogue search, add,
+  status, and remove controls.
+- Added tooltip buttons so unowned closest-match paints can be added directly to the
+  shopping list.
+- Kept owned paints out of the shopping list and removed shopping-list entries when a
+  colour is marked as owned.
+- Preserved shopping-list entries, search text, and collapsed state in browser-local
+  settings and named profiles.
+- Bumped the public app version from `v0.7` to `v0.8` so hosted pages do not reuse stale
+  `v0.7` assets that do not include the shopping-list controls.
+
 ### v0.7.0
 
 This release fixes owned-only closest-match filtering and refreshes the static asset
@@ -243,10 +263,10 @@ cache-buster so browsers fetch the corrected UI logic:
 This release makes owned paints visible directly in hover/focus paint tooltips and
 refreshes the static asset cache-buster so browsers fetch the updated UI assets:
 
-- Added an ASCII `[x]` marker beside owned closest-match paints in colour tooltips.
-- Added a bottom-of-page legend explaining that `[x]` means an owned colour.
+- Added an Owned badge beside owned closest-match paints in colour tooltips.
+- Added a bottom-of-page legend explaining that the Owned badge means an owned colour.
 - Bumped the public app version from `v0.5` to `v0.6` so hosted pages do not reuse stale
-  `v0.5` assets that do not include the owned-paint tooltip marker.
+  `v0.5` assets that do not include the owned-paint tooltip badge.
 
 ### v0.5.0
 
