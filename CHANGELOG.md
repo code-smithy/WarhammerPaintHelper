@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.5.0
+
+- Added a separate Owned colours panel for tracking catalogue paints already in a
+  collection.
+- Added select-all-visible support with status text that indicates when every currently
+  visible colour is selected.
+- Added an owned-only closest-match toggle and Owned badges for closest matches that are
+  in the marked collection.
+- Persisted owned paint selections and the owned-only matching preference in saved
+  browser settings and named profiles.
+- Bumped the static app version and cache-buster from `v0.4` to `v0.5`.
+
+## v0.4.0
+
+- Added beginner, speedpaint, battle-ready, and display-painting recipe modes.
+- Updated paint ladders so each mode uses workflow-appropriate steps.
+- Preserved recipe mode in random palettes, saved profiles, and share links.
+- Bumped the static app version and cache-buster from `v0.3` to `v0.4`.
+
 ## v0.3.0
 
 - Added Zorn limited palette support.
