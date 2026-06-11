@@ -1428,11 +1428,14 @@
           const meta = [paintMatchMeta(match), t("citadel.distance", { distance: match.distance })]
             .filter(Boolean)
             .join(" - ");
+          const owned = ownedPaintKeys.has(paintKey(match));
           return `
-            <div class="paint-tooltip-row">
+            <div class="paint-tooltip-row ${owned ? "owned-tooltip-match" : ""}">
               <span class="match-chip" style="background:${escapeHtml(match.hex)}"></span>
               <div>
-                <div class="paint-tooltip-name">${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code></div>
+                <div class="paint-tooltip-name">
+                  ${owned ? `<span class="owned-symbol" title="${escapeHtml(t("ui.ownedBadge"))}">${escapeHtml(t("ui.ownedSymbol"))}</span> ` : ""}${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code>
+                </div>
                 <div class="meta">${escapeHtml(meta)}</div>
               </div>
             </div>

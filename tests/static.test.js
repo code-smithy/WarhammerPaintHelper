@@ -37,6 +37,8 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="ownedSelectAllVisible"/);
   assert.match(html, /id="ownedPaintStatus"/);
   assert.match(html, /id="ownedPaintList"/);
+  assert.match(html, /class="tooltip-legend"/);
+  assert.match(html, /ui\.ownedSymbolLegend/);
   assert.match(html, /id="profileNameInput"/);
   assert.match(html, /id="savedProfilesSelect"/);
   assert.match(html, /id="copyShareLinkBtn"/);
@@ -142,6 +144,8 @@ test("owned paint controls persist and filter closest catalogue matches", () => 
   assert.match(app, /state\.onlyOwnedMatches/);
   assert.match(app, /filteredCataloguePaints\(\)\.filter\(paint => ownedPaintKeys\.has\(paintKey\(paint\)\)\)/);
   assert.match(app, /class="owned-badge"/);
+  assert.match(app, /ownedPaintKeys\.has\(paintKey\(match\)\)/);
+  assert.match(app, /ui\.ownedSymbol/);
 });
 
 test("owned paint restore state is initialized before saved settings are applied", () => {
