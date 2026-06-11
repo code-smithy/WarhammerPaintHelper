@@ -126,6 +126,20 @@
     lens: {}
   };
 
+  const RECIPE_MODES = {
+    beginner: {},
+    speedpaint: {},
+    battle: {},
+    display: {}
+  };
+
+  const RECIPE_MODE_STEPS = {
+    beginner: ["basecoat", "shadeWash", "edgeHighlight"],
+    speedpaint: ["darkPrime", "zenithalDrybrush", "transparentCoat", "quickHighlight"],
+    battle: ["deepShade", "shadeWash", "basecoat", "layer", "edgeHighlight", "focusLight"],
+    display: ["deepShade", "shadeWash", "basecoat", "layer", "glazeLayer", "edgeHighlight", "fineHighlight", "focusLight"]
+  };
+
   const MATERIAL_FALLBACKS = {
     darkLeather: { key: "darkLeather", hex: "#4B2E1F" },
     redLeather: { key: "redLeather", hex: "#7A3B25" },
@@ -599,7 +613,7 @@
     });
   }
 
-  function ladderForColor(color, style) {
+  function ladderForColor(color, style, recipeModeKey) {
     const f = styleFactor(style);
     const g = Math.max(0, -f);
     const v = Math.max(0, f);
@@ -609,15 +623,22 @@
     const h = color.h;
     const s = color.s;
     const l = color.l;
-
-    return [
-      { key: "deepShade", hex: hslToHex(h, clamp(s - 18 - satMute, 5, 100), clamp(l - 30 - shadeBoost, 4, 92)) },
-      { key: "shadeWash", hex: hslToHex(h, clamp(s - 10 - satMute * .6, 5, 100), clamp(l - 18 - shadeBoost * .6, 5, 94)) },
-      { key: "basecoat", hex: color.hex },
-      { key: "layer", hex: hslToHex(h, clamp(s - 4 + 6 * v - 5 * g, 5, 100), clamp(l + 14 + cleanBoost * .5 - 3 * g, 8, 96)) },
-      { key: "edgeHighlight", hex: hslToHex(h, clamp(s - 12 + 9 * v - 8 * g, 5, 100), clamp(l + 28 + cleanBoost - 6 * g, 10, 98)) },
-      { key: "focusLight", hex: hslToHex(h, clamp(s - 22 + 12 * v - 10 * g, 5, 100), clamp(l + 40 + cleanBoost - 8 * g, 12, 99)) }
-    ];
+    const stepColors = {
+      deepShade: hslToHex(h, clamp(s - 18 - satMute, 5, 100), clamp(l - 30 - shadeBoost, 4, 92)),
+      shadeWash: hslToHex(h, clamp(s - 10 - satMute * .6, 5, 100), clamp(l - 18 - shadeBoost * .6, 5, 94)),
+      basecoat: color.hex,
+      layer: hslToHex(h, clamp(s - 4 + 6 * v - 5 * g, 5, 100), clamp(l + 14 + cleanBoost * .5 - 3 * g, 8, 96)),
+      edgeHighlight: hslToHex(h, clamp(s - 12 + 9 * v - 8 * g, 5, 100), clamp(l + 28 + cleanBoost - 6 * g, 10, 98)),
+      focusLight: hslToHex(h, clamp(s - 22 + 12 * v - 10 * g, 5, 100), clamp(l + 40 + cleanBoost - 8 * g, 12, 99)),
+      darkPrime: hslToHex(h, clamp(s - 26 - satMute, 5, 100), clamp(l - 38 - shadeBoost, 3, 80)),
+      zenithalDrybrush: hslToHex(h, clamp(s - 30 - satMute * .5, 5, 100), clamp(l + 36 + cleanBoost, 18, 98)),
+      transparentCoat: hslToHex(h, clamp(s + 10 + 8 * v - 7 * g, 5, 100), clamp(l + 4 + cleanBoost * .4 - 3 * g, 8, 96)),
+      quickHighlight: hslToHex(h, clamp(s - 8 + 8 * v - 6 * g, 5, 100), clamp(l + 32 + cleanBoost - 5 * g, 12, 99)),
+      glazeLayer: hslToHex(h, clamp(s + 2 + 4 * v - 3 * g, 5, 100), clamp(l + 20 + cleanBoost * .75 - 4 * g, 10, 98)),
+      fineHighlight: hslToHex(h, clamp(s - 18 + 12 * v - 9 * g, 5, 100), clamp(l + 34 + cleanBoost - 6 * g, 12, 99))
+    };
+    const mode = normalizeRecipeMode(recipeModeKey);
+    return RECIPE_MODE_STEPS[mode].map(key => ({ key, hex: stepColors[key] }));
   }
 
   function isWarmHue(h) {
@@ -824,6 +845,14 @@
     return getSystem(systemKey).baseThemeKeys.slice();
   }
 
+  function getRecipeModeKeys() {
+    return Object.keys(RECIPE_MODES);
+  }
+
+  function normalizeRecipeMode(recipeModeKey) {
+    return Object.prototype.hasOwnProperty.call(RECIPE_MODES, recipeModeKey) ? recipeModeKey : "battle";
+  }
+
   function getRoleProfile(systemKey, profileKey) {
     const profiles = ROLE_PROFILES[systemKey] || ROLE_PROFILES.aos;
     return profiles[profileKey] || profiles.balanced;
@@ -863,6 +892,7 @@
     HERALDIC_LAYOUTS,
     HERALDIC_RATIOS,
     HERALDIC_ACCENTS,
+    RECIPE_MODES,
     SYSTEMS,
     BASE_CATALOG,
     FACTION_SCHEME_ROLE_KEYS,
@@ -889,6 +919,8 @@
     getSchemeKeysForSystem,
     getRoleProfileKeys,
     getBaseThemeKeys,
+    getRecipeModeKeys,
+    normalizeRecipeMode,
     getRoleProfile,
     resolveProducerSelection
   };

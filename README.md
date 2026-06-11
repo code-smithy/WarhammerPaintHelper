@@ -54,6 +54,7 @@ It currently supports:
 - Model role planning for armor, robes, fatigues, default material colors, weapons,
   magic effects, lenses, plasma, bases, and accent areas.
 - Base environment suggestions for fantasy realms and 40K battlefields.
+- Recipe depth modes for beginner, speedpaint, battle-ready, and display-painting workflows.
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue search, direct paint selection for the main color, and producer
   filters for limiting nearest-paint matches by manufacturer.
@@ -92,7 +93,7 @@ Typical workflow:
    a fixed Warhammer paint scheme.
 3. Use `Random palette` when you want the app to explore across systems, schemes, colors,
    faction data, finish styles, and planning options for you.
-4. Adjust finish, role planner, base environment, and paint producer filters.
+4. Adjust finish, recipe mode, role planner, base environment, and paint producer filters.
 5. Save a named profile or copy a share link if you want to keep or send the scheme.
 6. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
    as a painting plan.

@@ -122,6 +122,33 @@ test("creates paint ladders with stable step keys", () => {
   ladder.forEach(step => assert.match(step.hex, /^#[0-9A-F]{6}$/));
 });
 
+test("supports recipe modes with different paint step depths", () => {
+  const color = core.buildPalette({ h: 220, s: 70, l: 46, style: 0 }, "zenithal")[0];
+
+  assert.deepEqual(core.getRecipeModeKeys(), ["beginner", "speedpaint", "battle", "display"]);
+  assert.deepEqual(core.ladderForColor(color, 0, "beginner").map(step => step.key), [
+    "basecoat",
+    "shadeWash",
+    "edgeHighlight"
+  ]);
+  assert.deepEqual(core.ladderForColor(color, 0, "speedpaint").map(step => step.key), [
+    "darkPrime",
+    "zenithalDrybrush",
+    "transparentCoat",
+    "quickHighlight"
+  ]);
+  assert.deepEqual(core.ladderForColor(color, 0, "display").map(step => step.key), [
+    "deepShade",
+    "shadeWash",
+    "basecoat",
+    "layer",
+    "glazeLayer",
+    "edgeHighlight",
+    "fineHighlight",
+    "focusLight"
+  ]);
+});
+
 test("builds a heraldic two-anchor palette", () => {
   const state = {
     h: 220,
