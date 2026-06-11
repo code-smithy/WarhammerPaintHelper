@@ -172,6 +172,21 @@ test("shopping list controls persist and exclude owned colours", () => {
   assert.match(app, /data-remove-shopping-key/);
 });
 
+
+test("shopping list controls persist and exclude owned colours", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.match(app, /shoppingPaintKeys: Array\.from\(shoppingPaintKeys\)/);
+  assert.match(app, /state\.shoppingListCollapsed/);
+  assert.match(app, /state\.shoppingSearch/);
+  assert.match(app, /function renderShoppingList\(\) \{/);
+  assert.match(app, /function shoppingSearchPaints\(\)[\s\S]*!ownedPaintKeys\.has\(paintKey\(paint\)\)/);
+  assert.match(app, /function addShoppingPaintByKey\(key\)[\s\S]*ownedPaintKeys\.has\(key\)/);
+  assert.match(app, /function toggleOwnedPaint\(key, checked\)[\s\S]*shoppingPaintKeys\.delete\(key\)/);
+  assert.match(app, /data-add-shopping-key/);
+  assert.match(app, /data-remove-shopping-key/);
+});
+
 test("owned paint restore state is initialized before saved settings are applied", () => {
   const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
   const declarationIndex = app.indexOf("let ownedPaintKeys = new Set(state.ownedPaintKeys)");
