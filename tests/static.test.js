@@ -30,6 +30,7 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="heraldicPreview"/);
   assert.match(html, /id="paintSearchInput"/);
   assert.match(html, /id="paintSelect"/);
+  assert.match(html, /id="recipeModeSelect"/);
   assert.match(html, /id="producerFilters"/);
   assert.match(html, /id="profileNameInput"/);
   assert.match(html, /id="savedProfilesSelect"/);
