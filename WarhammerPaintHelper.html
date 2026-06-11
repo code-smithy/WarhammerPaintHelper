@@ -183,6 +183,23 @@
         <div id="producerFilters" class="producer-filters"></div>
       </div>
 
+      <div class="owned-paints-panel" aria-label="Owned paint colours">
+        <div class="section-head compact">
+          <h3 data-i18n="ui.ownedPaints">Owned colours</h3>
+          <p data-i18n="ui.ownedPaintsDescription">Tick the catalogue colours you own, then optionally limit closest matches to those paints.</p>
+        </div>
+        <label class="toggle-option">
+          <input id="ownedOnlyMatchesToggle" type="checkbox" />
+          <span data-i18n="ui.onlyOwnedMatches">Only show owned colours in closest matches</span>
+        </label>
+        <label class="toggle-option">
+          <input id="ownedSelectAllVisible" type="checkbox" />
+          <span data-i18n="ui.selectAllVisiblePaints">Select all visible colours</span>
+        </label>
+        <div id="ownedPaintStatus" class="owned-paint-status" aria-live="polite"></div>
+        <div id="ownedPaintList" class="owned-paint-list"></div>
+      </div>
+
       <div class="profile-panel" aria-label="Saved profiles">
         <div class="field">
           <label for="profileNameInput" data-i18n="ui.profileName">Profile name</label>

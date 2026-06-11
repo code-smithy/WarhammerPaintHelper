@@ -417,6 +417,109 @@ button:hover {
   filter: brightness(1.07);
 }
 
+.owned-paints-panel {
+  margin: 18px 0;
+  padding: 13px;
+  background: rgba(36, 43, 56, .74);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.section-head.compact {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.section-head.compact h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.toggle-option,
+.owned-paint-option {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  color: var(--text);
+  font-size: .88rem;
+  line-height: 1.25;
+}
+
+.toggle-option {
+  margin-top: 8px;
+}
+
+.toggle-option input,
+.owned-paint-option input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.owned-paint-status {
+  min-height: 18px;
+  margin: 9px 0 7px;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.35;
+}
+
+.owned-paint-list {
+  display: grid;
+  gap: 7px;
+  max-height: 220px;
+  overflow: auto;
+  padding: 10px;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.owned-paint-option {
+  grid-template-columns: 18px 22px 1fr;
+}
+
+.owned-paint-chip {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, .18);
+}
+
+.owned-paint-name {
+  display: block;
+  font-weight: 800;
+}
+
+.owned-paint-meta {
+  display: block;
+  color: var(--muted);
+  font-size: .78rem;
+  margin-top: 2px;
+}
+
+.owned-match {
+  padding: 5px;
+  margin: -5px;
+  border-radius: 10px;
+  background: rgba(212, 170, 87, .1);
+}
+
+.owned-badge {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 2px 6px;
+  border: 1px solid rgba(212, 170, 87, .5);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
 .toolbar {
   margin-bottom: 18px;
 }
