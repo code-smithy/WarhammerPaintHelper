@@ -1,5 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const { execFileSync } = require("node:child_process");
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
@@ -64,6 +65,16 @@ test("asset cache buster matches package major and minor version", () => {
   ]);
   localAssets.forEach(asset => assert.match(asset, new RegExp(`\\?v=${escapeRegExp(majorMinor)}$`)));
   assert.match(html, new RegExp(`>v${majorMinor}<`));
+});
+
+
+test("application scripts are valid JavaScript", () => {
+  const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
+  const scripts = Array.from(html.matchAll(/<script src="([^"]+)"><\/script>/g), match => match[1].split("?")[0]);
+
+  scripts.forEach(script => {
+    execFileSync(process.execPath, ["--check", path.join(root, script)], { stdio: "pipe" });
+  });
 });
 
 test("application scripts load dependencies before app bootstrap", () => {
