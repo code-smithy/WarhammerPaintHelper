@@ -106,6 +106,67 @@ test("maps generated palette entries to closest paints", () => {
   assert.equal(mapped[1].matches[0].name, "Blue");
 });
 
+test("filters closest match candidates to owned paints when requested", () => {
+  const paints = [
+    { id: "owned-red", name: "Owned Red", hex: "#FF0000" },
+    { id: "unowned-blue", name: "Unowned Blue", hex: "#0000FF" },
+    { id: "owned-green", name: "Owned Green", hex: "#00FF00" }
+  ];
+  const ownedPaintKeys = new Set(["owned-red", "owned-green"]);
+
+  const filtered = citadel.filterOwnedPaints(paints, {
+    onlyOwnedMatches: true,
+    ownedPaintKeys,
+    paintKey: paint => paint.id
+  });
+
+  assert.deepEqual(filtered.map(paint => paint.name), ["Owned Red", "Owned Green"]);
+  assert.deepEqual(citadel.filterOwnedPaints(paints, { onlyOwnedMatches: false, ownedPaintKeys }), paints);
+  assert.deepEqual(citadel.filterOwnedPaints(paints), paints);
+});
+
+test("filters owned paints with array keys and default id lookup", () => {
+  const paints = [
+    { id: "first", name: "First Paint", hex: "#111111" },
+    { id: "second", name: "Second Paint", hex: "#222222" },
+    { id: "third", name: "Third Paint", hex: "#333333" }
+  ];
+
+  const filtered = citadel.filterOwnedPaints(paints, {
+    onlyOwnedMatches: true,
+    ownedPaintKeys: ["second", "third"]
+  });
+
+  assert.deepEqual(filtered.map(paint => paint.id), ["second", "third"]);
+});
+
+test("owned paint filtering handles empty and malformed inputs", () => {
+  const paints = [
+    { id: "owned", name: "Owned", hex: "#FFFFFF" },
+    { id: "unowned", name: "Unowned", hex: "#000000" }
+  ];
+
+  assert.deepEqual(citadel.filterOwnedPaints(null, { onlyOwnedMatches: true, ownedPaintKeys: ["owned"] }), []);
+  assert.deepEqual(citadel.filterOwnedPaints(paints, { onlyOwnedMatches: true }), []);
+  assert.deepEqual(citadel.filterOwnedPaints(paints, { onlyOwnedMatches: true, ownedPaintKeys: ["missing"] }), []);
+});
+
+test("owned-only candidates are applied before closest paint matching", () => {
+  const palette = [{ roleKey: "primary", hex: "#0000FE" }];
+  const paints = [
+    { id: "owned-red", name: "Owned Red", hex: "#FF0000" },
+    { id: "unowned-blue", name: "Unowned Blue", hex: "#0000FF" }
+  ];
+  const ownedPaints = citadel.filterOwnedPaints(paints, {
+    onlyOwnedMatches: true,
+    ownedPaintKeys: ["owned-red"]
+  });
+
+  const mapped = citadel.mapPaletteToCatalogue(palette, ownedPaints, { limit: 3 });
+
+  assert.deepEqual(mapped[0].matches.map(match => match.name), ["Owned Red"]);
+});
+
 test("normalizes hex values and rejects malformed colours", () => {
   assert.equal(citadel.normalizeHex("abc123"), "#ABC123");
   assert.equal(citadel.normalizeHex(" #00ffaa "), "#00FFAA");

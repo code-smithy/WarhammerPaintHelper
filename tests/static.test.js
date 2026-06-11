@@ -142,7 +142,10 @@ test("owned paint controls persist and filter closest catalogue matches", () => 
 
   assert.match(app, /ownedPaintKeys: Array\.from\(ownedPaintKeys\)/);
   assert.match(app, /state\.onlyOwnedMatches/);
-  assert.match(app, /filteredCataloguePaints\(\)\.filter\(paint => ownedPaintKeys\.has\(paintKey\(paint\)\)\)/);
+  assert.match(app, /function closestMatchCataloguePaints\(\) \{/);
+  assert.match(app, /W\.filterOwnedPaints\(filteredCataloguePaints\(\), \{/);
+  assert.match(app, /function renderCitadelMatches\(\) \{\s+const paints = closestMatchCataloguePaints\(\)/);
+  assert.match(app, /function showPaintTooltip[\s\S]*const paints = closestMatchCataloguePaints\(\)/);
   assert.match(app, /class="owned-badge"/);
   assert.match(app, /ownedPaintKeys\.has\(paintKey\(match\)\)/);
   assert.match(app, /ui\.ownedSymbol/);

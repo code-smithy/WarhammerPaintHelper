@@ -795,9 +795,7 @@
     }
 
     function renderCitadelMatches() {
-      const paints = state.onlyOwnedMatches
-        ? filteredCataloguePaints().filter(paint => ownedPaintKeys.has(paintKey(paint)))
-        : filteredCataloguePaints();
+      const paints = closestMatchCataloguePaints();
       const mapped = W.mapPaletteToCatalogue(currentPalette, paints, { limit: 3 });
       const statusKey = cataloguePaints.length ? (catalogueSource === "json" ? "loaded" : "sample") : "missing";
       el.citadelStatus.textContent = t(`citadel.${statusKey}`, { count: paints.length }) + " " + t("ui.citadelJsonHint");
@@ -931,6 +929,14 @@
       return filteredCataloguePaints()
         .filter(paint => !query || paintSelectorText(paint).toLowerCase().includes(query))
         .sort((a, b) => paintSelectorText(a).localeCompare(paintSelectorText(b)));
+    }
+
+    function closestMatchCataloguePaints() {
+      return W.filterOwnedPaints(filteredCataloguePaints(), {
+        onlyOwnedMatches: state.onlyOwnedMatches,
+        ownedPaintKeys,
+        paintKey
+      });
     }
 
     function syncOwnedPaintsCollapse() {
@@ -1421,7 +1427,7 @@
       }
       const hex = target.dataset.colorHex;
       const colorName = target.dataset.colorName || hex;
-      const paints = filteredCataloguePaints();
+      const paints = closestMatchCataloguePaints();
       const matches = paints.length ? W.findClosestPaints(hex, paints, 3) : [];
       const matchRows = matches.length
         ? matches.map(match => {

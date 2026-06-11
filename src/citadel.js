@@ -168,6 +168,19 @@
     return mapPaletteToCatalogue(palette, paints, options);
   }
 
+  function filterOwnedPaints(paints, options) {
+    const list = Array.isArray(paints) ? paints : [];
+    if (!options || !options.onlyOwnedMatches) {
+      return list;
+    }
+
+    const ownedPaintKeys = options.ownedPaintKeys instanceof Set
+      ? options.ownedPaintKeys
+      : new Set(Array.isArray(options.ownedPaintKeys) ? options.ownedPaintKeys : []);
+    const paintKey = typeof options.paintKey === "function" ? options.paintKey : paint => String(paint && paint.id || "");
+    return list.filter(paint => ownedPaintKeys.has(paintKey(paint)));
+  }
+
   async function loadPaintCatalogue(url, fallbackPaints) {
     const fallback = normalizeCitadelPaints(fallbackPaints || DEFAULT_PAINT_CATALOGUE);
     if (typeof fetch !== "function") {
@@ -200,6 +213,7 @@
     normalizeCitadelPaints,
     normalizePaintCatalogue,
     colorDistance,
+    filterOwnedPaints,
     findClosestPaints,
     mapPaletteToCatalogue,
     mapPaletteToCitadel,
