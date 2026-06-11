@@ -12,11 +12,21 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.5` (`package.json` version `0.5.0`). The static HTML uses the
+Current app version: `v0.6` (`package.json` version `0.6.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
 
 ## Release Notes
+
+### v0.6.0
+
+This release makes owned paints visible directly in hover/focus paint tooltips and
+refreshes the static asset cache-buster so browsers fetch the updated UI assets:
+
+- Added an ASCII `[x]` marker beside owned closest-match paints in colour tooltips.
+- Added a bottom-of-page legend explaining that `[x]` means an owned colour.
+- Bumped the public app version from `v0.5` to `v0.6` so hosted pages do not reuse stale
+  `v0.5` assets that do not include the owned-paint tooltip marker.
 
 ### v0.5.0
 
@@ -87,8 +97,8 @@ It currently supports:
 - Recipe depth modes for beginner, speedpaint, battle-ready, and display-painting workflows.
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue search, direct paint selection for the main color, producer filters
-  for limiting nearest-paint matches by manufacturer, and an owned-colours checklist for
-  tracking paints already in your collection.
+  for limiting nearest-paint matches by manufacturer, owned-colour tooltip markers, and
+  an owned-colours checklist for tracking paints already in your collection.
 - A random palette button that can vary game system, custom or faction schemes, colors,
   scheme type, finish, role planner, base environment, heraldic settings, and producer
   filters.

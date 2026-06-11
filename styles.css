@@ -542,6 +542,14 @@ button:hover {
   letter-spacing: .04em;
 }
 
+.owned-symbol {
+  display: inline-block;
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+
 .toolbar {
   margin-bottom: 18px;
 }
@@ -641,6 +649,17 @@ button:hover {
 
 .section-box {
   margin-top: 18px;
+}
+
+.tooltip-legend {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: .85rem;
+  font-weight: 800;
 }
 
 .section-head {
@@ -878,6 +897,13 @@ button:hover {
   grid-template-columns: 22px 1fr;
   gap: 8px;
   align-items: center;
+}
+
+.owned-tooltip-match {
+  padding: 4px;
+  margin: -4px;
+  border-radius: 9px;
+  background: rgba(212, 170, 87, .1);
 }
 
 .paint-tooltip-name {
