@@ -1615,7 +1615,7 @@
               <span class="match-chip" style="background:${escapeHtml(match.hex)}"></span>
               <div>
                 <div class="paint-tooltip-name">
-                  ${owned ? `<span class="owned-symbol" title="${escapeHtml(t("ui.ownedBadge"))}">${escapeHtml(t("ui.ownedSymbol"))}</span> ` : ""}${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code>
+                  ${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code>${owned ? ` <span class="owned-badge">${escapeHtml(t("ui.ownedBadge"))}</span>` : ""}
                 </div>
                 <div class="meta">${escapeHtml(meta)}</div>
                 ${action}

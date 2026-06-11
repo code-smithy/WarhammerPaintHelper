@@ -542,14 +542,6 @@ button:hover {
   letter-spacing: .04em;
 }
 
-.owned-symbol {
-  display: inline-block;
-  color: var(--accent);
-  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
-  font-weight: 900;
-  letter-spacing: .02em;
-}
-
 .toolbar {
   margin-bottom: 18px;
 }
@@ -649,6 +641,10 @@ button:hover {
 
 .section-box {
   margin-top: 18px;
+}
+
+.tooltip-legend .owned-badge {
+  margin-left: 0;
 }
 
 .tooltip-legend {

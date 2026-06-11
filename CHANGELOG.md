@@ -21,9 +21,9 @@
 
 ## v0.6.0
 
-- Added an ASCII `[x]` marker to hover/focus paint tooltips for closest catalogue
+- Added an Owned badge to hover/focus paint tooltips for closest catalogue
   matches that are already marked as owned.
-- Added a bottom-of-page legend explaining the owned-paint tooltip marker.
+- Added a bottom-of-page legend explaining the owned-paint tooltip badge.
 - Bumped the static app version and cache-buster from `v0.5` to `v0.6`.
 
 ## v0.5.0

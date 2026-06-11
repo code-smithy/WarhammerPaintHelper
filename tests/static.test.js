@@ -45,7 +45,7 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="shoppingListStatus"/);
   assert.match(html, /id="shoppingList"/);
   assert.match(html, /class="tooltip-legend"/);
-  assert.match(html, /ui\.ownedSymbolLegend/);
+  assert.match(html, /ui\.ownedBadgeLegend/);
   assert.match(html, /id="profileNameInput"/);
   assert.match(html, /id="savedProfilesSelect"/);
   assert.match(html, /id="copyShareLinkBtn"/);
@@ -155,7 +155,21 @@ test("owned paint controls persist and filter closest catalogue matches", () => 
   assert.match(app, /function showPaintTooltip[\s\S]*const paints = closestMatchCataloguePaints\(\)/);
   assert.match(app, /class="owned-badge"/);
   assert.match(app, /ownedPaintKeys\.has\(paintKey\(match\)\)/);
-  assert.match(app, /ui\.ownedSymbol/);
+});
+
+
+test("shopping list controls persist and exclude owned colours", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.match(app, /shoppingPaintKeys: Array\.from\(shoppingPaintKeys\)/);
+  assert.match(app, /state\.shoppingListCollapsed/);
+  assert.match(app, /state\.shoppingSearch/);
+  assert.match(app, /function renderShoppingList\(\) \{/);
+  assert.match(app, /function shoppingSearchPaints\(\)[\s\S]*!ownedPaintKeys\.has\(paintKey\(paint\)\)/);
+  assert.match(app, /function addShoppingPaintByKey\(key\)[\s\S]*ownedPaintKeys\.has\(key\)/);
+  assert.match(app, /function toggleOwnedPaint\(key, checked\)[\s\S]*shoppingPaintKeys\.delete\(key\)/);
+  assert.match(app, /data-add-shopping-key/);
+  assert.match(app, /data-remove-shopping-key/);
 });
 
 

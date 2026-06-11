@@ -37,7 +37,7 @@ It currently supports:
 - Recipe depth modes for beginner, speedpaint, battle-ready, and display-painting workflows.
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue search, direct paint selection for the main color, producer filters
-  for limiting nearest-paint matches by manufacturer, owned-colour tooltip markers, an
+  for limiting nearest-paint matches by manufacturer, owned-colour tooltip badges, an
   owned-colours checklist for tracking paints already in your collection, and a
   shopping list for unowned colours you want to buy.
 - A random palette button that can vary game system, custom or faction schemes, colors,
@@ -263,10 +263,10 @@ cache-buster so browsers fetch the corrected UI logic:
 This release makes owned paints visible directly in hover/focus paint tooltips and
 refreshes the static asset cache-buster so browsers fetch the updated UI assets:
 
-- Added an ASCII `[x]` marker beside owned closest-match paints in colour tooltips.
-- Added a bottom-of-page legend explaining that `[x]` means an owned colour.
+- Added an Owned badge beside owned closest-match paints in colour tooltips.
+- Added a bottom-of-page legend explaining that the Owned badge means an owned colour.
 - Bumped the public app version from `v0.5` to `v0.6` so hosted pages do not reuse stale
-  `v0.5` assets that do not include the owned-paint tooltip marker.
+  `v0.5` assets that do not include the owned-paint tooltip badge.
 
 ### v0.5.0
 
