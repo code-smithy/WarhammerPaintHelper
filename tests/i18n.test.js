@@ -4,12 +4,13 @@ const i18n = require("../src/i18n.js");
 const core = require("../src/core.js");
 
 test("supports the configured language set", () => {
-  assert.deepEqual(i18n.LANGUAGE_KEYS, ["en", "fr", "de", "es"]);
+  assert.deepEqual(i18n.LANGUAGE_KEYS, ["en", "fr", "de", "es", "it"]);
   assert.equal(i18n.hasLanguage("en"), true);
   assert.equal(i18n.hasLanguage("fr"), true);
   assert.equal(i18n.hasLanguage("de"), true);
   assert.equal(i18n.hasLanguage("es"), true);
-  assert.equal(i18n.hasLanguage("it"), false);
+  assert.equal(i18n.hasLanguage("it"), true);
+  assert.equal(i18n.hasLanguage("pt"), false);
 });
 
 test("translates core UI labels and interpolates values", () => {
@@ -17,11 +18,14 @@ test("translates core UI labels and interpolates values", () => {
   const fr = i18n.createTranslator("fr");
   const de = i18n.createTranslator("de");
   const es = i18n.createTranslator("es");
+  const it = i18n.createTranslator("it");
 
   assert.equal(en("ui.system"), "Game system");
   assert.equal(fr("ui.system"), "Système de jeu");
   assert.equal(de("ui.system"), "Spielsystem");
   assert.equal(es("ui.system"), "Sistema de juego");
+  assert.equal(it("ui.system"), "Sistema di gioco");
+  assert.equal(it("ui.paintSelectPlaceholder", { count: 12 }), "Seleziona un colore (12)");
   assert.equal(en("citadel.distance", { distance: 12 }), "distance 12");
 });
 
@@ -48,11 +52,14 @@ test("translates expanded dictionary sections", () => {
   const de = i18n.createTranslator("de");
   const fr = i18n.createTranslator("fr");
   const es = i18n.createTranslator("es");
+  const it = i18n.createTranslator("it");
 
   assert.equal(de("materials.items.iron.name"), "Eisen");
   assert.equal(fr("materials.items.iron.name"), "Fer");
   assert.equal(es("materials.items.iron.name"), "Hierro");
   assert.equal(es("bases.city.title"), "Adoquines de Ciudad Libre");
+  assert.equal(it("materials.items.iron.name"), "Ferro");
+  assert.equal(it("bases.city.title"), "Ciottoli della Città Libera");
 });
 
 function leafPaths(value, prefix = "") {
