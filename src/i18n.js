@@ -1903,6 +1903,158 @@
   };
 
   TRANSLATIONS.it = mergeLocale(TRANSLATIONS.en, ITALIAN_TRANSLATIONS);
+
+  const RECIPE_TRANSLATIONS = {
+    en: {
+      ui: {
+        recipeMode: "Recipe mode",
+        recipeTitle: "{system} {mode} recipe"
+      },
+      recipeModes: {
+        beginner: { title: "Beginner", description: "Three reliable desk steps: basecoat, controlled wash, and one readable highlight." },
+        speedpaint: { title: "Speedpaint", description: "Fast undercoat, zenithal drybrush, transparent colour, and a quick final pop." },
+        battle: { title: "Battle-ready", description: "Balanced tabletop recipe with shade, base, layer, edge highlight, and focal light." },
+        display: { title: "Display", description: "Extra glazing and fine highlights for slower hero, centerpiece, or competition-style work." }
+      },
+      ladderSteps: {
+        darkPrime: "Dark undercoat",
+        zenithalDrybrush: "Zenithal drybrush",
+        transparentCoat: "Transparent coat",
+        quickHighlight: "Quick highlight",
+        glazeLayer: "Glaze layer",
+        fineHighlight: "Fine highlight"
+      },
+      ladderHints: {
+        darkPrime: "Black, dark brown, or deep colored primer",
+        zenithalDrybrush: "White or pale drybrush from above",
+        transparentCoat: "Contrast, speedpaint, ink, or thinned colour",
+        quickHighlight: "One bright pass on face, weapons, and top edges",
+        glazeLayer: "Thin mid-tone glaze to smooth the transition",
+        fineHighlight: "Narrowest top-facing edges before final points"
+      }
+    },
+    de: {
+      ui: {
+        recipeMode: "Rezeptmodus",
+        recipeTitle: "{system} {mode}-Rezept"
+      },
+      recipeModes: {
+        beginner: { title: "Einsteiger", description: "Drei verlässliche Schritte am Maltisch: Grundschicht, kontrollierter Wash und ein lesbares Highlight." },
+        speedpaint: { title: "Speedpaint", description: "Schnelle Grundierung, Zenithal-Drybrush, transparente Farbe und ein kurzer Schlussakzent." },
+        battle: { title: "Battle-ready", description: "Ausgewogenes Tabletop-Rezept mit Schatten, Basis, Layer, Kantenhighlight und Fokuslicht." },
+        display: { title: "Display", description: "Zusätzliche Lasuren und feine Highlights für Helden, Centerpieces oder Wettbewerbsarbeit." }
+      },
+      ladderSteps: {
+        darkPrime: "Dunkle Grundierung",
+        zenithalDrybrush: "Zenithal-Drybrush",
+        transparentCoat: "Transparente Schicht",
+        quickHighlight: "Schnelles Highlight",
+        glazeLayer: "Lasurschicht",
+        fineHighlight: "Feines Highlight"
+      },
+      ladderHints: {
+        darkPrime: "Schwarze, dunkelbraune oder tief farbige Grundierung",
+        zenithalDrybrush: "Weißer oder heller Drybrush von oben",
+        transparentCoat: "Contrast, Speedpaint, Ink oder verdünnte Farbe",
+        quickHighlight: "Ein heller Durchgang auf Gesicht, Waffen und Oberkanten",
+        glazeLayer: "Dünne Mittelton-Lasur zum Glätten des Übergangs",
+        fineHighlight: "Schmalste obere Kanten vor den finalen Punkten"
+      }
+    },
+    fr: {
+      ui: {
+        recipeMode: "Mode de recette",
+        recipeTitle: "Recette {mode} {system}"
+      },
+      recipeModes: {
+        beginner: { title: "Débutant", description: "Trois étapes fiables: base, lavis contrôlé et une lumière bien lisible." },
+        speedpaint: { title: "Speedpaint", description: "Sous-couche rapide, brossage zénithal, couleur transparente et dernier éclat rapide." },
+        battle: { title: "Battle-ready", description: "Recette de table équilibrée avec ombre, base, layer, edge highlight et lumière focale." },
+        display: { title: "Display", description: "Glacis supplémentaires et lumières fines pour héros, pièces centrales ou travail de concours." }
+      },
+      ladderSteps: {
+        darkPrime: "Sous-couche sombre",
+        zenithalDrybrush: "Brossage zénithal",
+        transparentCoat: "Couche transparente",
+        quickHighlight: "Lumière rapide",
+        glazeLayer: "Glacis de layer",
+        fineHighlight: "Lumière fine"
+      },
+      ladderHints: {
+        darkPrime: "Primer noir, brun sombre ou couleur profonde",
+        zenithalDrybrush: "Brossage blanc ou pâle depuis le dessus",
+        transparentCoat: "Contrast, speedpaint, encre ou couleur diluée",
+        quickHighlight: "Un passage clair sur visage, armes et arêtes supérieures",
+        glazeLayer: "Glacis fin de demi-teinte pour lisser la transition",
+        fineHighlight: "Arêtes supérieures les plus fines avant les points finaux"
+      }
+    },
+    es: {
+      ui: {
+        recipeMode: "Modo de receta",
+        recipeTitle: "Receta {mode} de {system}"
+      },
+      recipeModes: {
+        beginner: { title: "Principiante", description: "Tres pasos fiables: capa base, lavado controlado y una luz legible." },
+        speedpaint: { title: "Speedpaint", description: "Imprimación rápida, pincel seco cenital, color transparente y un toque final." },
+        battle: { title: "Battle-ready", description: "Receta equilibrada de mesa con sombra, base, capa, luz de borde y luz focal." },
+        display: { title: "Display", description: "Veladuras extra y luces finas para héroes, piezas centrales o trabajo de concurso." }
+      },
+      ladderSteps: {
+        darkPrime: "Imprimación oscura",
+        zenithalDrybrush: "Pincel seco cenital",
+        transparentCoat: "Capa transparente",
+        quickHighlight: "Luz rápida",
+        glazeLayer: "Veladura de capa",
+        fineHighlight: "Luz fina"
+      },
+      ladderHints: {
+        darkPrime: "Imprimación negra, marrón oscura o de color profundo",
+        zenithalDrybrush: "Pincel seco blanco o pálido desde arriba",
+        transparentCoat: "Contrast, speedpaint, tinta o color diluido",
+        quickHighlight: "Una pasada clara en cara, armas y bordes superiores",
+        glazeLayer: "Veladura fina de tono medio para suavizar la transición",
+        fineHighlight: "Bordes superiores más estrechos antes de los puntos finales"
+      }
+    },
+    it: {
+      ui: {
+        recipeMode: "Modalità ricetta",
+        recipeTitle: "Ricetta {mode} {system}"
+      },
+      recipeModes: {
+        beginner: { title: "Principiante", description: "Tre passaggi affidabili: base, lavatura controllata e una lumeggiatura leggibile." },
+        speedpaint: { title: "Speedpaint", description: "Primer rapido, drybrush zenitale, colore trasparente e un ultimo colpo di luce." },
+        battle: { title: "Battle-ready", description: "Ricetta equilibrata da tavolo con ombra, base, strato, lumeggiatura di bordo e luce focale." },
+        display: { title: "Display", description: "Velature extra e luci fini per eroi, centerpiece o lavori da concorso." }
+      },
+      ladderSteps: {
+        darkPrime: "Primer scuro",
+        zenithalDrybrush: "Drybrush zenitale",
+        transparentCoat: "Strato trasparente",
+        quickHighlight: "Luce rapida",
+        glazeLayer: "Velatura di strato",
+        fineHighlight: "Luce fine"
+      },
+      ladderHints: {
+        darkPrime: "Primer nero, marrone scuro o colore profondo",
+        zenithalDrybrush: "Drybrush bianco o pallido dall'alto",
+        transparentCoat: "Contrast, speedpaint, inchiostro o colore diluito",
+        quickHighlight: "Una passata chiara su volto, armi e bordi superiori",
+        glazeLayer: "Velatura sottile di mezzotono per ammorbidire il passaggio",
+        fineHighlight: "Bordi superiori più sottili prima dei punti finali"
+      }
+    }
+  };
+
+  for (const language of LANGUAGE_KEYS) {
+    const recipe = RECIPE_TRANSLATIONS[language] || RECIPE_TRANSLATIONS.en;
+    Object.assign(TRANSLATIONS[language].ui, recipe.ui);
+    TRANSLATIONS[language].recipeModes = recipe.recipeModes;
+    Object.assign(TRANSLATIONS[language].ladder.steps, recipe.ladderSteps);
+    Object.assign(TRANSLATIONS[language].ladder.hints, recipe.ladderHints);
+  }
+
   Object.freeze(TRANSLATIONS);
 
   function mergeLocale(baseLocale, localeOverrides) {

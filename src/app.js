@@ -28,6 +28,7 @@
       schemeKey: "complementary",
       roleProfileKey: "balanced",
       baseThemeKey: "auto",
+      recipeModeKey: "battle",
       paintSearch: "",
       producerKeys: null
     };
@@ -80,6 +81,7 @@
       heraldicPreview: $("heraldicPreview"),
       roleStyle: $("roleStyleSelect"),
       baseTheme: $("baseThemeSelect"),
+      recipeMode: $("recipeModeSelect"),
       producerFilters: $("producerFilters"),
       profileName: $("profileNameInput"),
       savedProfiles: $("savedProfilesSelect"),
@@ -171,6 +173,13 @@
         state.baseThemeKey
       );
       state.baseThemeKey = el.baseTheme.value;
+      setSelectOptions(
+        el.recipeMode,
+        W.getRecipeModeKeys(),
+        key => t(`recipeModes.${key}.title`),
+        state.recipeModeKey
+      );
+      state.recipeModeKey = el.recipeMode.value;
       setSelectOptions(el.heraldicLayout, Object.keys(W.HERALDIC_LAYOUTS), key => t(`heraldic.layouts.${key}`), state.heraldicLayout);
       state.heraldicLayout = el.heraldicLayout.value;
       setSelectOptions(el.heraldicRatio, Object.keys(W.HERALDIC_RATIOS), key => t(`heraldic.ratios.${key}`), state.heraldicRatio);
@@ -269,6 +278,7 @@
       el.heraldicAccent.addEventListener("change", update);
       el.roleStyle.addEventListener("change", update);
       el.baseTheme.addEventListener("change", update);
+      el.recipeMode.addEventListener("change", update);
       el.producerFilters.addEventListener("change", event => {
         if (!event.target.matches("input[type='checkbox']")) {
           return;
@@ -383,6 +393,7 @@
       state.schemeKey = el.scheme.value;
       state.roleProfileKey = el.roleStyle.value;
       state.baseThemeKey = el.baseTheme.value;
+      state.recipeModeKey = el.recipeMode.value;
       state.paintSearch = el.paintSearch.value;
       state.producerKeys = pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers);
       const factionScheme = selectedFactionScheme();
@@ -456,7 +467,10 @@
         : t(`schemes.${schemeKey}.desc`);
       el.rolePlannerTitle.textContent = t(`systemCopy.${state.system}.rolePlannerTitle`);
       el.baseAdviceTitle.textContent = t(`systemCopy.${state.system}.baseAdviceTitle`);
-      el.paintLadderTitle.textContent = t(`systemCopy.${state.system}.paintLadderTitle`);
+      el.paintLadderTitle.textContent = t("ui.recipeTitle", {
+        system: t(`systems.${state.system}`),
+        mode: t(`recipeModes.${state.recipeModeKey}.title`)
+      });
       const paintEquivalentText = factionScheme
         ? `<br><br><strong>${escapeHtml(t("factionSchemes.paintEquivalents"))}:</strong> ${escapeHtml(factionScheme.paintEquivalents || t("factionSchemes.noPaintEquivalents"))}`
         : "";
@@ -716,7 +730,7 @@
 
     function renderPaintLadder() {
       el.paintLadder.innerHTML = currentPalette.slice(0, 4).map(color => {
-        const steps = W.ladderForColor(color, state.style).map(step => `
+        const steps = W.ladderForColor(color, state.style, state.recipeModeKey).map(step => `
           <div class="ladder-step paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(step.hex)}" data-color-name="${escapeHtml(t(`ladder.steps.${step.key}`))}">
             <div class="ladder-swatch" style="background:${escapeHtml(step.hex)}"></div>
             <div>
@@ -731,6 +745,7 @@
           <article class="ladder-card">
             <div class="ladder-title">${escapeHtml(colorName(color))}</div>
             <div class="ladder-steps">${steps}</div>
+            <p class="recipe-note"><strong>${escapeHtml(t(`recipeModes.${state.recipeModeKey}.title`))}:</strong> ${escapeHtml(t(`recipeModes.${state.recipeModeKey}.description`))}</p>
             <p class="recipe-note">${escapeHtml(t("ladder.note", {
               system: t(`systems.${state.system}`),
               finish: t(`finish.${W.styleLabelKey(state.style)}`)
@@ -878,6 +893,7 @@
       state.schemeKey = randomChoice(W.getSchemeKeysForSystem(state.system));
       state.roleProfileKey = randomChoice(W.getRoleProfileKeys(state.system));
       state.baseThemeKey = randomChoice(W.getBaseThemeKeys(state.system));
+      state.recipeModeKey = randomChoice(W.getRecipeModeKeys());
       state.heraldicLayout = randomChoice(Object.keys(W.HERALDIC_LAYOUTS));
       state.heraldicRatio = randomChoice(Object.keys(W.HERALDIC_RATIOS));
       state.heraldicAccent = randomChoice(Object.keys(W.HERALDIC_ACCENTS));
@@ -1052,6 +1068,7 @@
         schemeKey: state.schemeKey,
         roleProfileKey: state.roleProfileKey,
         baseThemeKey: state.baseThemeKey,
+        recipeModeKey: state.recipeModeKey,
         paintSearch: state.paintSearch,
         producerKeys: pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers)
       };
@@ -1069,6 +1086,7 @@
       params.set("scheme", snapshot.schemeKey);
       params.set("role", snapshot.roleProfileKey);
       params.set("base", snapshot.baseThemeKey);
+      params.set("recipe", snapshot.recipeModeKey);
       params.set("lang", snapshot.language);
 
       if (snapshot.factionSchemeId) {
@@ -1120,6 +1138,7 @@
       state.schemeKey = typeof snapshot.schemeKey === "string" ? snapshot.schemeKey : state.schemeKey;
       state.roleProfileKey = typeof snapshot.roleProfileKey === "string" ? snapshot.roleProfileKey : state.roleProfileKey;
       state.baseThemeKey = typeof snapshot.baseThemeKey === "string" ? snapshot.baseThemeKey : state.baseThemeKey;
+      state.recipeModeKey = W.normalizeRecipeMode(snapshot.recipeModeKey || state.recipeModeKey);
       state.paintSearch = typeof snapshot.paintSearch === "string" ? snapshot.paintSearch : "";
       state.producerKeys = Array.isArray(snapshot.producerKeys)
         ? snapshot.producerKeys.filter(key => typeof key === "string")
@@ -1157,6 +1176,7 @@
         setStringSetting(snapshot, "schemeKey", params.get("scheme"));
         setStringSetting(snapshot, "roleProfileKey", params.get("role"));
         setStringSetting(snapshot, "baseThemeKey", params.get("base"));
+        setStringSetting(snapshot, "recipeModeKey", params.get("recipe"));
         setStringSetting(snapshot, "paintSearch", params.get("search"));
         const style = Number(params.get("style"));
         if (Number.isFinite(style)) {

@@ -12,11 +12,22 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.3` (`package.json` version `0.3.0`). The static HTML uses the
+Current app version: `v0.4` (`package.json` version `0.4.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
 
 ## Release Notes
+
+### v0.4.0
+
+This release adds recipe depth modes and refreshes the static asset cache-buster so
+browsers fetch the matching JavaScript and translation files for the new controls:
+
+- Added beginner, speedpaint, battle-ready, and display-painting recipe modes.
+- Updated generated paint ladders so each mode uses workflow-appropriate steps.
+- Preserved the selected recipe mode in random palettes, saved profiles, and share links.
+- Bumped the public app version from `v0.3` to `v0.4` so hosted pages do not reuse stale
+  `v0.3` scripts that cannot populate the new recipe mode selector.
 
 ### v0.3.0
 
@@ -54,6 +65,7 @@ It currently supports:
 - Model role planning for armor, robes, fatigues, default material colors, weapons,
   magic effects, lenses, plasma, bases, and accent areas.
 - Base environment suggestions for fantasy realms and 40K battlefields.
+- Recipe depth modes for beginner, speedpaint, battle-ready, and display-painting workflows.
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue search, direct paint selection for the main color, and producer
   filters for limiting nearest-paint matches by manufacturer.
@@ -92,7 +104,7 @@ Typical workflow:
    a fixed Warhammer paint scheme.
 3. Use `Random palette` when you want the app to explore across systems, schemes, colors,
    faction data, finish styles, and planning options for you.
-4. Adjust finish, role planner, base environment, and paint producer filters.
+4. Adjust finish, recipe mode, role planner, base environment, and paint producer filters.
 5. Save a named profile or copy a share link if you want to keep or send the scheme.
 6. Use the generated palette, role plan, paint ladder, base advice, and catalogue matches
    as a painting plan.
