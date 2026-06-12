@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.10.0
+
+- Removed the 80-colour cap from the Shopping list add-colour selector so all unowned
+  catalogue colours can be chosen.
+- Added regression coverage for the shopping-list search result count.
+- Bumped the static app version and cache-buster from `v0.9` to `v0.10`.
+
 ## v0.9.0
 
 - Added collapse/expand controls to the generated main-window output sections: painting

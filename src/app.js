@@ -1130,8 +1130,7 @@
         .filter(paint => !ownedPaintKeys.has(paintKey(paint)))
         .filter(paint => !shoppingPaintKeys.has(paintKey(paint)))
         .filter(paint => !query || paintSelectorText(paint).toLowerCase().includes(query))
-        .sort((a, b) => paintSelectorText(a).localeCompare(paintSelectorText(b)))
-        .slice(0, 80);
+        .sort((a, b) => paintSelectorText(a).localeCompare(paintSelectorText(b)));
     }
 
     function shoppingListPaints() {

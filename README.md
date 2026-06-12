@@ -12,7 +12,7 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.9` (`package.json` version `0.9.0`). The static HTML uses the
+Current app version: `v0.10` (`package.json` version `0.10.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
 
@@ -234,6 +234,17 @@ connected to Games Workshop, Citadel, Vallejo, Army Painter, or any other paint
 manufacturer, paint range, miniature company, or hobby brand mentioned in the app.
 
 ## Release Notes
+
+### v0.10.0
+
+This release fixes the shopping-list add-colour dropdown so all unowned catalogue
+colours are available instead of only the first 80 sorted matches:
+
+- Removed the 80-colour cap from the shopping-list add-colour selector.
+- Added a regression check so the shopping-list search cannot silently reintroduce the
+  fixed 80-item limit.
+- Bumped the public app version from `v0.9` to `v0.10` so hosted pages do not reuse stale
+  `v0.9` assets that still cap shopping-list suggestions.
 
 ### v0.9.0
 

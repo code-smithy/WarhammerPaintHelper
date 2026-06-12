@@ -184,6 +184,7 @@ test("shopping list controls persist and exclude owned colours", () => {
   assert.match(app, /state\.shoppingSearch/);
   assert.match(app, /function renderShoppingList\(\) \{/);
   assert.match(app, /function shoppingSearchPaints\(\)[\s\S]*!ownedPaintKeys\.has\(paintKey\(paint\)\)/);
+  assert.doesNotMatch(app, /function shoppingSearchPaints\(\)[\s\S]*\.slice\(0,\s*80\)/);
   assert.match(app, /function addShoppingPaintByKey\(key\)[\s\S]*ownedPaintKeys\.has\(key\)/);
   assert.match(app, /function toggleOwnedPaint\(key, checked\)[\s\S]*shoppingPaintKeys\.delete\(key\)/);
   assert.match(app, /data-add-shopping-key/);
@@ -199,6 +200,7 @@ test("shopping list controls persist and exclude owned colours", () => {
   assert.match(app, /state\.shoppingSearch/);
   assert.match(app, /function renderShoppingList\(\) \{/);
   assert.match(app, /function shoppingSearchPaints\(\)[\s\S]*!ownedPaintKeys\.has\(paintKey\(paint\)\)/);
+  assert.doesNotMatch(app, /function shoppingSearchPaints\(\)[\s\S]*\.slice\(0,\s*80\)/);
   assert.match(app, /function addShoppingPaintByKey\(key\)[\s\S]*ownedPaintKeys\.has\(key\)/);
   assert.match(app, /function toggleOwnedPaint\(key, checked\)[\s\S]*shoppingPaintKeys\.delete\(key\)/);
   assert.match(app, /data-add-shopping-key/);
