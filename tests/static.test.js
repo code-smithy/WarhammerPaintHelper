@@ -57,6 +57,12 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="savedProfilesSelect"/);
   assert.match(html, /id="copyShareLinkBtn"/);
   assert.match(html, /id="randomBtn"/);
+  assert.match(html, /data-control-group="start"/);
+  assert.match(html, /data-control-group="color"/);
+  assert.match(html, /data-control-group="paletteRules"/);
+  assert.match(html, /data-control-group="paintingPlan"/);
+  assert.match(html, /data-control-group="paintLibrary"/);
+  assert.match(html, /data-control-group="saveShare"/);
   assert.doesNotMatch(html, /id="copyPaletteBtn"/);
   assert.doesNotMatch(html, /ui\.extraMaterials/);
   assert.doesNotMatch(html, /class="material-toggle"/);
@@ -174,6 +180,18 @@ test("collapsible generated sections persist in saved settings", () => {
   assert.match(app, /function syncCollapsibleSections\(\) \{/);
   assert.match(app, /collapsedSections: \{[\s\S]*\.\.\.DEFAULT_SECTION_COLLAPSE,[\s\S]*\.\.\.state\.collapsedSections/);
   assert.match(app, /state\.collapsedSections = normalizeCollapsedSections\(snapshot\.collapsedSections\)/);
+});
+
+test("left control groups persist in saved settings", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.match(app, /const DEFAULT_CONTROL_GROUP_COLLAPSE = \{/);
+  assert.match(app, /controlGroupsCollapsed: \{ \.\.\.DEFAULT_CONTROL_GROUP_COLLAPSE \}/);
+  assert.match(app, /controlGroups: Array\.from\(document\.querySelectorAll\("\[data-control-group\]"\)\)/);
+  assert.match(app, /function syncControlGroupsCollapse\(\) \{/);
+  assert.match(app, /group\.addEventListener\("toggle"/);
+  assert.match(app, /controlGroupsCollapsed: \{[\s\S]*\.\.\.DEFAULT_CONTROL_GROUP_COLLAPSE,[\s\S]*\.\.\.state\.controlGroupsCollapsed/);
+  assert.match(app, /state\.controlGroupsCollapsed = normalizeControlGroupsCollapsed\(snapshot\.controlGroupsCollapsed\)/);
 });
 
 test("shopping list controls persist and exclude owned colours", () => {

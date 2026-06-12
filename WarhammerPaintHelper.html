@@ -11,27 +11,33 @@
 </head>
 <body>
   <header>
-    <div class="top-controls" aria-label="Application settings">
-      <label>
-        <span data-i18n="ui.language">Language</span>
-        <select id="languageSelect">
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="de">Deutsch</option>
-          <option value="es">Español</option>
-          <option value="it">Italiano</option>
-        </select>
-      </label>
+    <div class="header-shell">
+      <div class="header-utility" aria-label="Application settings">
+        <div class="brand-meta">
+          <span class="eyebrow" data-i18n="ui.eyebrow">Miniature Palette Tool</span>
+          <p class="app-version" aria-label="Application version">v0.10</p>
+        </div>
+        <label class="language-control">
+          <span data-i18n="ui.language">Language</span>
+          <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="es">Español</option>
+            <option value="it">Italiano</option>
+          </select>
+        </label>
+      </div>
+      <div class="hero-copy">
+        <h1 data-i18n="ui.title">Warhammer Paint Helper</h1>
+        <p class="header-subtitle" data-i18n="ui.subtitle">Pick a main color and generate a miniature-ready palette with model roles, base ideas, paint steps, and paint catalogue matches.</p>
+      </div>
     </div>
-    <p class="eyebrow" data-i18n="ui.eyebrow">Miniature Palette Tool</p>
-    <p class="app-version" aria-label="Application version">v0.10</p>
-    <h1 data-i18n="ui.title">Warhammer Paint Helper</h1>
-    <p data-i18n="ui.subtitle">Pick a main color and generate a miniature-ready palette with model roles, base ideas, paint steps, and paint catalogue matches.</p>
   </header>
 
   <main>
     <section class="panel controls" aria-label="Color controls">
-      <details class="control-group" open>
+      <details class="control-group" data-control-group="start" open>
         <summary data-i18n="ui.controlStart">Start</summary>
         <div class="control-group-body">
           <div class="button-row">
@@ -76,7 +82,7 @@
         </div>
       </details>
 
-      <details class="control-group" open>
+      <details class="control-group" data-control-group="color" open>
         <summary data-i18n="ui.controlColor">Color</summary>
         <div class="control-group-body">
           <div id="heraldicWheelControl" class="field heraldic-only" hidden>
@@ -149,7 +155,7 @@
         </div>
       </details>
 
-      <details class="control-group" open>
+      <details class="control-group" data-control-group="paletteRules" open>
         <summary data-i18n="ui.controlPaletteRules">Palette rules</summary>
         <div class="control-group-body">
           <div id="schemeField" class="field">
@@ -195,7 +201,7 @@
         </div>
       </details>
 
-      <details class="control-group" open>
+      <details class="control-group" data-control-group="paintingPlan" open>
         <summary data-i18n="ui.controlPaintingPlan">Painting plan</summary>
         <div class="control-group-body">
           <div class="field">
@@ -215,7 +221,7 @@
         </div>
       </details>
 
-      <details class="control-group">
+      <details class="control-group" data-control-group="paintLibrary">
         <summary data-i18n="ui.controlPaintLibrary">Paint library</summary>
         <div class="control-group-body">
           <div class="field">
@@ -247,7 +253,7 @@
         </div>
       </details>
 
-      <details class="control-group">
+      <details class="control-group" data-control-group="saveShare">
         <summary data-i18n="ui.controlSaveShare">Save / share</summary>
         <div class="control-group-body">
           <div class="profile-panel profile-save-panel" aria-label="Save and share profiles">

@@ -14,6 +14,14 @@
     paintLadder: false,
     catalogueMatches: false
   };
+  const DEFAULT_CONTROL_GROUP_COLLAPSE = {
+    start: false,
+    color: false,
+    paletteRules: false,
+    paintingPlan: false,
+    paintLibrary: true,
+    saveShare: true
+  };
 
   document.addEventListener("DOMContentLoaded", init);
 
@@ -45,6 +53,7 @@
       shoppingPaintKeys: [],
       shoppingListCollapsed: false,
       shoppingSearch: "",
+      controlGroupsCollapsed: { ...DEFAULT_CONTROL_GROUP_COLLAPSE },
       collapsedSections: { ...DEFAULT_SECTION_COLLAPSE }
     };
 
@@ -144,6 +153,7 @@
       baseAdviceTitle: $("baseAdviceTitle"),
       paintLadderTitle: $("paintLadderTitle"),
       paintTooltip: createPaintTooltip(),
+      controlGroups: Array.from(document.querySelectorAll("[data-control-group]")),
       sectionCollapseButtons: Array.from(document.querySelectorAll("[data-section-collapse]"))
     };
     el.swatch.classList.add("paint-hover-target");
@@ -252,6 +262,7 @@
       renderShoppingList();
       syncOwnedPaintsCollapse();
       syncShoppingListCollapse();
+      syncControlGroupsCollapse();
       syncCollapsibleSections();
       syncSlidersToActiveColor();
     }
@@ -373,6 +384,20 @@
         state.shoppingListCollapsed = !state.shoppingListCollapsed;
         syncShoppingListCollapse();
         saveLastSettings();
+      });
+      el.controlGroups.forEach(group => {
+        group.addEventListener("toggle", () => {
+          const key = group.dataset.controlGroup;
+          if (!Object.prototype.hasOwnProperty.call(DEFAULT_CONTROL_GROUP_COLLAPSE, key)) {
+            return;
+          }
+          state.controlGroupsCollapsed = {
+            ...DEFAULT_CONTROL_GROUP_COLLAPSE,
+            ...state.controlGroupsCollapsed,
+            [key]: !group.open
+          };
+          saveLastSettings();
+        });
       });
       el.sectionCollapseButtons.forEach(button => {
         button.addEventListener("click", () => {
@@ -1105,6 +1130,16 @@
       el.shoppingListCollapse.textContent = t(collapsed ? "ui.expandShoppingList" : "ui.collapseShoppingList");
     }
 
+    function syncControlGroupsCollapse() {
+      el.controlGroups.forEach(group => {
+        const key = group.dataset.controlGroup;
+        if (!Object.prototype.hasOwnProperty.call(DEFAULT_CONTROL_GROUP_COLLAPSE, key)) {
+          return;
+        }
+        group.open = !Boolean(state.controlGroupsCollapsed[key]);
+      });
+    }
+
     function syncCollapsibleSections() {
       el.sectionCollapseButtons.forEach(button => {
         const key = button.dataset.sectionCollapse;
@@ -1406,6 +1441,10 @@
         shoppingPaintKeys: Array.from(shoppingPaintKeys),
         shoppingListCollapsed: Boolean(state.shoppingListCollapsed),
         shoppingSearch: state.shoppingSearch,
+        controlGroupsCollapsed: {
+          ...DEFAULT_CONTROL_GROUP_COLLAPSE,
+          ...state.controlGroupsCollapsed
+        },
         collapsedSections: {
           ...DEFAULT_SECTION_COLLAPSE,
           ...state.collapsedSections
@@ -1498,8 +1537,20 @@
       shoppingPaintKeys = new Set(state.shoppingPaintKeys);
       state.shoppingListCollapsed = Boolean(snapshot.shoppingListCollapsed);
       state.shoppingSearch = typeof snapshot.shoppingSearch === "string" ? snapshot.shoppingSearch : "";
+      state.controlGroupsCollapsed = normalizeControlGroupsCollapsed(snapshot.controlGroupsCollapsed);
       state.collapsedSections = normalizeCollapsedSections(snapshot.collapsedSections);
       return true;
+    }
+
+    function normalizeControlGroupsCollapsed(value) {
+      const collapsedGroups = { ...DEFAULT_CONTROL_GROUP_COLLAPSE };
+      if (!value || typeof value !== "object") {
+        return collapsedGroups;
+      }
+      Object.keys(DEFAULT_CONTROL_GROUP_COLLAPSE).forEach(key => {
+        collapsedGroups[key] = Boolean(value[key]);
+      });
+      return collapsedGroups;
     }
 
     function normalizeCollapsedSections(value) {
