@@ -577,10 +577,49 @@ button:hover {
 }
 
 .collapse-button {
-  padding: 8px 10px;
-  font-size: .78rem;
-  line-height: 1.1;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0;
+  line-height: 1;
   white-space: nowrap;
+}
+
+.collapse-button.secondary {
+  background: transparent;
+  color: var(--accent);
+}
+
+.collapse-button::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .16s ease;
+}
+
+.collapse-button[aria-expanded="false"]::after {
+  transform: rotate(-45deg);
+}
+
+.collapse-button:hover {
+  background: rgba(212, 170, 87, .1);
+  filter: none;
+}
+
+.collapse-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .owned-paints-body {
@@ -819,6 +858,10 @@ button:hover {
 
 .section-box.is-collapsed {
   padding-bottom: 12px;
+}
+
+.section-box.is-collapsed .section-head {
+  margin-bottom: 0;
 }
 
 .section-box.is-collapsed .section-head h3 {
@@ -1144,6 +1187,10 @@ button:hover {
   grid-template-columns: 1fr auto;
   gap: 10px;
   align-items: start;
+}
+
+.shopping-list-heading .section-head.compact {
+  margin-bottom: 0;
 }
 
 .shopping-list-body {

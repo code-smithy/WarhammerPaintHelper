@@ -1054,7 +1054,7 @@
       const collapsed = Boolean(state.ownedPaintsCollapsed);
       el.ownedPaintsBody.hidden = collapsed;
       el.ownedPaintsCollapse.setAttribute("aria-expanded", String(!collapsed));
-      el.ownedPaintsCollapse.textContent = t(collapsed ? "ui.expandOwnedPaints" : "ui.collapseOwnedPaints");
+      setCollapseButtonLabel(el.ownedPaintsCollapse, t(collapsed ? "ui.expandOwnedPaints" : "ui.collapseOwnedPaints"));
     }
 
     function renderOwnedPaintList() {
@@ -1127,7 +1127,7 @@
       const collapsed = Boolean(state.shoppingListCollapsed);
       el.shoppingListBody.hidden = collapsed;
       el.shoppingListCollapse.setAttribute("aria-expanded", String(!collapsed));
-      el.shoppingListCollapse.textContent = t(collapsed ? "ui.expandShoppingList" : "ui.collapseShoppingList");
+      setCollapseButtonLabel(el.shoppingListCollapse, t(collapsed ? "ui.expandShoppingList" : "ui.collapseShoppingList"));
     }
 
     function syncControlGroupsCollapse() {
@@ -1151,12 +1151,18 @@
         const collapsed = Boolean(state.collapsedSections[key]);
         body.hidden = collapsed;
         button.setAttribute("aria-expanded", String(!collapsed));
-        button.textContent = t(collapsed ? "ui.expandSection" : "ui.collapseSection");
+        setCollapseButtonLabel(button, t(collapsed ? "ui.expandSection" : "ui.collapseSection"));
         const section = button.closest("[data-collapsible-section]");
         if (section) {
           section.classList.toggle("is-collapsed", collapsed);
         }
       });
+    }
+
+    function setCollapseButtonLabel(button, label) {
+      button.textContent = label;
+      button.setAttribute("aria-label", label);
+      button.title = label;
     }
 
     function shoppingSearchPaints() {
