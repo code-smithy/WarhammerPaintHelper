@@ -22,10 +22,6 @@
           <option value="it">Italiano</option>
         </select>
       </label>
-      <label>
-        <span data-i18n="ui.system">Game system</span>
-        <select id="systemSelect"></select>
-      </label>
     </div>
     <p class="eyebrow" data-i18n="ui.eyebrow">Miniature Palette Tool</p>
     <p class="app-version" aria-label="Application version">v0.10</p>
@@ -35,197 +31,237 @@
 
   <main>
     <section class="panel controls" aria-label="Color controls">
-      <div class="field">
-        <label for="modeSelect" data-i18n="ui.mode">Palette mode</label>
-        <select id="modeSelect">
-          <option value="single" data-i18n="modes.single">Single colour</option>
-          <option value="heraldic" data-i18n="modes.heraldic">Heraldic</option>
-        </select>
-      </div>
+      <details class="control-group" open>
+        <summary data-i18n="ui.controlStart">Start</summary>
+        <div class="control-group-body">
+          <div class="button-row">
+            <button id="randomBtn" type="button" data-i18n="ui.randomColor">Random palette</button>
+          </div>
 
-      <div class="field">
-        <label for="factionSelect" data-i18n="ui.faction">Faction</label>
-        <select id="factionSelect"></select>
-      </div>
+          <div class="profile-panel profile-load-panel" aria-label="Saved profiles">
+            <div class="field">
+              <label for="savedProfilesSelect" data-i18n="ui.savedProfiles">Saved profiles</label>
+              <select id="savedProfilesSelect"></select>
+              <div id="profileStatus" class="profile-status" aria-live="polite"></div>
+            </div>
+            <div class="profile-actions profile-load-actions">
+              <button id="loadProfileBtn" type="button" class="secondary" data-i18n="ui.loadProfile">Load</button>
+              <button id="deleteProfileBtn" type="button" class="secondary danger" data-i18n="ui.deleteProfile">Delete</button>
+            </div>
+          </div>
 
-      <div class="field">
-        <label for="subfactionSelect" data-i18n="ui.subfaction">Subfaction / fixed scheme</label>
-        <select id="subfactionSelect"></select>
-        <div id="factionSchemeMeta" class="faction-scheme-meta"></div>
-      </div>
+          <div class="field">
+            <label for="systemSelect" data-i18n="ui.system">Game system</label>
+            <select id="systemSelect"></select>
+          </div>
 
-      <div id="heraldicWheelControl" class="field heraldic-only" hidden>
-        <label for="activeColorSelect" data-i18n="ui.activeColor">Wheel edits</label>
-        <select id="activeColorSelect">
-          <option value="primary" data-i18n="heraldic.active.primary">Field colour</option>
-          <option value="secondary" data-i18n="heraldic.active.secondary">Charge colour</option>
-        </select>
-      </div>
+          <div class="field">
+            <label for="modeSelect" data-i18n="ui.mode">Palette mode</label>
+            <select id="modeSelect">
+              <option value="single" data-i18n="modes.single">Single colour</option>
+              <option value="heraldic" data-i18n="modes.heraldic">Heraldic</option>
+            </select>
+          </div>
 
-      <div class="wheel-wrap">
-        <canvas id="colorWheel" width="620" height="620" aria-label="Color wheel"></canvas>
-        <div id="schemeMarkers" class="scheme-markers" aria-hidden="true"></div>
-        <div id="selectorDot" class="selector-dot"></div>
-      </div>
+          <div class="field">
+            <label for="factionSelect" data-i18n="ui.faction">Faction</label>
+            <select id="factionSelect"></select>
+          </div>
 
-      <div class="current-color">
-        <div id="currentSwatch" class="current-swatch"></div>
-        <div>
-          <strong id="primaryColorLabel" data-i18n="ui.mainColor">Main color</strong><br />
-          <code id="currentHex">#2457C5</code>
-          <div id="currentHsl" class="meta">HSL(220, 70%, 46%)</div>
-        </div>
-      </div>
-
-      <div id="schemeField" class="field">
-        <label for="schemeSelect" data-i18n="ui.scheme">Color scheme</label>
-        <select id="schemeSelect"></select>
-      </div>
-
-      <div class="field">
-        <label for="satRange" data-i18n="ui.saturation">Saturation</label>
-        <div class="inline">
-          <input id="satRange" type="range" min="5" max="100" value="70" />
-          <input id="satValue" type="text" value="70%" readonly />
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="lightRange" data-i18n="ui.lightness">Lightness</label>
-        <div class="inline">
-          <input id="lightRange" type="range" min="10" max="90" value="46" />
-          <input id="lightValue" type="text" value="46%" readonly />
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="styleRange" data-i18n="ui.finishStyle">Finish style</label>
-        <div class="inline">
-          <input id="styleRange" type="range" min="-100" max="100" value="0" />
-          <input id="styleValue" type="text" value="Balanced" readonly />
-        </div>
-        <div class="style-scale">
-          <span data-i18n="ui.grimdark">Grimdark / weathered</span>
-          <strong data-i18n="finish.balanced">Balanced</strong>
-          <span data-i18n="ui.clean">Clean / vibrant</span>
-        </div>
-        <div id="styleSummary" class="style-summary"></div>
-      </div>
-
-      <div id="secondaryColorPanel" class="current-color heraldic-only" hidden>
-        <div id="secondarySwatch" class="current-swatch"></div>
-        <div>
-          <strong data-i18n="heraldic.secondaryColor">Charge colour</strong><br />
-          <code id="secondaryHex">#F1EDE1</code>
-          <div id="secondaryHsl" class="meta">HSL(45, 16%, 92%)</div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="paintSearchInput" data-i18n="ui.paintSearch">Filter catalogue colours</label>
-        <input id="paintSearchInput" type="text" autocomplete="off" />
-      </div>
-
-      <div class="field">
-        <label for="paintSelect" data-i18n="ui.paintSelect">Choose main colour from catalogue</label>
-        <select id="paintSelect"></select>
-      </div>
-
-      <div class="field">
-        <label for="hexInput" data-i18n="ui.hexInput">Enter HEX color directly</label>
-        <input id="hexInput" type="text" value="#2457C5" maxlength="7" autocomplete="off" />
-      </div>
-
-      <div id="secondaryHexField" class="field heraldic-only" hidden>
-        <label for="secondaryHexInput" data-i18n="heraldic.secondaryHexInput">Enter secondary HEX directly</label>
-        <input id="secondaryHexInput" type="text" value="#F1EDE1" maxlength="7" autocomplete="off" />
-      </div>
-
-      <div id="heraldicControls" class="heraldic-only" hidden>
-        <div class="field">
-          <label for="heraldicLayoutSelect" data-i18n="heraldic.layout">Heraldry layout</label>
-          <select id="heraldicLayoutSelect"></select>
-        </div>
-        <div class="field">
-          <label for="heraldicRatioSelect" data-i18n="heraldic.ratio">Colour balance</label>
-          <select id="heraldicRatioSelect"></select>
-        </div>
-        <div class="field">
-          <label for="heraldicAccentSelect" data-i18n="heraldic.accent">Heraldic accent</label>
-          <select id="heraldicAccentSelect"></select>
-        </div>
-        <div id="heraldicPreview" class="heraldic-preview" aria-hidden="true">
-          <div class="heraldic-shield">
-            <div class="heraldic-layer heraldic-layer-a"></div>
-            <div class="heraldic-layer heraldic-layer-b"></div>
-            <div class="heraldic-layer heraldic-layer-accent"></div>
+          <div class="field">
+            <label for="subfactionSelect" data-i18n="ui.subfaction">Subfaction / fixed scheme</label>
+            <select id="subfactionSelect"></select>
+            <div id="factionSchemeMeta" class="faction-scheme-meta"></div>
           </div>
         </div>
-      </div>
+      </details>
 
-      <div class="field">
-        <label for="roleStyleSelect" data-i18n="ui.rolePlanner">Role planner</label>
-        <select id="roleStyleSelect"></select>
-      </div>
-
-      <div class="field">
-        <label for="baseThemeSelect" data-i18n="ui.baseEnvironment">Base environment</label>
-        <select id="baseThemeSelect"></select>
-      </div>
-
-      <div class="field">
-        <label for="recipeModeSelect" data-i18n="ui.recipeMode">Recipe mode</label>
-        <select id="recipeModeSelect"></select>
-      </div>
-
-      <div class="field">
-        <div class="field-label" data-i18n="ui.paintProducers">Paint producers</div>
-        <div id="producerFilters" class="producer-filters"></div>
-      </div>
-
-      <div class="owned-paints-panel" aria-label="Owned paint colours">
-        <div class="owned-paints-heading">
-          <div class="section-head compact">
-            <h3 data-i18n="ui.ownedPaints">Owned colours</h3>
-            <p data-i18n="ui.ownedPaintsDescription">Tick the catalogue colours you own, then optionally limit closest matches to those paints.</p>
+      <details class="control-group" open>
+        <summary data-i18n="ui.controlColor">Color</summary>
+        <div class="control-group-body">
+          <div id="heraldicWheelControl" class="field heraldic-only" hidden>
+            <label for="activeColorSelect" data-i18n="ui.activeColor">Wheel edits</label>
+            <select id="activeColorSelect">
+              <option value="primary" data-i18n="heraldic.active.primary">Field colour</option>
+              <option value="secondary" data-i18n="heraldic.active.secondary">Charge colour</option>
+            </select>
           </div>
-          <button id="ownedPaintsCollapseBtn" type="button" class="secondary collapse-button" aria-expanded="true" aria-controls="ownedPaintsBody"></button>
-        </div>
-        <div id="ownedPaintsBody" class="owned-paints-body">
-          <label class="toggle-option">
-            <input id="ownedOnlyMatchesToggle" type="checkbox" />
-            <span data-i18n="ui.onlyOwnedMatches">Only show owned colours in closest matches</span>
-          </label>
-          <label class="toggle-option">
-            <input id="ownedSelectAllVisible" type="checkbox" />
-            <span data-i18n="ui.selectAllVisiblePaints">Select all visible colours</span>
-          </label>
-          <div id="ownedPaintStatus" class="owned-paint-status" aria-live="polite"></div>
-          <div id="ownedPaintList" class="owned-paint-list"></div>
-        </div>
-      </div>
 
-      <div class="profile-panel" aria-label="Saved profiles">
-        <div class="field">
-          <label for="profileNameInput" data-i18n="ui.profileName">Profile name</label>
-          <input id="profileNameInput" type="text" autocomplete="off" />
-        </div>
-        <div class="field">
-          <label for="savedProfilesSelect" data-i18n="ui.savedProfiles">Saved profiles</label>
-          <select id="savedProfilesSelect"></select>
-          <div id="profileStatus" class="profile-status" aria-live="polite"></div>
-        </div>
-        <div class="profile-actions">
-          <button id="saveProfileBtn" type="button" data-i18n="ui.saveProfile">Save profile</button>
-          <button id="loadProfileBtn" type="button" class="secondary" data-i18n="ui.loadProfile">Load</button>
-          <button id="deleteProfileBtn" type="button" class="secondary danger" data-i18n="ui.deleteProfile">Delete</button>
-          <button id="copyShareLinkBtn" type="button" class="secondary" data-i18n="ui.copyShareLink">Copy share link</button>
-        </div>
-      </div>
+          <div class="wheel-wrap">
+            <canvas id="colorWheel" width="620" height="620" aria-label="Color wheel"></canvas>
+            <div id="schemeMarkers" class="scheme-markers" aria-hidden="true"></div>
+            <div id="selectorDot" class="selector-dot"></div>
+          </div>
 
-      <div class="button-row">
-        <button id="randomBtn" type="button" data-i18n="ui.randomColor">Random palette</button>
-      </div>
+          <div class="current-color">
+            <div id="currentSwatch" class="current-swatch"></div>
+            <div>
+              <strong id="primaryColorLabel" data-i18n="ui.mainColor">Main color</strong><br />
+              <code id="currentHex">#2457C5</code>
+              <div id="currentHsl" class="meta">HSL(220, 70%, 46%)</div>
+            </div>
+          </div>
+
+          <div id="secondaryColorPanel" class="current-color heraldic-only" hidden>
+            <div id="secondarySwatch" class="current-swatch"></div>
+            <div>
+              <strong data-i18n="heraldic.secondaryColor">Charge colour</strong><br />
+              <code id="secondaryHex">#F1EDE1</code>
+              <div id="secondaryHsl" class="meta">HSL(45, 16%, 92%)</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="hexInput" data-i18n="ui.hexInput">Enter HEX color directly</label>
+            <input id="hexInput" type="text" value="#2457C5" maxlength="7" autocomplete="off" />
+          </div>
+
+          <div id="secondaryHexField" class="field heraldic-only" hidden>
+            <label for="secondaryHexInput" data-i18n="heraldic.secondaryHexInput">Enter secondary HEX directly</label>
+            <input id="secondaryHexInput" type="text" value="#F1EDE1" maxlength="7" autocomplete="off" />
+          </div>
+
+          <div class="field">
+            <label for="paintSearchInput" data-i18n="ui.paintSearch">Filter catalogue colours</label>
+            <input id="paintSearchInput" type="text" autocomplete="off" />
+          </div>
+
+          <div class="field">
+            <label for="paintSelect" data-i18n="ui.paintSelect">Choose main colour from catalogue</label>
+            <select id="paintSelect"></select>
+          </div>
+
+          <div class="field">
+            <label for="satRange" data-i18n="ui.saturation">Saturation</label>
+            <div class="inline">
+              <input id="satRange" type="range" min="5" max="100" value="70" />
+              <input id="satValue" type="text" value="70%" readonly />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="lightRange" data-i18n="ui.lightness">Lightness</label>
+            <div class="inline">
+              <input id="lightRange" type="range" min="10" max="90" value="46" />
+              <input id="lightValue" type="text" value="46%" readonly />
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="control-group" open>
+        <summary data-i18n="ui.controlPaletteRules">Palette rules</summary>
+        <div class="control-group-body">
+          <div id="schemeField" class="field">
+            <label for="schemeSelect" data-i18n="ui.scheme">Color scheme</label>
+            <select id="schemeSelect"></select>
+          </div>
+
+          <div id="heraldicControls" class="heraldic-only" hidden>
+            <div class="field">
+              <label for="heraldicLayoutSelect" data-i18n="heraldic.layout">Heraldry layout</label>
+              <select id="heraldicLayoutSelect"></select>
+            </div>
+            <div class="field">
+              <label for="heraldicRatioSelect" data-i18n="heraldic.ratio">Colour balance</label>
+              <select id="heraldicRatioSelect"></select>
+            </div>
+            <div class="field">
+              <label for="heraldicAccentSelect" data-i18n="heraldic.accent">Heraldic accent</label>
+              <select id="heraldicAccentSelect"></select>
+            </div>
+            <div id="heraldicPreview" class="heraldic-preview" aria-hidden="true">
+              <div class="heraldic-shield">
+                <div class="heraldic-layer heraldic-layer-a"></div>
+                <div class="heraldic-layer heraldic-layer-b"></div>
+                <div class="heraldic-layer heraldic-layer-accent"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="styleRange" data-i18n="ui.finishStyle">Finish style</label>
+            <div class="inline">
+              <input id="styleRange" type="range" min="-100" max="100" value="0" />
+              <input id="styleValue" type="text" value="Balanced" readonly />
+            </div>
+            <div class="style-scale">
+              <span data-i18n="ui.grimdark">Grimdark / weathered</span>
+              <strong data-i18n="finish.balanced">Balanced</strong>
+              <span data-i18n="ui.clean">Clean / vibrant</span>
+            </div>
+            <div id="styleSummary" class="style-summary"></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="control-group" open>
+        <summary data-i18n="ui.controlPaintingPlan">Painting plan</summary>
+        <div class="control-group-body">
+          <div class="field">
+            <label for="roleStyleSelect" data-i18n="ui.rolePlanner">Role planner</label>
+            <select id="roleStyleSelect"></select>
+          </div>
+
+          <div class="field">
+            <label for="baseThemeSelect" data-i18n="ui.baseEnvironment">Base environment</label>
+            <select id="baseThemeSelect"></select>
+          </div>
+
+          <div class="field">
+            <label for="recipeModeSelect" data-i18n="ui.recipeMode">Recipe mode</label>
+            <select id="recipeModeSelect"></select>
+          </div>
+        </div>
+      </details>
+
+      <details class="control-group">
+        <summary data-i18n="ui.controlPaintLibrary">Paint library</summary>
+        <div class="control-group-body">
+          <div class="field">
+            <div class="field-label" data-i18n="ui.paintProducers">Paint producers</div>
+            <div id="producerFilters" class="producer-filters"></div>
+          </div>
+
+          <div class="owned-paints-panel" aria-label="Owned paint colours">
+            <div class="owned-paints-heading">
+              <div class="section-head compact">
+                <h3 data-i18n="ui.ownedPaints">Owned colours</h3>
+                <p data-i18n="ui.ownedPaintsDescription">Tick the catalogue colours you own, then optionally limit closest matches to those paints.</p>
+              </div>
+              <button id="ownedPaintsCollapseBtn" type="button" class="secondary collapse-button" aria-expanded="true" aria-controls="ownedPaintsBody"></button>
+            </div>
+            <div id="ownedPaintsBody" class="owned-paints-body">
+              <label class="toggle-option">
+                <input id="ownedOnlyMatchesToggle" type="checkbox" />
+                <span data-i18n="ui.onlyOwnedMatches">Only show owned colours in closest matches</span>
+              </label>
+              <label class="toggle-option">
+                <input id="ownedSelectAllVisible" type="checkbox" />
+                <span data-i18n="ui.selectAllVisiblePaints">Select all visible colours</span>
+              </label>
+              <div id="ownedPaintStatus" class="owned-paint-status" aria-live="polite"></div>
+              <div id="ownedPaintList" class="owned-paint-list"></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="control-group">
+        <summary data-i18n="ui.controlSaveShare">Save / share</summary>
+        <div class="control-group-body">
+          <div class="profile-panel profile-save-panel" aria-label="Save and share profiles">
+            <div class="field">
+              <label for="profileNameInput" data-i18n="ui.profileName">Profile name</label>
+              <input id="profileNameInput" type="text" autocomplete="off" />
+            </div>
+            <div class="profile-actions profile-save-actions">
+              <button id="saveProfileBtn" type="button" data-i18n="ui.saveProfile">Save profile</button>
+              <button id="copyShareLinkBtn" type="button" class="secondary" data-i18n="ui.copyShareLink">Copy share link</button>
+            </div>
+          </div>
+        </div>
+      </details>
       <div id="debugState" class="debug"></div>
     </section>
 

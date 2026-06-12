@@ -2182,9 +2182,53 @@
     }
   };
 
+  const CONTROL_GROUP_TRANSLATIONS = {
+    en: {
+      controlStart: "Start",
+      controlColor: "Color",
+      controlPaletteRules: "Palette rules",
+      controlPaintingPlan: "Painting plan",
+      controlPaintLibrary: "Paint library",
+      controlSaveShare: "Save / share"
+    },
+    de: {
+      controlStart: "Start",
+      controlColor: "Farbe",
+      controlPaletteRules: "Palettenregeln",
+      controlPaintingPlan: "Malplan",
+      controlPaintLibrary: "Farbbibliothek",
+      controlSaveShare: "Speichern / Teilen"
+    },
+    fr: {
+      controlStart: "Depart",
+      controlColor: "Couleur",
+      controlPaletteRules: "Regles de palette",
+      controlPaintingPlan: "Plan de peinture",
+      controlPaintLibrary: "Bibliotheque de peintures",
+      controlSaveShare: "Enregistrer / partager"
+    },
+    es: {
+      controlStart: "Inicio",
+      controlColor: "Color",
+      controlPaletteRules: "Reglas de paleta",
+      controlPaintingPlan: "Plan de pintura",
+      controlPaintLibrary: "Biblioteca de pinturas",
+      controlSaveShare: "Guardar / compartir"
+    },
+    it: {
+      controlStart: "Inizio",
+      controlColor: "Colore",
+      controlPaletteRules: "Regole palette",
+      controlPaintingPlan: "Piano di pittura",
+      controlPaintLibrary: "Libreria colori",
+      controlSaveShare: "Salva / condividi"
+    }
+  };
+
   for (const language of LANGUAGE_KEYS) {
     const recipe = RECIPE_TRANSLATIONS[language] || RECIPE_TRANSLATIONS.en;
     Object.assign(TRANSLATIONS[language].ui, recipe.ui);
+    Object.assign(TRANSLATIONS[language].ui, CONTROL_GROUP_TRANSLATIONS[language] || CONTROL_GROUP_TRANSLATIONS.en);
     TRANSLATIONS[language].recipeModes = recipe.recipeModes;
     Object.assign(TRANSLATIONS[language].ladder.steps, recipe.ladderSteps);
     Object.assign(TRANSLATIONS[language].ladder.hints, recipe.ladderHints);

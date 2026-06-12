@@ -30,10 +30,10 @@ header {
 }
 
 .top-controls {
-  width: min(720px, 100%);
+  width: min(360px, 100%);
   margin: 0 auto 22px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  grid-template-columns: minmax(180px, 1fr);
   gap: 12px;
   text-align: left;
 }
@@ -57,6 +57,9 @@ header {
 h1 {
   margin: 0 0 10px;
   font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 header p {
@@ -84,6 +87,74 @@ main {
 .controls,
 .output {
   padding: 22px;
+}
+
+.controls {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.control-group {
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  padding-top: 15px;
+}
+
+.control-group:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.control-group summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  line-height: 1.2;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.control-group:not([open]) summary {
+  margin-bottom: 0;
+}
+
+.control-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.control-group summary::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  flex: 0 0 auto;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .16s ease;
+}
+
+.control-group:not([open]) summary::after {
+  transform: rotate(-45deg);
+}
+
+.control-group summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.control-group-body > .field:last-child,
+.control-group-body > .current-color:last-child,
+.control-group-body > .profile-panel:last-child,
+.control-group-body > .owned-paints-panel:last-child {
+  margin-bottom: 0;
 }
 
 .wheel-wrap {
@@ -948,6 +1019,30 @@ button:hover {
 
   .profile-actions {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  header {
+    padding: 20px 16px 10px;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+    line-height: 1.12;
+  }
+
+  main {
+    width: min(1240px, calc(100% - 24px));
+  }
+
+  .controls,
+  .output {
+    padding: 18px;
+  }
+
+  .control-group summary {
+    letter-spacing: .1em;
   }
 }
 
