@@ -11,6 +11,7 @@ test("static HTML references the prepared app assets", () => {
   const assetVersion = packageMajorMinorVersion();
 
   assert.match(html, /http-equiv="Cache-Control"/);
+  assert.match(html, assetPattern(`assets/favicon.png?v=${assetVersion}`));
   assert.match(html, assetPattern(`styles.css?v=${assetVersion}`));
   assert.match(html, assetPattern(`src/core.js?v=${assetVersion}`));
   assert.match(html, assetPattern(`src/factions.js?v=${assetVersion}`));
@@ -75,9 +76,10 @@ test("static HTML references the prepared app assets", () => {
 test("asset cache buster matches package major and minor version", () => {
   const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
   const majorMinor = packageMajorMinorVersion();
-  const localAssets = Array.from(html.matchAll(/(?:href|src)="([^":#]+?\.(?:css|js)(?:\?[^"]*)?)"/g), match => match[1]);
+  const localAssets = Array.from(html.matchAll(/(?:href|src)="([^":#]+?\.(?:css|js|png)(?:\?[^"]*)?)"/g), match => match[1]);
 
   assert.deepEqual(localAssets, [
+    `assets/favicon.png?v=${majorMinor}`,
     `styles.css?v=${majorMinor}`,
     `src/core.js?v=${majorMinor}`,
     `src/factions.js?v=${majorMinor}`,
