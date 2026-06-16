@@ -168,8 +168,20 @@ test("owned paint controls persist and filter closest catalogue matches", () => 
   assert.match(app, /W\.filterOwnedPaints\(filteredCataloguePaints\(\), \{/);
   assert.match(app, /function renderCitadelMatches\(\) \{\s+const paints = closestMatchCataloguePaints\(\)/);
   assert.match(app, /function showPaintTooltip[\s\S]*const paints = closestMatchCataloguePaints\(\)/);
-  assert.match(app, /class="owned-badge"/);
+  assert.match(app, /className: "owned-badge"/);
   assert.match(app, /ownedPaintKeys\.has\(paintKey\(match\)\)/);
+});
+
+
+test("app renderers avoid dynamic HTML parsing sinks", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.doesNotMatch(app, /\binnerHTML\s*=/);
+  assert.doesNotMatch(app, /\binsertAdjacentHTML\b/);
+  assert.doesNotMatch(app, /\bouterHTML\s*=/);
+  assert.doesNotMatch(app, /\bdocument\.write\b/);
+  assert.match(app, /\breplaceChildren\(/);
+  assert.match(app, /\bcreateElement\(/);
 });
 
 

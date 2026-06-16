@@ -238,9 +238,7 @@
 
     function setSelectOptions(select, keys, labelForKey, preferredValue) {
       const selected = keys.includes(preferredValue) ? preferredValue : keys[0];
-      select.innerHTML = keys.map(key => (
-        `<option value="${escapeHtml(key)}">${escapeHtml(labelForKey(key))}</option>`
-      )).join("");
+      select.replaceChildren(...keys.map(key => createOption(key, labelForKey(key))));
       select.value = selected;
     }
 
@@ -618,9 +616,25 @@
         mode: t(`recipeModes.${state.recipeModeKey}.title`)
       });
       const paintEquivalentText = factionScheme
-        ? `<br><br><strong>${escapeHtml(t("factionSchemes.paintEquivalents"))}:</strong> ${escapeHtml(factionScheme.paintEquivalents || t("factionSchemes.noPaintEquivalents"))}`
+        ? factionScheme.paintEquivalents || t("factionSchemes.noPaintEquivalents")
         : "";
-      el.notes.innerHTML = `<strong>${escapeHtml(t("ui.paintingNotes"))}:</strong> ${escapeHtml(paintingNoteText(factionScheme, isHeraldic, schemeKey))}${paintEquivalentText}<br><br><strong>${escapeHtml(t(`systemCopy.${state.system}.finishPrefix`))}:</strong> ${escapeHtml(t(`finish.summary.${finishKey}`))}`;
+      replaceChildren(el.notes, [
+        createElement("strong", { text: `${t("ui.paintingNotes")}:` }),
+        " ",
+        paintingNoteText(factionScheme, isHeraldic, schemeKey),
+        factionScheme ? [
+          createBr(),
+          createBr(),
+          createElement("strong", { text: `${t("factionSchemes.paintEquivalents")}:` }),
+          " ",
+          paintEquivalentText
+        ] : null,
+        createBr(),
+        createBr(),
+        createElement("strong", { text: `${t(`systemCopy.${state.system}.finishPrefix`)}:` }),
+        " ",
+        t(`finish.summary.${finishKey}`)
+      ]);
       renderFactionSchemeMeta(factionScheme);
 
       renderPalette(scheme);
@@ -672,9 +686,7 @@
     }
 
     function setOptionObjects(select, options, preferredValue) {
-      select.innerHTML = options.map(option => (
-        `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>`
-      )).join("");
+      select.replaceChildren(...options.map(option => createOption(option.value, option.label)));
       select.value = options.some(option => option.value === preferredValue) ? preferredValue : options[0].value;
     }
 
@@ -777,35 +789,42 @@
     }
 
     function renderPalette() {
-      el.palette.innerHTML = currentPalette.map(color => `
-          <article class="card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(colorName(color))}">
-          <div class="swatch" style="background:${escapeHtml(color.hex)}"></div>
-          <div class="card-body">
-            <div class="role">${escapeHtml(colorName(color))}</div>
-            <code class="hex" title="${escapeHtml(t("ui.copyPalette"))}">${escapeHtml(color.hex)}</code>
-            <div class="meta">HSL(${Math.round(color.h)}, ${Math.round(color.s)}%, ${Math.round(color.l)}%)</div>
-          </div>
-        </article>
-      `).join("");
+      replaceChildren(el.palette, currentPalette.map(color => createElement("article", {
+        className: "card paint-hover-target",
+        tabIndex: 0,
+        dataset: { colorHex: color.hex, colorName: colorName(color) }
+      }, [
+        createSwatch("swatch", color.hex),
+        createElement("div", { className: "card-body" }, [
+          createElement("div", { className: "role", text: colorName(color) }),
+          createElement("code", { className: "hex", title: t("ui.copyPalette"), text: color.hex }),
+          createElement("div", {
+            className: "meta",
+            text: `HSL(${Math.round(color.h)}, ${Math.round(color.s)}%, ${Math.round(color.l)}%)`
+          })
+        ])
+      ])));
       el.palette.querySelectorAll(".hex").forEach(node => node.addEventListener("click", () => copyText(node.textContent)));
     }
 
     function renderRolePlanner() {
-      el.rolePlan.innerHTML = rolePlannerItems().map(item => {
+      replaceChildren(el.rolePlan, rolePlannerItems().map(item => {
         const color = resolveRoleColor(item.colorRef);
         const area = item.extra ? color.name : t(`roleAreas.${item.areaKey}`);
-        return `
-          <article class="role-plan-card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(color.name)}">
-            <div class="role-plan-swatch" style="background:${escapeHtml(color.hex)}"></div>
-            <div>
-              <div class="role-plan-area">${escapeHtml(area)}</div>
-              <div class="role-plan-source">${escapeHtml(color.hex)} · ${escapeHtml(color.name)}</div>
-              <div class="role-plan-use">${escapeHtml(t(`roleUses.${item.useKey}`))}</div>
-            </div>
-            <div class="role-plan-tip">${escapeHtml(t(`roleTips.${item.tipKey}`))}</div>
-          </article>
-        `;
-      }).join("");
+        return createElement("article", {
+          className: "role-plan-card paint-hover-target",
+          tabIndex: 0,
+          dataset: { colorHex: color.hex, colorName: color.name }
+        }, [
+          createSwatch("role-plan-swatch", color.hex),
+          createElement("div", {}, [
+            createElement("div", { className: "role-plan-area", text: area }),
+            createElement("div", { className: "role-plan-source", text: `${color.hex} \u00b7 ${color.name}` }),
+            createElement("div", { className: "role-plan-use", text: t(`roleUses.${item.useKey}`) })
+          ]),
+          createElement("div", { className: "role-plan-tip", text: t(`roleTips.${item.tipKey}`) })
+        ]);
+      }));
     }
 
     function rolePlannerItems() {
@@ -834,25 +853,35 @@
         roleProfileKey: el.roleStyle.value,
         baseThemeKey: el.baseTheme.value
       });
-      el.baseAdvice.innerHTML = suggestions.map(base => {
+      replaceChildren(el.baseAdvice, suggestions.map(base => {
         const recipe = t(`bases.${base.key}.recipe`);
         const steps = Array.isArray(recipe) ? recipe.join(" -> ") : "";
-        return `
-          <article class="base-advice-card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(base.hex)}" data-color-name="${escapeHtml(t(`bases.${base.key}.title`))}">
-            <div class="base-advice-swatch" style="background:${escapeHtml(base.hex)}"></div>
-            <div>
-              <div class="base-advice-title">${escapeHtml(t(`bases.${base.key}.title`))}</div>
-              <div class="base-advice-source">${escapeHtml(base.hex)}</div>
-              <div class="base-advice-use">${escapeHtml(t(`bases.${base.key}.use`))}</div>
-            </div>
-            <div class="base-advice-tip"><strong>${escapeHtml(t("ui.why"))}:</strong> ${escapeHtml(t(`bases.${base.key}.tip`))}<br><strong>${escapeHtml(t("ui.build"))}:</strong> ${escapeHtml(steps)}</div>
-          </article>
-        `;
-      }).join("");
+        return createElement("article", {
+          className: "base-advice-card paint-hover-target",
+          tabIndex: 0,
+          dataset: { colorHex: base.hex, colorName: t(`bases.${base.key}.title`) }
+        }, [
+          createSwatch("base-advice-swatch", base.hex),
+          createElement("div", {}, [
+            createElement("div", { className: "base-advice-title", text: t(`bases.${base.key}.title`) }),
+            createElement("div", { className: "base-advice-source", text: base.hex }),
+            createElement("div", { className: "base-advice-use", text: t(`bases.${base.key}.use`) })
+          ]),
+          createElement("div", { className: "base-advice-tip" }, [
+            createElement("strong", { text: `${t("ui.why")}:` }),
+            " ",
+            t(`bases.${base.key}.tip`),
+            createBr(),
+            createElement("strong", { text: `${t("ui.build")}:` }),
+            " ",
+            steps
+          ])
+        ]);
+      }));
     }
 
     function renderPaintMap() {
-      el.paintMap.innerHTML = currentPalette.map((color, index) => {
+      replaceChildren(el.paintMap, currentPalette.map((color, index) => {
         const placement = index === 0
           ? t("placements.dominant")
           : index === 1
@@ -860,45 +889,54 @@
             : index === 2
               ? t("placements.contrast")
           : t("placements.small");
-        return `
-          <article class="paint-map-card paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(color.hex)}" data-color-name="${escapeHtml(colorName(color))}">
-            <div class="paint-map-swatch" style="background:${escapeHtml(color.hex)}"></div>
-            <div>
-              <div class="role">${escapeHtml(colorName(color))}</div>
-              <code>${escapeHtml(color.hex)}</code>
-              <div class="meta">${escapeHtml(placement)}</div>
-            </div>
-          </article>
-        `;
-      }).join("");
+        return createElement("article", {
+          className: "paint-map-card paint-hover-target",
+          tabIndex: 0,
+          dataset: { colorHex: color.hex, colorName: colorName(color) }
+        }, [
+          createSwatch("paint-map-swatch", color.hex),
+          createElement("div", {}, [
+            createElement("div", { className: "role", text: colorName(color) }),
+            createElement("code", { text: color.hex }),
+            createElement("div", { className: "meta", text: placement })
+          ])
+        ]);
+      }));
       el.paintMap.querySelectorAll("code").forEach(node => node.addEventListener("click", () => copyText(node.textContent)));
     }
 
     function renderPaintLadder() {
-      el.paintLadder.innerHTML = currentPalette.slice(0, 4).map(color => {
-        const steps = W.ladderForColor(color, state.style, state.recipeModeKey).map(step => `
-          <div class="ladder-step paint-hover-target" tabindex="0" data-color-hex="${escapeHtml(step.hex)}" data-color-name="${escapeHtml(t(`ladder.steps.${step.key}`))}">
-            <div class="ladder-swatch" style="background:${escapeHtml(step.hex)}"></div>
-            <div>
-              <strong>${escapeHtml(t(`ladder.steps.${step.key}`))}</strong>
-              <code title="${escapeHtml(t("ui.copyPalette"))}">${escapeHtml(step.hex)}</code>
-              <div class="meta">${escapeHtml(t(`ladder.hints.${step.key}`))}</div>
-            </div>
-          </div>
-        `).join("");
+      replaceChildren(el.paintLadder, currentPalette.slice(0, 4).map(color => {
+        const steps = W.ladderForColor(color, state.style, state.recipeModeKey).map(step => createElement("div", {
+          className: "ladder-step paint-hover-target",
+          tabIndex: 0,
+          dataset: { colorHex: step.hex, colorName: t(`ladder.steps.${step.key}`) }
+        }, [
+          createSwatch("ladder-swatch", step.hex),
+          createElement("div", {}, [
+            createElement("strong", { text: t(`ladder.steps.${step.key}`) }),
+            createElement("code", { title: t("ui.copyPalette"), text: step.hex }),
+            createElement("div", { className: "meta", text: t(`ladder.hints.${step.key}`) })
+          ])
+        ]));
 
-        return `
-          <article class="ladder-card">
-            <div class="ladder-title">${escapeHtml(colorName(color))}</div>
-            <div class="ladder-steps">${steps}</div>
-            <p class="recipe-note"><strong>${escapeHtml(t(`recipeModes.${state.recipeModeKey}.title`))}:</strong> ${escapeHtml(t(`recipeModes.${state.recipeModeKey}.description`))}</p>
-            <p class="recipe-note">${escapeHtml(t("ladder.note", {
+        return createElement("article", { className: "ladder-card" }, [
+          createElement("div", { className: "ladder-title", text: colorName(color) }),
+          createElement("div", { className: "ladder-steps" }, steps),
+          createElement("p", { className: "recipe-note" }, [
+            createElement("strong", { text: `${t(`recipeModes.${state.recipeModeKey}.title`)}:` }),
+            " ",
+            t(`recipeModes.${state.recipeModeKey}.description`)
+          ]),
+          createElement("p", {
+            className: "recipe-note",
+            text: t("ladder.note", {
               system: t(`systems.${state.system}`),
               finish: t(`finish.${W.styleLabelKey(state.style)}`)
-            }))}</p>
-          </article>
-        `;
-      }).join("");
+            })
+          })
+        ]);
+      }));
       el.paintLadder.querySelectorAll("code").forEach(node => node.addEventListener("click", () => copyText(node.textContent)));
     }
 
@@ -907,36 +945,40 @@
       const mapped = W.mapPaletteToCatalogue(currentPalette, paints, { limit: 3 });
       const statusKey = cataloguePaints.length ? (catalogueSource === "json" ? "loaded" : "sample") : "missing";
       el.citadelStatus.textContent = t(`citadel.${statusKey}`, { count: paints.length }) + " " + t("ui.citadelJsonHint");
-      el.citadelMatches.innerHTML = mapped.map(color => {
+      replaceChildren(el.citadelMatches, mapped.map(color => {
         const matches = color.matches.length
           ? color.matches.map(match => {
             const meta = [paintMatchMeta(match), t("citadel.distance", { distance: match.distance })]
               .filter(Boolean)
               .join(" - ");
             const owned = ownedPaintKeys.has(paintKey(match));
-            return `
-              <div class="match-row ${owned ? "owned-match" : ""}">
-                <span class="match-chip" style="background:${escapeHtml(match.hex)}"></span>
-                <div>
-                  <div>${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code>${owned ? ` <span class="owned-badge">${escapeHtml(t("ui.ownedBadge"))}</span>` : ""}</div>
-                  <div class="meta">${escapeHtml(meta)}</div>
-                </div>
-              </div>
-            `;
-          }).join("")
-          : `<p class="notes">${escapeHtml(t("citadel.missing"))}</p>`;
-        return `
-          <article class="match-card">
-            <div class="match-swatch" style="background:${escapeHtml(color.hex)}"></div>
-            <div class="match-body">
-              <div class="match-name">${escapeHtml(colorName(color))}</div>
-              <div class="match-distance">${escapeHtml(color.hex)}</div>
-              <p>${escapeHtml(t("citadel.closest"))}</p>
-              <div class="match-list">${matches}</div>
-            </div>
-          </article>
-        `;
-      }).join("");
+            return createElement("div", { className: `match-row${owned ? " owned-match" : ""}` }, [
+              createSwatch("match-chip", match.hex),
+              createElement("div", {}, [
+                createElement("div", {}, [
+                  match.name,
+                  " ",
+                  createElement("code", { text: match.hex }),
+                  owned ? [
+                    " ",
+                    createElement("span", { className: "owned-badge", text: t("ui.ownedBadge") })
+                  ] : null
+                ]),
+                createElement("div", { className: "meta", text: meta })
+              ])
+            ]);
+          })
+          : [createElement("p", { className: "notes", text: t("citadel.missing") })];
+        return createElement("article", { className: "match-card" }, [
+          createSwatch("match-swatch", color.hex),
+          createElement("div", { className: "match-body" }, [
+            createElement("div", { className: "match-name", text: colorName(color) }),
+            createElement("div", { className: "match-distance", text: color.hex }),
+            createElement("p", { text: t("citadel.closest") }),
+            createElement("div", { className: "match-list" }, matches)
+          ])
+        ]);
+      }));
     }
 
     function paintMatchMeta(match) {
@@ -957,12 +999,10 @@
       const placeholder = paintSelectorOptions.length
         ? t("ui.paintSelectPlaceholder", { count: paintSelectorOptions.length })
         : t("ui.paintSelectEmpty");
-      el.paintSelect.innerHTML = [
-        `<option value="">${escapeHtml(placeholder)}</option>`,
-        ...paintSelectorOptions.map((paint, index) => (
-          `<option value="${index}">${escapeHtml(paintSelectorLabel(paint))}</option>`
-        ))
-      ].join("");
+      el.paintSelect.replaceChildren(
+        createOption("", placeholder),
+        ...paintSelectorOptions.map((paint, index) => createOption(index, paintSelectorLabel(paint)))
+      );
       el.paintSelect.value = "";
     }
 
@@ -1003,12 +1043,16 @@
       state.producerKeys = pendingProducerKeys ? pendingProducerKeys.slice() : Array.from(selectedManufacturers);
       producerFiltersInitialized = true;
 
-      el.producerFilters.innerHTML = producers.map(producer => `
-        <label class="producer-option">
-          <input type="checkbox" value="${escapeHtml(producer.key)}" ${selectedManufacturers.has(producer.key) ? "checked" : ""} />
-          <span>${escapeHtml(producer.label)}</span>
-        </label>
-      `).join("");
+      replaceChildren(el.producerFilters, producers.map(producer => createElement("label", {
+        className: "producer-option"
+      }, [
+        createElement("input", {
+          type: "checkbox",
+          value: producer.key,
+          checked: selectedManufacturers.has(producer.key)
+        }),
+        createElement("span", { text: producer.label })
+      ])));
     }
 
     function catalogueManufacturers() {
@@ -1068,21 +1112,23 @@
         allVisibleSelected ? "ui.ownedPaintsAllSelected" : "ui.ownedPaintsStatus",
         { owned: ownedPaintKeys.size, visible: paints.length }
       );
-      el.ownedPaintList.innerHTML = paints.length
+      replaceChildren(el.ownedPaintList, paints.length
         ? paints.map(paint => {
           const key = paintKey(paint);
-          return `
-            <label class="owned-paint-option">
-              <input type="checkbox" value="${escapeHtml(key)}" ${ownedPaintKeys.has(key) ? "checked" : ""} />
-              <span class="owned-paint-chip" style="background:${escapeHtml(paint.hex)}"></span>
-              <span>
-                <span class="owned-paint-name">${escapeHtml(paint.name)}</span>
-                <span class="owned-paint-meta">${escapeHtml(paintSelectorMeta(paint))}</span>
-              </span>
-            </label>
-          `;
-        }).join("")
-        : `<p class="notes">${escapeHtml(t("ui.ownedPaintsEmpty"))}</p>`;
+          return createElement("label", { className: "owned-paint-option" }, [
+            createElement("input", {
+              type: "checkbox",
+              value: key,
+              checked: ownedPaintKeys.has(key)
+            }),
+            createSwatch("owned-paint-chip", paint.hex),
+            createElement("span", {}, [
+              createElement("span", { className: "owned-paint-name", text: paint.name }),
+              createElement("span", { className: "owned-paint-meta", text: paintSelectorMeta(paint) })
+            ])
+          ]);
+        })
+        : [createElement("p", { className: "notes", text: t("ui.ownedPaintsEmpty") })]);
     }
 
     function setVisibleOwnedPaints(checked) {
@@ -1165,6 +1211,94 @@
       button.title = label;
     }
 
+    function createElement(tagName, options = {}, children = []) {
+      const node = document.createElement(tagName);
+      if (options.className) {
+        node.className = options.className;
+      }
+      if (Object.prototype.hasOwnProperty.call(options, "text")) {
+        node.textContent = String(options.text);
+      }
+      if (options.type) {
+        node.type = options.type;
+      }
+      if (Object.prototype.hasOwnProperty.call(options, "value")) {
+        node.value = String(options.value);
+      }
+      if (Object.prototype.hasOwnProperty.call(options, "title")) {
+        node.title = String(options.title);
+      }
+      if (Object.prototype.hasOwnProperty.call(options, "tabIndex")) {
+        node.tabIndex = options.tabIndex;
+      }
+      if (Object.prototype.hasOwnProperty.call(options, "checked")) {
+        node.checked = Boolean(options.checked);
+      }
+      if (Object.prototype.hasOwnProperty.call(options, "disabled")) {
+        node.disabled = Boolean(options.disabled);
+      }
+      if (options.dataset) {
+        Object.entries(options.dataset).forEach(([key, value]) => {
+          node.dataset[key] = String(value);
+        });
+      }
+      if (options.attributes) {
+        Object.entries(options.attributes).forEach(([name, value]) => {
+          if (value === false || value === null || value === undefined) {
+            return;
+          }
+          node.setAttribute(name, value === true ? "" : String(value));
+        });
+      }
+      if (options.styleBackground) {
+        setSafeBackground(node, options.styleBackground);
+      }
+      appendChildren(node, children);
+      return node;
+    }
+
+    function createOption(value, label) {
+      return createElement("option", { value, text: label });
+    }
+
+    function createBr() {
+      return document.createElement("br");
+    }
+
+    function createSwatch(className, color) {
+      const tagName = ["match-chip", "owned-paint-chip", "paint-tooltip-swatch"].includes(className)
+        ? "span"
+        : "div";
+      return createElement(tagName, { className, styleBackground: color });
+    }
+
+    function appendChildren(parent, children) {
+      toChildNodes(children).forEach(child => parent.appendChild(child));
+      return parent;
+    }
+
+    function replaceChildren(parent, children) {
+      parent.replaceChildren(...toChildNodes(children));
+    }
+
+    function toChildNodes(child) {
+      if (Array.isArray(child)) {
+        return child.flatMap(toChildNodes);
+      }
+      if (child === null || child === undefined || child === false) {
+        return [];
+      }
+      if (child instanceof Node) {
+        return [child];
+      }
+      return [document.createTextNode(String(child))];
+    }
+
+    function setSafeBackground(node, color) {
+      const value = String(color || "");
+      node.style.background = /^#[0-9A-Fa-f]{6}$/.test(value) ? value : "#000000";
+    }
+
     function shoppingSearchPaints() {
       const query = el.shoppingSearch.value.trim().toLowerCase();
       return cataloguePaints
@@ -1192,28 +1326,28 @@
       const placeholder = suggestions.length
         ? t("ui.shoppingSearchPlaceholder", { count: suggestions.length })
         : t("ui.shoppingSearchEmpty");
-      el.shoppingAddSelect.innerHTML = [
-        `<option value="">${escapeHtml(placeholder)}</option>`,
-        ...suggestions.map(paint => {
-          const key = paintKey(paint);
-          return `<option value="${escapeHtml(key)}">${escapeHtml(paintSelectorLabel(paint))}</option>`;
-        })
-      ].join("");
+      el.shoppingAddSelect.replaceChildren(
+        createOption("", placeholder),
+        ...suggestions.map(paint => createOption(paintKey(paint), paintSelectorLabel(paint)))
+      );
       el.shoppingAddSelect.value = "";
       el.addShoppingPaint.disabled = true;
       el.shoppingListStatus.textContent = t("ui.shoppingListStatus", { count: selected.length });
-      el.shoppingList.innerHTML = selected.length
-        ? selected.map(({ key, paint }) => `
-          <div class="shopping-list-item">
-            <span class="owned-paint-chip" style="background:${escapeHtml(paint.hex)}"></span>
-            <span>
-              <span class="owned-paint-name">${escapeHtml(paint.name)}</span>
-              <span class="owned-paint-meta">${escapeHtml(paintSelectorMeta(paint))} · ${escapeHtml(paint.hex)}</span>
-            </span>
-            <button type="button" class="secondary danger compact-button" data-remove-shopping-key="${escapeHtml(key)}">${escapeHtml(t("ui.removeShoppingPaint"))}</button>
-          </div>
-        `).join("")
-        : `<p class="notes">${escapeHtml(t("ui.shoppingListEmpty"))}</p>`;
+      replaceChildren(el.shoppingList, selected.length
+        ? selected.map(({ key, paint }) => createElement("div", { className: "shopping-list-item" }, [
+          createSwatch("owned-paint-chip", paint.hex),
+          createElement("span", {}, [
+            createElement("span", { className: "owned-paint-name", text: paint.name }),
+            createElement("span", { className: "owned-paint-meta", text: `${paintSelectorMeta(paint)} \u00b7 ${paint.hex}` })
+          ]),
+          createElement("button", {
+            type: "button",
+            className: "secondary danger compact-button",
+            attributes: { "data-remove-shopping-key": key },
+            text: t("ui.removeShoppingPaint")
+          })
+        ]))
+        : [createElement("p", { className: "notes", text: t("ui.shoppingListEmpty") })]);
     }
 
     function addShoppingPaintByKey(key) {
@@ -1390,12 +1524,10 @@
         return;
       }
       const placeholder = profiles.length ? t("ui.profilePlaceholder") : t("ui.noProfiles");
-      el.savedProfiles.innerHTML = [
-        `<option value="">${escapeHtml(placeholder)}</option>`,
-        ...profiles.map(profile => (
-          `<option value="${escapeHtml(profile.id)}">${escapeHtml(profile.name)}</option>`
-        ))
-      ].join("");
+      el.savedProfiles.replaceChildren(
+        createOption("", placeholder),
+        ...profiles.map(profile => createOption(profile.id, profile.name))
+      );
       el.savedProfiles.value = profiles.some(profile => profile.id === selectedId) ? selectedId : "";
       const hasSelection = Boolean(el.savedProfiles.value);
       el.loadProfile.disabled = !profiles.length || !hasSelection;
@@ -1726,34 +1858,44 @@
           const owned = ownedPaintKeys.has(key);
           const inShoppingList = shoppingPaintKeys.has(key);
           const action = !owned
-            ? `<button type="button" class="secondary compact-button tooltip-shopping-button" data-add-shopping-key="${escapeHtml(key)}" ${inShoppingList ? "disabled" : ""}>${escapeHtml(t(inShoppingList ? "ui.inShoppingList" : "ui.addToShoppingList"))}</button>`
-            : "";
-          return `
-            <div class="paint-tooltip-row ${owned ? "owned-tooltip-match" : ""}">
-              <span class="match-chip" style="background:${escapeHtml(match.hex)}"></span>
-              <div>
-                <div class="paint-tooltip-name">
-                  ${escapeHtml(match.name)} <code>${escapeHtml(match.hex)}</code>${owned ? ` <span class="owned-badge">${escapeHtml(t("ui.ownedBadge"))}</span>` : ""}
-                </div>
-                <div class="meta">${escapeHtml(meta)}</div>
-                ${action}
-              </div>
-            </div>
-          `;
-        }).join("")
-        : `<p class="notes">${escapeHtml(t("citadel.missing"))}</p>`;
+            ? createElement("button", {
+              type: "button",
+              className: "secondary compact-button tooltip-shopping-button",
+              attributes: { "data-add-shopping-key": key },
+              disabled: inShoppingList,
+              text: t(inShoppingList ? "ui.inShoppingList" : "ui.addToShoppingList")
+            })
+            : null;
+          return createElement("div", { className: `paint-tooltip-row${owned ? " owned-tooltip-match" : ""}` }, [
+            createSwatch("match-chip", match.hex),
+            createElement("div", {}, [
+              createElement("div", { className: "paint-tooltip-name" }, [
+                match.name,
+                " ",
+                createElement("code", { text: match.hex }),
+                owned ? [
+                  " ",
+                  createElement("span", { className: "owned-badge", text: t("ui.ownedBadge") })
+                ] : null
+              ]),
+              createElement("div", { className: "meta", text: meta }),
+              action
+            ])
+          ]);
+        })
+        : [createElement("p", { className: "notes", text: t("citadel.missing") })];
 
-      el.paintTooltip.innerHTML = `
-        <div class="paint-tooltip-head">
-          <span class="paint-tooltip-swatch" style="background:${escapeHtml(hex)}"></span>
-          <div>
-            <div class="paint-tooltip-title">${escapeHtml(colorName)}</div>
-            <code>${escapeHtml(hex)}</code>
-          </div>
-        </div>
-        <div class="paint-tooltip-subtitle">${escapeHtml(t("citadel.closest"))}</div>
-        <div class="paint-tooltip-list">${matchRows}</div>
-      `;
+      replaceChildren(el.paintTooltip, [
+        createElement("div", { className: "paint-tooltip-head" }, [
+          createSwatch("paint-tooltip-swatch", hex),
+          createElement("div", {}, [
+            createElement("div", { className: "paint-tooltip-title", text: colorName }),
+            createElement("code", { text: hex })
+          ])
+        ]),
+        createElement("div", { className: "paint-tooltip-subtitle", text: t("citadel.closest") }),
+        createElement("div", { className: "paint-tooltip-list" }, matchRows)
+      ]);
       el.paintTooltip.classList.add("is-visible");
       el.paintTooltip.setAttribute("aria-hidden", "false");
       positionPaintTooltip(target);
@@ -1859,9 +2001,11 @@
       const wrap = el.wheel.parentElement.getBoundingClientRect();
       const markers = currentPalette.slice(1);
 
-      el.markers.innerHTML = markers.map((color, index) => (
-        `<span class="scheme-marker" data-marker-index="${index}" style="background:${escapeHtml(color.hex)}"></span>`
-      )).join("");
+      replaceChildren(el.markers, markers.map((color, index) => createElement("span", {
+        className: "scheme-marker",
+        attributes: { "data-marker-index": index },
+        styleBackground: color.hex
+      })));
 
       el.markers.querySelectorAll(".scheme-marker").forEach((marker, index) => {
         const color = markers[index];
@@ -1980,12 +2124,4 @@
     return null;
   }
 
-  function escapeHtml(value) {
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
 }());
