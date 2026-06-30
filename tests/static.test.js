@@ -97,7 +97,7 @@ test("asset cache buster matches package major and minor version", () => {
 
 test("application scripts are valid JavaScript", () => {
   const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
-  const scripts = Array.from(html.matchAll(/<script src="([^"]+)"><\/script>/g), match => match[1].split("?")[0]);
+  const scripts = Array.from(html.matchAll(/<script\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*><\/script\s*>/gi), match => match[1].split("?")[0]);
 
   scripts.forEach(script => {
     execFileSync(process.execPath, ["--check", path.join(root, script)], { stdio: "pipe" });
@@ -106,7 +106,7 @@ test("application scripts are valid JavaScript", () => {
 
 test("application scripts load dependencies before app bootstrap", () => {
   const html = fs.readFileSync(path.join(root, "WarhammerPaintHelper.html"), "utf8");
-  const scripts = Array.from(html.matchAll(/<script src="([^"]+)"><\/script>/g), match => match[1].split("?")[0]);
+  const scripts = Array.from(html.matchAll(/<script\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*><\/script\s*>/gi), match => match[1].split("?")[0]);
 
   assert.deepEqual(scripts, [
     "src/core.js",
