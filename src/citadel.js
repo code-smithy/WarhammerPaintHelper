@@ -181,6 +181,225 @@
     return list.filter(paint => ownedPaintKeys.has(paintKey(paint)));
   }
 
+  function parsePaintRackCsv(csvText) {
+    const records = parseCsvRecords(csvText);
+    const invalid = [];
+    if (!records.length) {
+      return { paints: [], invalid: [{ lineNumber: 0, reason: "empty" }] };
+    }
+
+    const headers = records[0].fields.map(normalizePaintRackHeader);
+    const index = {
+      brand: headers.indexOf("brand"),
+      sku: headers.indexOf("sku"),
+      name: headers.indexOf("paintname"),
+      paintClass: headers.indexOf("paintclass"),
+      size: headers.indexOf("size"),
+      count: headers.indexOf("count")
+    };
+    const required = ["brand", "sku", "name", "paintClass", "count"];
+    const missing = required.filter(key => index[key] === -1);
+    if (missing.length) {
+      return {
+        paints: [],
+        invalid: [{
+          lineNumber: records[0].lineNumber,
+          reason: `missing columns: ${missing.join(", ")}`
+        }]
+      };
+    }
+
+    const paints = [];
+    records.slice(1).forEach(record => {
+      if (record.fields.every(field => !String(field || "").trim())) {
+        return;
+      }
+      const row = {
+        brand: cleanCsvValue(record.fields[index.brand]),
+        sku: cleanCsvValue(record.fields[index.sku]),
+        name: cleanCsvValue(record.fields[index.name]),
+        paintClass: cleanCsvValue(record.fields[index.paintClass]),
+        size: index.size === -1 ? "" : cleanCsvValue(record.fields[index.size]),
+        count: parsePaintRackCount(record.fields[index.count]),
+        lineNumber: record.lineNumber
+      };
+      if (!row.brand || !row.name || !row.sku) {
+        invalid.push({ lineNumber: row.lineNumber, reason: "missing paint identity", row });
+        return;
+      }
+      if (!Number.isFinite(row.count) || row.count <= 0) {
+        invalid.push({ lineNumber: row.lineNumber, reason: "count is zero or invalid", row });
+        return;
+      }
+      paints.push(row);
+    });
+
+    return { paints, invalid };
+  }
+
+  function parseCsvRecords(csvText) {
+    const text = String(csvText || "").replace(/^\uFEFF/, "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+    const records = [];
+    let fields = [];
+    let field = "";
+    let quoted = false;
+    let lineNumber = 1;
+    let recordLineNumber = 1;
+
+    for (let index = 0; index < text.length; index += 1) {
+      const char = text[index];
+      if (quoted) {
+        if (char === "\"" && text[index + 1] === "\"") {
+          field += "\"";
+          index += 1;
+        } else if (char === "\"") {
+          quoted = false;
+        } else {
+          field += char;
+          if (char === "\n") {
+            lineNumber += 1;
+          }
+        }
+        continue;
+      }
+
+      if (char === "\"") {
+        quoted = true;
+      } else if (char === ",") {
+        fields.push(field);
+        field = "";
+      } else if (char === "\n") {
+        fields.push(field);
+        records.push({ fields, lineNumber: recordLineNumber });
+        fields = [];
+        field = "";
+        lineNumber += 1;
+        recordLineNumber = lineNumber;
+      } else {
+        field += char;
+      }
+    }
+
+    if (field || fields.length) {
+      fields.push(field);
+      records.push({ fields, lineNumber: recordLineNumber });
+    }
+    return records.filter(record => record.fields.some(fieldValue => String(fieldValue || "").trim()));
+  }
+
+  function findPaintRackCatalogueMatch(row, paints) {
+    if (!row || !Array.isArray(paints)) {
+      return null;
+    }
+    const brandKey = normalizePaintRackText(row.brand);
+    const skuKey = normalizePaintRackSku(row.sku);
+    const classKey = normalizePaintRackText(row.paintClass);
+    const nameKeys = paintRackNameKeys(row.name);
+    const sameBrand = paints.filter(paint => paintRackBrandMatches(brandKey, paint.manufacturer));
+
+    if (skuKey) {
+      const codeMatch = sameBrand.find(paint => normalizePaintRackSku(paint.manufacturerCode) === skuKey);
+      if (codeMatch) {
+        return codeMatch;
+      }
+    }
+
+    const scored = sameBrand
+      .map(paint => ({
+        paint,
+        score: paintRackMatchScore(paint, nameKeys, classKey)
+      }))
+      .filter(item => item.score >= 60)
+      .sort((a, b) => b.score - a.score);
+
+    return scored.length ? scored[0].paint : null;
+  }
+
+  function createPaintRackCustomPaint(row) {
+    const brand = cleanCsvValue(row && row.brand);
+    const sku = cleanCsvValue(row && row.sku);
+    const name = cleanCsvValue(row && row.name) || "PaintRack paint";
+    const paintClass = cleanCsvValue(row && row.paintClass);
+    const size = cleanCsvValue(row && row.size);
+    return {
+      id: [
+        "paintrack",
+        normalizePaintRackSku(sku),
+        normalizePaintRackText(brand),
+        normalizePaintRackText(paintClass),
+        normalizePaintRackText(name)
+      ].filter(Boolean).join(":"),
+      name,
+      hex: null,
+      range: size,
+      finish: "",
+      manufacturer: brand,
+      collection: paintClass,
+      status: "paintRack",
+      sourceUrl: "",
+      notes: "Imported from PaintRack CSV; no catalogue colour value.",
+      manufacturerCode: sku,
+      paintRackImport: true,
+      count: Number.isFinite(row && row.count) ? row.count : 1
+    };
+  }
+
+  function normalizePaintRackHeader(value) {
+    return String(value || "").trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+  }
+
+  function cleanCsvValue(value) {
+    return String(value || "").trim().replace(/\s+/g, " ");
+  }
+
+  function parsePaintRackCount(value) {
+    const count = Number(String(value || "").trim());
+    return Number.isFinite(count) ? count : NaN;
+  }
+
+  function normalizePaintRackSku(value) {
+    return String(value || "").trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+  }
+
+  function normalizePaintRackText(value) {
+    return String(value || "")
+      .normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]/g, "");
+  }
+
+  function paintRackNameKeys(name) {
+    const parts = String(name || "").split("/").map(part => normalizePaintRackText(part)).filter(Boolean);
+    const full = normalizePaintRackText(name);
+    return Array.from(new Set(full ? [full, ...parts] : parts));
+  }
+
+  function paintRackBrandMatches(brandKey, manufacturer) {
+    const manufacturerKey = normalizePaintRackText(manufacturer);
+    return Boolean(brandKey && manufacturerKey && (
+      brandKey === manufacturerKey ||
+      manufacturerKey.includes(brandKey) ||
+      brandKey.includes(manufacturerKey)
+    ));
+  }
+
+  function paintRackMatchScore(paint, nameKeys, classKey) {
+    const paintName = normalizePaintRackText(paint && paint.name);
+    const paintCollection = normalizePaintRackText(paint && paint.collection);
+    let score = nameKeys.includes(paintName) ? 70 : 0;
+    if (!score && nameKeys.some(key => key && (key.includes(paintName) || paintName.includes(key)))) {
+      score = 55;
+    }
+    if (score && classKey && paintCollection === classKey) {
+      score += 25;
+    } else if (score && classKey && paintCollection && (paintCollection.includes(classKey) || classKey.includes(paintCollection))) {
+      score += 10;
+    }
+    return score;
+  }
+
   async function loadPaintCatalogue(url, fallbackPaints) {
     const fallback = normalizeCitadelPaints(fallbackPaints || DEFAULT_PAINT_CATALOGUE);
     if (typeof fetch !== "function") {
@@ -214,6 +433,9 @@
     normalizePaintCatalogue,
     colorDistance,
     filterOwnedPaints,
+    parsePaintRackCsv,
+    findPaintRackCatalogueMatch,
+    createPaintRackCustomPaint,
     findClosestPaints,
     mapPaletteToCatalogue,
     mapPaletteToCitadel,

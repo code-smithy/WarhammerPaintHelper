@@ -662,6 +662,65 @@ button:hover {
   line-height: 1.35;
 }
 
+.paint-import-actions {
+  position: relative;
+  margin-top: 10px;
+}
+
+.paint-import-actions button {
+  width: 100%;
+}
+
+.paint-import-popover {
+  display: none;
+  width: min(460px, calc(100vw - 28px));
+  max-height: min(520px, calc(100vh - 48px));
+  overflow: auto;
+  padding: 14px;
+  background: #202838;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .42);
+}
+
+.paint-import-popover:popover-open,
+.paint-import-popover.is-visible {
+  display: block;
+}
+
+.paint-import-popover-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.paint-import-summary {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.4;
+}
+
+.paint-import-report-section {
+  margin-top: 10px;
+}
+
+.paint-import-report-title {
+  font-weight: 900;
+  font-size: .84rem;
+}
+
+.paint-import-report-section ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.35;
+}
+
 .owned-paint-list {
   display: grid;
   gap: 7px;
@@ -682,6 +741,21 @@ button:hover {
   height: 22px;
   border-radius: 7px;
   border: 1px solid rgba(255, 255, 255, .18);
+}
+
+.no-colour-chip {
+  display: inline-grid;
+  place-items: center;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, .08),
+    rgba(255, 255, 255, .08) 4px,
+    rgba(0, 0, 0, .12) 4px,
+    rgba(0, 0, 0, .12) 8px
+  );
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 900;
 }
 
 .owned-paint-name {
@@ -1220,6 +1294,13 @@ button:hover {
   border-radius: 12px;
 }
 
+.shopping-list-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
 .compact-button {
   padding: 7px 9px;
   font-size: .76rem;
@@ -1244,5 +1325,13 @@ button:disabled {
   .shopping-add-row,
   .shopping-list-item {
     grid-template-columns: 1fr;
+  }
+
+  .shopping-list-actions {
+    justify-content: stretch;
+  }
+
+  .shopping-list-actions button {
+    flex: 1 1 130px;
   }
 }

@@ -50,6 +50,7 @@
       ownedPaintKeys: [],
       onlyOwnedMatches: false,
       ownedPaintsCollapsed: false,
+      paintRackCustomPaints: [],
       shoppingPaintKeys: [],
       shoppingListCollapsed: false,
       shoppingSearch: "",
@@ -59,13 +60,14 @@
 
     let pendingProducerKeys = null;
     let ownedPaintKeys = new Set(state.ownedPaintKeys);
+    let paintRackCustomPaints = [];
     let shoppingPaintKeys = new Set(state.shoppingPaintKeys);
     applySettingsToState(readSettingsSnapshot(STORAGE_KEYS.lastSettings));
     applySettingsToState(readSettingsFromUrl());
 
     let translator = W.createTranslator(state.language);
     let currentPalette = [];
-    let cataloguePaints = W.DEFAULT_PAINT_CATALOGUE || W.DEFAULT_CITADEL_PAINTS;
+    let cataloguePaints = mergePaintRackCustomPaints(W.DEFAULT_PAINT_CATALOGUE || W.DEFAULT_CITADEL_PAINTS);
     let factionSchemes = W.normalizeFactionSchemes(W.DEFAULT_FACTION_SCHEMES || W.DEFAULT_FACTION_SCHEME_DATA || []);
     let profiles = readProfiles();
     let catalogueSource = "sample";
@@ -110,9 +112,11 @@
       recipeMode: $("recipeModeSelect"),
       producerFilters: $("producerFilters"),
       ownedOnlyMatches: $("ownedOnlyMatchesToggle"),
-      ownedSelectAllVisible: $("ownedSelectAllVisible"),
       ownedPaintsCollapse: $("ownedPaintsCollapseBtn"),
       ownedPaintsBody: $("ownedPaintsBody"),
+      paintRackImport: $("paintRackImportBtn"),
+      paintRackImportInput: $("paintRackImportInput"),
+      paintRackImportReport: $("paintRackImportReport"),
       ownedPaintStatus: $("ownedPaintStatus"),
       ownedPaintList: $("ownedPaintList"),
       shoppingListPanel: $("shoppingListPanel"),
@@ -168,7 +172,7 @@
     update();
 
     W.loadPaintCatalogue("data/paint-catalogue.json").then(result => {
-      cataloguePaints = result.paints;
+      cataloguePaints = mergePaintRackCustomPaints(result.paints);
       catalogueSource = result.source;
       renderProducerFilters(true);
       renderPaintSelectorOptions();
@@ -364,9 +368,6 @@
         renderCitadelMatches();
         saveLastSettings();
       });
-      el.ownedSelectAllVisible.addEventListener("change", () => {
-        setVisibleOwnedPaints(el.ownedSelectAllVisible.checked);
-      });
       el.ownedPaintsCollapse.addEventListener("click", () => {
         state.ownedPaintsCollapsed = !state.ownedPaintsCollapsed;
         syncOwnedPaintsCollapse();
@@ -377,6 +378,16 @@
           return;
         }
         toggleOwnedPaint(event.target.value, event.target.checked);
+      });
+      el.paintRackImport.addEventListener("click", () => {
+        el.paintRackImportInput.click();
+      });
+      el.paintRackImportInput.addEventListener("change", importPaintRackFile);
+      el.paintRackImportReport.addEventListener("click", event => {
+        const button = event.target.closest("[data-close-paintrack-report]");
+        if (button) {
+          hidePaintRackImportReport();
+        }
       });
       el.shoppingListCollapse.addEventListener("click", () => {
         state.shoppingListCollapsed = !state.shoppingListCollapsed;
@@ -424,6 +435,11 @@
         el.addShoppingPaint.disabled = !el.shoppingAddSelect.value;
       });
       el.shoppingList.addEventListener("click", event => {
+        const ownedButton = event.target.closest("[data-mark-owned-shopping-key]");
+        if (ownedButton) {
+          markShoppingPaintOwned(ownedButton.dataset.markOwnedShoppingKey);
+          return;
+        }
         const button = event.target.closest("[data-remove-shopping-key]");
         if (!button) {
           return;
@@ -993,6 +1009,7 @@
     function renderPaintSelectorOptions() {
       const query = el.paintSearch.value.trim().toLowerCase();
       paintSelectorOptions = filteredCataloguePaints()
+        .filter(paint => paint.hex)
         .filter(paint => !query || paintSelectorText(paint).toLowerCase().includes(query))
         .sort((a, b) => paintSelectorText(a).localeCompare(paintSelectorText(b)));
 
@@ -1020,11 +1037,20 @@
 
     function paintSelectorLabel(paint) {
       const meta = paintSelectorMeta(paint);
-      return meta ? `${paint.name} - ${meta} - ${paint.hex}` : `${paint.name} - ${paint.hex}`;
+      const hex = paint.hex ? ` - ${paint.hex}` : "";
+      return meta ? `${paint.name} - ${meta}${hex}` : `${paint.name}${hex}`;
     }
 
     function paintSelectorMeta(paint) {
       return [paint.manufacturer, paint.collection, paint.range].filter(Boolean).join(" / ");
+    }
+
+    function paintOwnedMeta(paint) {
+      return [
+        paintSelectorMeta(paint),
+        paint.manufacturerCode,
+        paint.hex || t("ui.paintRackNoColourData")
+      ].filter(Boolean).join(" - ");
     }
 
     function renderProducerFilters(resetSelection) {
@@ -1084,7 +1110,7 @@
     }
 
     function closestMatchCataloguePaints() {
-      return W.filterOwnedPaints(filteredCataloguePaints(), {
+      return W.filterOwnedPaints(filteredCataloguePaints().filter(paint => paint.hex), {
         onlyOwnedMatches: state.onlyOwnedMatches,
         ownedPaintKeys,
         paintKey
@@ -1103,13 +1129,8 @@
 
     function renderOwnedPaintList() {
       const paints = ownedListPaints();
-      const ownedVisibleCount = paints.filter(paint => ownedPaintKeys.has(paintKey(paint))).length;
-      const allVisibleSelected = paints.length > 0 && ownedVisibleCount === paints.length;
-      el.ownedSelectAllVisible.checked = allVisibleSelected;
-      el.ownedSelectAllVisible.indeterminate = ownedVisibleCount > 0 && ownedVisibleCount < paints.length;
-      el.ownedSelectAllVisible.disabled = !paints.length;
       el.ownedPaintStatus.textContent = t(
-        allVisibleSelected ? "ui.ownedPaintsAllSelected" : "ui.ownedPaintsStatus",
+        "ui.ownedPaintsStatus",
         { owned: ownedPaintKeys.size, visible: paints.length }
       );
       replaceChildren(el.ownedPaintList, paints.length
@@ -1121,32 +1142,162 @@
               value: key,
               checked: ownedPaintKeys.has(key)
             }),
-            createSwatch("owned-paint-chip", paint.hex),
+            paint.hex
+              ? createSwatch("owned-paint-chip", paint.hex)
+              : createElement("span", { className: "owned-paint-chip no-colour-chip", text: "?" }),
             createElement("span", {}, [
               createElement("span", { className: "owned-paint-name", text: paint.name }),
-              createElement("span", { className: "owned-paint-meta", text: paintSelectorMeta(paint) })
+              createElement("span", { className: "owned-paint-meta", text: paintOwnedMeta(paint) })
             ])
           ]);
         })
         : [createElement("p", { className: "notes", text: t("ui.ownedPaintsEmpty") })]);
     }
 
-    function setVisibleOwnedPaints(checked) {
-      ownedListPaints().forEach(paint => {
-        const key = paintKey(paint);
-        if (checked) {
+    async function importPaintRackFile() {
+      const file = el.paintRackImportInput.files && el.paintRackImportInput.files[0];
+      if (!file) {
+        return;
+      }
+      try {
+        const text = await file.text();
+        showPaintRackImportReport(importPaintRackCsv(text));
+      } catch (error) {
+        showPaintRackImportReport({
+          matched: [],
+          custom: [],
+          invalid: [{ label: file.name, reason: t("ui.paintRackImportReadFailed") }]
+        });
+      } finally {
+        el.paintRackImportInput.value = "";
+      }
+    }
+
+    function importPaintRackCsv(csvText) {
+      const parsed = W.parsePaintRackCsv(csvText);
+      const previouslyOwned = new Set(ownedPaintKeys);
+      const customByKey = new Map(paintRackCustomPaints.map(paint => [paintKey(paint), paint]));
+      const matched = [];
+      const custom = [];
+      const invalid = parsed.invalid.map(item => ({
+        label: paintRackInvalidLabel(item),
+        reason: item.reason
+      }));
+
+      parsed.paints.forEach(row => {
+        const match = W.findPaintRackCatalogueMatch(row, cataloguePaints.filter(paint => paint.hex && !paint.paintRackImport));
+        if (match) {
+          const key = paintKey(match);
           ownedPaintKeys.add(key);
           shoppingPaintKeys.delete(key);
-        } else {
-          ownedPaintKeys.delete(key);
+          selectedManufacturers.add(paintProducerKey(match));
+          matched.push({ row, paint: match, alreadyOwned: previouslyOwned.has(key) });
+          return;
         }
+
+        const paint = W.createPaintRackCustomPaint(row);
+        const key = paintKey(paint);
+        customByKey.set(key, paint);
+        ownedPaintKeys.add(key);
+        shoppingPaintKeys.delete(key);
+        selectedManufacturers.add(paintProducerKey(paint));
+        custom.push({ row, paint });
       });
+
+      paintRackCustomPaints = Array.from(customByKey.values())
+        .sort((a, b) => paintSelectorText(a).localeCompare(paintSelectorText(b)));
+      cataloguePaints = mergePaintRackCustomPaints(cataloguePaints);
+      state.paintRackCustomPaints = paintRackCustomPaints;
       state.ownedPaintKeys = Array.from(ownedPaintKeys);
       state.shoppingPaintKeys = Array.from(shoppingPaintKeys);
+      renderProducerFilters(false);
+      renderPaintSelectorOptions();
       renderOwnedPaintList();
       renderShoppingList();
       renderCitadelMatches();
       saveLastSettings();
+
+      return { matched, custom, invalid };
+    }
+
+    function showPaintRackImportReport(report) {
+      replaceChildren(el.paintRackImportReport, [
+        createElement("div", { className: "paint-import-popover-head" }, [
+          createElement("strong", { text: t("ui.paintRackImportReportTitle") }),
+          createElement("button", {
+            type: "button",
+            className: "secondary compact-button",
+            attributes: { "data-close-paintrack-report": "1" },
+            text: t("ui.close")
+          })
+        ]),
+        createElement("p", {
+          className: "paint-import-summary",
+          text: t("ui.paintRackImportSummary", {
+            matched: report.matched.length,
+            custom: report.custom.length,
+            skipped: report.invalid.length
+          })
+        }),
+        createPaintRackReportSection(
+          "ui.paintRackMatched",
+          report.matched.map(item => `${paintRackRowLabel(item.row)} -> ${paintSelectorLabel(item.paint)}`)
+        ),
+        createPaintRackReportSection(
+          "ui.paintRackNotInCatalogue",
+          report.custom.map(item => `${paintRackRowLabel(item.row)} (${t("ui.paintRackStoredOwned")})`)
+        ),
+        createPaintRackReportSection(
+          "ui.paintRackSkipped",
+          report.invalid.map(item => `${item.label} - ${item.reason}`)
+        )
+      ]);
+      if (typeof el.paintRackImportReport.showPopover === "function") {
+        try {
+          el.paintRackImportReport.showPopover();
+          return;
+        } catch (error) {
+          // Fall back for browsers with partial popover support.
+        }
+      }
+      el.paintRackImportReport.classList.add("is-visible");
+    }
+
+    function hidePaintRackImportReport() {
+      if (!el.paintRackImportReport) {
+        return;
+      }
+      if (typeof el.paintRackImportReport.hidePopover === "function") {
+        try {
+          el.paintRackImportReport.hidePopover();
+        } catch (error) {
+          // Fall back for browsers with partial popover support.
+        }
+      }
+      el.paintRackImportReport.classList.remove("is-visible");
+    }
+
+    function createPaintRackReportSection(titleKey, items) {
+      const visibleItems = items.slice(0, 8);
+      const more = items.length - visibleItems.length;
+      return createElement("div", { className: "paint-import-report-section" }, [
+        createElement("div", { className: "paint-import-report-title", text: t(titleKey, { count: items.length }) }),
+        items.length
+          ? createElement("ul", {}, [
+            visibleItems.map(item => createElement("li", { text: item })),
+            more > 0 ? createElement("li", { text: t("ui.paintRackMore", { count: more }) }) : null
+          ])
+          : createElement("p", { className: "notes", text: t("ui.paintRackNone") })
+      ]);
+    }
+
+    function paintRackRowLabel(row) {
+      return [row.brand, row.sku, row.name].filter(Boolean).join(" ");
+    }
+
+    function paintRackInvalidLabel(item) {
+      const row = item && item.row;
+      return row ? paintRackRowLabel(row) : t("ui.paintRackLine", { line: item.lineNumber || "?" });
     }
 
     function toggleOwnedPaint(key, checked) {
@@ -1302,6 +1453,7 @@
     function shoppingSearchPaints() {
       const query = el.shoppingSearch.value.trim().toLowerCase();
       return cataloguePaints
+        .filter(paint => paint.hex)
         .filter(paint => !ownedPaintKeys.has(paintKey(paint)))
         .filter(paint => !shoppingPaintKeys.has(paintKey(paint)))
         .filter(paint => !query || paintSelectorText(paint).toLowerCase().includes(query))
@@ -1340,12 +1492,20 @@
             createElement("span", { className: "owned-paint-name", text: paint.name }),
             createElement("span", { className: "owned-paint-meta", text: `${paintSelectorMeta(paint)} \u00b7 ${paint.hex}` })
           ]),
-          createElement("button", {
-            type: "button",
-            className: "secondary danger compact-button",
-            attributes: { "data-remove-shopping-key": key },
-            text: t("ui.removeShoppingPaint")
-          })
+          createElement("span", { className: "shopping-list-actions" }, [
+            createElement("button", {
+              type: "button",
+              className: "compact-button",
+              attributes: { "data-mark-owned-shopping-key": key },
+              text: t("ui.markShoppingPaintOwned")
+            }),
+            createElement("button", {
+              type: "button",
+              className: "secondary danger compact-button",
+              attributes: { "data-remove-shopping-key": key },
+              text: t("ui.removeShoppingPaint")
+            })
+          ])
         ]))
         : [createElement("p", { className: "notes", text: t("ui.shoppingListEmpty") })]);
     }
@@ -1368,6 +1528,14 @@
       saveLastSettings();
     }
 
+    function markShoppingPaintOwned(key) {
+      if (!paintByKey(key)) {
+        removeShoppingPaint(key);
+        return;
+      }
+      toggleOwnedPaint(key, true);
+    }
+
     function pruneOwnedShoppingPaints() {
       let changed = false;
       shoppingPaintKeys.forEach(key => {
@@ -1383,6 +1551,17 @@
 
     function paintByKey(key) {
       return cataloguePaints.find(paint => paintKey(paint) === key) || null;
+    }
+
+    function mergePaintRackCustomPaints(basePaints) {
+      const byKey = new Map();
+      (Array.isArray(basePaints) ? basePaints : []).forEach(paint => {
+        byKey.set(paintKey(paint), paint);
+      });
+      paintRackCustomPaints.forEach(paint => {
+        byKey.set(paintKey(paint), paint);
+      });
+      return Array.from(byKey.values());
     }
 
     function paintKey(paint) {
@@ -1576,6 +1755,7 @@
         ownedPaintKeys: Array.from(ownedPaintKeys),
         onlyOwnedMatches: Boolean(state.onlyOwnedMatches),
         ownedPaintsCollapsed: Boolean(state.ownedPaintsCollapsed),
+        paintRackCustomPaints: paintRackCustomPaints.map(sanitizePaintRackCustomPaint).filter(Boolean),
         shoppingPaintKeys: Array.from(shoppingPaintKeys),
         shoppingListCollapsed: Boolean(state.shoppingListCollapsed),
         shoppingSearch: state.shoppingSearch,
@@ -1669,6 +1849,10 @@
       ownedPaintKeys = new Set(state.ownedPaintKeys);
       state.onlyOwnedMatches = Boolean(snapshot.onlyOwnedMatches);
       state.ownedPaintsCollapsed = Boolean(snapshot.ownedPaintsCollapsed);
+      state.paintRackCustomPaints = Array.isArray(snapshot.paintRackCustomPaints)
+        ? snapshot.paintRackCustomPaints.map(sanitizePaintRackCustomPaint).filter(Boolean)
+        : [];
+      paintRackCustomPaints = state.paintRackCustomPaints.slice();
       state.shoppingPaintKeys = Array.isArray(snapshot.shoppingPaintKeys)
         ? snapshot.shoppingPaintKeys.filter(key => typeof key === "string")
         : [];
@@ -1678,6 +1862,32 @@
       state.controlGroupsCollapsed = normalizeControlGroupsCollapsed(snapshot.controlGroupsCollapsed);
       state.collapsedSections = normalizeCollapsedSections(snapshot.collapsedSections);
       return true;
+    }
+
+    function sanitizePaintRackCustomPaint(paint) {
+      if (!paint || typeof paint !== "object") {
+        return null;
+      }
+      const name = String(paint.name || "").trim();
+      const manufacturer = String(paint.manufacturer || "").trim();
+      if (!name || !manufacturer) {
+        return null;
+      }
+      return {
+        id: String(paint.id || ""),
+        name,
+        hex: null,
+        range: String(paint.range || ""),
+        finish: "",
+        manufacturer,
+        collection: String(paint.collection || ""),
+        status: "paintRack",
+        sourceUrl: "",
+        notes: String(paint.notes || "Imported from PaintRack CSV; no catalogue colour value."),
+        manufacturerCode: String(paint.manufacturerCode || ""),
+        paintRackImport: true,
+        count: validNumber(paint.count) ? paint.count : 1
+      };
     }
 
     function normalizeControlGroupsCollapsed(value) {

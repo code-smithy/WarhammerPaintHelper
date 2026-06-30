@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.11.0
+
+- Added PaintRack CSV import for owned-colour collection exports, including matched
+  catalogue paints and owned entries for colours that are not in the catalogue.
+- Added an import report popover showing which PaintRack colours matched the catalogue,
+  which were kept as owned custom entries, and which rows were skipped.
+- Removed the select-all-visible owned-colours control.
+- Added a Shopping list action to mark a colour as owned, automatically removing it from
+  the shopping list.
+- Bumped the static app version and cache-buster from `v0.10` to `v0.11`.
+
 ## v0.10.0
 
 - Removed the 80-colour cap from the Shopping list add-colour selector so all unowned

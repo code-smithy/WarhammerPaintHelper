@@ -35,7 +35,10 @@ test("static HTML references the prepared app assets", () => {
   assert.match(html, /id="recipeModeSelect"/);
   assert.match(html, /id="producerFilters"/);
   assert.match(html, /id="ownedOnlyMatchesToggle"/);
-  assert.match(html, /id="ownedSelectAllVisible"/);
+  assert.doesNotMatch(html, /id="ownedSelectAllVisible"/);
+  assert.match(html, /id="paintRackImportBtn"/);
+  assert.match(html, /id="paintRackImportInput"/);
+  assert.match(html, /id="paintRackImportReport"/);
   assert.match(html, /id="ownedPaintStatus"/);
   assert.match(html, /id="ownedPaintList"/);
   assert.match(html, /data-collapsible-section="paintingNotes"/);
@@ -163,13 +166,28 @@ test("owned paint controls persist and filter closest catalogue matches", () => 
   const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
 
   assert.match(app, /ownedPaintKeys: Array\.from\(ownedPaintKeys\)/);
+  assert.match(app, /paintRackCustomPaints: paintRackCustomPaints\.map\(sanitizePaintRackCustomPaint\)/);
   assert.match(app, /state\.onlyOwnedMatches/);
   assert.match(app, /function closestMatchCataloguePaints\(\) \{/);
-  assert.match(app, /W\.filterOwnedPaints\(filteredCataloguePaints\(\), \{/);
+  assert.match(app, /W\.filterOwnedPaints\(filteredCataloguePaints\(\)\.filter\(paint => paint\.hex\), \{/);
   assert.match(app, /function renderCitadelMatches\(\) \{\s+const paints = closestMatchCataloguePaints\(\)/);
   assert.match(app, /function showPaintTooltip[\s\S]*const paints = closestMatchCataloguePaints\(\)/);
   assert.match(app, /className: "owned-badge"/);
   assert.match(app, /ownedPaintKeys\.has\(paintKey\(match\)\)/);
+});
+
+test("PaintRack CSV import controls mark matched and custom paints owned", () => {
+  const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
+
+  assert.match(app, /el\.paintRackImport\.addEventListener\("click"/);
+  assert.match(app, /async function importPaintRackFile\(\)/);
+  assert.match(app, /function importPaintRackCsv\(csvText\)/);
+  assert.match(app, /W\.parsePaintRackCsv\(csvText\)/);
+  assert.match(app, /W\.findPaintRackCatalogueMatch\(row, cataloguePaints\.filter\(paint => paint\.hex && !paint\.paintRackImport\)\)/);
+  assert.match(app, /W\.createPaintRackCustomPaint\(row\)/);
+  assert.match(app, /ownedPaintKeys\.add\(key\)/);
+  assert.match(app, /function showPaintRackImportReport\(report\)/);
+  assert.match(app, /paintSelectorOptions = filteredCataloguePaints\(\)[\s\S]*\.filter\(paint => paint\.hex\)/);
 });
 
 
@@ -218,8 +236,10 @@ test("shopping list controls persist and exclude owned colours", () => {
   assert.match(app, /function shoppingSearchPaints\(\)[\s\S]*!ownedPaintKeys\.has\(paintKey\(paint\)\)/);
   assert.doesNotMatch(app, /function shoppingSearchPaints\(\)[\s\S]*\.slice\(0,\s*80\)/);
   assert.match(app, /function addShoppingPaintByKey\(key\)[\s\S]*ownedPaintKeys\.has\(key\)/);
+  assert.match(app, /function markShoppingPaintOwned\(key\)[\s\S]*toggleOwnedPaint\(key, true\)/);
   assert.match(app, /function toggleOwnedPaint\(key, checked\)[\s\S]*shoppingPaintKeys\.delete\(key\)/);
   assert.match(app, /data-add-shopping-key/);
+  assert.match(app, /data-mark-owned-shopping-key/);
   assert.match(app, /data-remove-shopping-key/);
 });
 
@@ -234,8 +254,10 @@ test("shopping list controls persist and exclude owned colours", () => {
   assert.match(app, /function shoppingSearchPaints\(\)[\s\S]*!ownedPaintKeys\.has\(paintKey\(paint\)\)/);
   assert.doesNotMatch(app, /function shoppingSearchPaints\(\)[\s\S]*\.slice\(0,\s*80\)/);
   assert.match(app, /function addShoppingPaintByKey\(key\)[\s\S]*ownedPaintKeys\.has\(key\)/);
+  assert.match(app, /function markShoppingPaintOwned\(key\)[\s\S]*toggleOwnedPaint\(key, true\)/);
   assert.match(app, /function toggleOwnedPaint\(key, checked\)[\s\S]*shoppingPaintKeys\.delete\(key\)/);
   assert.match(app, /data-add-shopping-key/);
+  assert.match(app, /data-mark-owned-shopping-key/);
   assert.match(app, /data-remove-shopping-key/);
 });
 

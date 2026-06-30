@@ -140,6 +140,79 @@ test("filters owned paints with array keys and default id lookup", () => {
   assert.deepEqual(filtered.map(paint => paint.id), ["second", "third"]);
 });
 
+test("parses PaintRack CSV exports", () => {
+  const parsed = citadel.parsePaintRackCsv([
+    "Brand,SKU,Paint Name,Paint Class,Size,Count",
+    "Vallejo,72.001,Dead White,Game Color,17|18 ml,1",
+    "Vallejo,72.036,\"Bronze Brown / Bronze Fleshtone\",Game Color,17|18 ml,2",
+    "Vallejo,72.999,Zero Count,Game Color,17 ml,0"
+  ].join("\n"));
+
+  assert.equal(parsed.paints.length, 2);
+  assert.deepEqual(parsed.paints[0], {
+    brand: "Vallejo",
+    sku: "72.001",
+    name: "Dead White",
+    paintClass: "Game Color",
+    size: "17|18 ml",
+    count: 1,
+    lineNumber: 2
+  });
+  assert.equal(parsed.paints[1].name, "Bronze Brown / Bronze Fleshtone");
+  assert.equal(parsed.paints[1].count, 2);
+  assert.equal(parsed.invalid.length, 1);
+  assert.equal(parsed.invalid[0].reason, "count is zero or invalid");
+});
+
+test("matches PaintRack rows to catalogue colours by code or aliased name", () => {
+  const paints = [
+    {
+      name: "Dead White",
+      hex: "#FFFFFF",
+      manufacturer: "Vallejo",
+      collection: "Game Color",
+      manufacturerCode: "72.001"
+    },
+    {
+      name: "Bronze Flesh Tone",
+      hex: "#BC8C5A",
+      manufacturer: "Vallejo",
+      collection: "Game Color",
+      manufacturerCode: ""
+    }
+  ];
+
+  assert.equal(citadel.findPaintRackCatalogueMatch({
+    brand: "Vallejo",
+    sku: "72.001",
+    name: "Wrong Name",
+    paintClass: "Game Color"
+  }, paints).name, "Dead White");
+  assert.equal(citadel.findPaintRackCatalogueMatch({
+    brand: "Vallejo",
+    sku: "72.036",
+    name: "Bronze Brown / Bronze Fleshtone",
+    paintClass: "Game Color"
+  }, paints).name, "Bronze Flesh Tone");
+});
+
+test("creates custom PaintRack paints for colours outside the catalogue", () => {
+  const paint = citadel.createPaintRackCustomPaint({
+    brand: "Vallejo",
+    sku: "72.999",
+    name: "Mystery Colour",
+    paintClass: "Game Color",
+    size: "18 ml",
+    count: 1
+  });
+
+  assert.equal(paint.name, "Mystery Colour");
+  assert.equal(paint.hex, null);
+  assert.equal(paint.manufacturerCode, "72.999");
+  assert.equal(paint.paintRackImport, true);
+  assert.match(paint.id, /^paintrack:/);
+});
+
 test("owned paint filtering handles empty and malformed inputs", () => {
   const paints = [
     { id: "owned", name: "Owned", hex: "#FFFFFF" },

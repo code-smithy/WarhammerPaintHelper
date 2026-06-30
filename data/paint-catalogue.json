@@ -3124,137 +3124,20 @@
         "https://www.paintatlas.com/brands/vallejo",
         "https://painthoarder.com/brands/vallejo/lines/game-air",
         "https://painthoarder.com/brands/vallejo/lines/game-color",
-        "https://painthoarder.com/brands/vallejo/lines/model-color"
+        "https://painthoarder.com/brands/vallejo/lines/model-color",
+        "https://painthoarder.com/brands/vallejo/lines/premium-airbrush-color?page=1",
+        "https://painthoarder.com/brands/vallejo/lines/premium-airbrush-color?page=2",
+        "https://painthoarder.com/brands/vallejo/lines/premium-airbrush-color?page=3",
+        "https://painthoarder.com/brands/vallejo/lines/game-color?page=1",
+        "https://painthoarder.com/brands/vallejo/lines/game-color?page=2",
+        "https://painthoarder.com/brands/vallejo/lines/game-color?page=3",
+        "https://painthoarder.com/brands/vallejo/lines/game-color?page=4",
+        "https://painthoarder.com/brands/vallejo/lines/game-color?page=5",
+        "https://painthoarder.com/brands/vallejo/lines/game-color?page=6",
+        "https://painthoarder.com/brands/vallejo/lines/game-color?page=7",
+        "https://painthoarder.com/brands/vallejo/lines/game-color?page=8"
       ],
       "colors": [
-        {
-          "name": "Dead White",
-          "hex": "#FFFFFF",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
-          "notes": "Hex value from public conversion table; older Vallejo source URLs were unavailable or blocked during lookup."
-        },
-        {
-          "name": "Black",
-          "hex": "#000000",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Glossy Black",
-          "hex": "#010101",
-          "collection": "Model Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Bloody Red",
-          "hex": "#BF282E",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Hot Orange",
-          "hex": "#E43027",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Gold Yellow",
-          "hex": "#FDB318",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Sun Yellow",
-          "hex": "#FFCF07",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Camoflage Green",
-          "hex": "#71753A",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
-          "notes": "Spelling kept as listed in source."
-        },
-        {
-          "name": "Olive Green",
-          "hex": "#6A8B3A",
-          "collection": "Model Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Sick Green",
-          "hex": "#096638",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Magic Blue",
-          "hex": "#024381",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Electric Blue",
-          "hex": "#008CBF",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Turquoise",
-          "hex": "#03676F",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Royal Purple",
-          "hex": "#4B2967",
-          "collection": "Model Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Warlord Purple",
-          "hex": "#7D1A44",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Offwhite",
-          "hex": "#F5F4DA",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Ivory",
-          "hex": "#EFF1D9",
-          "collection": "Model Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
-        {
-          "name": "Flat Earth",
-          "hex": "#87643C",
-          "collection": "Model Color",
-          "status": "confirmed",
-          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
-        },
         {
           "name": "3B Russian Green",
           "hex": "#474946",
@@ -3302,7 +3185,12 @@
           "hex": "#1B3E54",
           "finish": "air",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/vallejo"
+          "source_url": "https://www.paintatlas.com/brands/vallejo",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collection": "Game Color",
+          "color_family": "Navy"
         },
         {
           "name": "Acid",
@@ -3351,7 +3239,18 @@
           "hex": "#6D62A6",
           "finish": "air",
           "status": "confirmed",
-          "source_url": "https://www.paintatlas.com/brands/vallejo"
+          "source_url": "https://www.paintatlas.com/brands/vallejo",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collection": "Game Color",
+          "alternate_hex_values": [
+            {
+              "hex": "#7161A8",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Slate blue"
         },
         {
           "name": "Aluminium",
@@ -3393,14 +3292,57 @@
           "hex": "#324D2C",
           "collection": "Game Air",
           "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collections": [
+            "Game Color"
+          ],
+          "color_family": "Green"
+        },
+        {
+          "name": "Aquamarine",
+          "hex": "#007C74",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "color_family": "Cyan"
+        },
+        {
+          "name": "Arctic White",
+          "hex": "#FFFFFF",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "color_family": "White"
         },
         {
           "name": "Athena Skin",
           "hex": "#C85B54",
           "collection": "Game Air",
           "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collections": [
+            "Game Color"
+          ],
+          "color_family": "Pink"
+        },
+        {
+          "name": "Azure",
+          "hex": "#5B6B9E",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/model-color"
         },
         {
           "name": "Barbarian Flesh",
@@ -3414,105 +3356,14 @@
           "hex": "#926641",
           "collection": "Game Air",
           "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
-        },
-        {
-          "name": "Beasty Brown",
-          "hex": "#7C5222",
-          "collection": "Game Air",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
-        },
-        {
-          "name": "Bile Green",
-          "hex": "#D5D900",
-          "collection": "Game Air",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
-        },
-        {
-          "name": "Brassy Brass",
-          "hex": "#A15323",
-          "collection": "Game Air",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
-        },
-        {
-          "name": "Bright Bronze",
-          "hex": "#95664C",
-          "collection": "Game Air",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
-        },
-        {
-          "name": "Bronze Brown",
-          "hex": "#B16921",
-          "collection": "Game Air",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
-        },
-        {
-          "name": "Bronze Flesh Tone",
-          "hex": "#EF9849",
-          "collection": "Game Air",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
-        },
-        {
-          "name": "Aquamarine",
-          "hex": "#007C74",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
-        },
-        {
-          "name": "Arctic White",
-          "hex": "#FFFFFF",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
-        },
-        {
-          "name": "Black Green",
-          "hex": "#3D634A",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
-        },
-        {
-          "name": "Blue",
-          "hex": "#00528E",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
-        },
-        {
-          "name": "Brown",
-          "hex": "#9A632A",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
-        },
-        {
-          "name": "Camouflage Green",
-          "hex": "#8B7732",
-          "collection": "Game Color",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
-        },
-        {
-          "name": "Azure",
-          "hex": "#5B6B9E",
-          "collection": "Model Color",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/model-color"
-        },
-        {
-          "name": "BC Dark Brown",
-          "hex": "#76563D",
-          "collection": "Model Color",
-          "status": "confirmed",
-          "source_url": "https://painthoarder.com/brands/vallejo/lines/model-color"
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collections": [
+            "Game Color"
+          ],
+          "color_family": "Orange"
         },
         {
           "name": "Basalt Grey",
@@ -3528,6 +3379,33 @@
           "collection": "Model Color",
           "status": "confirmed",
           "source_url": "https://www.paintatlas.com/paints/vallejo-basic-skin-tone"
+        },
+        {
+          "name": "BC Dark Brown",
+          "hex": "#76563D",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/model-color"
+        },
+        {
+          "name": "Beasty Brown",
+          "hex": "#7C5222",
+          "collection": "Game Air",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collections": [
+            "Game Color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#7F5525",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Orange"
         },
         {
           "name": "Beige",
@@ -3551,11 +3429,47 @@
           "source_url": "https://painthoarder.com/brands/vallejo/lines/model-color"
         },
         {
+          "name": "Bile Green",
+          "hex": "#D5D900",
+          "collection": "Game Air",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collections": [
+            "Game Color"
+          ],
+          "color_family": "Gold"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "color_family": "Black"
+        },
+        {
           "name": "Black Glaze",
           "hex": "#383838",
           "collection": "Model Color",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/vallejo/lines/model-color"
+        },
+        {
+          "name": "Black Green",
+          "hex": "#3D634A",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "color_family": "Green"
         },
         {
           "name": "Black Grey",
@@ -3577,6 +3491,34 @@
           "collection": "Model Color",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/vallejo/lines/model-color"
+        },
+        {
+          "name": "Bloody Red",
+          "hex": "#BF282E",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#D41C1C",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Red"
+        },
+        {
+          "name": "Blue",
+          "hex": "#00528E",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "color_family": "Blue"
         },
         {
           "name": "Blue Fluorescent",
@@ -3605,6 +3547,1239 @@
           "collection": "Model Color",
           "status": "confirmed",
           "source_url": "https://painthoarder.com/brands/vallejo/lines/model-color"
+        },
+        {
+          "name": "Bone White",
+          "hex": "#BEA374",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Coral"
+        },
+        {
+          "name": "Brassy Brass",
+          "hex": "#A15323",
+          "collection": "Game Air",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collections": [
+            "Game Color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#E9D7CB",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Coral"
+        },
+        {
+          "name": "Bright Bronze",
+          "hex": "#95664C",
+          "collection": "Game Air",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collections": [
+            "Game Color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#E7D5BF",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Beige"
+        },
+        {
+          "name": "Bronze Brown",
+          "hex": "#B16921",
+          "collection": "Game Air",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collections": [
+            "Game Color"
+          ],
+          "color_family": "Orange"
+        },
+        {
+          "name": "Bronze Flesh Tone",
+          "hex": "#EF9849",
+          "collection": "Game Air",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-air"
+        },
+        {
+          "name": "Brown",
+          "hex": "#9A632A",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "color_family": "Orange"
+        },
+        {
+          "name": "Camoflage Green",
+          "hex": "#71753A",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "notes": "Spelling kept as listed in source."
+        },
+        {
+          "name": "Camouflage Green",
+          "hex": "#8B7732",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "color_family": "Yellow"
+        },
+        {
+          "name": "Cayman Green",
+          "hex": "#59542A",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Yellow"
+        },
+        {
+          "name": "Chainmail",
+          "hex": "#E4E5E9",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "White"
+        },
+        {
+          "name": "Charcoal",
+          "hex": "#363638",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Dark gray"
+        },
+        {
+          "name": "Charred Brown",
+          "hex": "#422A26",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Maroon"
+        },
+        {
+          "name": "Dark Blue",
+          "hex": "#464775",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Slate blue"
+        },
+        {
+          "name": "Dark Fleshtone",
+          "hex": "#603429",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Dark Green",
+          "hex": "#1F3727",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Dark green"
+        },
+        {
+          "name": "Dark Gunmetal",
+          "hex": "#DADADA",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "White"
+        },
+        {
+          "name": "Dark Turquoise",
+          "hex": "#01708B",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Cyan"
+        },
+        {
+          "name": "Dead Flesh",
+          "hex": "#C3AA4D",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Yellow"
+        },
+        {
+          "name": "Dead White",
+          "hex": "#FFFFFF",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "notes": "Hex value from public conversion table; older Vallejo source URLs were unavailable or blocked during lookup.",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "color_family": "White"
+        },
+        {
+          "name": "Deep Magenta",
+          "hex": "#622640",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Pink"
+        },
+        {
+          "name": "Desert Yellow",
+          "hex": "#996732",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Dirty Grey",
+          "hex": "#675F30",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Yellow"
+        },
+        {
+          "name": "Dried Blood",
+          "hex": "#622A1D",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Dry Rust",
+          "hex": "#5E332D",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Dwarf Skin",
+          "hex": "#D99169",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Coral"
+        },
+        {
+          "name": "Earth",
+          "hex": "#775730",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Electric Blue",
+          "hex": "#008CBF",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#4399B2",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Turquoise"
+        },
+        {
+          "name": "Elf Skin Tone",
+          "hex": "#CA8854",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Coral"
+        },
+        {
+          "name": "Elfic Blue",
+          "hex": "#50617D",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Blue"
+        },
+        {
+          "name": "Elfic Flesh",
+          "hex": "#EAD7B9",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Beige"
+        },
+        {
+          "name": "Evil Red",
+          "hex": "#461E26",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Maroon"
+        },
+        {
+          "name": "Filthy Brown",
+          "hex": "#E99300",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Flat Earth",
+          "hex": "#87643C",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Fluorescent Blue",
+          "hex": "#0082CD",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Blue"
+        },
+        {
+          "name": "Fluorescent Cold Green",
+          "hex": "#007074",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Cyan"
+        },
+        {
+          "name": "Fluorescent Green",
+          "hex": "#74B72C",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Lime"
+        },
+        {
+          "name": "Fluorescent Magenta",
+          "hex": "#E8348D",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Magenta"
+        },
+        {
+          "name": "Fluorescent Orange",
+          "hex": "#E84E10",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Fluorescent Red",
+          "hex": "#DD2F52",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Fluorescent Violet",
+          "hex": "#6F257A",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Purple"
+        },
+        {
+          "name": "Fluorescent Yellow",
+          "hex": "#F0E639",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Gold"
+        },
+        {
+          "name": "Foul Green",
+          "hex": "#00A27D",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Turquoise"
+        },
+        {
+          "name": "Fresh Blood",
+          "hex": "#7E2B19",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Ghost Green",
+          "hex": "#83C192",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Green"
+        },
+        {
+          "name": "Ghost Grey",
+          "hex": "#C2CBD4",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "White"
+        },
+        {
+          "name": "Glacier Blue",
+          "hex": "#CDD9F1",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Sky blue"
+        },
+        {
+          "name": "Glorious Gold",
+          "hex": "#F4E3C5",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Beige"
+        },
+        {
+          "name": "Glossy Black",
+          "hex": "#010101",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Goblin Green",
+          "hex": "#576033",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Yellow"
+        },
+        {
+          "name": "Gold Yellow",
+          "hex": "#FDB318",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#D67419",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Orange"
+        },
+        {
+          "name": "Gorgon Brown",
+          "hex": "#5A2E23",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Gory Red",
+          "hex": "#7D1F1F",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Green",
+          "hex": "#007133",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Teal"
+        },
+        {
+          "name": "Grunge Brown",
+          "hex": "#864326",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Hammered Copper",
+          "hex": "#DCCFC7",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "White"
+        },
+        {
+          "name": "Heavy Black Green",
+          "hex": "#3E4943",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Dark green"
+        },
+        {
+          "name": "Heavy Blue",
+          "hex": "#405B78",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Blue"
+        },
+        {
+          "name": "Heavy Bluegrey",
+          "hex": "#CBCAC8",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Light gray"
+        },
+        {
+          "name": "Heavy Brown",
+          "hex": "#7B674E",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Heavy Gold Brown",
+          "hex": "#B68644",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Coral"
+        },
+        {
+          "name": "Heavy Green",
+          "hex": "#566637",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Olive"
+        },
+        {
+          "name": "Heavy Kakhi",
+          "hex": "#B49F50",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Yellow"
+        },
+        {
+          "name": "Heavy Ochre",
+          "hex": "#AE7727",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Heavy Orange",
+          "hex": "#EA5E0F",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Heavy Red",
+          "hex": "#8D363C",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Heavy Siena",
+          "hex": "#5E483B",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Heavy Skin Tone",
+          "hex": "#AD8468",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Heavy Violet",
+          "hex": "#484069",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Slate blue"
+        },
+        {
+          "name": "Hexed Lichen",
+          "hex": "#4B2753",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Purple"
+        },
+        {
+          "name": "Hot Orange",
+          "hex": "#E43027",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#E23922",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Red"
+        },
+        {
+          "name": "Imperial Blue",
+          "hex": "#262A47",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Dark blue"
+        },
+        {
+          "name": "Ivory",
+          "hex": "#EFF1D9",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Jade Green",
+          "hex": "#007155",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Cyan"
+        },
+        {
+          "name": "Khaki",
+          "hex": "#9A7B4C",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Leather Brown",
+          "hex": "#8D5E2A",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Livery Green",
+          "hex": "#9DC451",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Yellow green"
+        },
+        {
+          "name": "Lustful Purple",
+          "hex": "#B78BBC",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Plum"
+        },
+        {
+          "name": "Magenta",
+          "hex": "#A62355",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Magenta"
+        },
+        {
+          "name": "Magic Blue",
+          "hex": "#024381",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#0069AA",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Blue"
+        },
+        {
+          "name": "Midnight Purple",
+          "hex": "#2D1E33",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Dark purple"
+        },
+        {
+          "name": "Moon Yellow",
+          "hex": "#EEB800",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Gold"
+        },
+        {
+          "name": "Mutation Green",
+          "hex": "#4C7650",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Green"
+        },
+        {
+          "name": "Neutral Grey",
+          "hex": "#6F6D61",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Yellow"
+        },
+        {
+          "name": "Night Blue",
+          "hex": "#202430",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Dark blue"
+        },
+        {
+          "name": "Nocturnal Red",
+          "hex": "#551C22",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Off-White",
+          "hex": "#FEF3DD",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Beige"
+        },
+        {
+          "name": "Offwhite",
+          "hex": "#F5F4DA",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Olive Green",
+          "hex": "#6A8B3A",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html"
+        },
+        {
+          "name": "Orange Fire",
+          "hex": "#EB5B1E",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Pale Flesh",
+          "hex": "#CBA37F",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Coral"
+        },
+        {
+          "name": "Pale Yellow",
+          "hex": "#EBCE7E",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Coral"
+        },
+        {
+          "name": "Parasite Brown",
+          "hex": "#A35C1E",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Plague Brown",
+          "hex": "#AB7131",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Polished Gold",
+          "hex": "#F8ECC2",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Beige"
+        },
+        {
+          "name": "Red",
+          "hex": "#CD1316",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Rosy Flesh",
+          "hex": "#E58A6B",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Coral"
+        },
+        {
+          "name": "Rotten White",
+          "hex": "#F0EEEF",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "White"
+        },
+        {
+          "name": "Royal Purple",
+          "hex": "#4B2967",
+          "collection": "Model Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "collections": [
+            "Game Color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#302337",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Dark purple"
+        },
+        {
+          "name": "Rust",
+          "hex": "#E45314",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Scarlet Blood",
+          "hex": "#C22222",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Scarlet Red",
+          "hex": "#761E1D",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Scorpy Green",
+          "hex": "#4F8436",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Olive"
+        },
+        {
+          "name": "Scrofulous Brown",
+          "hex": "#A7691C",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Scurvy Green",
+          "hex": "#1F4D43",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Cyan"
+        },
+        {
+          "name": "Sepia",
+          "hex": "#563D27",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Sick Green",
+          "hex": "#096638",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#406037",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Green"
+        },
+        {
+          "name": "Silver",
+          "hex": "#EBEDEC",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "White"
+        },
+        {
+          "name": "Skin",
+          "hex": "#5C2D27",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Skin Tone",
+          "hex": "#E5AB85",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Coral"
+        },
+        {
+          "name": "Smokey Ink",
+          "hex": "#493632",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Maroon"
+        },
+        {
+          "name": "Sombre Grey",
+          "hex": "#535D69",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Blue"
+        },
+        {
+          "name": "Squid Pink",
+          "hex": "#C778A5",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Mauve"
+        },
+        {
+          "name": "Steel Grey",
+          "hex": "#7B92A2",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Blue"
+        },
+        {
+          "name": "Stonewall Grey",
+          "hex": "#9C9384",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Stormy Blue",
+          "hex": "#413F57",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Blue"
+        },
+        {
+          "name": "Succubus Skin",
+          "hex": "#933D46",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Sun Yellow",
+          "hex": "#FFCF07",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#F6A300",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Orange"
+        },
+        {
+          "name": "Sunrise Blue",
+          "hex": "#73C9EC",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Sky blue"
+        },
+        {
+          "name": "Sunset Orange",
+          "hex": "#F4973A",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Tan",
+          "hex": "#95604E",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Terracotta",
+          "hex": "#693E38",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "Tinny Tin",
+          "hex": "#D5C7C6",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "White"
+        },
+        {
+          "name": "Toxic Yellow",
+          "hex": "#E8D457",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Yellow"
+        },
+        {
+          "name": "Turquoise",
+          "hex": "#03676F",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#016160",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Cyan"
+        },
+        {
+          "name": "Ultramarine Blue",
+          "hex": "#383967",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Slate blue"
+        },
+        {
+          "name": "Verdigris",
+          "hex": "#91CBCC",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Cyan",
+          "alternate_hex_values": [
+            {
+              "hex": "#86C7A9",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+              "notes": "Color family: Sage"
+            }
+          ]
+        },
+        {
+          "name": "Violet",
+          "hex": "#6E3D74",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Purple"
+        },
+        {
+          "name": "Violeta Wash",
+          "hex": "#886CA7",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Purple"
+        },
+        {
+          "name": "Vomit",
+          "hex": "#847C33",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Yellow"
+        },
+        {
+          "name": "Warlord Purple",
+          "hex": "#7D1A44",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://redgrimm.github.io/paint-conversion/p3.html",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "alternate_hex_values": [
+            {
+              "hex": "#862351",
+              "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color"
+            }
+          ],
+          "color_family": "Magenta"
+        },
+        {
+          "name": "Warm Grey",
+          "hex": "#B29E9D",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "Red"
+        },
+        {
+          "name": "White",
+          "hex": "#FFFFFF",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color",
+          "color_family": "White"
+        },
+        {
+          "name": "Wolf Grey",
+          "hex": "#C3D1D1",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color?page=8",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color?page=8",
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "notes": "PaintHoarder color category: White.",
+          "color_family": "White"
+        },
+        {
+          "name": "Yellow",
+          "hex": "#EBA90C",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color?page=8",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color?page=8",
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "notes": "PaintHoarder color category: Orange.",
+          "color_family": "Orange"
+        },
+        {
+          "name": "Yellow Olive",
+          "hex": "#1E4F39",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color?page=8",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color?page=8",
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "notes": "PaintHoarder color category: Teal.",
+          "color_family": "Teal"
+        },
+        {
+          "name": "Yellow Wash",
+          "hex": "#E9E85C",
+          "collection": "Game Color",
+          "status": "confirmed",
+          "source_url": "https://painthoarder.com/brands/vallejo/lines/game-color?page=8",
+          "source_urls": [
+            "https://painthoarder.com/brands/vallejo/lines/game-color?page=8",
+            "https://painthoarder.com/brands/vallejo/lines/game-color"
+          ],
+          "notes": "PaintHoarder color category: Yellow.",
+          "color_family": "Yellow"
         }
       ]
     },

@@ -12,7 +12,7 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.10` (`package.json` version `0.10.0`). The static HTML uses the
+Current app version: `v0.11` (`package.json` version `0.11.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
 
@@ -37,9 +37,10 @@ It currently supports:
 - Recipe depth modes for beginner, speedpaint, battle-ready, and display-painting workflows.
 - Shade, wash, basecoat, layer, edge highlight, and focus-light steps.
 - Paint catalogue search, direct paint selection for the main color, producer filters
-  for limiting nearest-paint matches by manufacturer, owned-colour tooltip badges, an
-  owned-colours checklist for tracking paints already in your collection, and a
-  shopping list for unowned colours you want to buy.
+  for limiting nearest-paint matches by manufacturer, owned-colour tooltip badges,
+  PaintRack CSV import for owned collection exports, an owned-colours checklist for
+  tracking paints already in your collection, and a shopping list for unowned colours you
+  want to buy.
 - A random palette button that can vary game system, custom or faction schemes, colors,
   scheme type, finish, role planner, base environment, heraldic settings, and producer
   filters.
@@ -54,8 +55,7 @@ It currently supports:
   catalogue lives at `data/paint-catalogue.json` and uses `manufacturers[].colors[]`
   entries.
 - Owned-paint filtering for closest matches, including badges on matches that are in
-  your marked collection and a select-all-visible helper for quickly checking filtered
-  catalogue results.
+  your marked collection.
 - Match metadata for manufacturer, collection, range, finish, and distance.
 - Hover/focus paint tooltips for generated colors, showing the closest catalogue
   matches without leaving the palette view.
@@ -81,10 +81,11 @@ Typical workflow:
 3. Use `Random palette` when you want the app to explore across systems, schemes, colors,
    faction data, finish styles, and planning options for you.
 4. Adjust finish, recipe mode, role planner, base environment, and paint producer filters.
-5. In `Owned colours`, tick the paints you own and enable owned-only closest matches if
-   you want suggestions restricted to your collection.
+5. In `Owned colours`, tick the paints you own or import a PaintRack CSV export, then
+   enable owned-only closest matches if you want suggestions restricted to your
+   collection.
 6. Add unowned tooltip matches or searched catalogue paints to `Shopping list`, then
-   remove them when you buy them or no longer need them.
+   mark them owned when you buy them or remove them when you no longer need them.
 7. Collapse any generated-output sections you do not need in the main window; the app
    remembers that view locally and in named profiles.
 8. Save a named profile or copy a share link if you want to keep or send the scheme.
@@ -200,8 +201,9 @@ npm test
 
 The tests use Node's built-in test runner and cover color generation, fixed faction
 palette generation, system data separation, translation lookup, catalogue normalization
-and matching, producer filter restore behavior, owned-paint and shopping-list UI wiring, share-link
-serialization guards, base suggestion behavior, and static asset/version wiring.
+and matching, PaintRack import parsing, producer filter restore behavior, owned-paint and
+shopping-list UI wiring, share-link serialization guards, base suggestion behavior, and
+static asset/version wiring.
 
 For a real browser smoke test, install Playwright Core and run:
 
@@ -234,6 +236,23 @@ connected to Games Workshop, Citadel, Vallejo, Army Painter, or any other paint
 manufacturer, paint range, miniature company, or hobby brand mentioned in the app.
 
 ## Release Notes
+
+### v0.11.0
+
+This release adds PaintRack collection import and makes the shopping list easier to clear
+when paints become part of your owned collection:
+
+- Added PaintRack CSV import for files with `Brand`, `SKU`, `Paint Name`, `Paint Class`,
+  `Size`, and `Count` columns.
+- Marked matched PaintRack catalogue colours as owned and kept unmatched colours as owned
+  PaintRack-only entries without pretending they have catalogue colour data.
+- Added a short import report popover for matched, not-in-catalogue, and skipped rows.
+- Removed the old select-all-visible owned-colours checkbox.
+- Added a `Mark owned` action to shopping-list rows so bought paints leave the shopping
+  list and join owned colours in one click.
+- Bumped the public app version from `v0.10` to `v0.11` so hosted pages do not reuse
+  stale `v0.10` assets that do not include PaintRack import and shopping-list ownership
+  actions.
 
 ### v0.10.0
 
