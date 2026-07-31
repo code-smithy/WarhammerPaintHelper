@@ -48,6 +48,7 @@ test("exposes common colour theory and Warhammer hobby scheme names", () => {
     "boxArt",
     "eavyMetal",
     "grimdark",
+    "adrianSmith",
     "blanchitsu",
     "comicBook",
     "military",

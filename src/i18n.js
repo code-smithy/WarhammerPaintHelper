@@ -2104,6 +2104,38 @@
 
   TRANSLATIONS.it = mergeLocale(TRANSLATIONS.en, ITALIAN_TRANSLATIONS);
 
+  const ARTIST_SCHEME_TRANSLATIONS = {
+    en: {
+      title: "Adrian Smith atmosphere",
+      desc: "A dark, serious illustrated-war palette with hard shadows, battered midtones, aged highlights, and one restrained accent.",
+      note: "Push the model toward blackened armour, smoke-stained cloth, dirty metals, warm bone, and tiny aggressive focal details."
+    },
+    fr: {
+      title: "Atmosphere Adrian Smith",
+      desc: "Schema illustre sombre et grave, avec ombres dures, tons moyens uses, lumieres vieillies et accent retenu.",
+      note: "Oriente le modele vers armure noircie, tissu enfume, metaux sales, os chaud et petits details focaux agressifs."
+    },
+    de: {
+      title: "Adrian-Smith-Atmosphaere",
+      desc: "Dunkles, ernstes Illustrationsschema mit harten Schatten, abgenutzten Mittentoenen, gealterten Highlights und sparsamem Akzent.",
+      note: "Setze auf geschwaerzte Ruestung, rauchigen Stoff, schmutzige Metalle, warmen Knochen und kleine aggressive Fokusdetails."
+    },
+    es: {
+      title: "Atmosfera Adrian Smith",
+      desc: "Esquema ilustrado oscuro y serio, con sombras duras, medios gastados, luces envejecidas y un acento contenido.",
+      note: "Lleva el modelo hacia armadura ennegrecida, tela ahumada, metales sucios, hueso calido y pequenos detalles focales agresivos."
+    },
+    it: {
+      title: "Atmosfera Adrian Smith",
+      desc: "Schema illustrativo scuro e severo, con ombre dure, mezzitoni usurati, luci invecchiate e un accento contenuto.",
+      note: "Porta il modello verso armature annerite, stoffe fumose, metalli sporchi, ossa calde e piccoli dettagli focali aggressivi."
+    }
+  };
+
+  for (const language of LANGUAGE_KEYS) {
+    TRANSLATIONS[language].schemes.adrianSmith = ARTIST_SCHEME_TRANSLATIONS[language];
+  }
+
   const RECIPE_TRANSLATIONS = {
     en: {
       ui: {

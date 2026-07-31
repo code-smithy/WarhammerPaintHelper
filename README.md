@@ -26,7 +26,7 @@ It currently supports:
   color, dark neutral, light neutral, and two accents.
 - Multiple color scheme types, including complementary, split-complementary, triadic,
   tetradic, analogous, monochrome, zenithal, warm/cool contrast, Zorn limited palette,
-  grimdark, AoS realm, and 40K chapter/squad schemes.
+  grimdark, Adrian Smith-inspired atmosphere, AoS realm, and 40K chapter/squad schemes.
 - Heraldic two-color mode with field and charge colors, shield layouts, color balance,
   automatic accent choices, and a small heraldic preview.
 - A clean-to-grimdark finish slider that adjusts generated support colors and paint
