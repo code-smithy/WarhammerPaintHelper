@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.12.0
+
+- Organised the workspace into Palette, Painting plan, and Paints & supplies steps.
+- Kept the live palette visible across steps and added next-step navigation.
+- Grouped saved profiles with save/share controls and added direct access from the toolbar.
+- Refreshed the interface with quieter surfaces, flat colour swatches, clearer spacing,
+  mobile navigation, visible keyboard focus, and a skip link.
+- Translated workflow labels into all five supported languages.
+- Preserved the existing profile and share-link formats.
+
 ## v0.11.0
 
 - Added PaintRack CSV import for owned-colour collection exports, including matched

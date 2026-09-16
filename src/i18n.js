@@ -13,6 +13,16 @@
     en: {
       appTitle: "Warhammer Paint Helper",
       ui: {
+        workflow: "Workflow",
+        stepPalette: "Palette",
+        stepPlan: "Painting plan",
+        stepPaints: "Paints & supplies",
+        livePalette: "Your palette · live preview",
+        nextPlan: "Plan your painting →",
+        nextPaints: "Find your paints →",
+        backPalette: "Back to palette",
+        skipWorkspace: "Skip to workspace",
+
         language: "Language",
         system: "Game system",
         eyebrow: "Miniature Palette Tool",
@@ -604,6 +614,16 @@
     de: {
       appTitle: "Warhammer Paint Helper",
       ui: {
+        workflow: "Arbeitsablauf",
+        stepPalette: "Farbpalette",
+        stepPlan: "Bemalplan",
+        stepPaints: "Farben und Zubehör",
+        livePalette: "Deine Palette · Live-Vorschau",
+        nextPlan: "Bemalung planen →",
+        nextPaints: "Farben finden →",
+        backPalette: "Zurück zur Palette",
+        skipWorkspace: "Zum Arbeitsbereich",
+
         language: "Sprache",
         system: "Spielsystem",
         eyebrow: "Miniaturen-Paletten-Tool",
@@ -834,6 +854,16 @@
     fr: {
       appTitle: "Warhammer Paint Helper",
       ui: {
+        workflow: "Étapes",
+        stepPalette: "Palette",
+        stepPlan: "Plan de peinture",
+        stepPaints: "Peintures et matériel",
+        livePalette: "Votre palette · aperçu en direct",
+        nextPlan: "Planifier la peinture →",
+        nextPaints: "Trouver les peintures →",
+        backPalette: "Retour à la palette",
+        skipWorkspace: "Aller à l’espace de travail",
+
         language: "Langue",
         system: "Système de jeu",
         eyebrow: "Outil de palette miniature",
@@ -1041,6 +1071,16 @@
     es: {
       appTitle: "Warhammer Paint Helper",
       ui: {
+        workflow: "Pasos",
+        stepPalette: "Paleta",
+        stepPlan: "Plan de pintura",
+        stepPaints: "Pinturas y material",
+        livePalette: "Tu paleta · vista previa",
+        nextPlan: "Planificar la pintura →",
+        nextPaints: "Buscar pinturas →",
+        backPalette: "Volver a la paleta",
+        skipWorkspace: "Ir al espacio de trabajo",
+
         language: "Idioma",
         system: "Sistema de juego",
         eyebrow: "Herramienta de paletas para miniaturas",
@@ -2139,6 +2179,16 @@
   const RECIPE_TRANSLATIONS = {
     en: {
       ui: {
+        workflow: "Passaggi",
+        stepPalette: "Tavolozza",
+        stepPlan: "Piano di pittura",
+        stepPaints: "Colori e materiali",
+        livePalette: "La tua tavolozza · anteprima",
+        nextPlan: "Pianifica la pittura →",
+        nextPaints: "Trova i colori →",
+        backPalette: "Torna alla tavolozza",
+        skipWorkspace: "Vai allo spazio di lavoro",
+
         recipeMode: "Recipe mode",
         recipeTitle: "{system} {mode} recipe"
       },
