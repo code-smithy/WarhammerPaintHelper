@@ -1857,6 +1857,16 @@
   const ITALIAN_TRANSLATIONS = {
     appTitle: "Warhammer Paint Helper",
     ui: {
+      workflow: "Passaggi",
+      stepPalette: "Tavolozza",
+      stepPlan: "Piano di pittura",
+      stepPaints: "Colori e materiali",
+      livePalette: "La tua tavolozza · anteprima",
+      nextPlan: "Pianifica la pittura →",
+      nextPaints: "Trova i colori →",
+      backPalette: "Torna alla tavolozza",
+      skipWorkspace: "Vai allo spazio di lavoro",
+
       language: "Lingua",
       system: "Sistema di gioco",
       eyebrow: "Strumento per palette di miniature",
@@ -2179,16 +2189,6 @@
   const RECIPE_TRANSLATIONS = {
     en: {
       ui: {
-        workflow: "Passaggi",
-        stepPalette: "Tavolozza",
-        stepPlan: "Piano di pittura",
-        stepPaints: "Colori e materiali",
-        livePalette: "La tua tavolozza · anteprima",
-        nextPlan: "Pianifica la pittura →",
-        nextPaints: "Trova i colori →",
-        backPalette: "Torna alla tavolozza",
-        skipWorkspace: "Vai allo spazio di lavoro",
-
         recipeMode: "Recipe mode",
         recipeTitle: "{system} {mode} recipe"
       },
