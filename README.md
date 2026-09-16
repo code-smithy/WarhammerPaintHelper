@@ -5,6 +5,19 @@ tabletop color palettes. It is aimed at Warhammer Age of Sigmar and Warhammer 40
 hobbyists looking for quick faction colors, paint recipes, or palette ideas, but it can
 also be used for any miniature, model, or tabletop painting project.
 
+## Painting workflow
+
+1. **Palette:** Choose a faction scheme, catalogue paint, or custom colour. Adjust the
+   palette rules and review the live colour cards.
+2. **Painting plan:** Choose model roles, a base environment, and recipe depth. Review
+   surface assignments and the shade, layer, and highlight steps.
+3. **Paints & supplies:** Filter paint producers, manage owned colours, import PaintRack
+   CSV files, and build a shopping list from catalogue matches.
+
+Use the numbered navigation to move freely between steps. Your palette stays visible
+and your settings remain intact. **Save / share** opens the profile controls from any
+step. Saved profiles and share links use the existing format.
+
 ## What It Does
 
 The app lets you pick a main color from a color wheel, enter a HEX value directly, choose
@@ -12,7 +25,7 @@ a paint from the catalogue, select a fixed faction scheme, or roll a full random
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.11` (`package.json` version `0.11.0`). The static HTML uses the
+Current app version: `v0.12` (`package.json` version `0.12.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
 

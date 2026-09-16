@@ -189,6 +189,9 @@
       translator = W.createTranslator(state.language);
       document.documentElement.lang = state.language;
       document.title = t("appTitle");
+      document.querySelectorAll("[data-i18n-aria]").forEach(node => {
+        node.setAttribute("aria-label", t(node.dataset.i18nAria));
+      });
       document.querySelectorAll("[data-i18n]").forEach(node => {
         node.textContent = t(node.dataset.i18n);
       });
@@ -2335,3 +2338,45 @@
   }
 
 }());
+
+
+// Keep every editor mounted so moving between steps preserves the current palette.
+document.addEventListener("DOMContentLoaded", () => {
+  const workspace = document.getElementById("workspace");
+  const steps = Array.from(document.querySelectorAll("[data-workflow]"));
+  const panels = Array.from(document.querySelectorAll("[data-workflow-panel]"));
+  const next = document.getElementById("nextStepBtn");
+  const save = document.querySelector('[data-control-group="saveShare"]');
+  const nextLabels = ["ui.nextPlan", "ui.nextPaints", "ui.backPalette"];
+  let active = 0;
+
+  function showStep(index) {
+    active = index;
+    const view = steps[index].dataset.workflow;
+    workspace.dataset.workflowView = view;
+    steps.forEach((button, i) => {
+      if (i === index) button.setAttribute("aria-current", "step");
+      else button.removeAttribute("aria-current");
+    });
+    panels.forEach(panel => { panel.hidden = panel.dataset.workflowPanel !== view; });
+    // Primary controls should be ready to use on arrival.
+    const group = workspace.querySelector(`[data-control-group][data-workflow-panel="${view}"]`);
+    if (group) group.open = true;
+    next.dataset.i18n = nextLabels[index];
+    next.textContent = window.WPH.createTranslator(document.documentElement.lang)(nextLabels[index]);
+    // The wheel needs fresh geometry after its panel becomes visible again.
+    window.dispatchEvent(new Event("resize"));
+  }
+  steps.forEach((button, index) => button.addEventListener("click", () => showStep(index)));
+  next.addEventListener("click", () => {
+    showStep((active + 1) % steps.length);
+    steps[active].focus();
+    document.querySelector(".workflow-nav").scrollIntoView({ block: "start" });
+  });
+  document.getElementById("openSaveBtn").addEventListener("click", () => {
+    save.open = true;
+    save.scrollIntoView({ block: "center" });
+    document.getElementById("profileNameInput").focus({ preventScroll: true });
+  });
+  showStep(0);
+});

@@ -1,4 +1,5 @@
 const fs = require("node:fs");
+const assert = require("node:assert/strict");
 const http = require("node:http");
 const path = require("node:path");
 
@@ -62,6 +63,47 @@ async function main() {
     if (producerCount < 1) {
       throw new Error("Expected at least one producer filter checkbox.");
     }
+    // Switching steps must retain the scheme while showing only relevant controls.
+    const paletteHex = await page.textContent("#currentHex");
+    await page.click('[data-workflow="plan"]');
+    assert.equal(await page.locator('[data-control-group="paintingPlan"]').isVisible(), true);
+    assert.equal(await page.locator('[data-control-group="color"]').isVisible(), false);
+    assert.equal(await page.locator('[data-collapsible-section="paintLadder"]').isVisible(), true);
+    assert.equal(await page.locator("#palette").isVisible(), true);
+    await page.click("#nextStepBtn");
+    assert.equal(await page.locator('[data-workflow="paints"]').getAttribute("aria-current"), "step");
+    assert.equal(await page.locator("#producerFilters").isVisible(), true);
+    assert.equal(await page.locator("#shoppingListPanel").isVisible(), true);
+    assert.equal(await page.textContent("#currentHex"), paletteHex);
+
+    // Save access works from every step and language changes update navigation.
+    await page.click("#openSaveBtn");
+    assert.equal(await page.locator("#profileNameInput").isVisible(), true);
+    assert.equal(await page.locator("#profileNameInput").evaluate(node => node === document.activeElement), true);
+    await page.fill("#profileNameInput", "Workflow smoke profile");
+    await page.click("#saveProfileBtn");
+    assert.match(await page.locator("#savedProfilesSelect").textContent(), /Workflow smoke profile/);
+    await page.selectOption("#languageSelect", "de");
+    assert.equal(await page.locator('[data-workflow="plan"]').textContent(), "02Bemalplan");
+    assert.equal(await page.locator("#nextStepBtn").textContent(), "Zurück zur Palette");
+    await page.selectOption("#languageSelect", "en");
+    await page.click('[data-workflow="palette"]');
+    assert.equal(await page.textContent("#currentHex"), paletteHex);
+    assert.equal(await page.locator("#shoppingListPanel").isVisible(), false);
+
+    // Check each step at a narrow mobile width and a desktop width.
+    for (const width of [375, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      for (const view of ["palette", "plan", "paints"]) {
+        await page.click(`[data-workflow="${view}"]`);
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true,
+          `Horizontal overflow in ${view} at ${width}px`);
+      }
+    }
+    await page.reload({ waitUntil: "networkidle" });
+    assert.equal(await page.textContent("#currentHex"), paletteHex);
+    assert.match(await page.locator("#savedProfilesSelect").textContent(), /Workflow smoke profile/);
+
     if (errors.length) {
       throw new Error(`Browser errors:\n${errors.join("\n")}`);
     }
