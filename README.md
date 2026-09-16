@@ -20,12 +20,31 @@ step. Saved profiles and share links use the existing format.
 
 ## What It Does
 
+### Edit and lock palette colours
+
+Choose a scheme, then use the colour picker on any palette card to set its colour.
+Select **Unlocked** to lock that slot. **Reroll unlocked colours** keeps locked colours
+exactly as entered and varies the other slots together. When every slot is locked,
+rerolling is disabled. Unlocking a slot does not change its current colour.
+
+Edits update role assignments, paint ladders, catalogue matches, and the heraldic
+preview. Profiles, automatic local restore, and share links include the edited colours
+and locks. The left-side colour wheel remains the generator's starting colour:
+changing it or the finish regenerates unlocked slots while keeping locked ones.
+Changing the game system, palette mode, or scheme resets edits and locks because
+the palette's roles may change. Fixed faction schemes can be used as a starting point;
+their original descriptive notes remain reference information after colour edits.
+
+The variation uses a shared hue and lightness shift for unlocked colours. Locked
+colours take priority over colour-harmony rules; this is not an inverse solver for
+an exact highlight recipe.
+
 The app lets you pick a main color from a color wheel, enter a HEX value directly, choose
-a paint from the catalogue, select a fixed faction scheme, or roll a full random palette.
+a paint from the catalogue, select a fixed faction scheme, or vary unlocked palette colours.
 It then generates painting-friendly color schemes with role suggestions, paint matches,
 and steps you can turn into a practical miniature painting plan.
 
-Current app version: `v0.12` (`package.json` version `0.12.0`). The static HTML uses the
+Current app version: `v0.13` (`package.json` version `0.13.0`). The static HTML uses the
 major/minor version as a cache-buster on local CSS and JavaScript assets so deployed
 updates on GitHub Pages are less likely to reuse stale browser-cached files.
 
@@ -54,9 +73,8 @@ It currently supports:
   PaintRack CSV import for owned collection exports, an owned-colours checklist for
   tracking paints already in your collection, and a shopping list for unowned colours you
   want to buy.
-- A random palette button that can vary game system, custom or faction schemes, colors,
-  scheme type, finish, role planner, base environment, heraldic settings, and producer
-  filters.
+- A colour picker and lock button on every palette card. Rerolling changes only unlocked
+  colours and preserves the selected scheme, game system, and producer filters.
 - Collapsible generated-output sections so you can hide painting notes, role plans, base
   advice, model roles, paint ladders, or catalogue matches and keep the main window focused.
 - Automatic browser-local restore of the last used settings, plus named local profiles

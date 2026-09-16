@@ -1337,6 +1337,12 @@ button:disabled {
 }
 
 /* Workspace: a quiet surface, clear steps, and one task at a time. */
+.palette-editor { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; }
+.palette-editor input[type="color"] { width: 44px; height: 42px; padding: 3px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); cursor: pointer; }
+.palette-lock { flex: 1; font-size: .8rem; padding: 8px; }
+.palette-lock[aria-pressed="true"] { outline: 2px solid var(--accent); outline-offset: -2px; }
+.palette-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.palette-actions p { flex: 1 1 240px; margin: 0; }
 :root {
   --bg: #101514;
   --panel: #19211f;

@@ -46,6 +46,7 @@
       baseThemeKey: "auto",
       recipeModeKey: "battle",
       paintSearch: "",
+      paletteEdits: null,
       producerKeys: null,
       ownedPaintKeys: [],
       onlyOwnedMatches: false,
@@ -59,6 +60,7 @@
     };
 
     let pendingProducerKeys = null;
+    let lastPaletteSource = null;
     let ownedPaintKeys = new Set(state.ownedPaintKeys);
     let paintRackCustomPaints = [];
     let shoppingPaintKeys = new Set(state.shoppingPaintKeys);
@@ -534,8 +536,9 @@
       });
 
       el.random.addEventListener("click", () => {
-        randomizePalette();
+        rerollPalette();
       });
+      document.getElementById("rerollPaletteBtn").addEventListener("click", rerollPalette);
 
       document.addEventListener("mouseover", handlePaintHoverStart);
       document.addEventListener("mouseout", handlePaintHoverEnd);
@@ -578,6 +581,15 @@
           accentKey: state.heraldicAccent
         })
         : W.buildPalette(state, schemeKey);
+      const paletteContext = [state.system, state.mode, state.factionSchemeId, schemeKey].join("|");
+      const paletteSource = currentPalette.map(color => color.hex).join(",");
+      if (!state.paletteEdits || state.paletteEdits.context !== paletteContext) {
+        state.paletteEdits = { context: paletteContext, source: paletteSource, colors: [] };
+      } else if (lastPaletteSource !== null && lastPaletteSource !== paletteSource) {
+        state.paletteEdits.colors = state.paletteEdits.colors.map(color => color && color.locked ? color : null);
+      }
+      state.paletteEdits.source = paletteSource;
+      lastPaletteSource = paletteSource;
       if (isFactionScheme && currentPalette[0]) {
         state.h = currentPalette[0].h;
         state.s = currentPalette[0].s;
@@ -591,7 +603,8 @@
         }
         syncSlidersToActiveColor();
       }
-      const hex = currentPalette[0] ? currentPalette[0].hex : W.primaryHex(state);
+      currentPalette = W.applyPaletteEdits(currentPalette, state.paletteEdits);
+      const hex = W.primaryHex(state);
       const secondaryHex = W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l);
 
       setHeraldicVisibility(isHeraldic);
@@ -798,8 +811,8 @@
       if (state.mode !== "heraldic") {
         return;
       }
-      const primary = W.primaryHex(state);
-      const secondary = W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l);
+      const primary = currentPalette[0]?.hex || W.primaryHex(state);
+      const secondary = currentPalette[1]?.hex || W.hslToHex(state.secondary.h, state.secondary.s, state.secondary.l);
       const accent = currentPalette.find(color => color.roleKey === "heraldicAccent") || currentPalette[currentPalette.length - 1];
       el.heraldicPreview.dataset.layout = state.heraldicLayout;
       el.heraldicPreview.style.setProperty("--heraldic-primary", primary);
@@ -808,7 +821,7 @@
     }
 
     function renderPalette() {
-      replaceChildren(el.palette, currentPalette.map(color => createElement("article", {
+      replaceChildren(el.palette, currentPalette.map((color, index) => createElement("article", {
         className: "card paint-hover-target",
         tabIndex: 0,
         dataset: { colorHex: color.hex, colorName: colorName(color) }
@@ -820,10 +833,46 @@
           createElement("div", {
             className: "meta",
             text: `HSL(${Math.round(color.h)}, ${Math.round(color.s)}%, ${Math.round(color.l)}%)`
-          })
+          }),
+          paletteEditor(color, index)
         ])
       ])));
       el.palette.querySelectorAll(".hex").forEach(node => node.addEventListener("click", () => copyText(node.textContent)));
+      const allLocked = currentPalette.length > 0 && currentPalette.every((color, index) => state.paletteEdits.colors[index]?.locked);
+      el.random.disabled = allLocked;
+      document.getElementById("rerollPaletteBtn").disabled = allLocked;
+    }
+
+    function paletteEditor(color, index) {
+      const locked = Boolean(state.paletteEdits.colors[index] && state.paletteEdits.colors[index].locked);
+      const picker = createElement("input");
+      picker.type = "color";
+      picker.value = color.hex;
+      picker.setAttribute("aria-label", `${t("ui.editPaletteColor")}: ${colorName(color)}`);
+      picker.addEventListener("change", () => {
+        state.paletteEdits.colors[index] = { hex: picker.value.toUpperCase(), locked };
+        update();
+        el.palette.querySelectorAll('input[type="color"]')[index].focus();
+      });
+      const lock = createElement("button", {
+        className: "secondary palette-lock",
+        text: t(locked ? "ui.paletteLocked" : "ui.paletteUnlocked")
+      });
+      lock.type = "button";
+      lock.setAttribute("aria-pressed", String(locked));
+      lock.setAttribute("aria-label", `${t("ui.lockPaletteColor")}: ${colorName(color)}`);
+      lock.addEventListener("click", () => {
+        state.paletteEdits.colors[index] = { hex: color.hex, locked: !locked };
+        update();
+        el.palette.querySelectorAll(".palette-lock")[index].focus();
+      });
+      return createElement("div", { className: "palette-editor" }, [picker, lock]);
+    }
+
+    function rerollPalette() {
+      if (currentPalette.length && currentPalette.every((color, index) => state.paletteEdits.colors[index]?.locked)) return;
+      state.paletteEdits.colors = W.varyPalette(currentPalette, state.paletteEdits, randomInt(25, 335));
+      update();
     }
 
     function renderRolePlanner() {
@@ -1581,62 +1630,6 @@
       return paint.manufacturer || "__unknown__";
     }
 
-    function randomizePalette() {
-      state.system = randomChoice(["aos", "k40"]);
-      state.mode = randomChoice(["single", "heraldic"]);
-      state.activeColor = "primary";
-      state.factionSchemeId = "";
-      state.schemeKey = randomChoice(W.getSchemeKeysForSystem(state.system));
-      state.roleProfileKey = randomChoice(W.getRoleProfileKeys(state.system));
-      state.baseThemeKey = randomChoice(W.getBaseThemeKeys(state.system));
-      state.recipeModeKey = randomChoice(W.getRecipeModeKeys());
-      state.heraldicLayout = randomChoice(Object.keys(W.HERALDIC_LAYOUTS));
-      state.heraldicRatio = randomChoice(Object.keys(W.HERALDIC_RATIOS));
-      state.heraldicAccent = randomChoice(Object.keys(W.HERALDIC_ACCENTS));
-      state.style = randomInt(-100, 100);
-      state.paintSearch = "";
-
-      const randomPrimary = randomCatalogueColor() || randomHobbyColor();
-      state.h = randomPrimary.h;
-      state.s = randomPrimary.s;
-      state.l = randomPrimary.l;
-      state.secondary = randomHobbyColor();
-
-      const schemesForSystem = factionSchemesForCurrentSystem();
-      if (schemesForSystem.length && Math.random() < 0.34) {
-        state.factionSchemeId = randomChoice(schemesForSystem).id;
-        state.mode = "single";
-      }
-
-      syncControlsFromState({ resetProducerSelection: false });
-      update();
-    }
-
-    function randomCatalogueColor() {
-      if (!cataloguePaints.length || Math.random() < 0.45) {
-        return null;
-      }
-      const paint = randomChoice(filteredCataloguePaints().filter(item => item.hex));
-      if (!paint) {
-        return null;
-      }
-      const rgb = W.hexToRgb(paint.hex);
-      return rgb ? W.rgbToHsl(rgb.r, rgb.g, rgb.b) : null;
-    }
-
-    function randomHobbyColor() {
-      return {
-        h: randomInt(0, 359),
-        s: randomInt(38, 92),
-        l: randomInt(28, 72)
-      };
-    }
-
-
-    function randomChoice(items) {
-      return items[Math.floor(Math.random() * items.length)];
-    }
-
     function randomInt(min, max) {
       return Math.floor(min + Math.random() * (max - min + 1));
     }
@@ -1731,6 +1724,7 @@
     function createSettingsSnapshot() {
       return {
         version: SETTINGS_VERSION,
+        paletteEdits: W.normalizePaletteEdits(state.paletteEdits),
         savedAt: new Date().toISOString(),
         h: state.h,
         s: state.s,
@@ -1787,6 +1781,7 @@
       params.set("base", snapshot.baseThemeKey);
       params.set("recipe", snapshot.recipeModeKey);
       params.set("lang", snapshot.language);
+      if (snapshot.paletteEdits) params.set("palette", JSON.stringify(snapshot.paletteEdits));
 
       if (snapshot.factionSchemeId) {
         params.set("faction", snapshot.factionSchemeId);
@@ -1819,6 +1814,8 @@
       }
 
       state.language = W.hasLanguage(snapshot.language) ? snapshot.language : state.language;
+      state.paletteEdits = W.normalizePaletteEdits(snapshot.paletteEdits);
+      lastPaletteSource = null;
       state.system = ["aos", "k40"].includes(snapshot.system) ? snapshot.system : state.system;
       state.mode = ["single", "heraldic"].includes(snapshot.mode) ? snapshot.mode : state.mode;
       state.activeColor = ["primary", "secondary"].includes(snapshot.activeColor) ? snapshot.activeColor : state.activeColor;
@@ -1923,6 +1920,11 @@
         }
 
         const snapshot = {};
+        try {
+          snapshot.paletteEdits = W.normalizePaletteEdits(JSON.parse(params.get("palette") || "null"));
+        } catch (error) {
+          snapshot.paletteEdits = null;
+        }
         const primary = hslFromHexParam(params.get("hex"));
         const secondary = hslFromHexParam(params.get("shex"));
         if (primary) {

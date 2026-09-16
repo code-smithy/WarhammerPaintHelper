@@ -13,6 +13,16 @@ test("supports the configured language set", () => {
   assert.equal(i18n.hasLanguage("pt"), false);
 });
 
+test("palette editor labels use the selected locale", () => {
+  const labels = { en: "Locked", de: "Gesperrt", fr: "Verrouillée", es: "Bloqueado", it: "Bloccato" };
+  for (const [language, expected] of Object.entries(labels)) {
+    assert.equal(i18n.createTranslator(language)("ui.paletteLocked"), expected);
+    for (const key of ["editPaletteColor", "lockPaletteColor", "paletteUnlocked", "rerollPalette", "paletteLockHint"]) {
+      assert.notEqual(i18n.createTranslator(language)(`ui.${key}`), `ui.${key}`);
+    }
+  }
+});
+
 test("translates core UI labels and interpolates values", () => {
   const en = i18n.createTranslator("en");
   const fr = i18n.createTranslator("fr");

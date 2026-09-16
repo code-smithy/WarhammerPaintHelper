@@ -3,6 +3,53 @@ const assert = require("node:assert/strict");
 const core = require("../src/core.js");
 const factions = require("../src/factions.js");
 
+test("palette edits validate untrusted profile and share data", () => {
+  assert.equal(core.normalizePaletteEdits(null), null);
+  assert.equal(core.normalizePaletteEdits({ context: 3, colors: [] }), null);
+  const edits = core.normalizePaletteEdits({ context: "aos|single||triadic", colors: [
+    { hex: "#12abef", locked: true }, { hex: "bad value", locked: true }, null,
+    { hex: "#ffffff", locked: "true" }
+  ] });
+  assert.deepEqual(edits.colors, [{ hex: "#12ABEF", locked: true }, null, null, { hex: "#FFFFFF", locked: false }]);
+  assert.equal(core.normalizePaletteEdits({ context: "x", colors: Array(100).fill(null) }).colors.length, 12);
+});
+
+test("edited palette slots preserve role metadata and exact hex values", () => {
+  const original = [{ roleKey: "highlight", hex: "#FFFFFF", h: 0, s: 0, l: 100 }];
+  const edits = core.normalizePaletteEdits({ context: "x", colors: [{ hex: "#A1C3E7", locked: true }] });
+  const result = core.applyPaletteEdits(original, edits);
+  assert.equal(result[0].hex, "#A1C3E7");
+  assert.equal(result[0].roleKey, "highlight");
+  assert.deepEqual({ h: result[0].h, s: result[0].s, l: result[0].l }, core.rgbToHsl(161, 195, 231));
+  assert.equal(original[0].hex, "#FFFFFF");
+});
+
+test("reroll preserves several locked slots and changes unlocked colours", () => {
+  const palette = core.buildPalette({ h: 220, s: 70, l: 46, style: 0 }, "triadic");
+  const edits = core.normalizePaletteEdits({ context: "x", colors: palette.map((color, i) => ({ hex: color.hex, locked: i % 2 === 0 })) });
+  const result = core.varyPalette(palette, edits, 90);
+  result.forEach((color, i) => {
+    assert.equal(color.locked, i % 2 === 0);
+    if (color.locked) assert.equal(color.hex, palette[i].hex);
+    else assert.notEqual(color.hex, palette[i].hex);
+  });
+});
+
+test("all-locked palettes remain exact and neutral unlocked colours can vary", () => {
+  const palette = [{ hex: "#000000", h: 0, s: 0, l: 0 }, { hex: "#FFFFFF", h: 0, s: 0, l: 100 }];
+  const edits = { colors: palette.map(color => ({ hex: color.hex, locked: true })) };
+  assert.deepEqual(core.varyPalette(palette, edits, 270), edits.colors);
+  const varied = core.varyPalette(palette, null, 90);
+  varied.forEach((color, i) => assert.notEqual(color.hex, palette[i].hex));
+});
+
+test("palette edits survive JSON round trips and older profiles need no edits", () => {
+  const original = core.normalizePaletteEdits({ context: "aos|single||triadic", source: "#AABBCC", colors: [{ hex: "#987654", locked: true }] });
+  assert.deepEqual(core.normalizePaletteEdits(JSON.parse(JSON.stringify(original))), original);
+  const palette = [{ hex: "#123456" }];
+  assert.deepEqual(core.applyPaletteEdits(palette, null), palette);
+});
+
 test("converts basic HSL values to HEX", () => {
   assert.equal(core.hslToHex(0, 100, 50), "#FF0000");
   assert.equal(core.hslToHex(120, 100, 50), "#00FF00");
