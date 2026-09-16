@@ -50,6 +50,43 @@ async function main() {
     await page.click("#randomBtn");
     await page.waitForTimeout(250);
 
+    // Edit a non-primary palette role, pin it, and vary only the remaining slots.
+    const picker = page.locator('#palette input[type="color"]').nth(1);
+    await picker.fill("#a1c3e7");
+    await picker.dispatchEvent("change");
+    await page.locator("#palette .palette-lock").nth(1).click();
+    const beforeReroll = await page.locator("#palette .hex").allTextContents();
+    const selectedScheme = await page.inputValue("#schemeSelect");
+    await page.click("#rerollPaletteBtn");
+    const afterReroll = await page.locator("#palette .hex").allTextContents();
+    assert.equal(afterReroll[1], "#A1C3E7");
+    assert.notEqual(afterReroll[0], beforeReroll[0]);
+    assert.equal(await page.inputValue("#schemeSelect"), selectedScheme);
+    await page.reload({ waitUntil: "networkidle" });
+    assert.deepEqual(await page.locator("#palette .hex").allTextContents(), afterReroll);
+    assert.equal(await page.locator("#palette .palette-lock").nth(1).getAttribute("aria-pressed"), "true");
+    await page.click("#openSaveBtn");
+    await page.evaluate(() => {
+      Object.defineProperty(navigator, "clipboard", { configurable: true, value: {
+        writeText: async text => { window.copiedShareUrl = text; }
+      } });
+    });
+    await page.click("#copyShareLinkBtn");
+    const sharedUrl = await page.evaluate(() => window.copiedShareUrl);
+    assert.equal(new URL(sharedUrl).searchParams.has("palette"), true);
+    await page.goto(sharedUrl, { waitUntil: "networkidle" });
+    assert.deepEqual(await page.locator("#palette .hex").allTextContents(), afterReroll);
+    const anotherScheme = await page.locator("#schemeSelect option").evaluateAll(options => options.find(option => !option.selected).value);
+    await page.selectOption("#schemeSelect", anotherScheme);
+    assert.equal(await page.locator('#palette .palette-lock[aria-pressed="true"]').count(), 0);
+    await page.goto(sharedUrl, { waitUntil: "networkidle" });
+    for (let i = 0; i < afterReroll.length; i++) {
+      if (i !== 1) await page.locator("#palette .palette-lock").nth(i).click();
+    }
+    assert.equal(await page.locator("#rerollPaletteBtn").isDisabled(), true);
+    await page.locator("#palette .palette-lock").nth(0).click();
+    assert.equal(await page.locator("#rerollPaletteBtn").isDisabled(), false);
+
     const title = await page.textContent("#schemeTitle");
     const paletteCount = await page.locator("#palette article").count();
     const producerCount = await page.locator("#producerFilters input[type='checkbox']").count();

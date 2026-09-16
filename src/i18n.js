@@ -2444,6 +2444,42 @@
     return LANGUAGE_KEYS.includes(language);
   }
 
+  const PALETTE_EDITOR_TRANSLATIONS = {
+    en: {
+      editPaletteColor: "Edit colour", lockPaletteColor: "Lock colour",
+      paletteLocked: "Locked", paletteUnlocked: "Unlocked",
+      rerollPalette: "Reroll unlocked colours", randomColor: "Reroll unlocked colours",
+      paletteLockHint: "Edit any colour and lock it to keep it. Changing the game system, palette mode, or scheme resets edits and locks."
+    },
+    de: {
+      editPaletteColor: "Farbe bearbeiten", lockPaletteColor: "Farbe sperren",
+      paletteLocked: "Gesperrt", paletteUnlocked: "Ungesperrt",
+      rerollPalette: "Ungesperrte Farben würfeln", randomColor: "Ungesperrte Farben würfeln",
+      paletteLockHint: "Bearbeite eine Farbe und sperre sie, um sie beizubehalten. Ein Wechsel des Spielsystems, Palettenmodus oder Schemas setzt Anpassungen und Sperren zurück."
+    },
+    fr: {
+      editPaletteColor: "Modifier la couleur", lockPaletteColor: "Verrouiller la couleur",
+      paletteLocked: "Verrouillée", paletteUnlocked: "Déverrouillée",
+      rerollPalette: "Varier les couleurs déverrouillées", randomColor: "Varier les couleurs déverrouillées",
+      paletteLockHint: "Modifiez une couleur et verrouillez-la pour la conserver. Changer de jeu, de mode ou de schéma réinitialise les couleurs et les verrous."
+    },
+    es: {
+      editPaletteColor: "Editar color", lockPaletteColor: "Bloquear color",
+      paletteLocked: "Bloqueado", paletteUnlocked: "Desbloqueado",
+      rerollPalette: "Variar colores desbloqueados", randomColor: "Variar colores desbloqueados",
+      paletteLockHint: "Edita un color y bloquéalo para conservarlo. Cambiar de juego, modo o esquema restablece los colores y los bloqueos."
+    },
+    it: {
+      editPaletteColor: "Modifica colore", lockPaletteColor: "Blocca colore",
+      paletteLocked: "Bloccato", paletteUnlocked: "Sbloccato",
+      rerollPalette: "Varia i colori sbloccati", randomColor: "Varia i colori sbloccati",
+      paletteLockHint: "Modifica un colore e bloccalo per conservarlo. Cambiare gioco, modalità o schema ripristina i colori e i blocchi."
+    }
+  };
+  for (const language of LANGUAGE_KEYS) {
+    Object.assign(TRANSLATIONS[language].ui, PALETTE_EDITOR_TRANSLATIONS[language]);
+  }
+
   return {
     LANGUAGE_KEYS,
     TRANSLATIONS,

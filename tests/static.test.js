@@ -154,12 +154,12 @@ test("share link code preserves explicit empty producer selections", () => {
   assert.doesNotMatch(app, /if \(snapshot\.producerKeys\.length\) \{\s+params\.set\("producers"/);
 });
 
-test("random palette preserves the current producer filter selection", () => {
+test("partial reroll only changes palette edits and preserves other settings", () => {
   const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
 
-  assert.match(app, /syncControlsFromState\(\{ resetProducerSelection: false \}\)/);
-  assert.match(app, /randomCatalogueColor[\s\S]*filteredCataloguePaints\(\)\.filter\(item => item\.hex\)/);
-  assert.doesNotMatch(app, /state\.producerKeys = randomProducerKeys/);
+  const reroll = app.slice(app.indexOf("function rerollPalette()"), app.indexOf("function renderRolePlanner()"));
+  assert.match(reroll, /W\.varyPalette\(currentPalette, state\.paletteEdits/);
+  assert.doesNotMatch(reroll, /state\.(?:system|schemeKey|producerKeys|mode|factionSchemeId)\s*=/);
 });
 
 test("owned paint controls persist and filter closest catalogue matches", () => {

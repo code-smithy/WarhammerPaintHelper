@@ -890,7 +890,40 @@
     };
   }
 
+  // Palette slots retain their role metadata; locks preserve exact RGB values.
+  function normalizePaletteEdits(value) {
+    if (!value || typeof value !== "object" || !Array.isArray(value.colors)) return null;
+    if (typeof value.context !== "string" || value.context.length > 300) return null;
+    return {
+      context: value.context,
+      source: typeof value.source === "string" ? value.source.slice(0, 300) : "",
+      colors: value.colors.slice(0, 12).map(color => {
+        const rgb = color && typeof color.hex === "string" && hexToRgb(color.hex);
+        return rgb ? { hex: rgbToHex(rgb.r, rgb.g, rgb.b), locked: color.locked === true } : null;
+      })
+    };
+  }
+
+  function applyPaletteEdits(palette, edits) {
+    return palette.map((color, index) => {
+      const edit = edits && edits.colors[index];
+      const rgb = edit && hexToRgb(edit.hex);
+      return rgb ? { ...color, ...rgbToHsl(rgb.r, rgb.g, rgb.b), hex: edit.hex } : { ...color };
+    });
+  }
+
+  function varyPalette(palette, edits, hueShift) {
+    return palette.map((color, index) => ({
+      hex: edits && edits.colors[index] && edits.colors[index].locked
+        ? color.hex : hslToHex(normHue(color.h + hueShift), color.s, clamp(color.l + (hueShift > 180 ? -6 : 6), 3, 97)),
+      locked: Boolean(edits && edits.colors[index] && edits.colors[index].locked)
+    }));
+  }
+
   return {
+    normalizePaletteEdits,
+    applyPaletteEdits,
+    varyPalette,
     SCHEMES,
     HERALDIC_LAYOUTS,
     HERALDIC_RATIOS,

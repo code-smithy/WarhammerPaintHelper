@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.13.0
+
+- Added per-card colour editing and locks with exact HEX preservation.
+- Replaced full randomisation with partial rerolls that retain the selected scheme.
+- Saved palette edits and locks in local settings, profiles, and share links.
+- Added validation and regression tests for palette edits and translated editor labels.
+- Updated the heraldic preview to use the edited palette.
+
 ## v0.12.0
 
 - Organised the workspace into Palette, Painting plan, and Paints & supplies steps.
