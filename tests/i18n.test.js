@@ -71,3 +71,18 @@ function leafPaths(value, prefix = "") {
     leafPaths(value[key], prefix ? `${prefix}.${key}` : key)
   ));
 }
+
+
+test("workflow labels stay in their selected language after locale overrides", () => {
+  const expected = {
+    en: ["Workflow", "Palette", "Painting plan", "Paints & supplies", "Your palette · live preview", "Plan your painting →", "Find your paints →", "Back to palette", "Skip to workspace"],
+    it: ["Passaggi", "Tavolozza", "Piano di pittura", "Colori e materiali", "La tua tavolozza · anteprima", "Pianifica la pittura →", "Trova i colori →", "Torna alla tavolozza", "Vai allo spazio di lavoro"]
+  };
+  const keys = ["workflow", "stepPalette", "stepPlan", "stepPaints", "livePalette", "nextPlan", "nextPaints", "backPalette", "skipWorkspace"];
+  for (const [language, labels] of Object.entries(expected)) {
+    const translate = i18n.createTranslator(language);
+    keys.forEach((key, index) => {
+      assert.equal(translate(`ui.${key}`), labels[index], `${language}: ${key}`);
+    });
+  }
+});
